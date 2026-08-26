@@ -32,7 +32,7 @@ print('cross-links',n_links)
 data=json.dumps(dict(chapters=chs,commentary=cm,characters=chars,movements=mv,incoming=incoming),ensure_ascii=False).replace('</','<\\/')
 html=open(f'{B}/build/template.html').read().replace('__DATA__',data)
 open(f'{B}/build/artifact.html','w').write(html)  # fragment, for the Claude artifact
-full='<!doctype html>\n<html lang="en">\n<head>\n<meta name="viewport" content="width=device-width, initial-scale=1">\n<meta name="description" content="Moby-Dick, complete, with chapter essays and line-by-line marginalia from Claude.">\n'
+full='<!doctype html>\n<html lang="en">\n<head>\n<meta name="viewport" content="width=device-width, initial-scale=1">\n<meta name="description" content="Moby-Dick, complete, with chapter essays and line-by-line marginalia from Claude.">\n<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">\n<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">\n<link rel="manifest" href="/manifest.json">\n<meta name="apple-mobile-web-app-title" content="The Whale">\n<meta name="application-name" content="The Whale">\n<meta name="theme-color" content="#0C1218">\n'
 head_end=html.index('</style>')+len('</style>')
 full+=html[:head_end]+'\n</head>\n<body>\n'+html[head_end:]+'\n</body>\n</html>\n'
 open(f'{B}/index.html','w').write(full)
