@@ -1,0 +1,874 @@
+{
+ "ch106": {
+  "essay": "A chapter that begins as an accident report and ends as a theology of grief. What I love is the bathos of the opening: Ahab, having just stormed off the Samuel Enderby in a rage, lands so hard in his own boat that he cracks his leg. All that Miltonic fury, and the immediate consequence is a splintered prosthetic. Melville lets you laugh for exactly one paragraph before he takes it away.\n\nThen comes the buried secret—that before the voyage Ahab was found insensible on the ground, the ivory leg having \"all but pierced his groin.\" I'm still not sure why Melville tucks this here, more than a hundred chapters in, rather than back in Nantucket where Peleg was making excuses for Ahab's seclusion. My best guess is that he wants us to feel the way the crew felt: the truth about Ahab arrives late, sideways, and \"partook more of significant darkness than of explanatory light.\" The wound is also grotesquely intimate—a near-castration by his own false leg, the whale's revenge continuing by proxy. No wonder he doesn't talk about it.\n\nThe heart of the chapter, though, is that long paragraph on why grief has a longer genealogy than joy. Ahab reasons that miseries beget miseries more fertilely than felicities beget felicities, and follows the line all the way up until he concludes \"the gods themselves are not for ever glad.\" It is the most Ahab-like piece of thinking in the book: rigorous, lopsided, and heading unerringly toward the darkest available conclusion. And then, having stared into the sourceless primogenitures of the gods, he does the sane thing—\"he called the carpenter.\" That swerve from metaphysics to a work order is, to me, the whole novel in miniature.",
+  "annotations": [
+   {
+    "quote": "it was, as ever, something about his not steering inflexibly enough",
+    "note": "A small, funny, damning detail: Ahab's standing complaint to every helmsman is that they are not rigid enough. He wants the ship to be as unbending as he is, and the parenthesis tells you the crew has long since stopped listening to the words."
+   },
+   {
+    "quote": "that dead bone upon which he partly stood",
+    "note": "'Partly' is doing real work. He stands half on a living leg and half on a dead whale's jaw—a man literally supported by the thing he hates. The chapter keeps returning to this divided footing."
+   },
+   {
+    "quote": "all miserable events do naturally beget their like",
+    "note": "This is Ahab's private law of nature, and it is worth noticing that it is unfalsifiable: any new misery confirms it, and any joy is dismissed as having 'a certain unsignifying pettiness.' It's the intellectual shape of depression, rendered as cosmology."
+   },
+   {
+    "quote": "the gods themselves are not for ever glad",
+    "note": "Ahab arrives, by pure inference, at a suffering God. Compare [[ch9:Delight is to him|Father Mapple]]'s cheerful sermon in New Bedford: this is the same Calvinist machinery run in reverse, from human sorrow upward rather than from divine will downward."
+   },
+   {
+    "quote": "The ineffaceable, sad birth-mark in the brow of man, is but the stamp of sorrow in the signers.",
+    "note": "A beautiful, strange image—humanity as a document signed by grieving gods, the frown-lines on our brows their signatures. It also quietly links to the livid scar on Ahab's own brow, which Perth will later be asked to smooth."
+   },
+   {
+    "quote": "every revelation partook more of significant darkness than of explanatory light",
+    "note": "Melville's confession of method. Each thing we learn about Ahab makes him more mysterious rather than less, and the narrator admits it's meant to. Keep this line handy for the rest of the book."
+   },
+   {
+    "quote": "he took plain practical procedures;—he called the carpenter.",
+    "note": "After a page of gods and eternal grief, one plain sentence. The comic deflation is deliberate: whatever the synod in the air decides, a man still needs a leg by morning. It's also the door through which the next two chapters walk in."
+   }
+  ],
+  "links": [
+   {
+    "to": "ch100",
+    "why": "The Samuel Enderby, whose captain Ahab has just stormed away from — a man with the same wound and none of the disease."
+   },
+   {
+    "to": "ch16",
+    "why": "Peleg's excuses for Ahab's seclusion before sailing; this chapter tells you what he was hiding."
+   },
+   {
+    "to": "ch9",
+    "q": "Delight is to him",
+    "why": "Father Mapple's cheerful God, against Ahab's inference that the gods themselves are not for ever glad."
+   }
+  ]
+ },
+ "ch107": {
+  "essay": "This is one of Melville's portrait-chapters, and it opens with a thought experiment I keep returning to: sit \"sultanically among the moons of Saturn\" and look at one man—he is a wonder. Look at mankind in mass—\"a mob of unnecessary duplicates.\" It's a chilling line, and I don't think Melville fully endorses it, because the whole point of the chapter is that this nameless, humble carpenter turns out to be no duplicate at all.\n\nWhat fascinates me is that the carpenter is drawn as the exact opposite of Ahab. Ahab is all interiority, all significance; the carpenter has none. He treats \"teeth as bits of ivory, heads as top-blocks, men as capstans.\" He is a \"pure manipulator\" whose brain has \"oozed along into the muscles of his fingers.\" Melville compares him to a Sheffield multi-tool—open the right part of him and there's the screwdriver. And yet the paragraph keeps hedging: he's stolid but \"half-horrible\"; heartless but with \"an old, crutch-like, antediluvian, wheezing humorousness.\" I read that hedging as Melville's honesty. He wants to make the carpenter a machine and can't quite, because the man keeps talking to himself.\n\nThat's the final image and the one I find most moving: the carpenter's body as a sentry-box, with some \"unaccountable, cunning life-principle\" on guard inside, \"talking all the time to keep himself awake.\" It reframes all the muttering we're about to hear in the next chapter. It isn't thought exactly; it's a night watchman's hum against the dark. And it makes me wonder whether Ahab's grand soliloquies are, at bottom, the same thing at a higher volume.",
+  "annotations": [
+   {
+    "quote": "take mankind in mass, and for the most part, they seem a mob of unnecessary duplicates",
+    "note": "One of the coldest sentences in the book, delivered from a Saturnian distance. But watch what Melville does with it: he immediately produces a nobody—an unnamed ship's carpenter—and insists he is not a duplicate. The sentence is set up in order to be refuted."
+   },
+   {
+    "quote": "Teeth he accounted bits of ivory; heads he deemed but top-blocks; men themselves he lightly held for capstans.",
+    "note": "A tradesman's flat materialism, the same worldview that lets whalemen render a whale to oil. It's also the mirror image of Ahab, who can't see anything—a coin, a fire, a whale—without reading a soul into it."
+   },
+   {
+    "quote": "ignores you, though you dig foundations for cathedrals",
+    "note": "The carpenter's stolidity is the world's stolidity: nature does not notice what you build on it. This is Ishmael's recurring terror in a single clause—the universe as indifferent, not hostile—and it's more frightening than Ahab's malicious cosmos."
+   },
+   {
+    "quote": "He was a stript abstract; an unfractioned integral; uncompromised as a new-born babe",
+    "note": "Melville reaches for mathematics to describe a man with no history: a whole number, nothing left over. Note how the language admires him even as it declares him nearly mindless."
+   },
+   {
+    "quote": "his brain, if he had ever had one, must have early oozed along into the muscles of his fingers",
+    "note": "I find this oddly accurate about skilled manual work—knowledge that lives in the hands and can't be recited. Melville plays it as a joke, but it's a real theory of craft."
+   },
+   {
+    "quote": "his body was a sentry-box and this soliloquizer on guard there, and talking all the time to keep himself awake",
+    "note": "The chapter's most humane moment. All the carpenter's muttering is a night-watch against oblivion. Hold this image against Ahab's monologues: is grandeur just louder sentry-talk?"
+   }
+  ],
+  "links": [
+   {
+    "to": "ch108",
+    "q": "manmaker",
+    "why": "The portrait in action, next chapter."
+   },
+   {
+    "to": "ch127",
+    "q": "life-buoy of a coffin",
+    "why": "The carpenter's last job — making a coffin into a life-buoy without curiosity."
+   },
+   {
+    "to": "ch26",
+    "q": "democratic dignity",
+    "why": "Ishmael's hymn to the common man, to set against 'a mob of unnecessary duplicates.'"
+   }
+  ]
+ },
+ "ch108": {
+  "essay": "The novel goes to the theatre again — stage directions, \"(_sneezes_)\", asides to nobody — and gives us its strangest two-hander. On one side the carpenter, filing a whale's jaw into a shinbone and sneezing on the dust; on the other Ahab, who arrives with \"Well, manmaker!\" and proceeds, over the course of a leg-fitting, to order up a fifty-foot man with no heart, a brass forehead, and a skylight in the skull \"to illuminate inwards.\" The carpenter has no idea what he is being asked. Neither, I think, does Ahab entirely; he is thinking out loud in front of the one man aboard who cannot overhear him.\n\nWhy stage it as a play? Melville has been doing this since [[ch37|Sunset]] and [[ch40|Midnight, Forecastle]], and I used to read it as a Shakespeare habit he couldn't shake. Here it does something more specific. A play-script strips out the narrator, and Ishmael is the book's connective tissue — the voice that explains, forgives, and makes analogies. Take him away and you get two men speaking past each other with no one to translate. The carpenter's asides never meet Ahab's; Ahab's questions never quite land as questions. The form enacts the failure of the conversation.\n\nThe hinge of the scene is a real piece of medicine: phantom limb. Ahab asks whether, when he stands on the new leg, he will still feel \"another leg in the same identical place\" — and the carpenter, who has heard that \"a dismasted man never entirely loses the feeling of his old spar,\" asks humbly if it's true. It is. From that plain fact Ahab builds a proof of hell in a single step: if a leg long dissolved can still hurt, why couldn't a soul without a body feel \"the fiery pains of hell for ever\"? Watch the pronoun. He says \"thou, carpenter,\" not \"I.\" He is testing the argument on someone else before he has to live inside it — which is what he did with the crew on [[ch36:pasteboard masks|the quarter-deck]], when he made them swear to his hunt before he had fully told them what it was. And the carpenter answers, \"I think I didn't carry a small figure, sir.\" Damnation as a bookkeeping error. It is the funniest line in the exchange and also a small revelation about what a mind without metaphysics does when metaphysics is forced on it: it reaches for the ledger.\n\nThat word matters, because Ahab then curses ledgers himself. \"Oh, Life! Here I am, proud as Greek god, and yet standing debtor to this blockhead for a bone to stand on! Cursed be that mortal inter-indebtedness which will not do away with ledgers.\" This is the philosophical centre of the chapter and I'd say of Ahab. He cannot bear to owe. Even the tongue he brags with, he says, is on loan. The whole book has been arguing the opposite — Ishmael's [[ch72:Siamese ligature|monkey-rope]], the [[ch94:squeeze ourselves into each other|squeeze of the hand]], the plain fact that you cannot lower a boat alone — and here is the counter-argument stated by the man who will die of it. His wish to \"dissolve myself down to one small, compendious vertebra\" is a wish to be a self with no dependencies: pure spine, nothing borrowed.\n\nAnd then the carpenter, alone, says the truest thing anyone says about Ahab without knowing it: he \"has a stick of whale's jaw-bone for a wife.\" Remember the young wife left in Nantucket after one night, the \"sweet, resigned girl\" Peleg mentions in [[ch16|The Ship]] and Ahab himself will weep over in [[ch132:step-mother world|The Symphony]]. The carpenter is thinking only of the leg clamped in his vice. That is the method of the chapter: the man with no interior keeps accidentally describing the man who is nothing but interior. Two monologues, no dialogue. Comedy on the surface, and underneath it the loneliest scene in the book until Pip takes Ahab's hand.",
+  "annotations": [
+   {
+    "quote": "That is hard which should be soft, and that is soft which should be hard.",
+    "note": "The carpenter grumbles about jawbone, but it's a perfect epigraph for Ahab: soft where a captain should be hard (his conscience, his grief) and adamant where a man should bend."
+   },
+   {
+    "quote": "Well, manmaker!",
+    "note": "Ahab's first word to the carpenter renames him as a demiurge. The whole Prometheus riff that follows starts here: a man who makes men, a smith who animates with fire, and a captain who wants to be remade."
+   },
+   {
+    "quote": "I like to feel something in this slippery world that can hold, man.",
+    "note": "Ahab admiring a vice. It's one of the few times he says out loud what he actually wants—not the whale, but purchase; something that grips back."
+   },
+   {
+    "quote": "no heart at all, brass forehead, and about a quarter of an acre of fine brains",
+    "note": "Ahab's dream man has no heart and a skylight to see inward, not outward. He is describing, half-jokingly, the thing he is trying to become—and the carpenter, who has no interiority to illuminate, stands there wondering who is being addressed."
+   },
+   {
+    "quote": "Thrusted light is worse than presented pistols.",
+    "note": "Ahab, who has just asked for a lantern, flinches when one is brought. The line works literally (a lamp in the face) and as a confession: illumination, offered, is what he can least tolerate."
+   },
+   {
+    "quote": "here is only one distinct leg to the eye, yet two to the soul",
+    "note": "The phantom limb as a doubled self. Ahab is standing in two places at once—on the deck and back at the moment of his wound—and he knows it. This is the closest the book comes to explaining his monomania from the inside."
+   },
+   {
+    "quote": "why mayst not thou, carpenter, feel the fiery pains of hell for ever, and without a body?",
+    "note": "A perfectly Ahabian inference: from phantom pain to eternal damnation in one step. Notice he doesn't say 'I'—he says 'thou.' He is testing the argument on the carpenter before he has to live inside it."
+   },
+   {
+    "quote": "I think I didn’t carry a small figure, sir.",
+    "note": "The carpenter treats the existence of hell as a bookkeeping slip. It's a joke, but it also shows what a mind without metaphysics looks like when metaphysics is forced on it: it reaches for the ledger."
+   },
+   {
+    "quote": "Cursed be that mortal inter-indebtedness which will not do away with ledgers.",
+    "note": "Ahab's real complaint is that he cannot be self-made. Even the tongue he brags with is on loan. This is the philosophical center of the chapter, and it explains why a proud man would want to shrink to a single vertebra."
+   },
+   {
+    "quote": "has a stick of whale’s jaw-bone for a wife!",
+    "note": "The carpenter, thinking only of the leg propped in the vice, accidentally says the truest thing anyone says about Ahab's marriage. Remember the young wife of [[ch132:step-mother world|The Symphony]] in Nantucket he left after one night."
+   },
+   {
+    "quote": "one small, compendious vertebra",
+    "note": "The fantasy of a self with no dependencies: not even a body, just the bone that holds a body up. Set it against Ishmael on the [[ch72:Siamese ligature|monkey-rope]], who accepts that his life is tied to another man's and finds it, if not comforting, at least true."
+   },
+   {
+    "quote": "What’s Prometheus about there?—the blacksmith, I mean",
+    "note": "Ahab has just been calling the carpenter Prometheus and now transfers the name to Perth. The slip is the point: he can't keep his makers straight because he wants to be his own. Two chapters on, at [[ch113|The Forge]], he takes the hammer himself."
+   }
+  ],
+  "links": [
+   {
+    "to": "ch107",
+    "why": "The portrait of the carpenter this scene depends on — the 'pure manipulator' whose brain oozed into his fingers."
+   },
+   {
+    "to": "ch72",
+    "q": "Siamese ligature",
+    "why": "Ishmael's answer to Ahab's curse on 'inter-indebtedness': he is tied to Queequeg and says so."
+   },
+   {
+    "to": "ch36",
+    "q": "pasteboard masks",
+    "why": "The same move — Ahab trying an argument on other people before he inhabits it."
+   },
+   {
+    "to": "ch132",
+    "q": "step-mother world",
+    "why": "The wife the carpenter accidentally names, wept for at last."
+   },
+   {
+    "to": "ch125",
+    "q": "Thou touchest my inmost centre",
+    "why": "The one conversation Ahab does have, with Pip — the reverse of this one."
+   }
+  ]
+ },
+ "ch109": {
+  "essay": "A short, tense, beautifully built scene. The pumps bring up oil with the water; the casks are leaking; Starbuck goes below to tell the captain they must heave to and repair. It is the most reasonable request in the book, and it produces the closest thing to mutiny before the final chase.\n\nWhat strikes me is how Ahab hears the word \"leak.\" Starbuck means barrels. Ahab answers, \"I'm all aleak myself\"—leaky casks in a leaky ship, and no stopping to plug the hull \"in this life's howling gale.\" It's a magnificent bit of self-pity, but it's also literally true: the man is bleeding purpose, and he knows it. Then Starbuck says the thing no one else dares—that the owners have an interest here—and Ahab's reply, \"the only real owner of anything is its commander,\" is so plainly a captain's heresy that Starbuck reddens and steps closer. The musket comes off the rack. \"There is one God that is Lord over the earth, and one Captain that is lord over the Pequod.\"\n\nAnd then the line that makes the chapter: \"let Ahab beware of Ahab; beware of thyself, old man.\" Starbuck refuses the role of enemy. He tells Ahab that his only danger is internal, and Ahab—alone, pacing with the musket as a walking stick—admits \"there's something there!\" A moment later he goes on deck and gives the order Starbuck asked for. Melville won't tell us why: \"a flash of honesty in him; or mere prudential policy.\" I find that refusal to explain honest and unsettling. It leaves open the possibility that Ahab is still, just barely, persuadable—which makes what follows harder to bear.",
+  "annotations": [
+   {
+    "quote": "With his snow-white new ivory leg braced against the screwed leg of his table",
+    "note": "The new leg from the carpenter's bench, first seen in use. Both the man and his table are propped on artificial legs—a small visual rhyme that makes the cabin feel like a workshop of prostheses."
+   },
+   {
+    "quote": "Let it leak! I’m all aleak myself.",
+    "note": "Ahab hears every practical problem as a metaphor for himself. That habit is his genius and his disease; here it literally overrides the ship's safety."
+   },
+   {
+    "quote": "the only real owner of anything is its commander; and hark ye, my conscience is in this ship’s keel.",
+    "note": "A sailor's conscience is supposed to be with the owners' money and the crew's lives. Ahab relocates his to the keel—the part of the ship that is underwater and unseen. It's a stunning admission of where he keeps his morality."
+   },
+   {
+    "quote": "a daring so strangely respectful and cautious",
+    "note": "Melville is careful about Starbuck's courage: it is real but self-distrustful, 'more than half distrustful of itself.' That interior hesitation is exactly what will fail him later, in the chapter with the musket."
+   },
+   {
+    "quote": "There is one God that is Lord over the earth, and one Captain that is lord over the Pequod.",
+    "note": "Ahab, with a loaded musket, makes himself the local deity. The sentence is built so that God and Captain occupy identical grammatical slots—which is the blasphemy Starbuck can hear and cannot answer."
+   },
+   {
+    "quote": "let Ahab beware of Ahab; beware of thyself, old man.",
+    "note": "The best thing Starbuck ever says. He declines the role of Ahab's antagonist and hands him back the only opponent that matters. Ahab, alone, concedes 'there's something there'—the one moment in the book he hears advice."
+   },
+   {
+    "quote": "It may have been a flash of honesty in him; or mere prudential policy",
+    "note": "Ishmael refuses to adjudicate. I keep noticing how often the narrator won't explain Ahab even when he could; the uncertainty is a deliberate texture, not a gap."
+   }
+  ],
+  "links": [
+   {
+    "to": "ch36",
+    "q": "pasteboard masks",
+    "why": "The first time Starbuck stood against Ahab, in public."
+   },
+   {
+    "to": "ch123",
+    "why": "The second time, in private, with a gun."
+   },
+   {
+    "to": "ch132",
+    "q": "step-mother world",
+    "why": "The one moment Ahab lets Starbuck's plea in."
+   }
+  ]
+ },
+ "ch110": {
+  "essay": "The hold is broken out, cask by ancient cask, until the ship rides top-heavy \"as a dinnerless student with all Aristotle in his head\" — and down in that damp, Queequeg catches the fever that nearly kills him. What follows is, for me, the tenderest chapter in the book, and also the one that most quietly rigs the ending: the coffin built here is the coffin that carries Ishmael out of the wreck. Melville does not wink at this. He lets the carpenter build a box, lets a man climb into it and out again, and moves on. Only on a second reading do you feel the whole [[epilogue:coffin life-buoy|Epilogue]] being nailed together in this chapter.\n\nI want to be explicit about why the description of Queequeg's dying works, because it is doing something unusual. Ishmael does not describe the sick man's face. He describes his eyes growing \"fuller and fuller\" as the body wastes, \"like circles on the water, which, as they grow fainter, expand.\" The simile runs backward from what you expect: dying is usually a shrinking, and here it is a spreading — less and less of the man, more and more of his reach. Then Ishmael gives up: \"whatever is truly wondrous and fearful in man, never yet was put into words or books.\" This is the narrator of a nine-hundred-page attempt to put a whale into words, confessing at a deathbed that words don't reach. It is the same confession he makes about the whale's face in [[ch79|The Prairie]] and about the whale's tail in [[ch86|The Tail]] — \"I know him not, and never will.\" The book keeps hitting this wall and keeps writing anyway; that, I think, is its actual ethic.\n\nThen the request. Not the hammock and the sharks, which is how sailors are buried in [[ch69|The Funeral]], but a canoe-coffin like the ones on Nantucket, because his people paddle their dead to the \"starry archipelagoes\" — they believe the stars are islands and the Milky Way is surf where the sea meets the sky. Notice how Ishmael reports this. No condescension, no \"quaint belief\"; he simply lays it beside Father Mapple's heaven from [[ch9|The Sermon]] and lets you decide which afterlife you'd choose. The carpenter measures the living man with chalk \"with all the indifferent promptitude of his character,\" which is the carpenter of [[ch107|two chapters ago]] doing exactly what that portrait promised, and it is horrifying precisely because it isn't cruel.\n\nThe chapter then turns twice, and the turns are the craft. First: Queequeg tries the coffin on like a suit and pronounces it \"Rarmai\" — it will do — while Pip beats a dying march on his tambourine and begs the corpse-to-be to look for a boy named Pip in the Antilles. Pip talks about himself as someone else who is missing; that is what the sea did to him in [[ch93:foot upon the treadle|The Castaway]]. Second: Queequeg simply decides not to die, because he remembers \"a little duty ashore\" left undone. Nothing but a whale or a gale, Ishmael says, can kill a man who has made up his mind. I don't fully believe it as physiology and I don't think Ishmael does either; but as an ethic it's the book's most cheerful sentence — you don't need a good reason to live, only a reason.\n\nAnd then the coda, which is the part I'd underline in a lent copy. Queequeg spends his idle hours carving onto the coffin lid the same figures that are tattooed on his body — a cosmology written by a dead prophet of his island, \"a riddle to unfold; a wondrous work in one volume; but whose mysteries not even himself could read.\" An unreadable text, copied onto a box, that will float a man to safety. I think that is Melville's picture of every book, including this one: it doesn't have to be decoded to hold you up.",
+  "annotations": [
+   {
+    "quote": "Top-heavy was the ship as a dinnerless student with all Aristotle in his head.",
+    "note": "A perfect Melville simile: it's funny, it's precise about a ship's stability, and it's secretly about the book itself, which is top-heavy with learning and short on dinner."
+   },
+   {
+    "quote": "like a green spotted lizard at the bottom of a well",
+    "note": "Queequeg, the most dignified man aboard, reduced to something small and cold in the dark. The image prepares the illness; the hold is where the ship stores its dead weight, and he nearly becomes some."
+   },
+   {
+    "quote": "like circles on the water, which, as they grow fainter, expand; so his eyes seemed rounding and rounding, like the rings of Eternity",
+    "note": "The single most beautiful sentence in this stretch of the book. Dying rendered as a ripple: less and less of the man, more and more of his reach. Ishmael can't say what he sees in those eyes, so he gives us the shape of it."
+   },
+   {
+    "quote": "For whatever is truly wondrous and fearful in man, never yet was put into words or books.",
+    "note": "Notice who is saying this: the narrator of a nine-hundred-page attempt to put a whale into words. It's a confession of the limit of the whole project, placed at a deathbed."
+   },
+   {
+    "quote": "for not only do they believe that the stars are isles, but that far beyond all visible horizons, their own mild, uncontinented seas, interflow with the blue heavens",
+    "note": "Queequeg's cosmology in one clause: the sea does not end, it becomes sky, and the dead paddle there. It's a more generous afterlife than anything in Father Mapple's sermon, and Ishmael reports it without a trace of condescension."
+   },
+   {
+    "quote": "regularly chalking Queequeg’s person as he shifted the rule",
+    "note": "The carpenter from two chapters ago, measuring a living man for a box as if he were a plank. The horror is entirely in the word 'regularly.'"
+   },
+   {
+    "quote": "“Rarmai” (it will do; it is easy), he murmured at last",
+    "note": "A man tries on his coffin and reviews it like a bed. The calm of this is what makes Pip's sobbing beside it so hard to take. It's also the only Polynesian word Ishmael bothers to translate in the scene."
+   },
+   {
+    "quote": "Seek out one Pip, who’s now been missing long: I think he’s in those far Antilles.",
+    "note": "Pip speaks of himself as a lost boy someone else should look for. This is what drowning did to him in [[ch93:foot upon the treadle|The Castaway]]: the self went overboard and the body came back. Here he asks a dying friend to run the errand no living person can."
+   },
+   {
+    "quote": "he had just recalled a little duty ashore, which he was leaving undone; and therefore had changed his mind about dying",
+    "note": "Queequeg's recovery is a joke and an ethic at once. Melville never tells us what the duty was—and it doesn't matter. A reason to live is enough; you don't need a good one."
+   },
+   {
+    "quote": "a riddle to unfold; a wondrous work in one volume; but whose mysteries not even himself could read",
+    "note": "Queequeg's body is a book he can't read, and he copies it onto his coffin anyway. This is the image Ishmael will float on in [[epilogue:coffin life-buoy|the Epilogue]]—an unreadable text that nonetheless keeps a man alive. I think it's Melville's picture of every book, including this one."
+   },
+   {
+    "quote": "And a well, or an ice-house, it somehow proved to him, poor pagan",
+    "note": "The hold as a well: the same vertical, cold, enclosed space Pip fell into in the open sea, and that Tashtego fell into inside the whale's head in [[ch78|Cistern and Buckets]]. Melville keeps lowering his people into wells and watching what comes back up."
+   }
+  ],
+  "links": [
+   {
+    "to": "epilogue",
+    "q": "coffin life-buoy",
+    "why": "Where this coffin ends up. Read the two together once and the whole book tilts."
+   },
+   {
+    "to": "ch127",
+    "q": "life-buoy of a coffin",
+    "why": "The carpenter converts the coffin into a life-buoy, grumbling all the way."
+   },
+   {
+    "to": "ch93",
+    "q": "foot upon the treadle",
+    "why": "What happened to Pip, who beats the dying march here."
+   },
+   {
+    "to": "ch18",
+    "why": "Queequeg signing the ship's articles with the same figure from his arm — the tattoos as signature, the first time."
+   },
+   {
+    "to": "ch9",
+    "why": "Father Mapple's heaven, to set beside Queequeg's starry archipelagoes."
+   }
+  ]
+ },
+ "ch111": {
+  "essay": "Four paragraphs, and the Pacific gets the fullest love-letter any body of water receives in the book. Ishmael has been sailing toward it since boyhood — \"the long supplication of my youth was answered\" — and the prose goes luminous: the waves as \"watery prairies and Potters' Fields of all four continents,\" the sea as a bed under which \"millions of mixed shades and shadows, drowned dreams\" toss like sleepers, and the swells themselves are \"made so by their restlessness.\" It is the drowned who keep the ocean moving. I find that image very hard to shake, and I think it is meant to be: every swell for the rest of the voyage — and the last three chapters are nothing but swells — is now something remembering.\n\nThe second movement widens until the Pacific is the planet's heart, washing brand-new California towns and Asian coasts \"older than Abraham\" with the same water, making \"all coasts one bay to it.\" Melville is writing in 1851, before the Pacific was routinely thought of as one ocean with one character; this is geography as awe, and it is also the book's largest statement of a thing it keeps saying smaller — that everything is joined. And then: \"Lifted by those eternal swells, you needs must own the seductive god, bowing your head to Pan.\" Read that as Ishmael's honest religion. Not the Presbyterianism of [[ch7|the chapel]], not Queequeg's Yojo, but a nature-god you are rocked into worshipping whether you meant to or not. He phrases it as compulsion — \"needs must\" — because he knows it is dangerous. It is exactly the trance that nearly dropped the boy from the crow's nest in [[ch35:Descartian vortices|The Mast-Head]]; there he warned you about it, here he bows to it. Both are true of him.\n\nWhy does this chapter sit here, between the coffin and the forge? Because the last paragraph is a hinge, and I think it is the most economical piece of characterization in the book. \"But few thoughts of Pan stirred Ahab's brain.\" With one nostril he smells the sugary musk of the Bashee isles, \"in whose sweet woods mild lovers must be walking\"; with the other, the salt sea where the whale swims. He is literally breathing two worlds and only one registers. Melville makes the monomania anatomical: a man split down the nose. His lips \"met like the lips of a vice\" — the carpenter's vice from [[ch108:manmaker|Ahab and the Carpenter]], now on Ahab's face — and even asleep he is at the moment of the kill, shouting \"the White Whale spouts thick blood!\" through the hull, so that the crew in their hammocks sleep inside his dream.\n\nSo the chapter is a diptych. On the left, a man surrendering to the ocean; on the right, a man refusing it; the same water under both. Ishmael can bow to Pan because he has no quarrel with the impersonal — he has been practising that surrender since he let a cannibal's arm lie across him in [[ch4:supernatural hand|The Counterpane]]. Ahab cannot, because for him the impersonal has a face, and he will say so out loud to the lightning in [[ch119:right worship is defiance|The Candles]]. The Pacific is where those two stances stop being philosophy and start being a course on the chart.",
+  "annotations": [
+   {
+    "quote": "for now the long supplication of my youth was answered",
+    "note": "This is the Ishmael of Chapter 1, who went to sea to cure the November in his soul, finally getting what he prayed for. It's worth pausing on how rarely this narrator allows himself an answered prayer."
+   },
+   {
+    "quote": "wide-rolling watery prairies and Potters’ Fields of all four continents",
+    "note": "Prairie and paupers' graveyard in a single phrase. The Pacific is both the open American West and the unmarked grave of everyone who ever drowned—which is why, a few chapters on, the blacksmith will hear it calling him."
+   },
+   {
+    "quote": "the ever-rolling waves but made so by their restlessness",
+    "note": "A physical theory of the sea: waves are the tossing of the drowned in their sleep. It's a grotesque idea and it's tender, and it turns every swell for the rest of the book into something remembering."
+   },
+   {
+    "quote": "makes all coasts one bay to it; seems the tide-beating heart of earth",
+    "note": "The ocean as the planet's heart, with every continent a shoreline of the same bay. Melville is writing before the Pacific was routinely thought of as one thing; this is geography as a kind of awe."
+   },
+   {
+    "quote": "you needs must own the seductive god, bowing your head to Pan",
+    "note": "Ishmael's confession of pantheism, phrased as compulsion. Compare [[ch35:Descartian vortices|The Mast-Head]], where the same seduction nearly drops a boy into the sea. He knows it's dangerous and bows anyway."
+   },
+   {
+    "quote": "with one nostril he unthinkingly snuffed the sugary musk from the Bashee isles",
+    "note": "Ahab smells the land—lovers walking in sweet woods—and doesn't register it. One nostril for the world he's renounced, one for the whale. Melville makes his monomania anatomical."
+   },
+   {
+    "quote": "“Stern all! the White Whale spouts thick blood!”",
+    "note": "Ahab's dream is a boat order. Even asleep he is at the moment of the kill, and the crew below hear it ring through the hull—which means they sleep inside his dream."
+   }
+  ],
+  "links": [
+   {
+    "to": "ch35",
+    "q": "Descartian vortices",
+    "why": "The same seduction, presented as a warning instead of a surrender."
+   },
+   {
+    "to": "ch1",
+    "q": "substitute for pistol and ball",
+    "why": "The boy who prayed for this ocean, and why he went to sea at all."
+   },
+   {
+    "to": "ch119",
+    "q": "right worship is defiance",
+    "why": "What Ahab does with the 'personified impersonal' that Ishmael here bows to."
+   },
+   {
+    "to": "ch132",
+    "q": "step-mother world",
+    "why": "The one moment Ahab's other nostril opens — he smells the land and nearly turns back."
+   }
+  ]
+ },
+ "ch112": {
+  "essay": "Perth the blacksmith gets one chapter of his own, and it is a small, complete tragedy told almost entirely in the past tense. He is the man who forged Ahab's leg-fittings and will forge the harpoon, and Melville pauses to tell us why he is here: because his life on land ended. He had a house, a young wife, three children, a Sunday church \"planted in a grove\"—and then \"the Bottle Conjuror.\" The burglar who ruined his home was drink, and \"the blacksmith himself did ignorantly conduct this burglar into his family's heart.\" I'm struck by how Melville tells it as a break-in rather than a weakness; it lets Perth keep his dignity even as the narrator refuses to let him off.\n\nThe detail I can't get past is the basement forge, whose muffled hammer-blows came up through the floor to the nursery so that the children were rocked to sleep by \"stout Labor's iron lullaby.\" Then the blows grow \"more and more between,\" fainter each day, until the bellows fall and the house is sold and the wife and two of the children are in the churchyard. The whole collapse is told through the sound of the hammer going quiet. That is a novelist's ear.\n\nAnd then the strangest turn: the narrator's wish that Death had come early—\"why canst thou not sometimes be timely?\"—so the widow could have had \"a delicious grief.\" It's a bitter thought and an honest one. The chapter ends with the ocean's mermaids singing a recruiting song to broken men: come hither, put up your gravestone in the churchyard and live a life \"more oblivious than death.\" So Perth went a-whaling. Whaling, in this telling, is suicide without the guilt—which tells you something about who mans the Pequod.",
+  "annotations": [
+   {
+    "quote": "the heavy beating of his hammer the heavy beating of his heart. And so it was.—Most miserable!",
+    "note": "Melville sets up a conventional metaphor—hammer as heart—and then flatly says it's literal. The dash and the two-word verdict are a narrator refusing his own eloquence."
+   },
+   {
+    "quote": "the four acts of the gladness, and the one long, and as yet uncatastrophied fifth act of the grief of his life’s drama",
+    "note": "Perth's life laid out as a five-act tragedy whose fifth act hasn't ended. 'Uncatastrophied' is a word Melville seems to have invented for this sentence; it means the catastrophe is still coming, and it is."
+   },
+   {
+    "quote": "It was the Bottle Conjuror!",
+    "note": "Drink named as a stage magician and a burglar. The oblique naming matters: Melville wants us to feel how alcohol enters a happy house—disguised, invited—rather than to preach about it."
+   },
+   {
+    "quote": "to stout Labor’s iron lullaby, the blacksmith’s infants were rocked to slumber",
+    "note": "The most tender image in the chapter, and the setup for the cruelest: the hammer that sang the children to sleep is the hammer that goes silent as the house fails. Listen for it in the next paragraph."
+   },
+   {
+    "quote": "Oh, Death, why canst thou not sometimes be timely?",
+    "note": "A wish for someone to have died sooner, for his family's sake. It's shocking and it's compassionate; Melville lets the narrator think a thought most of us have and won't say."
+   },
+   {
+    "quote": "here is another life without the guilt of intermediate death",
+    "note": "The sea's pitch to the broken-hearted: you can vanish from the land without killing yourself. This explains not just Perth but Ishmael's own [[ch1:substitute for pistol and ball|'substitute for pistol and ball']]. The Pequod is crewed by men who chose this over the churchyard."
+   },
+   {
+    "quote": "And so Perth went a-whaling.",
+    "note": "Six words to close a life story. The flatness is the point: after all that ruin, going to sea isn't a decision, it's what's left."
+   }
+  ],
+  "links": [
+   {
+    "to": "ch113",
+    "q": "smoothe",
+    "why": "What Ahab asks this ruined man to do the next night."
+   },
+   {
+    "to": "ch1",
+    "q": "substitute for pistol and ball",
+    "why": "Ishmael's own reason for going to sea — the same door Perth walks through."
+   },
+   {
+    "to": "ch111",
+    "q": "Potters’ Fields",
+    "why": "The sea as a graveyard for the living, in Ishmael's voice."
+   }
+  ]
+ },
+ "ch113": {
+  "essay": "The forge is lit, and Ahab comes to it with a leather bag of horseshoe nail-stubs and a request: a harpoon \"that a thousand yoke of fiends could not part.\" What follows is a black sacrament, and Melville stages it as one, step by step — twelve rods twisted \"like the yarns and strands of a tow-line,\" a flaw rejected, Ahab taking the hammer to weld his own iron, the Parsee bowing over the fire, and finally the barb tempered not in water but in the blood of the three pagan harpooneers while Ahab howls a Latin inversion of the baptismal formula: I baptize thee not in the name of the Father, but of the Devil. Melville wrote that line to Hawthorne as the book's secret motto. He meant it.\n\nBut the conversation before the forging is the part that stays with me, and I want to explain why it is the real climax of the chapter, not the blood. Ahab, who cannot tolerate sanity in the suffering — \"In no Paradise myself, I am impatient of all misery in others that is not mad\" — asks Perth how he can endure without going mad. Perth's story was told in [[ch112:only desirable sequel|The Blacksmith]]: drink, a dead family, and the sea as the one way to vanish without suicide. Then Ahab asks whether he can smooth any seam or dent, and Perth says all but one — and Ahab sweeps his hand across his own scarred brow. \"Can'st thou smoothe this seam?\" He would lay his head on the anvil for it. Perth already knew: \"that is the one, sir.\" Here is the plainest statement in the novel of what Ahab actually wants. Not the whale. The un-wrinkling of his own mind. And the plainest statement that no craftsman can give it to him, which is why he goes and makes a weapon instead. The scar, first seen \"lividly whitish\" in [[ch28:lividly whitish|Ahab]], has \"worked down into the bone of my skull — that is all wrinkles.\" It is his own diagnosis of monomania, more exact than anything Ishmael manages in [[ch41:special lunacy stormed his general sanity|Moby Dick]].\n\nThen the mechanics of the sacrament, which reward slow reading. The nail-stubs are a real blacksmith's fact: shoe-nails from racehorses were the hardest, most work-hardened steel a smith could get — and Ahab has been collecting them, which means this harpoon was planned before the voyage, before the quarter-deck, maybe before Nantucket. The steam from the tempering scalds his face and he asks, \"have I been but forging my own branding-iron, then?\" He knows. Perth knows. Stubb, watching the Parsee, smells gunpowder. Melville has built a scene in which every participant understands exactly what the harpoon is for and no one stops it — which is also the structure of the whole last third of the book, from [[ch109|Starbuck in the cabin]] to [[ch123|the musket]].\n\nThe blood-baptism itself should be read against two earlier scenes. In [[ch36:pasteboard masks|The Quarter-Deck]] Ahab had the harpooneers cross their irons and drink from the sockets — a pledge in grog. Here the pledge is repeated in blood, and it is the three pagans, Tashtego, Queequeg, Daggoo, who bleed. The white officers watch. And the fire: [[ch96:Look not too long in the face of the fire|The Try-Works]] warned, only seventeen chapters ago, not to look too long into the flame or you'll come to believe the fire is the true world. Ahab looks, and then does more than look — he puts his hand in it. When the lightning comes in [[ch119:I as Persian|The Candles]] he will tell us he once worshipped fire and was burned; this chapter is where you watch the worship happen.\n\nAnd the chapter ends with a laugh: Pip's, from somewhere on deck, \"mocking and menacing\" the tragedy. I read that laugh as Melville declining to let the scene be only grand. The ritual is real and it is also a mad old man playing with a hammer while a broken boy giggles. Both are on the page at once, and Melville lets you hear both.",
+  "annotations": [
+   {
+    "quote": "not easily can’st thou scorch a scar",
+    "note": "Perth's answer to why the sparks don't burn him: he is already all burn. It's the mirror of Ahab's brow-scar, and it sets up the exchange about seams that follows."
+   },
+   {
+    "quote": "In no Paradise myself, I am impatient of all misery in others that is not mad.",
+    "note": "Ahab's confession that he needs company in madness and resents sane grief as a reproach. It's one of his most self-aware lines, and it explains why Pip, later, is the only one he can bear near him."
+   },
+   {
+    "quote": "Aye, sir, I think I can; all seams and dents but one.",
+    "note": "Perth has understood before Ahab finishes asking. Watch how the dialogue becomes a riddle both men already know the answer to—the one dent no smith can hammer out is in a skull."
+   },
+   {
+    "quote": "it has worked down into the bone of my skull—_that_ is all wrinkles!",
+    "note": "Ahab says the scar has gone inward: his skull is wrinkles all the way through. This is his own diagnosis of monomania, more precise than anything Ishmael manages in [[ch41:special lunacy stormed his general sanity|Moby Dick]]."
+   },
+   {
+    "quote": "these are the gathered nail-stubbs of the steel shoes of racing horses",
+    "note": "A real blacksmith's fact: nail-stubbs from racehorse shoes were the toughest, most work-hardened steel available. Ahab has been collecting them, which means this harpoon was planned before the voyage."
+   },
+   {
+    "quote": "seemed invoking some curse or some blessing on the toil. But, as Ahab looked up, he slid aside.",
+    "note": "Fedallah's whole role in one gesture: present at every fire, gone when looked at. Melville never lets us decide whether he blesses or curses, and never lets Ahab catch him at either."
+   },
+   {
+    "quote": "have I been but forging my own branding-iron, then?",
+    "note": "Scalded by his own tempering steam, Ahab asks the question that answers itself. He suspects the harpoon is meant for him. He finishes it anyway—which is the definition of a tragic character."
+   },
+   {
+    "quote": "Will ye give me as much blood as will cover this barb?",
+    "note": "The three harpooneers—Tashtego, Queequeg, Daggoo—bleed for Ahab's weapon. Their blood, not water, gives the steel its temper. It's a blood-oath the earlier quarter-deck scene only gestured at, now made literal."
+   },
+   {
+    "quote": "Ego non baptizo te in nomine patris, sed in nomine diaboli!",
+    "note": "'I baptize thee not in the name of the father, but in the name of the devil.' Melville told Hawthorne this Latin line was the book's secret motto. Notice it's a baptism of the iron, not of Ahab—the weapon is the convert."
+   },
+   {
+    "quote": "pole, iron, and rope—like the Three Fates—remained inseparable",
+    "note": "The finished harpoon is described as the Fates who spin, measure, and cut a life's thread. The rope, especially, should worry you; Chapter 60 already told us what a line can do to a man's neck."
+   },
+   {
+    "quote": "Ego non baptizo te in nomine patris, sed in nomine diaboli!",
+    "note": "Melville told Hawthorne this Latin was 'the secret motto' of the book. The baptismal formula reversed, on a weapon, in blood, and the man saying it will be pulled under by the line attached to it. Compare Stubb's cheerful oath to laughter in [[ch39|First Night-Watch]] — the book's two ways of swearing."
+   },
+   {
+    "quote": "forge me first, twelve rods for its shank; then wind, and twist, and hammer these twelve together like the yarns and strands of a tow-line",
+    "note": "A harpoon made the way a rope is made. The book's rope imagery — the [[ch60|line]], the [[ch72:Siamese ligature|monkey-rope]], Fedallah's hemp — is being welded into the iron. The thing that will kill Ahab is, by his own instruction, a twisted line."
+   }
+  ],
+  "links": [
+   {
+    "to": "ch112",
+    "q": "only desirable sequel",
+    "why": "Perth's story, the reason he can be handed a hammer for this and not flinch."
+   },
+   {
+    "to": "ch36",
+    "q": "pasteboard masks",
+    "why": "The first oath, in grog; this is the second, in blood."
+   },
+   {
+    "to": "ch96",
+    "q": "Look not too long in the face of the fire",
+    "why": "Ishmael's warning about fire, given in Ahab's absence; here Ahab puts his hand in it."
+   },
+   {
+    "to": "ch119",
+    "q": "I as Persian",
+    "why": "Ahab explains, to the lightning, what fire once did to him."
+   },
+   {
+    "to": "ch135",
+    "q": "hemp",
+    "why": "Where the harpoon's twisted line finally goes."
+   }
+  ]
+ },
+ "ch114": {
+  "essay": "After the forge, a chapter of gold. The Pequod is on the Japanese cruising-ground, and for whole afternoons the boats drift on swells that \"purr against the gunwale\" like hearth-cats. The sea looks like prairie; the distant ship seems to wade through tall grass like the horses of western emigrants. And Ishmael, half-asleep in the stern, admits the illusion in a sentence you should read twice: one forgets \"the tiger heart that pants beneath it; and would not willingly remember.\" Not just forgets — refuses to remember. The title is the clue. A gilder covers base metal with a thin skin of gold. The calm is the gilding, and Ishmael is honest that we choose to be fooled by it.\n\nStructurally the chapter is a small mirror of the book. It moves from the physical (the swell, the light, the ship's horses) to the metaphysical (the stages of a life) to a set of unanswerable questions, and then hands the same afternoon to three men and gets three readings — which is the method of [[ch99:I look, you look, he looks|The Doubloon]] applied to weather instead of a coin. Ahab breathes on the gold and it tarnishes. Starbuck looks down and chooses belief: \"Let faith oust fact; let fancy oust memory; I look deep down and do believe.\" Stubb leaps like a fish and swears he has always been jolly. Same water, same hour: one despairs, one decides to trust, one refuses to think. Ishmael, tellingly, only watches, and the calm that made \"fact and fancy, half-way meeting, interpenetrate\" is the one state in which his two modes — the cetology and the metaphysics — stop fighting. He tells you it happens only in these calms, and only for a while.\n\nThe great paragraph is the one about the ages of a mind, and I think it is one of the truest things Melville wrote: infancy's unconscious spell, boyhood's faith, adolescence's doubt, then scepticism, disbelief, and \"manhood's pondering repose of If.\" I have read a lot of accounts of how a mind matures and this is the only one I know that then says: you don't stay there. \"Once gone through, we trace the round again; and are infants, boys, and men, and Ifs eternally.\" Not a ladder but a wheel. The maturest state Melville can imagine is neither faith nor atheism but a suspended, questioning If — which is Ishmael's own position, and the book's. If you want a one-word answer to \"what does Ishmael believe,\" the answer is on this page, and it is a conjunction.\n\nThen the questions come like the swells: \"Where is the final harbor, whence we unmoor no more? ... Where is the foundling's father hidden?\" And the answer is the most desolate sentence in the novel, set in its loveliest weather: \"Our souls are like those orphans whose unwedded mothers die in bearing them: the secret of our paternity lies in their grave, and we must there to learn it.\" Ishmael is an orphan — the book told us that in passing back in [[ch4:supernatural hand|The Counterpane]], with the stepmother who sent him to bed — and here he makes orphanhood the human condition: you can only learn where you came from by dying. Five chapters later Ahab will stand in the lightning and ask the fire the same thing — \"my sweet mother, I know not. Oh, cruel! what hast thou done with her?\" — in [[ch119:Oh, thou magnanimous|The Candles]]. The two central voices of the book, the one who bows and the one who defies, are grieving the same absence. That is why I don't think Ahab is a villain and Ishmael a sage. They are two answers to one orphanhood.\n\nAnd Starbuck's creed deserves a last word, because it explains his failure. \"Let faith oust fact\" is a decision, not a discovery; he knows about the sharks and trains himself to look past them. It is the most sympathetic account of religious faith in the book, and it is also why he cannot stop Ahab in [[ch123|The Musket]]: a man who has practised not-seeing cannot suddenly act on what he sees.",
+  "annotations": [
+   {
+    "quote": "like hearth-stone cats they purr against the gunwale",
+    "note": "The Pacific as a domestic animal. The whole chapter runs on this reassurance and then withdraws it: the cat has 'a remorseless fang.'"
+   },
+   {
+    "quote": "one forgets the tiger heart that pants beneath it; and would not willingly remember",
+    "note": "Not just forgetting—refusing to remember. Ishmael is honest that the calm is something we choose to be fooled by. That 'willingly' is the moral center of the chapter."
+   },
+   {
+    "quote": "so that fact and fancy, half-way meeting, interpenetrate, and form one seamless whole",
+    "note": "The rare moment when Ishmael's two modes—cetological fact and metaphysical fancy—stop fighting. He tells us it happens only in these calms, and only temporarily."
+   },
+   {
+    "quote": "yet did his breath upon them prove but tarnishing",
+    "note": "Ahab can be moved by beauty; the golden keys do open something in him. But his own breath tarnishes it. The image is exact about how depression works from inside: the good thing is real, and you spoil it by touching it."
+   },
+   {
+    "quote": "then scepticism, then disbelief, resting at last in manhood’s pondering repose of If",
+    "note": "The maturest state of mind Melville can imagine is not faith and not atheism but 'If'—suspended, questioning, unresolved. This is Ishmael's own position, and the book's."
+   },
+   {
+    "quote": "But once gone through, we trace the round again; and are infants, boys, and men, and Ifs eternally.",
+    "note": "No ladder, only a wheel. I find this the truest thing in the chapter: you don't graduate from doubt, you cycle through it, and each pass leaves you a child again."
+   },
+   {
+    "quote": "Our souls are like those orphans whose unwedded mothers die in bearing them: the secret of our paternity lies in their grave",
+    "note": "Ishmael, an orphan himself, on the unknowability of where we come from. The only way to learn your origin is to die. Set this beside Ahab's speech to the fire in [[ch119:Oh, thou magnanimous|The Candles]], where he too asks what became of his mother."
+   },
+   {
+    "quote": "Let faith oust fact; let fancy oust memory; I look deep down and do believe.",
+    "note": "Starbuck's creed, and it's a decision, not a discovery. He knows about the sharks and chooses to look past them. It's the most sympathetic account of religious faith in the book, and also, I think, the reason he can't stop Ahab: he has trained himself not to see."
+   },
+   {
+    "quote": "here Stubb takes oaths that he has always been jolly!",
+    "note": "Stubb 'has his history' and won't tell it—he swears instead that he was always cheerful. It's a comic beat that admits a lot: jollity as a vow, not a temperament."
+   },
+   {
+    "quote": "Where is the foundling’s father hidden?",
+    "note": "Foundling, not orphan — a child whose parents are not dead but unknown. The question isn't 'why did they leave' but 'who were they.' The whole passage turns theology into a paternity search, and then says the only records office is the grave."
+   }
+  ],
+  "links": [
+   {
+    "to": "ch99",
+    "q": "I look, you look, he looks",
+    "why": "The same device — one object, three men, three readings — done with a coin."
+   },
+   {
+    "to": "ch119",
+    "q": "Oh, thou magnanimous",
+    "why": "Ahab asking the fire what became of his mother; the orphaned souls again, in a different key."
+   },
+   {
+    "to": "ch58",
+    "why": "'Brit' — the first time the calm sea's 'universal cannibalism' is set beneath its beauty."
+   },
+   {
+    "to": "ch123",
+    "why": "Where Starbuck's 'let faith oust fact' costs him the one act that would have saved the ship."
+   },
+   {
+    "to": "ch35",
+    "q": "Descartian vortices",
+    "why": "The same drowsy stern-sheets trance, before it had a name."
+   }
+  ]
+ },
+ "ch115": {
+  "essay": "The Bachelor is the Pequod's photographic negative. A full ship, homeward bound, so glutted with oil that the cook has plugged his boiler, the steward his coffee-pot, and the harpooneers the sockets of their irons to hold more sperm—everything filled \"except the captain's pantaloons pockets,\" which he keeps empty for thrusting his hands into in satisfaction. There is dancing on the quarter-deck with Polynesian girls, drums made of blackfish stomach, fiddlers in a boat slung between the masts, and the crew tearing down the try-works like the Bastille. It is the party the Pequod will never have.\n\nMelville plays the encounter straight: the two captains as personified contrasts, one \"all jubilations for things passed, the other all forebodings as to things to come.\" The exchange is four lines. \"Hast seen the White Whale?\" \"No; only heard of him; but don't believe in him at all.\" That disbelief is what fascinates me. Here is a captain who has hunted the same seas, filled his ship, lost only two men (\"two islanders, that's all\"—that casual tally is its own indictment), and simply declines to believe in Moby Dick. For him the whale is a story. He is happy precisely because he lacks the imagination to be haunted, and Ahab's contempt—\"How wondrous familiar is a fool!\"—is also envy.\n\nThen the ending, which I think is one of the quietest and saddest images in the book: Ahab leaning over the taffrail, watching the Bachelor go, taking from his pocket a small vial of sand—Nantucket soundings—and looking from the ship to the vial. He has carried home in his pocket the whole time. He looks at it. He doesn't turn around.",
+  "annotations": [
+   {
+    "quote": "everything was filled with sperm, except the captain’s pantaloons pockets",
+    "note": "The Bachelor's abundance pushed to comedy. The one thing not filled with oil is the pocket the captain keeps for his own hands—satisfaction as the only unmonetized space aboard."
+   },
+   {
+    "quote": "You would have almost thought they were pulling down the cursed Bastille",
+    "note": "The Bachelor's crew demolishing the try-works is a revolution: the oven that ruled their lives is thrown into the sea. The Pequod's try-works, by contrast, will burn until the end."
+   },
+   {
+    "quote": "one all jubilations for things passed, the other all forebodings as to things to come",
+    "note": "Melville states the allegory outright, which he rarely does. The two ships are two attitudes to time—one looking back at a full hold, one looking ahead at a whale—and they cross wakes for a minute."
+   },
+   {
+    "quote": "No; only heard of him; but don’t believe in him at all",
+    "note": "The Bachelor's captain doesn't deny the whale exists; he declines to believe in him, the way one declines a religion. His prosperity and his disbelief are the same fact."
+   },
+   {
+    "quote": "Not enough to speak of—two islanders, that’s all",
+    "note": "Two men dead, dismissed in a subordinate clause. The jolly ship has its own cold arithmetic; Melville lets the good-humored captain condemn himself without comment."
+   },
+   {
+    "quote": "call me an empty ship, and outward-bound",
+    "note": "Ahab's self-description, in the Bachelor's own terms. 'Empty' is not only the hold. It's a rare moment where he names his own condition in a sailor's plain words."
+   },
+   {
+    "quote": "for that vial was filled with Nantucket soundings",
+    "note": "Ahab has carried a little bottle of home—sand from the harbor bottom—all the way to Japan. He looks at it as the homeward ship recedes. Melville gives no interpretation, and none is needed: the man knows what he's forfeiting and holds it in his hand."
+   }
+  ],
+  "links": [
+   {
+    "to": "ch52",
+    "why": "The Albatross — the first ship met, and the pattern this cheerful one inverts."
+   },
+   {
+    "to": "ch128",
+    "q": "Rachel",
+    "why": "The last ship met, grieving; the Bachelor is the pole opposite."
+   },
+   {
+    "to": "ch114",
+    "q": "repose of If",
+    "why": "Stubb's jollity examined, a chapter earlier."
+   }
+  ]
+ },
+ "ch116": {
+  "essay": "The Bachelor's luck rubs off: four whales the next day, one of them killed by Ahab. And then Melville does something he does nowhere else—he gives Ahab the death of a whale to contemplate in perfect calm, at sunset, with vesper hymns seeming to drift over from the convents of Manila. The whale, as sperm whales do, turns its head to the sun as it dies. Ahab watches it happen and speaks to no one.\n\nThe soliloquy is one of the strangest in the book because it is almost devotional. Ahab sees the dying whale as a fellow fire-worshipper—\"most faithful, broad, baronial vassal of the sun!\"—rendering homage with its last motion. And then the turn: \"no sooner dead, than death whirls round the corpse, and it heads some other way.\" The faith dies with the faithful and the body drifts. That observation is what wounds him. He addresses the sea as the \"dark Hindoo half of nature,\" an infidel queen who speaks true in typhoons, and he takes from her \"a prouder, if a darker faith.\" The sun calls forth life \"but gives it not again.\" Only the sea receives everything.\n\nThe last lines break my heart a little: \"Born of earth, yet suckled by the sea; though hill and valley mothered me, ye billows are my foster-brothers!\" It is as tender as Ahab ever gets, and it is addressed to the thing that will kill him. I don't think it's a contradiction. He is choosing his family. The whale looked to the sun and got nothing; Ahab will look to the dark half and at least be received. Whether that's wisdom or despair, I can't tell—which is, I suspect, the point.",
+  "annotations": [
+   {
+    "quote": "sun and whale both stilly died together",
+    "note": "Sunset and the whale's death made one event. Melville needs this synchrony for what follows: the whale's turning to the sun becomes a last prayer to a god that is also going down."
+   },
+   {
+    "quote": "Soothed again, but only soothed to deeper gloom",
+    "note": "The recurring pattern of Ahab's inner life, stated in six words. Beauty doesn't lift him; it deepens the drop. It's the same mechanism as the tarnishing breath in 'The Gilder.'"
+   },
+   {
+    "quote": "He too worships fire; most faithful, broad, baronial vassal of the sun!",
+    "note": "Ahab recognizes the whale as a co-religionist. The Parsee's fire-worship, Ahab's scar from a 'sacramental act,' and now the whale's dying turn: fire is the book's secret church, and its members are all doomed."
+   },
+   {
+    "quote": "here, too, life dies sunwards full of faith; but see! no sooner dead, than death whirls round the corpse, and it heads some other way",
+    "note": "This is the observation that undoes the consolation. The whale dies facing its god; then the current turns the corpse. Faith is a fact about the living only. Ahab reads it as a lesson and says so."
+   },
+   {
+    "quote": "Oh, thou dark Hindoo half of nature",
+    "note": "Ahab splits nature into a sun-half and a sea-half and addresses the dark one as a queen with a throne built of drowned bones. It's the same drowned sea Ishmael described in 'The Pacific,' now given a face and a gender."
+   },
+   {
+    "quote": "yon all-quickening sun, that only calls forth life, but gives it not again",
+    "note": "A one-way god: the sun makes life and never returns it. Against this, the sea at least takes everything in. Ahab's theology is bleak but it's coherent, and it's built from what he's watching."
+   },
+   {
+    "quote": "I am buoyed by breaths of once living things, exhaled as air, but water now",
+    "note": "Ahab floating on the exhalations of the dead. It's grotesque and consoling at once—he is literally held up by what has died—and it prepares his choice of the sea as foster-brother in the next line."
+   },
+   {
+    "quote": "though hill and valley mothered me, ye billows are my foster-brothers!",
+    "note": "The gentlest sentence Ahab speaks in the book, addressed to the element that will drown him. He isn't deluded about the sea; he's adopting it. The word 'foster' admits it isn't his real family."
+   }
+  ],
+  "links": [
+   {
+    "to": "ch61",
+    "why": "Stubb's first kill — the whale's death seen as sport; here the same death is a rite."
+   },
+   {
+    "to": "ch119",
+    "q": "I as Persian",
+    "why": "Ahab, fire-worshipper, watching the sun-worshipping whale die."
+   },
+   {
+    "to": "ch87",
+    "why": "The Grand Armada — the nursing whales, the other side of what dies here."
+   }
+  ]
+ },
+ "ch117": {
+  "essay": "A night-watch beside a dead whale, with a lantern stuck in its spout-hole and sharks tapping the cedar planks with their tails. Everyone in the boat is asleep but the Parsee, and when Ahab wakes, the two of them seem \"the last men in a flooded world.\" Then the prophecy is laid out, item by item, as if it were a contract.\n\nI think this is the most elegant piece of tragic engineering in the novel. Fedallah has told Ahab, in some earlier scene we never saw, that he can neither hearse nor coffin be his—that before he can die on this voyage he must see two hearses on the sea, one \"not made by mortal hands,\" the other of wood \"grown in America\"; that Fedallah himself will die first and yet still go before him as pilot; and now, a new one, \"Hemp only can kill thee.\" Ahab hears every clause as an impossibility. Hearses on the ocean? Absurd. A dead man as pilot? Then I can't follow. Hemp? \"The gallows, ye mean\"—and so he's immortal on land and sea. It is the oldest trick in prophecy, the one Macbeth fell for, and Melville doesn't hide the borrowing.\n\nWhat makes it more than a trick is Ahab's laugh of derision. He isn't a fool. He is a man who wants so badly to survive the whale that he accepts the reading that lets him, and takes as \"pledges\" what we can hear as sentences. By the end of the book every clause will have been paid in full, literally: the whale's back as the first hearse, the Pequod's American timbers as the second, Fedallah lashed to Moby Dick going before him, and a hemp line around Ahab's own neck. Reading this chapter the second time is a different experience than reading it the first. That's the design.",
+  "annotations": [
+   {
+    "quote": "hooped round by the gloom of the night they seemed the last men in a flooded world",
+    "note": "Ahab and Fedallah as the only survivors of a Deluge—which reverses the actual ending, where they both drown and Ishmael is the last man. Melville's images have a way of coming true backwards."
+   },
+   {
+    "quote": "neither hearse nor coffin can be thine",
+    "note": "The first clause of the prophecy. Ahab hears 'you won't die.' A literalist would hear 'you'll have no burial'—which, for a man who sinks with his ship, is exactly right."
+   },
+   {
+    "quote": "the first not made by mortal hands; and the visible wood of the last one must be grown in America",
+    "note": "Two hearses: one not man-made, one of American wood. Ahab dismisses them as impossibilities. Keep the phrases in your pocket for the last three chapters and watch them arrive on schedule."
+   },
+   {
+    "quote": "Though it come to the last, I shall still go before thee thy pilot.",
+    "note": "Fedallah's promise to precede Ahab even in death. Ahab reasons: then if you die, I can't follow, so I'm safe. The logic is sound and the premise is a trap. This is how prophecies work on proud men."
+   },
+   {
+    "quote": "Hemp only can kill thee.",
+    "note": "Four words, and the whole harpoon-line from Chapter 60 comes back. Ahab hears 'the gallows' and laughs, because he'll never hang. He's right that he'll never hang."
+   },
+   {
+    "quote": "cried Ahab, with a laugh of derision;—“Immortal on land and on sea!”",
+    "note": "The laugh is the tragic flaw made audible. Fedallah hasn't lied once; Ahab has done all the misreading himself, because he needs to. Melville makes you watch a man sign his own death warrant thinking it's a passport."
+   }
+  ],
+  "links": [
+   {
+    "to": "ch134",
+    "q": "Fedallah",
+    "why": "The first hearse."
+   },
+   {
+    "to": "ch135",
+    "q": "hemp",
+    "why": "The second hearse, and the hemp."
+   },
+   {
+    "to": "ch50",
+    "why": "Who Fedallah is, or was, when he first surfaced."
+   }
+  ]
+ },
+ "ch118": {
+  "essay": "Noon in the Japanese sea, a sky \"lacquered,\" a sun so fierce it seems \"the blazing focus of the glassy ocean's immeasurable burning-glass.\" Ahab takes his daily sight with the quadrant, works the latitude in pencil on his ivory leg, and then does something I find genuinely disturbing: he interrogates the sun. You tell me where I am—but can you tell where I shall be? Can you tell where Moby Dick is? \"These eyes of mine look into the very eye that is even now beholding him.\" The quadrant becomes, for a moment, a way of looking at the whale through the sun's eye.\n\nAnd then, because the instrument can't do that, he destroys it. \"Foolish toy! babies' plaything of haughty Admirals\"—it tells only \"the poor, pitiful point\" where you happen to be and nothing of tomorrow. \"Science! Curse thee, thou vain toy.\" He tramples it with his live foot and his dead one and swears to navigate by compass and dead-reckoning, \"the level ship's compass\"—by things that look at the horizon rather than the heavens. I keep going back and forth on this. On one reading it's madness: a captain smashing his navigation gear in the middle of the Pacific. On another it's philosophically exact: the quadrant can locate you and cannot tell you what to do, and Ahab has no use for a knowledge that stops at position. He wants prophecy, and instruments don't prophesy.\n\nThe Parsee watches with \"a sneering triumph\" for Ahab and \"a fatalistic despair\" for himself, then glides away. Starbuck sees a coal fire waning to \"dumbest dust.\" And Stubb—who else—finds the cheerful reading: sea-coal ashes, not common charcoal, and a man who plays the cards he's dealt. Three witnesses, three verdicts, and the ship swings toward the equator on a captain's dead-reckoning.",
+  "annotations": [
+   {
+    "quote": "That unblinkingly vivid Japanese sun seems the blazing focus of the glassy ocean’s immeasurable burning-glass.",
+    "note": "The whole sea as a lens concentrating the sun onto one point—which is the ship. Melville's heat-writing here is almost physical, and it prepares Ahab's complaint that the heavens 'scorch' the man who looks up."
+   },
+   {
+    "quote": "with his pencil upon his ivory leg, Ahab soon calculated what his latitude must be",
+    "note": "He uses the whalebone leg as a slate—the carpenter mentioned fitting one. Ahab does his mathematics on the whale. It's the most casual and most loaded detail in the chapter."
+   },
+   {
+    "quote": "thou tellest me truly where I _am_—but canst thou cast the least hint where I _shall_ be?",
+    "note": "The distinction the whole chapter turns on. Position versus destiny; where you are versus where you're going. Science answers the first. Ahab has no patience for anything that stops there."
+   },
+   {
+    "quote": "These eyes of mine look into the very eye that is even now beholding him",
+    "note": "Ahab uses the sun as a shared eye: it sees him and the whale at once, so looking at it is nearly looking at Moby Dick. This is monomania as optics—every instrument bent toward one object."
+   },
+   {
+    "quote": "Science! Curse thee, thou vain toy; and cursed be all the things that cast man’s eyes aloft to that heaven",
+    "note": "He curses not just the quadrant but everything that makes men look up. A few chapters ago Ishmael said we bow our heads to Pan; Ahab wants eyes 'level by nature to this earth's horizon.' It's a rejection of the whole vertical axis—heaven included."
+   },
+   {
+    "quote": "thus trampled with his live and dead feet",
+    "note": "Both feet, living and ivory, stamp on the instrument. Melville keeps reminding you that Ahab is half-dead already, and here the dead half joins in the destruction."
+   },
+   {
+    "quote": "a sneering triumph that seemed meant for Ahab, and a fatalistic despair that seemed meant for himself",
+    "note": "Fedallah's face carries two readings at once, and Melville won't resolve them. Triumph because Ahab is abandoning science for fate; despair because Fedallah goes down with him. It's the only time we see the Parsee feel anything."
+   },
+   {
+    "quote": "what will at length remain but one little heap of ashes!",
+    "note": "Starbuck's elegy for Ahab, spoken while he's still alive: a coal fire watched down to dust. Note that he's already mourning rather than resisting—the shift that will matter in 'The Musket.'"
+   },
+   {
+    "quote": "live in the game, and die in it!",
+    "note": "Stubb's philosophy, borrowed from Ahab's own mutter about being dealt cards. It's oddly close to Ahab's fatalism, just cheerful about it—which may be why the two men understand each other better than either does Starbuck."
+   }
+  ],
+  "links": [
+   {
+    "to": "ch44",
+    "why": "The Chart — Ahab's reliance on exactly the instruments he now curses."
+   },
+   {
+    "to": "ch124",
+    "why": "The Needle — after the quadrant, the compass; Ahab makes his own."
+   },
+   {
+    "to": "ch125",
+    "q": "Thou touchest my inmost centre",
+    "why": "The log and line, third of the ship's instruments to fail."
+   }
+  ]
+ },
+ "ch119": {
+  "essay": "This is the book's great set-piece of weather, and its great set-piece of blasphemy, and I want to walk through it slowly because everything in it is load-bearing. A typhoon bursts from a cloudless sky; the Pequod is stripped to bare poles; Ahab's boat is stove exactly where he stands in it. Starbuck, reading omens the way sailors do, sees that the gale blows from the east — the very course Ahab set for the whale — and that the same wind, turned, would carry them home. Then the corpusants: St. Elmo's fire tipping every yardarm with pale flame, the three masts \"like three gigantic wax tapers before an altar.\" Every face lit as if from a constellation. Queequeg's tattoos burning blue. And Stubb, who was singing a comic song about the jolly ocean a page ago, crying \"The corpusants have mercy on us all!\" — after admitting, in the plainest sentence he ever speaks, \"I am a coward; and I sing to keep up my spirits.\"\n\nTwo things to hold in mind before Ahab speaks. First, he has forbidden the lightning-rods to be dropped overboard, \"let's have fair play here, though we be the weaker side\" — which is magnificent and is also a captain refusing his ship its protection for the sake of a gesture. Melville lets you feel both without choosing. Second, the harpoon: the one forged in blood six chapters ago at [[ch113:branding-iron|The Forge]] is lashed in the stove boat, and its barb is burning with the same fire as the masts, \"like a serpent's tongue.\" The weapon has been lit by the god it was made to defy.\n\nThen the speech, which is the summit of Ahab's rhetoric and, for me, the clearest account of who he is. He tells the fire that he once worshipped it as a Persian and was burned in the act — that is the origin of the scar he asked Perth to smooth. Now, he says, \"I now know that thy right worship is defiance.\" Read that as a creed, because it is one clause long and coherent: he is not an atheist; he believes in a god and believes the correct response is to stand against it. Then the philosophical centre: \"In the midst of the personified impersonal, a personality stands here.\" Nature is force without a self; Ahab insists he is a self. Strip the violence away and this is the same assertion Ishmael makes more quietly all through the book — it is what [[ch42:atheism|The Whiteness of the Whale]] is about, the terror of a universe that means nothing, and it is what Ishmael was bowing to, not fighting, in [[ch111:tide-beating|The Pacific]]. Ahab's next lines accept every loss in advance: \"Thou canst blind; but I can then grope. Thou canst consume; but I can then be ashes.\" It is unanswerable, and it is also the logic of someone who has already decided to die.\n\nAnd then the question that undoes the grandeur. The fire is his father — \"now I do glory in my genealogy\" — but \"my sweet mother, I know not. Oh, cruel! what hast thou done with her?\" Under the titan there is a child asking after his mother. This is the line I'd point to if someone asked me why Ahab is more than a villain. It answers, five chapters late, the question Ishmael asked in the golden calm of [[ch114:repose of If|The Gilder]] — where is the foundling's father hidden? — and it shows the two men grieving the same absence from opposite sides. Ishmael concludes that the secret lies in the grave and we must go there to learn it; Ahab concludes the same thing and goes.\n\nThe ending is pure theatre and pure horror. Starbuck begs. The crew half-mutinies at the yards. Ahab snatches the flaming harpoon, waves it among them, and blows out the fire with his breath — \"thus I blow out the last fear!\" He extinguishes God's candle from the barb of his own weapon, and they run from him the way men on a plain run from a lone elm in a thunderstorm, because its very height makes it a mark. That last simile is Ahab's whole relationship to his crew: they follow him because he is tall, and flee him for the same reason. I don't know a more frightening image of charisma, and Melville places it one chapter before Starbuck goes to fetch a musket in [[ch123|The Musket]].",
+  "annotations": [
+   {
+    "quote": "Warmest climes but nurse the cruellest fangs",
+    "note": "The chapter's thesis before the storm arrives: beauty and violence are one climate. It's [[ch114:tiger heart|The Gilder]] turned inside out—the velvet paw, now with the fang showing."
+   },
+   {
+    "quote": "But I am not a brave man; never said I was a brave man; I am a coward; and I sing to keep up my spirits.",
+    "note": "Stubb's honesty about his own jollity: it's a coward's whistle in the dark. The carpenter's sentry-talk, Stubb's singing, Ahab's speeches—the book keeps finding ways men make noise against fear."
+   },
+   {
+    "quote": "his stand-point is stove, man!",
+    "note": "Starbuck reads the stove boat as an omen: the sea has smashed exactly the spot where Ahab stands. It's superstition, but it's also the crew's only available language for 'this will kill him,' and it's correct."
+   },
+   {
+    "quote": "let’s have fair play here, though we be the weaker side",
+    "note": "Ahab forbids the lightning-rods: he wants to fight the sky without protection, as a matter of honor. It is both magnificent and a captain endangering his ship for a gesture, and Melville lets you feel both."
+   },
+   {
+    "quote": "like three gigantic wax tapers before an altar",
+    "note": "The corpusants make the ship a church—but before what altar? Ahab will answer by declaring the fire his god and defiance its liturgy. Read the whole scene as an inverted mass."
+   },
+   {
+    "quote": "Queequeg’s tattooing burned like Satanic blue flames on his body",
+    "note": "The unreadable text on Queequeg's skin, lit from within. The tattoos will be carved on his [[ch110:riddle to unfold|coffin]] and float Ishmael to safety; here they look demonic. Melville won't let any sign stay on one side."
+   },
+   {
+    "quote": "I now know that thy right worship is defiance",
+    "note": "Ahab's creed, one clause long. He isn't an atheist; he believes in a god and believes the correct response is to stand against it. That is a coherent religion, and a terrible one."
+   },
+   {
+    "quote": "In the midst of the personified impersonal, a personality stands here.",
+    "note": "The philosophical heart of the speech. Nature is force without a self; Ahab insists he is a self. Whatever you make of his violence, this is the assertion that underlies it, and it's the same one Ishmael keeps making more quietly."
+   },
+   {
+    "quote": "Thou canst blind; but I can then grope. Thou canst consume; but I can then be ashes.",
+    "note": "Defiance that accepts every loss in advance. There's nothing the fire can do that Ahab hasn't already agreed to. It's unanswerable, and it's also the logic of someone who has decided to die."
+   },
+   {
+    "quote": "But thou art but my fiery father; my sweet mother, I know not. Oh, cruel! what hast thou done with her?",
+    "note": "Under the titan, a child asking about his mother. This is the line I'd point to if someone asked why Ahab is more than a villain. It also echoes Ishmael's orphaned souls in [[ch114:repose of If|The Gilder]]—the book's two central voices grieving the same absence."
+   },
+   {
+    "quote": "thus I blow out the last fear!”",
+    "note": "He extinguishes St. Elmo's fire from the barb of his own harpoon with a breath. Whether it's blasphemy or a parlor trick, the crew sees a man put out God's candle, and that's the end of the mutiny."
+   },
+   {
+    "quote": "whose very height and strength but render it so much the more unsafe, because so much the more a mark for thunderbolts",
+    "note": "The lone elm on the plain: men flee it in a storm because it draws lightning. This is Ahab's whole relationship to his crew in one simile—they follow him because he's tall and run from him for the same reason."
+   },
+   {
+    "quote": "No fearless fool now fronts thee. I own thy speechless, placeless power",
+    "note": "'Speechless, placeless' — Ahab's definition of what he faces is the same as Ishmael's in the whiteness chapter: power without a voice or a location. The difference is entirely in the verb. Ishmael shrinks; Ahab 'fronts.'"
+   },
+   {
+    "quote": "Light though thou be, thou leapest out of darkness; but I am darkness leaping out of light",
+    "note": "A perfect chiasmus, and a claim about origins: the fire came from nothing, but Ahab came from something bright and fell. It's the only time he calls himself dark, and he says it blinded, with his eyes shut."
+   }
+  ],
+  "links": [
+   {
+    "to": "ch113",
+    "q": "branding-iron",
+    "why": "The harpoon now burning in the stove boat, and Ahab's suspicion it was made for him."
+   },
+   {
+    "to": "ch114",
+    "q": "repose of If",
+    "why": "Ishmael's question about the foundling's father, which Ahab answers here by asking it of the fire."
+   },
+   {
+    "to": "ch42",
+    "q": "atheism",
+    "why": "The 'personified impersonal' as Ishmael felt it — the whiteness."
+   },
+   {
+    "to": "ch96",
+    "q": "There is a wisdom that is woe",
+    "why": "Ishmael's warning about fire-worship, written before he knew Ahab would deliver a liturgy for it."
+   },
+   {
+    "to": "ch123",
+    "why": "Starbuck with the musket outside Ahab's door: the mutiny that this scene put down, tried once more in private."
+   }
+  ]
+ },
+ "ch120": {
+  "essay": "A page of stage-play, and it reads like an aftershock of \"The Candles.\" Starbuck, doing his job, reports the main-top-sail yard working loose and the anchors shifting, and asks the ordinary questions—shall I strike it, shall I get them inboard? Ahab's answer to both: \"Strike nothing, and stir nothing, but lash everything.\" It's the same refusal of the lightning-rods a chapter ago, turned into standing policy. Nothing comes down. Everything is tied tighter.\n\nWhat I get out of this fragment is the sound of Ahab's mind in the minutes after its greatest performance. He is grandiose—\"Loftiest trucks were made for wildest winds, and this brain-truck of mine now sails amid the cloud-scud\"—and he knows it. He takes Starbuck's seamanship as an insult, as if he were the skipper of a coasting smack, and then, in the same breath, turns on his own sublimity: \"I would e'en take it for sublime, did I not know that the colic is a noisy malady. Oh, take medicine, take medicine!\" That's a joke at his own expense, and I'm not sure if the medicine is for the storm or for him.\n\nI'd also notice what Melville is doing structurally: these little dramatic interludes—stage directions, a captain at the helm, an exit line—slow the book down to real time right before the final act. Each one shows Ahab refusing a reasonable request from Starbuck. By the time the chase begins, the pattern is so established that Starbuck's silence feels earned rather than weak. He has asked everything a first mate can ask.",
+  "annotations": [
+   {
+    "quote": "Strike nothing, and stir nothing, but lash everything.",
+    "note": "Ahab's standing order in the typhoon, and his whole method: don't reduce, don't adjust, just bind harder. The ship's rigging and the crew's oaths are managed the same way."
+   },
+   {
+    "quote": "The wind rises, but it has not got up to my table-lands yet.",
+    "note": "He measures the gale against his own inner altitudes and finds it short. It's boastful, but it also tells you he lives somewhere higher and colder than the weather."
+   },
+   {
+    "quote": "none but cowards send down their brain-trucks in tempest time",
+    "note": "The topmast as a skull. To lower sail in a storm is, for Ahab, to lower your mind—and he'd rather be dismasted. This is the same refusal as smashing the quadrant: no instrument, no prudence, no lowering."
+   },
+   {
+    "quote": "I would e’en take it for sublime, did I not know that the colic is a noisy malady. Oh, take medicine, take medicine!",
+    "note": "A rare flash of self-mockery. The howling aloft might be sublime—or just a stomach-ache in the rigging. He undercuts his own grandeur and then, oddly, prescribes for it. I read it as Ahab briefly hearing himself."
+   }
+  ],
+  "links": [
+   {
+    "to": "ch121",
+    "why": "The same night, from the forecastle bulwarks."
+   },
+   {
+    "to": "ch119",
+    "q": "thus I blow out the last fear",
+    "why": "What Ahab has just done, moments before."
+   }
+  ]
+ }
+}

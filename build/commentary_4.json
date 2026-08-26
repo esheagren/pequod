@@ -1,0 +1,853 @@
+{
+ "ch46": {
+  "essay": "After the roar of \"The Quarter-Deck\" and the metaphysics of \"Moby Dick\" and \"The Whiteness of the Whale,\" this short chapter is a quiet and slightly chilling piece of management theory. Ahab, we learn, is not only mad; he is a shrewd handler of men, and the two things are not in tension. He knows exactly how fragile his hold on the crew is — that Starbuck's body is his but his soul is not, that sailors \"inhale\" the fickleness of the weather, that enthusiasm evaporates and \"cash\" mutinies if it is not fed. So he decides, coolly, to keep whaling: to hunt ordinary whales so the crew has something nearer to think about than the White Whale.\n\nWhat I get out of this chapter is the way Melville refuses to let Ahab be a simple lunatic. The paragraph about the Crusaders — who wouldn't have crossed two thousand miles for a holy sepulchre without \"committing burglaries, picking pockets\" on the way — is one of those Melville asides that quietly demolishes every grand cause. The sacred object needs a sordid economy under it, and Ahab knows it. \"The permanent constitutional condition of the manufactured man, thought Ahab, is sordidness\" — I keep turning that word \"manufactured\" over. It means something like 'ordinary, mass-produced,' but it also suggests that men are made things, tools, and the chapter opens by saying so outright.\n\nThe other thing I notice is the confession of legal weakness: Ahab has told the crew the truth, and in doing so has handed them the \"unanswerable charge of usurpation.\" His power now rests entirely on attention — on watching every \"minute atmospheric influence\" his crew is subject to. That is the paradox the rest of the book plays out: total will, held up by constant vigilance over other people's moods. The last line, \"This vigilance was not long without reward,\" is the hinge; the next chapters are the first hunt.",
+  "annotations": [
+   {
+    "quote": "To accomplish his object Ahab must use tools; and of all tools used in the shadow of the moon, men are most apt to get out of order.",
+    "note": "The whole chapter is here in one sentence. Men are tools, and unreliable ones. The odd phrase \"in the shadow of the moon\" makes the ordinary fact of human fickleness sound like a piece of ancient lore — as if lunacy were literally the moon's doing."
+   },
+   {
+    "quote": "for few men’s courage is proof against protracted meditation unrelieved by action",
+    "note": "A parenthesis, but a piercing one. Ahab's plan to keep the men busy is really an insight about the human mind: dread grows in idleness. It also explains something about Ahab himself, who never stops moving."
+   },
+   {
+    "quote": "The permanent constitutional condition of the manufactured man, thought Ahab, is sordidness.",
+    "note": "\"Manufactured man\" is such a strange, modern phrase for 1851. Ahab thinks of ordinary humanity as a product — and of himself, presumably, as the exception. Notice this is his thought, not Ishmael's; the narrator is careful about that."
+   },
+   {
+    "quote": "without committing burglaries, picking pockets, and gaining other pious perquisites by the way",
+    "note": "Melville can never resist puncturing a sacred cause. The Crusaders needed loot to sustain their holiness; the Pequod needs oil to sustain its vengeance. \"Pious perquisites\" is a small, perfect joke."
+   },
+   {
+    "quote": "this same quiescent cash all at once mutinying in them, this same cash would soon cashier Ahab.",
+    "note": "Cash mutinies; cash cashiers. The pun is deliberate, and it turns money into a crew member with its own will — the one sailor Ahab cannot magnetize."
+   },
+   {
+    "quote": "he had indirectly laid himself open to the unanswerable charge of usurpation",
+    "note": "Ahab has, legally speaking, hijacked the ship. Melville quietly reminds us that the crew could depose him with 'perfect impunity.' Everything that follows depends on their never quite realizing this."
+   }
+  ],
+  "links": [
+   {
+    "to": "ch36",
+    "why": "The speech this chapter is the sober morning-after of: Ahab magnetizing the crew, and Starbuck's one objection."
+   },
+   {
+    "to": "ch99",
+    "why": "The doubloon nailed to the mast in ch36 is the 'cash' Ahab worries about here; watch each man read it."
+   },
+   {
+    "to": "ch109",
+    "why": "Starbuck finally makes the 'charge of usurpation' Ahab fears here, over leaking casks — and loses."
+   }
+  ]
+ },
+ "ch47": {
+  "essay": "This is one of my favorite chapters in the book, and it is barely two pages. I want to explain why, because on a first read it can pass as a pretty interlude between [[ch46|Ahab's management theory]] and [[ch48|the first lowering]]. Ishmael and Queequeg are weaving a sword-mat on a sultry, drowsy afternoon — a practical object, padding to keep rigging from chafing — and out of the loom Ishmael spins a complete theory of how a life is made. The warp, the fixed threads on the frame, is necessity. His own hand plying the shuttle is free will. Queequeg's wooden sword, which packs each new thread home \"slantingly, or crookedly, or strongly, or weakly,\" as the mood takes him, is chance. All three \"interweavingly working together.\" It is the most compact philosophy in the novel, and it is delivered not as a sermon but as a daydream, which is why it lands: nobody is arguing with you, so you don't argue back.\n\nWhat I find genuinely thought-provoking is how carefully the model is built, and how modest it is about freedom. Philosophers had spent centuries treating necessity, free will, and chance as rivals — if the world is determined, you aren't free; if chance rules, nothing is determined. Ishmael, half asleep, says: they are not rivals, they are a fabric, and each has its own job. Necessity supplies the threads you cannot change. Free will gets to weave \"its own destiny into these unalterable threads\" — a real power, but a power exercised *between* the fixed lines, not above them. And chance, though \"restrained in its play within the right lines of necessity, and sideways in its motions directed by free will,\" nonetheless \"has the last featuring blow at events.\" The final shape of the cloth, the thing you'd actually look at, is decided by the indifferent sword. That is a humbling place to put free will, and I think it is the truest account of agency in the book — truer than Ahab's, who believes he is the weaver, and truer than Starbuck's, who believes the loom is God's and must not be touched.\n\nThen Melville does something structurally brilliant: the chapter proves its own thesis. \"The ball of free will dropped from my hand\" when Tashtego's cry comes from the masthead — literally, the reverie is broken by an event nobody on deck chose, arriving from above \"like a wing.\" The philosophy is stated and refuted in the same paragraph, and yet not refuted, because the model predicted exactly this: chance gets the last blow. Notice also who cries out. Tashtego, \"some prophet or seer beholding the shadows of Fate,\" is the man who first sees the whale here and, in [[ch135:kept his hammer frozen there|the last pages]], the last man visible above the water. The book's threads are being tied even in this small chapter.\n\nThe image comes back, and it comes back darker. In [[ch93:treadle of the loom|The Castaway]], Pip, left alone in the open sea, sees \"God's foot upon the treadle of the loom\" — the same loom, seen from underneath, by someone it has broken. In [[ch102|A Bower in the Arsacides]] the weaver-god is deafened by the roar of his own machine and cannot hear the mortals shouting at him. And in [[ch72:my free will had received a mortal wound|The Monkey-Rope]], Ishmael discovers that his free will is tied by a literal rope to another man's chances. Read those three after this one and the sword-mat stops being a pretty conceit; it is the book's working model of how a life gets woven, and it gets tested to destruction.\n\nThe last sentence is pure theater: Ahab \"surrounded by five dusky phantoms that seemed fresh formed out of air.\" A whole chapter about hidden threads, and then five hidden men step into the light — the shadows Ishmael thought he saw boarding in [[ch21|Nantucket]], now corporeal. Someone else has been weaving in the dark. Reread the mat passage after finishing the book and it becomes almost unbearable: every character's thread is already fixed in the warp, and the only question was how the sword would fall.",
+  "annotations": [
+   {
+    "quote": "each silent sailor seemed resolved into his own invisible self.",
+    "note": "A gorgeous way to say everyone was daydreaming. \"Resolved into\" — dissolved into — his own invisible self, as if the visible man were the disguise."
+   },
+   {
+    "quote": "it seemed as if this were the Loom of Time, and I myself were a shuttle mechanically weaving and weaving away at the Fates.",
+    "note": "The Fates in Greek myth spin and cut the thread of life. Here the mortal is the shuttle, not the weaver — an instrument used by Time. And yet a shuttle moves; Ishmael is about to argue there is freedom in that."
+   },
+   {
+    "quote": "This warp seemed necessity; and here, thought I, with my own hand I ply my own shuttle and weave my own destiny into these unalterable threads.",
+    "note": "Notice what free will is allowed to do: weave its own pattern into threads it cannot alter. It's a modest, adult definition of freedom, not a romantic one."
+   },
+   {
+    "quote": "chance—aye, chance, free will, and necessity—nowise incompatible—all interweavingly working together.",
+    "note": "Philosophers had spent centuries arguing that these three exclude one another. Ishmael, half asleep at a loom, says: they're a fabric. This is the sentence I would keep if I could keep one from the chapter — and the one Pip answers, from the water, in [[ch93:treadle of the loom|The Castaway]]."
+   },
+   {
+    "quote": "chance by turns rules either, and has the last featuring blow at events.",
+    "note": "The last word goes to chance. Everything the book later calls \"fate\" might be read through this line: not a plan, but an indifferent sword that happens to land hard."
+   },
+   {
+    "quote": "the ball of free will dropped from my hand",
+    "note": "The metaphor snaps shut on itself. The moment something actually happens, the ball of free will literally falls. Melville does the philosophy and then stages its refutation in the same paragraph."
+   },
+   {
+    "quote": "you would have thought him some prophet or seer beholding the shadows of Fate, and by those wild cries announcing their coming.",
+    "note": "Tashtego at the masthead is described like an oracle. The man who first sees the whale is also, in the book's final pages, the last man visible above the water."
+   },
+   {
+    "quote": "The Sperm Whale blows as a clock ticks, with the same undeviating and reliable uniformity.",
+    "note": "A tiny cetological fact inserted mid-drama, and yet it rhymes with the chapter: the whale's spout is as regular as the warp's vibration. Even the prey keeps time."
+   },
+   {
+    "quote": "who was surrounded by five dusky phantoms that seemed fresh formed out of air.",
+    "note": "The ending is pure theater. After a chapter about hidden threads, five hidden men step into the light. Ishmael saw shadows board the ship back in Nantucket; now they are corporeal."
+   },
+   {
+    "quote": "that voice dropped like a wing",
+    "note": "The cry doesn't come from Tashtego; it 'drops' from the clouds, like something with wings. Chance, in the sword-mat model, arrives from outside the frame — and here it literally does, from above the loom."
+   }
+  ],
+  "links": [
+   {
+    "to": "ch93",
+    "q": "treadle of the loom",
+    "why": "Pip sees the same loom from underneath, after the sea has broken him."
+   },
+   {
+    "to": "ch72",
+    "q": "my free will had received a mortal wound",
+    "why": "Free will tied by a literal rope to another man's chance."
+   },
+   {
+    "to": "ch102",
+    "why": "The weaver-god who cannot hear you over the noise of his loom."
+   },
+   {
+    "to": "ch21",
+    "why": "The shadows Ishmael saw boarding at dawn — the 'phantoms' who step out at the end of this chapter."
+   }
+  ]
+ },
+ "ch48": {
+  "essay": "The first lowering is the book's first real action sequence, and Melville makes it a chapter about noise — about the four mates and how each one talks his boat toward death. Starbuck whispers; Flask screams and stamps on his hat; Stubb drawls a stream of jokes so mixed with fury that the men pull \"for dear life, and yet pulling for the mere joke of the thing.\" And Ahab's words to his \"tiger-yellow\" crew are withheld entirely: \"you live under the blessed light of the evangelical land.\" I find that withholding more frightening than anything he could have said.\n\nWhat I get out of the chapter, beyond the thrill, is the way Melville keeps deflating the heroics with his own eye for the ridiculous. Flask perched on Daggoo's shoulders \"seemed a snow-flake\"; \"The bearer looked nobler than the rider.\" That's a joke, and it's also a quiet moral judgment — the black harpooneer as \"living magnanimous earth,\" the white officer as \"Passion and Vanity stamping\" on it. The stakes are life and death, and the whole enterprise is also a little absurd, and Melville holds both.\n\nThen the squall. The harpoon grazes the whale, the sail \"collapsed and exploded,\" and the crew sits all night up to their knees in water inside a swamped boat, Queequeg holding up a lantern. The sentence about him is one of the great sentences in the book: \"the sign and symbol of a man without faith, hopelessly holding up hope in the midst of despair.\" I'm not sure I fully understand why Queequeg, of all people, is called a man without faith — perhaps because he holds no Christian hope and yet holds the light anyway. Then the Pequod nearly runs them down at dawn, and Ishmael's boat is rescued only by leaping out of it. That's the initiation: the first hunt ends with the ship almost killing its own men.",
+  "annotations": [
+   {
+    "quote": "with one white tooth evilly protruding from its steel-like lips.",
+    "note": "Our first clear look at Fedallah. Melville gives him exactly one tooth and a turban of his own braided hair — details chosen to make him seem less a man than a figure in a woodcut."
+   },
+   {
+    "quote": "the sailors, goat-like, leaped down the rolling ship’s side into the tossed boats below.",
+    "note": "In the middle of the supernatural moment, a completely physical and practical detail: how sailors actually get into a whaleboat. Melville always anchors the eerie in the bodily."
+   },
+   {
+    "quote": "never mind the brimstone—devils are good fellows enough.",
+    "note": "Stubb's whole philosophy of life: if the devil is rowing your boat, the more the merrier. It's funny, and it is also exactly how a crew consents to its own damnation."
+   },
+   {
+    "quote": "the fury seemed so calculated merely as a spice to the fun",
+    "note": "A remarkably precise description of a certain kind of leadership. Stubb's men can never tell how serious he is, and that ambiguity is what keeps them 'on their guard in the matter of obeying.'"
+   },
+   {
+    "quote": "This at least is duty; duty and profit hand in hand.",
+    "note": "Starbuck's creed in seven words, whispered between shouts to his oarsmen. He has just been told the White Whale is 'at the bottom of it,' and he answers by clinging to the one thing that is still legitimate: sperm oil."
+   },
+   {
+    "quote": "On his broad back, flaxen-haired Flask seemed a snow-flake. The bearer looked nobler than the rider.",
+    "note": "In 1851 America, a sentence that says the black man carrying the white officer is the nobler of the two is not a small thing. Melville then extends it into a parable of 'Passion and Vanity stamping the living magnanimous earth.'"
+   },
+   {
+    "quote": "But what it was that inscrutable Ahab said to that tiger-yellow crew of his—these were words best omitted here",
+    "note": "Everyone else's speech is transcribed at length. Ahab's is censored, and the censoring is scarier than any words. 'Only the infidel sharks' are fit to hear it."
+   },
+   {
+    "quote": "the oarsmen must put out their eyes, and ram a skewer through their necks; usage pronouncing that they must have no organs but ears, and no limbs but arms",
+    "note": "Whaleboat oarsmen row backwards, facing away from the whale. They approach death without being allowed to look at it — a physical fact that Melville has already made into a metaphor by describing it."
+   },
+   {
+    "quote": "like a wild hen after her screaming brood",
+    "note": "The Pequod, this ivory ship of doom, is for one instant a mother hen chasing her chicks. Melville's similes keep switching scale and mood on you, which is part of why the book never settles into one register."
+   },
+   {
+    "quote": "There, then, he sat, the sign and symbol of a man without faith, hopelessly holding up hope in the midst of despair.",
+    "note": "Queequeg with the lantern. I read it as an image of stubborn, unfounded persistence — holding up a light not because you believe it will be seen but because holding it up is what a person does. It might be the most tender sentence in the chapter."
+   }
+  ],
+  "links": [
+   {
+    "to": "ch50",
+    "why": "Who the five phantoms are, and what Fedallah might be."
+   },
+   {
+    "to": "ch49",
+    "why": "Ishmael's response to nearly drowning: draw up a will and laugh."
+   },
+   {
+    "to": "ch26",
+    "q": "democratic dignity",
+    "why": "Ishmael's creed about the dignity of common men — the ground under 'the bearer looked nobler than the rider.'"
+   }
+  ]
+ },
+ "ch49": {
+  "essay": "The title is the only hint. A hyena laughs, and this chapter is about laughing at the universe when it has just tried to drown you. Ishmael has been hauled out of the sea after [[ch48|the first lowering]], and instead of trauma he reports a mood: \"this free and easy sort of genial, desperado philosophy,\" in which \"a man takes this whole universe for a vast practical joke, though the wit thereof he but dimly discerns, and more than suspects that the joke is at nobody's expense but his own.\" I want to slow down on that sentence because it is doing more than it seems. The joke is at your expense; you cannot quite get the joke; and you laugh anyway. That is a very precise description of a modern mood — gallows humor, the shrug of someone who has decided that since nothing can be controlled, nothing is worth arguing with — and Melville is writing it in 1851, out of a whaleboat.\n\nWhat makes it more than a mood is that the book gives us three other answers to the same question, and this chapter is one of them. Ahab's answer to a universe that mauls you is rage: strike through the [[ch36:pasteboard masks|mask]]. Starbuck's is piety and prudence, which the first lowering just showed can nearly kill you too — it was Starbuck, the careful mate, who went \"plump on a flying whale\" with sail set in a squall, and the sarcasm Ishmael aims at him here is not accidental. Stubb's answer, stated back in [[ch39:wisest, easiest answer|the night-watch]], is that \"a laugh's the wisest, easiest answer to all that's queer,\" and this chapter is Ishmael trying Stubb's answer on for size. The deadpan interview is the comedy of it: he asks Queequeg, Stubb, and Flask in turn whether nearly dying like that is ordinary, and each confirms it with total unconcern — Stubb has lowered \"from a leaking ship in a gale off Cape Horn\"; Flask laughs at the idea of rowing toward a whale face-first. So Ishmael draws up his will.\n\nThe will is the hinge of the chapter and I think the most quietly important thing in it. He makes Queequeg \"my lawyer, executor, and legatee\" — everything goes to the man he was, in [[ch10:married|A Bosom Friend]], jokingly married to; the joke is now formalized in the one language the law understands. And having written it, he feels posthumous: \"I survived myself; my death and burial were locked up in my chest.\" All the days he now lives are a \"supplementary clean gain,\" like Lazarus after the resurrection. This is a rehearsal. In [[ch110|Queequeg in His Coffin]] a man will build his own coffin and decline to die; in the [[epilogue:coffin life-buoy|Epilogue]] the survivor floats on that coffin, having in fact outlived his own funeral. Ishmael's whole survival strategy is being sketched here as a joke: die first, on paper, and the rest is profit.\n\nWhether it is wisdom or resignation is, I think, deliberately left open, and the last line is where you can feel the openness. He rolls up his sleeves for \"a cool, collected dive at death and destruction, and the devil fetch the hindmost.\" Compare the Ishmael of [[ch1:substitute for pistol and ball|Loomings]], who went to sea as his \"substitute for pistol and ball\" — a man managing his suicidal weather. Now he dives at death cheerfully. Is that growth, or the same impulse wearing a grin? The hyena's laugh is what you do when you have seen too much to cry, and Melville lets you notice that it is a coping strategy rather than a truth. The next time you hear that laugh in the book it belongs to Stubb, [[ch64:sharks|eating a whale steak by the light of the whale's own oil]] while the sharks feed below, and it sounds a good deal less genial.",
+  "annotations": [
+   {
+    "quote": "a man takes this whole universe for a vast practical joke, though the wit thereof he but dimly discerns, and more than suspects that the joke is at nobody’s expense but his own.",
+    "note": "The core of the chapter. What makes it unsettling is the phrase 'more than suspects': the joke is on him, and he can't even fully get the joke."
+   },
+   {
+    "quote": "as an ostrich of potent digestion gobbles down bullets and gun flints.",
+    "note": "Swallowing 'all creeds, and beliefs, and persuasions... never mind how knobby' like an ostrich eating flint. It's a comic image of a serious stance: refuse to be stopped by anything, including ideas."
+   },
+   {
+    "quote": "I suppose then, that going plump on a flying whale with your sail set in a foggy squall is the height of a whaleman’s discretion?",
+    "note": "Ishmael's irony is aimed at Starbuck, the 'prudent' mate who nearly killed them. Stubb doesn't even hear the sarcasm, which is the joke."
+   },
+   {
+    "quote": "“Queequeg,” said I, “come along, you shall be my lawyer, executor, and legatee.”",
+    "note": "Everything Ishmael has goes to Queequeg. It's a comic line, but it also quietly formalizes what [[ch10:married|A Bosom Friend]] began: these two are married in every sense the law allows."
+   },
+   {
+    "quote": "I survived myself; my death and burial were locked up in my chest.",
+    "note": "Having written the will, Ishmael feels posthumous. This is a rehearsal: the actual survivor in the [[epilogue:coffin life-buoy|Epilogue]] floats on a coffin, having in fact outlived his own funeral — and the coffin is built in [[ch110|Queequeg in His Coffin]] by a man who also declined to die on schedule."
+   },
+   {
+    "quote": "here goes for a cool, collected dive at death and destruction, and the devil fetch the hindmost.",
+    "note": "Notice how far this is from the Ishmael of Chapter 1, who went to sea as a substitute for suicide. Now he dives at death cheerfully. Whether that's growth or resignation is, I think, left open."
+   },
+   {
+    "quote": "There is nothing like the perils of whaling to breed this free and easy sort of genial, desperado philosophy",
+    "note": "'Genial, desperado' — two words that shouldn't fit together, fitted. It's a philosophy bred by danger, not reasoned to, which is Melville's quiet admission that it is a symptom as much as a stance."
+   },
+   {
+    "quote": "a supplementary clean gain of so many months or weeks as the case might be.",
+    "note": "Accounting language for a resurrection. Once you've died on paper, every day is profit — the book's survival arithmetic, which the [[epilogue|Epilogue]] will cash out on a coffin."
+   }
+  ],
+  "links": [
+   {
+    "to": "ch39",
+    "q": "wisest, easiest answer",
+    "why": "Stubb's version of the same philosophy, one chapter before Ishmael tries it on."
+   },
+   {
+    "to": "ch10",
+    "q": "married",
+    "why": "Where Queequeg became, in every sense the law allows, Ishmael's next of kin."
+   },
+   {
+    "to": "ch1",
+    "q": "substitute for pistol and ball",
+    "why": "The Ishmael who went to sea instead of shooting himself — measure him against the man diving at death here."
+   },
+   {
+    "to": "ch110",
+    "why": "A man builds his coffin and declines to die; this chapter's joke, made real."
+   },
+   {
+    "to": "epilogue",
+    "q": "coffin life-buoy",
+    "why": "Where 'I survived myself' stops being a joke."
+   }
+  ]
+ },
+ "ch50": {
+  "essay": "A chapter of explanations that don't explain. Stubb and Flask joke about whether a one-legged man should be in a whaleboat ('I never yet saw him kneel' — Stubb's jab carries a theological sting, because Ahab kneels to nothing). Then Ishmael reconstructs, with hindsight, all the signs the crew missed: Ahab making thole-pins with his own hands, sheathing the bottom of a 'spare' boat against his ivory leg, gouging a knee-hole in the cleat. Everyone assumed it was preparation for the single chase of Moby Dick. Nobody imagined a private crew.\n\nWhat I get out of the chapter is its argument about wonder. 'In a whaler wonders soon wane.' Melville lists the flotsam of humanity that whalers pick up — castaways on planks, 'blown-off Japanese junks' — and says Beelzebub himself could climb aboard 'and it would not create any unsubduable excitement in the forecastle.' That is both a joke and a real claim about how sailors, and maybe people generally, absorb the uncanny into routine. The five 'subordinate phantoms' simply become crew.\n\nBut Fedallah does not. The last paragraph is Melville's attempt to say what he is, and it's fascinating how much it refuses to do. Fedallah comes from the 'unchanging Asiatic communities... those insulated, immemorial, unalterable countries' — a place, Ishmael says, where the memory of the first man is still 'a distinct recollection,' where devils as well as angels had children with the daughters of men. I don't think Melville knows what Fedallah is either; I think the point is that Ahab has brought something aboard from before history, and that its relation to him might even be 'authority.' The captain may have a captain.",
+  "annotations": [
+   {
+    "quote": "“I don’t know that, my little man; I never yet saw him kneel.”",
+    "note": "Flask means Ahab still has one knee. Stubb answers on a different plane: Ahab does not kneel — not in prayer, not to anyone. Much of the book's theology is in this one-liner."
+   },
+   {
+    "quote": "So Tamerlane’s soldiers often argued with tears in their eyes, whether that invaluable life of his ought to be carried into the thickest of the fight.",
+    "note": "Ahab compared to Tamerlane, the conqueror who was also lame. Melville keeps supplying Ahab with a lineage of crippled kings."
+   },
+   {
+    "quote": "he stood up in that boat with his solitary knee fixed in the semi-circular depression in the cleat, and with the carpenter’s chisel gouged out a little here and straightened it a little there",
+    "note": "A quiet, almost domestic image: Ahab carving a notch to fit his own body. All that monomaniacal will comes down to a man fitting a boat to his one knee."
+   },
+   {
+    "quote": "for in a whaler wonders soon wane.",
+    "note": "Four words that describe a real psychological law. Melville has been building the marvelous for three hundred pages, and here admits that marvels get absorbed as fast as they arrive."
+   },
+   {
+    "quote": "that Beelzebub himself might climb up the side and step down into the cabin to chat with the captain, and it would not create any unsubduable excitement in the forecastle.",
+    "note": "The devil chatting with the captain in the cabin. Given who is in the cabin, the joke is not entirely a joke."
+   },
+   {
+    "quote": "nay, so far as to have some sort of a half-hinted influence; Heaven knows, but it might have been even authority over him",
+    "note": "This is the most unsettling suggestion in the chapter: that Fedallah may command Ahab, not the reverse. The book never resolves it, and I don't think it wants to."
+   },
+   {
+    "quote": "the devils also, add the uncanonical Rabbins, indulged in mundane amours.",
+    "note": "Melville ends by suggesting Fedallah may literally descend from devils who slept with human women — and he cites rabbinical tradition for it, half scholar and half showman."
+   }
+  ],
+  "links": [
+   {
+    "to": "ch48",
+    "why": "The first sight of Fedallah's crew, lowering in the squall."
+   },
+   {
+    "to": "ch117",
+    "why": "Fedallah's prophecy — the clearest hint of 'authority' over Ahab."
+   },
+   {
+    "to": "ch130",
+    "why": "Ahab and Fedallah standing watch together, each the other's shadow."
+   }
+  ]
+ },
+ "ch51": {
+  "essay": "For me this is where the book's atmosphere changes. The Pequod passes through four cruising-grounds in one sentence, and then night after night a silvery spout appears ahead of the ship, always at midnight, always too far, 'for ever alluring us on.' Nobody can catch it. Some of the crew decide it is Moby Dick himself, 'treacherously beckoning us on.' The chapter is about being led, and the beauty of the thing that leads you.\n\nWhat I get out of it is how Melville uses weather as a moral instrument. First the 'blue blandness' of calm seas that seem to be 'vacating' themselves of life 'in repugnance to our vengeful errand' — the ocean itself turning away from the ship. Then the Cape of Good Hope, renamed back to 'Cape Tormentoso,' where the sea heaves 'as if its vast tides were a conscience,' and the sea-ravens roost in the rigging as though the Pequod were already 'a thing appointed to desolation.' The spout does not care; 'calm, snow-white, and unvarying,' it goes on beckoning through both.\n\nAnd then the last image, which Starbuck sees: Ahab asleep in his screwed-down chair, hat and coat still dripping, head thrown back so that his closed eyes point at the compass in the ceiling. 'Terrible old man!... sleeping in this gale, still thou steadfastly eyest thy purpose.' I find that more frightening than the quarter-deck speech. Awake, Ahab chooses his course; asleep, his body keeps choosing it. There is a line earlier — 'every stroke of his dead limb sounded like a coffin-tap' — that I now hear whenever he walks.",
+  "annotations": [
+   {
+    "quote": "and, by their soft, suffusing seethings, made what seemed a silvery silence, not a solitude",
+    "note": "Listen to the sound of it: 'soft, suffusing seethings... silvery silence.' The alliteration is the sea whispering. Melville then makes a fine distinction — silence is not the same as being alone."
+   },
+   {
+    "quote": "his turban and the moon, companions in one sky.",
+    "note": "Fedallah at the masthead by moonlight. Six words make him celestial — the turban and the moon are two white things in the same dark, as if he belonged up there."
+   },
+   {
+    "quote": "While his one live leg made lively echoes along the deck, every stroke of his dead limb sounded like a coffin-tap. On life and death this old man walked.",
+    "note": "Ahab's gait as a metronome of mortality: life, death, life, death. Once you've read this you cannot un-hear his footsteps anywhere in the book."
+   },
+   {
+    "quote": "this solitary jet seemed for ever alluring us on.",
+    "note": "The spout is a lure. Whether it is the whale, a trick of moonlight, or the crew's own longing, the effect is identical: the ship keeps following something it can never reach."
+   },
+   {
+    "quote": "all space, in repugnance to our vengeful errand, seemed vacating itself of life before our urn-like prow.",
+    "note": "'Urn-like prow' — the ship's bow as a funeral urn. And the whole ocean emptying out ahead of it, as if life itself refused to be in the Pequod's way."
+   },
+   {
+    "quote": "as if its vast tides were a conscience; and the great mundane soul were in anguish and remorse for the long sin and suffering it had bred.",
+    "note": "The sea as the world's guilty conscience. This is the kind of sentence that tells you Melville was reading Shakespeare and the Bible at the same time and letting them fight."
+   },
+   {
+    "quote": "the head was thrown back so that the closed eyes were pointed towards the needle of the tell-tale that swung from a beam in the ceiling.",
+    "note": "Asleep, eyes shut, still aimed at the compass. It's the image of a will that no longer needs consciousness to operate. Starbuck's shudder is the right response."
+   }
+  ],
+  "links": [
+   {
+    "to": "ch59",
+    "why": "What the moonlit calms 'worked upon' Ahab to expect: a white mass rising in repose — and it isn't the whale."
+   },
+   {
+    "to": "ch28",
+    "why": "The coffin-tap of the ivory leg first heard on the quarter-deck at dawn."
+   },
+   {
+    "to": "ch130",
+    "why": "Ahab motionless at the rail, eye on the sea, for days — the sleeping-with-eyes-on-the-compass image carried to its end."
+   }
+  ]
+ },
+ "ch52": {
+  "essay": "The first of the nine 'gams' — the ships the Pequod meets — and it is a ghost ship. The Goney (Albatross) has been out nearly four years; she is 'bleached like the skeleton of a stranded walrus,' her lookouts bearded and dressed in skins. Ahab hails her with the question he will ask every ship from now on: 'Have ye seen the White Whale?' And the other captain's trumpet falls into the sea before he can answer. No answer, ever — just the wind rising and the distance growing.\n\nWhat I get out of it is that Melville is establishing the form of the whole middle of the book: a series of encounters that are also omens, each one a mirror held up to the Pequod. Here the mirror shows a ship that has been at sea so long it has become a wreck of itself, and Ahab's response is to announce he will be gone three years — 'this time three years, if I am not at home, tell them to address them to ——.' He never finishes the sentence. Where do you send letters to a man who does not intend to come back?\n\nThen the little fish that had been swimming beside the Pequod switch to the stranger's hull, and Ahab murmurs, 'Swim away from me, do ye?' with 'more of deep helpless sadness' than he has ever shown. I find this the first moment I feel for him. And then the chapter closes with one of the book's plainest statements of its own despair: circumnavigation leads only back to 'the very point whence we started'; if the world were an endless plain there might be 'promise in the voyage,' but on a round globe the chase of 'that demon phantom' leads 'in barren mazes' or leaves us 'whelmed' midway. The title says Albatross, and every reader hears Coleridge; the bad luck is already aboard.",
+  "annotations": [
+   {
+    "quote": "this craft was bleached like the skeleton of a stranded walrus.",
+    "note": "A ship as a bone. The Goney is what four years at sea does — and a glimpse of what the Pequod, 'bound round the world,' would look like if it ever came back."
+   },
+   {
+    "quote": "“Ship ahoy! Have ye seen the White Whale?”",
+    "note": "The refrain of the middle of the book. Ahab will ask this of every ship, and each answer (or non-answer) is a small prophecy. Here the answer is lost to the sea; the last time he asks it, of [[ch128:weeping for her children|the Rachel]], the answer is a dead boat and a missing son."
+   },
+   {
+    "quote": "it somehow fell from his hand into the sea",
+    "note": "The stranger's speaking-trumpet drops overboard the instant the White Whale is named. The crew read it as an omen, and Melville lets them — he gives no other explanation."
+   },
+   {
+    "quote": "and this time three years, if I am not at home, tell them to address them to ——”",
+    "note": "The dash is the address. Ahab can't name the place where his letters should go because he already knows he isn't going anywhere with a postal service."
+   },
+   {
+    "quote": "“Swim away from me, do ye?” murmured Ahab, gazing over into the water.",
+    "note": "Even the small fish desert him. This is the most vulnerable Ahab has been so far — a moment of 'deep helpless sadness' that makes the 'old lion voice' a second later feel like a mask going back on."
+   },
+   {
+    "quote": "Only through numberless perils to the very point whence we started, where those that we left behind secure, were all the time before us.",
+    "note": "A voyage around the world ends where it began, and the people you left were 'before' you all along — both ahead of you and in front of you. Ishmael is quietly saying the whole enterprise is a circle."
+   },
+   {
+    "quote": "or in tormented chase of that demon phantom that, some time or other, swims before all human hearts",
+    "note": "Not Ahab's whale — everyone's. This line generalizes the book: each of us has a white whale that swims ahead, and chasing it over a round world leads nowhere."
+   }
+  ],
+  "links": [
+   {
+    "to": "ch53",
+    "why": "What a gam is supposed to be, and every way this one wasn't."
+   },
+   {
+    "to": "ch128",
+    "q": "weeping for her children",
+    "why": "The last gam, with the Rachel — the ship Ahab turns away and that turns back for Ishmael."
+   },
+   {
+    "to": "ch135",
+    "why": "The 'demon phantom' this chapter says leads us in barren mazes — caught up with, at last."
+   }
+  ]
+ },
+ "ch53": {
+  "essay": "A chapter of etiquette, and a very funny one. Having shown a gam that failed, Melville stops to define the word — 'You might wear out your index-finger running up and down the columns of dictionaries, and never find the word' — and then supplies his own dictionary entry in italics, as though he were Noah Webster. The mock-lexicography is a kind of joke that runs through the whole book (Etymology, Extracts, Cetology): Ishmael keeps trying to be the encyclopedia of a world nobody has catalogued.\n\nWhat I enjoy here is the comparative sociology of ships. Merchantmen 'cut each other on the high seas, like a brace of dandies in Broadway.' Men-of-war perform 'silly bowings and scrapings.' Slave-ships flee each other. Pirates hail with 'How many skulls?' — 'the same way that whalers hail — How many barrels?' That parallel is the sharpest thing in the chapter: the honest whaler and the pirate ask the same question, only the unit differs. And Melville's defense of the whaler's dignity over the pirate's is a pure logic-chopping joke: the pirate's elevation comes 'only at the gallows,' so 'he has no proper foundation for his superior altitude.'\n\nThe last paragraph is a small comic masterpiece: the whaling captain, forced to stand in a boat with no seat and no tiller, wedged between oars, hands in pockets 'for ballast,' trying to keep his dignity under the eyes of two ships — and sometimes seizing 'the nearest oarsman's hair' and holding on 'like grim death.' I think Melville put this here because Ahab, who refuses every gam that doesn't serve him, is the one captain who will never be seen in this posture. He has opted out of society, and this chapter shows exactly what he has opted out of.",
+  "annotations": [
+   {
+    "quote": "he cared not to consort, even for five minutes, with any stranger captain, except he could contribute some of that information he so absorbingly sought.",
+    "note": "The whole social world of whaling — letters, news, company — exists for Ahab only as a source of one fact. This chapter's warmth is a measure of what he has renounced."
+   },
+   {
+    "quote": "like a brace of dandies in Broadway",
+    "note": "Melville the New Yorker peeking through. Two merchant ships ignoring each other mid-Atlantic become two fops snubbing each other on the street."
+   },
+   {
+    "quote": "the first hail is—“How many skulls?”—the same way that whalers hail—“How many barrels?”",
+    "note": "The book's honest whalers and its pirates ask the identical question. It's a joke that quietly admits whaling is a business of killing, counted in barrels."
+   },
+   {
+    "quote": "It sometimes ends in uncommon elevation, indeed; but only at the gallows.",
+    "note": "A pirate is 'elevated' — hanged. Melville then reasons, with a straight face, that a hanged man has no foundation to stand on. It's the deadpan of a man who enjoys logic as a toy."
+   },
+   {
+    "quote": "GAM. NOUN—_A social meeting of two_ (_or more_) _Whaleships, generally on a cruising-ground; when, after exchanging hails, they exchange visits by boats’ crews: the two captains remaining, for the time, on board of one ship, and the two chief mates on the other._",
+    "note": "Ishmael writes his own dictionary entry. It's playful, but it also matters structurally: the next nine encounters are 'gams,' and this is the reader's briefing."
+   },
+   {
+    "quote": "he generally carries his hands in his trowsers’ pockets; but perhaps being generally very large, heavy hands, he carries them there for ballast.",
+    "note": "Dignity as physics. The captain's pockets are for ballast, and the joke lands because we've all seen a man trying to look unconcerned while barely keeping his balance."
+   },
+   {
+    "quote": "to seize hold of the nearest oarsman’s hair, and hold on there like grim death.",
+    "note": "The chapter ends with a captain clinging to a sailor's hair. Compare Ahab, who will hold to nothing and no one. The comic vignette is a portrait of exactly what Ahab lacks."
+   }
+  ],
+  "links": [
+   {
+    "to": "ch52",
+    "why": "The failed gam this chapter is the etiquette for."
+   },
+   {
+    "to": "ch54",
+    "why": "The first real gam — and the story that comes out of it."
+   },
+   {
+    "to": "ch100",
+    "why": "The gam Ahab actually enjoys, briefly: the Samuel Enderby and the man who lost an arm."
+   }
+  ]
+ },
+ "ch54": {
+  "essay": "The longest chapter in the book, and structurally the strangest: a story inside the story, told by Ishmael years later to a circle of young Spanish gentlemen at the Golden Inn in Lima, interrupted for chicha and definitions of \"Lakeman\" and \"Canaller,\" and finally sworn on a Bible in front of a priest. Melville published it on its own in Harper's before the novel appeared, and it reads like a compressed Moby-Dick: a tyrant mate, a proud man he cannot break, a leaking ship, a mutiny, and the White Whale arriving like a verdict. I want to explain why it belongs here and not in a drawer, because a reader hitting eighty pages of digression right after [[ch53|the etiquette of gams]] can be forgiven for wondering.\n\nStart with what the story is about, which is stated in its second sentence: \"a certain wondrous, inverted visitation of one of those so called judgments of God which at times are said to overtake some men.\" Inverted. A judgment of God normally falls on the sinner. This one falls on Radney, the persecutor, and it is delivered by the whale — the same whale Ahab has just told the crew is malice incarnate. Steelkilt is everything Ahab is not: a man of enormous natural authority (\"Charlemagne, had he been born son to Charlemagne's father\") who chooses restraint again and again, who warns Radney off with a twisted hand rather than a fist, who takes the hammer only when the hammer is forced on him, who plans a murder with a netted iron ball and is spared the doing of it because \"Heaven itself seemed to step in.\" Moby Dick does precisely what the iron ball would have done. So the first time the White Whale actually appears in the novel — secondhand, in a story within a story — he appears as justice. That complicates every reading of him as evil, and it is meant to. When Ahab, in [[ch41:intelligent malignity|Moby Dick]], insists on the whale's \"intelligent malignity,\" you are supposed to remember that you have already watched the whale kill the one man in a story who deserved it.\n\nSecond, the frame. Why Lima? Why \"Corrupt as Lima,\" and the Dons crying \"The world's one Lima\"? Because Melville wants a story about American violence — Erie Canal boatmen, Buffalo desperadoes, \"sinners most abound in holiest vicinities\" — heard by outsiders who recognize it instantly. The long detour on the Great Lakes is the point, not a lapse: the wild is not out there in the Pacific; it is in New York State, \"under the long-flung shadow, and the snug patronising lee of churches.\" Ishmael keeps collapsing the distance between civilized and savage — he will call himself a savage outright in [[ch57|three chapters]] — and here he does it with geography. And the mutineers' demand is astonishingly modest: \"we won't be flogged.\" Melville had published White-Jacket, his attack on naval flogging, the year before; the politics is very close to the surface.\n\nThird, the telling. \"For my humor's sake, I shall preserve the style in which I once narrated it\" — Ishmael announces that he is performing a set piece he has polished for an audience, which is a reminder that all of Moby-Dick is being told by someone afterward, for effect. Notice the gap he leaves: Steelkilt whispers something to the captain that stops him cold, and we never learn what it was. The reader supplies the threat, and any threat we imagine is worse than one written down. And notice the tense of the doom: \"the fool had been branded for the slaughter by the gods\" — Radney is finished before the hammer lands, so the suspense is never about *whether* but about *how the fixed thing arrives*. That is the suspense of the whole novel, and of [[ch47|the sword-mat]]: the warp is set, the sword falls where it falls.\n\nThen the oath. \"I know it to be true; it happened on this ball; I trod the ship; I knew the crew; I have seen and talked with Steelkilt since the death of Radney.\" Hand on the Gospels, before a priest. This is the one place in the entire book where Ishmael swears to his own truthfulness — and it is for the inset story, the one we have least means of checking. He never swears to the main one. I find that the most interesting thing in the chapter. It makes me look back at everything else and wonder what a narrator who can enter Ahab's cabin and Starbuck's thoughts is, exactly, and what he isn't swearing to. Keep the question; it returns with force in [[ch45|The Affidavit]], where he cites the Essex, and in the [[epilogue|Epilogue]], where the sworn survivor is the only witness left.",
+  "annotations": [
+   {
+    "quote": "a certain wondrous, inverted visitation of one of those so called judgments of God which at times are said to overtake some men.",
+    "note": "'Inverted' is the key word. A judgment of God usually falls on the sinner; here it falls on the tyrant, delivered by the whale. The story is a small theology, and it cuts directly against Ahab's [[ch41:intelligent malignity|'intelligent malignity']] — the first time we see Moby Dick act, he acts as justice."
+   },
+   {
+    "quote": "For my humor’s sake, I shall preserve the style in which I once narrated it at Lima",
+    "note": "Ishmael tells us he's performing. The whole chapter is a set piece he has told before, polished for an audience — which is a reminder that all of Moby-Dick is being told by someone after the fact."
+   },
+   {
+    "quote": "those grand fresh-water seas of ours,—Erie, and Ontario, and Huron, and Superior, and Michigan,—possess an ocean-like expansiveness",
+    "note": "A whole page on the Great Lakes, in a whaling novel. Melville is insisting that the wilderness and the ocean are inside America, not beyond it; Steelkilt is 'wild-ocean born' in Buffalo."
+   },
+   {
+    "quote": "straightway against that man he conceives an unconquerable dislike and bitterness; and if he have a chance he will pull down and pulverize that subaltern’s tower",
+    "note": "A general law of petty command: the superior officer who hates the subordinate for being the better man. It's stated as sociology, and then the story plays it out to the letter."
+   },
+   {
+    "quote": "which had made Steelkilt Charlemagne, had he been born son to Charlemagne’s father.",
+    "note": "Steelkilt has a king's nature and a deckhand's station. The whole tragedy is the mismatch, and Melville makes you feel it as an injustice before a blow is struck."
+   },
+   {
+    "quote": "There’s your true Ashantee, gentlemen; there howl your pagans; where you ever find them, next door to you",
+    "note": "The 'savages' are not in Africa; they're on the Erie Canal, 'under the long-flung shadow... of churches.' Melville keeps collapsing the distance between civilized and wild — Ishmael calls himself a savage a few chapters on."
+   },
+   {
+    "quote": "But, gentlemen, the fool had been branded for the slaughter by the gods. Immediately the hammer touched the cheek",
+    "note": "Notice the tense: Radney is doomed before the hammer lands. The whole chapter treats the outcome as fixed, and the storytelling suspense is only about how the fixed thing arrives."
+   },
+   {
+    "quote": "treat us decently, and we’re your men; but we won’t be flogged.",
+    "note": "The mutineers' demand is astonishingly modest: no flogging. Melville had written White-Jacket against naval flogging two years before; the politics is close to the surface here."
+   },
+   {
+    "quote": "Steelkilt here hissed out something, inaudible to all but the Captain",
+    "note": "Whatever Steelkilt whispers stops the captain cold. We never learn what it was. It's a masterful gap — the reader supplies the threat, and any threat we imagine is worse than one written down."
+   },
+   {
+    "quote": "Yet complete revenge he had, and without being the avenger. For by a mysterious fatality, Heaven itself seemed to step in",
+    "note": "Steelkilt gets everything he planned and none of the guilt. Whether you find that providential or merely lucky is the same question the whole book asks about its ending."
+   },
+   {
+    "quote": "the appalling beauty of the vast milky mass, that lit up by a horizontal spangling sun, shifted and glistened like a living opal in the blue morning sea.",
+    "note": "Our first actual sighting of Moby Dick in the novel, and it comes secondhand, in a story within a story. 'Appalling beauty' — both words are meant."
+   },
+   {
+    "quote": "with some tatters of Radney’s red woollen shirt, caught in the teeth that had destroyed him.",
+    "note": "The one detail that sticks: red cloth in white teeth. It's the whale as executioner, and it's also the only splash of color in a scene of white on blue."
+   },
+   {
+    "quote": "I know it to be true; it happened on this ball; I trod the ship; I knew the crew; I have seen and talked with Steelkilt since the death of Radney.",
+    "note": "Ishmael's oath, with his hand on the Gospels. 'It happened on this ball' — on this planet — is an odd, wonderful way to put it. He swears to this story; he never swears to the main one."
+   },
+   {
+    "quote": "‘No need to travel! The world’s one Lima.",
+    "note": "The listeners' verdict on America: it's Lima too, corrupt under its churches. Melville lets the outsiders say what Ishmael has been implying about New York State for two pages."
+   },
+   {
+    "quote": "you know the proverb all along this coast—“Corrupt as Lima.",
+    "note": "The frame's refrain. A story about a whale delivering justice is told in the city proverbial for having none — as if the only place a judgment of God can be believed is the place that most needs one."
+   }
+  ],
+  "links": [
+   {
+    "to": "ch41",
+    "q": "intelligent malignity",
+    "why": "Ahab's whale as malice — set it against the whale that here executes a tyrant."
+   },
+   {
+    "to": "ch45",
+    "why": "Ishmael's other appeal to evidence; the Essex, and why you should believe him."
+   },
+   {
+    "to": "ch57",
+    "why": "'I myself am a savage' — the Erie Canal argument continued in the first person."
+   },
+   {
+    "to": "ch47",
+    "why": "'Branded for the slaughter by the gods' — the fixed warp and the falling sword."
+   },
+   {
+    "to": "epilogue",
+    "why": "The other sworn survivor's testimony."
+   }
+  ]
+ },
+ "ch55": {
+  "essay": "The first of three chapters about pictures of whales, and my favorite of them, because under the art criticism is a real philosophical claim: the whale cannot be painted. Not shouldn't — cannot. Ishmael runs through the history of bad whales, from the Hindu Matse Avatar with an anaconda tail, to Guido and Hogarth's sea-monsters, to the 'book-binder's whale' wrapped round an anchor on old title pages, to the scientific ones, which are worse: Cuvier's Sperm Whale 'is not a Sperm Whale, but a squash.' The comedy is generous and specific, and I laughed at the whale with an eye that, to scale, 'would make the eye of that whale a bow-window some five feet long.'\n\nBut then the argument turns. Most drawings come from stranded whales, which are 'about as correct as a drawing of a wrecked ship, with broken back.' The living whale is only seen at sea, mostly submerged, and even a young one hoisted on deck is so 'eel-like, limbered, varying' that 'his precise expression the devil himself could not catch.' Even the skeleton lies — unlike Jeremy Bentham's, which apparently still looks like Jeremy Bentham. So: 'the great Leviathan is that one creature in the world which must remain unpainted to the last.'\n\nWhat I get out of this is that Melville is talking about his own book. He is trying to paint the whale in words, in a chapter about the impossibility of painting the whale, and the joke he leaves you with is that the only way to get a 'tolerable idea' of the creature is to go whaling, 'but by so doing, you run no small risk of being eternally stove and sunk by him.' Knowledge of the real thing costs your life; the pictures are all wrong; so 'you had best not be too fastidious.' It is, I think, an argument about God, made entirely with engravings.",
+  "annotations": [
+   {
+    "quote": "It is time to set the world right in this matter, by proving such pictures of the whale all wrong.",
+    "note": "Ishmael the corrector of the world. There's real pride in this, and Melville lets the pride be slightly comic, then makes the chapter earn it."
+   },
+   {
+    "quote": "Ah, my gallant captain, why did ye not give us Jonah looking out of that eye!",
+    "note": "A five-foot whale's eye, so why not put Jonah in it like a man at a window? This is Melville's art criticism: mockery so affectionate it turns into a better picture than the original."
+   },
+   {
+    "quote": "In a word, Frederick Cuvier’s Sperm Whale is not a Sperm Whale, but a squash.",
+    "note": "The great Cuvier's brother, dismissed as a painter of vegetables. Ishmael's quarrel with the scientists is that they've never seen the thing; he has, and the whole book is his credentials."
+   },
+   {
+    "quote": "Most of the scientific drawings have been taken from the stranded fish; and these are about as correct as a drawing of a wrecked ship, with broken back, would correctly represent the noble animal itself",
+    "note": "Here the joke becomes an argument. We know the whale only from its corpses, and a corpse is not the creature. The same, one might say, of any dead thing we try to understand."
+   },
+   {
+    "quote": "Though elephants have stood for their full-lengths, the living Leviathan has never yet fairly floated himself for his portrait.",
+    "note": "The whale has never sat for a portrait — as though it were a question of the whale's consent. I love how the sentence gives the animal a kind of aristocratic reticence."
+   },
+   {
+    "quote": "This fin has four regular bone-fingers, the index, middle, ring, and little finger. But all these are permanently lodged in their fleshy covering, as the human fingers in an artificial covering.",
+    "note": "The whale has a hand inside its fin. Melville drops this evolutionary fact — a hand in a mitten — decades before it would be commonplace, and then lets Stubb make the joke."
+   },
+   {
+    "quote": "the great Leviathan is that one creature in the world which must remain unpainted to the last.",
+    "note": "The chapter's thesis, and a confession about the book: Melville is trying to paint what he has just said cannot be painted. The whiteness chapter made the same claim about meaning."
+   },
+   {
+    "quote": "but by so doing, you run no small risk of being eternally stove and sunk by him. Wherefore, it seems to me you had best not be too fastidious in your curiosity touching this Leviathan.",
+    "note": "To know the whale you must risk being killed by it, so perhaps don't be too curious. It's advice Ahab will not take, and a wry note on what the reader is doing by turning the page."
+   }
+  ],
+  "links": [
+   {
+    "to": "ch42",
+    "why": "The whiteness chapter made the same claim about meaning that this one makes about paint: it can't be fixed."
+   },
+   {
+    "to": "ch32",
+    "q": "God keep me from ever completing anything",
+    "why": "Cetology's confession that the whale outruns its system — the companion to 'must remain unpainted to the last.'"
+   },
+   {
+    "to": "ch56",
+    "why": "The pictures that come closest, and why the French painters get it."
+   }
+  ]
+ },
+ "ch56": {
+  "essay": "After demolishing the bad pictures, Ishmael praises the less bad ones, and the chapter turns into something I didn't expect: a real piece of art writing, done with love. Beale's outlines are 'the best'; Scoresby's are too small; but the ones that make Ishmael's prose catch fire are two French engravings after a painter he admits he knows nothing about, 'one Garnery.' His description of the first — a Sperm Whale rising under a boat, an oarsman 'in the act of leaping, as if from a precipice,' the half-emptied line-tub floating, the ship bearing down in the black distance — is itself a better picture than most whaling pictures. Then he shrugs: 'Serious fault might be found with the anatomical details of this whale, but let that pass; since, for the life of me, I could not draw so good a one.'\n\nWhat I get out of the chapter is Melville's theory of art, smuggled in as national character. The French, with a fraction of the whaling experience, are 'the lads for painting action'; the English and Americans draw 'the vacant profile of the whale,' which is 'about tantamount to sketching the profile of a pyramid.' The mechanical outline versus the living commotion — that's the distinction between the cetology chapters and the chase chapters, and Melville knows which one is art.\n\nThe joke about Scoresby's ninety-six snow crystals, each of which should have 'a sworn affidavit taken before a Greenland Justice of the Peace,' is a small masterpiece of mock-pedantry. And the last engraving, the quiet 'noon-scene' of a French whaler taking on water among the palms — 'the loosened sails of the ship, and the long leaves of the palms... both drooping together in the breezeless air' — is one of those moments where Ishmael just wants you to see something beautiful. The Pequod never gets a scene like that.",
+  "annotations": [
+   {
+    "quote": "But I pass that matter by.",
+    "note": "Ishmael announcing he will not digress on the monstrous stories of whales. He then digresses for three chapters on pictures. This is how the book breathes."
+   },
+   {
+    "quote": "for that one single incomputable flash of time, you behold an oarsman, half shrouded by the incensed boiling spout of the whale, and in the act of leaping, as if from a precipice.",
+    "note": "Ishmael describes a painting and it comes out better than the painting. 'One single incomputable flash of time' is what all the action chapters are trying to freeze."
+   },
+   {
+    "quote": "since, for the life of me, I could not draw so good a one.",
+    "note": "A rare, disarming modesty. Ishmael has spent a chapter mocking whale pictures, and then admits the painter he's criticizing has done what he cannot."
+   },
+   {
+    "quote": "The French are the lads for painting action.",
+    "note": "Melville's aesthetic in six words. Action, not outline; commotion, not profile. It reads like a defense of his own chase chapters against his own cetology."
+   },
+   {
+    "quote": "which, so far as picturesqueness of effect is concerned, is about tantamount to sketching the profile of a pyramid.",
+    "note": "The 'vacant profile' of a whale is as dead as a pyramid's outline. It's a sharp point about knowledge: the correct diagram tells you nothing of what it is to be near the thing."
+   },
+   {
+    "quote": "it was certainly an oversight not to have procured for every crystal a sworn affidavit taken before a Greenland Justice of the Peace.",
+    "note": "Poor Scoresby and his ninety-six snowflakes. The joke is aimed at a certain kind of science that catalogues what is easy while missing the whale."
+   },
+   {
+    "quote": "the loosened sails of the ship, and the long leaves of the palms in the background, both drooping together in the breezeless air.",
+    "note": "Sails and palm leaves drooping together — the ship for once at rest in nature rather than at war with it. This is the peace the Pequod never has, and Ishmael lingers on it."
+   }
+  ],
+  "links": [
+   {
+    "to": "ch55",
+    "why": "The bad pictures this chapter is the corrective to."
+   },
+   {
+    "to": "ch133",
+    "why": "'The lads for painting action' — the chase chapters are Melville's own Garnery."
+   },
+   {
+    "to": "ch57",
+    "why": "Where pictures of whales leave the earth entirely."
+   }
+  ]
+ },
+ "ch57": {
+  "essay": "The title is a list, and the chapter is a list that expands until it leaves the earth: whales in paint, in teeth, in wood, in sheet-iron, in stone, in mountains, in stars. It begins with a crippled beggar on Tower-hill holding up a painted board of the whale that took his leg — a man who has been 'for ever mounted on that stump' for ten years, and who is, I think, the poorest and truest version of Ahab in the book. He too lost a leg to a whale; he too displays it to 'an incredulous world'; but he 'never a stump-speech does... make.' He just stands there, 'ruefully contemplating his own amputation.'\n\nThen scrimshaw: whalemen carving whales on whale-teeth with jack-knives, which leads to one of Ishmael's boldest self-descriptions — 'I myself am a savage, owning no allegiance but to the King of the Cannibals; and ready at any moment to rebel against him.' The argument is that patient carving, whether a Hawaiian war-club or a piece of bone or Albrecht Dürer's prints, is savage work: 'the Greek savage, Achilles's shield.' Civilization is not the opposite of savagery; it's what savagery makes in its 'domestic hours.'\n\nAnd then the chapter simply lifts off. Whales in rock formations 'partly merged in grass.' Whales in the profiles of mountain ridges, which you can only see if you're a whaleman and can only find again if you took your latitude and longitude. Whales in the stars — Cetus, Argo Navis, the Flying Fish. The last paragraph is Ishmael mounting the constellation with 'a frigate's anchors for my bridle-bitts' to leap the sky and see 'whether the fabled heavens with all their countless tents really lie encamped beyond my mortal sight.' It's the most exuberant sentence in this stretch of the book, and it's an unanswered question: is there anything past the stars? He goes to look.",
+  "annotations": [
+   {
+    "quote": "But, though for ever mounted on that stump, never a stump-speech does the poor whaleman make; but, with downcast eyes, stands ruefully contemplating his own amputation.",
+    "note": "A man who lost his leg to a whale and does not rage about it. Set beside [[ch28|Ahab]], who makes nothing but stump-speeches, this beggar is a quiet alternative: grief without vengeance."
+   },
+   {
+    "quote": "I myself am a savage, owning no allegiance but to the King of the Cannibals; and ready at any moment to rebel against him.",
+    "note": "Ishmael's creed: a savage who will not even obey the savage king. It's a declaration of total independence delivered as a joke, and it's the closest he comes to a political philosophy."
+   },
+   {
+    "quote": "An ancient Hawaiian war-club or spear-paddle, in its full multiplicity and elaboration of carving, is as great a trophy of human perseverance as a Latin lexicon.",
+    "note": "A Polynesian war-club equals a Latin dictionary. In 1851 that's a deliberately leveling sentence, and it prepares the ground for calling Achilles's shield and Dürer's prints 'savage' too."
+   },
+   {
+    "quote": "as the Greek savage, Achilles’s shield; and full of barbaric spirit and suggestiveness, as the prints of that fine old Dutch savage, Albert Durer.",
+    "note": "Homer and Dürer as savages. The word has changed meaning under our feet: it now means anyone who makes something intricate with patience, which is to say, an artist."
+   },
+   {
+    "quote": "which of a windy day breaks against them in a surf of green surges.",
+    "note": "Grass as surf, rocks as whales. Ishmael has looked at the sea so long that the land turns into it. This is what obsession does to perception — gently, here, rather than fatally."
+   },
+   {
+    "quote": "But you must be a thorough whaleman, to see these sights",
+    "note": "Only the initiated can see the whale in the mountain ridge. This is Ishmael's recurring claim: the world is legible only to those who have paid for the reading."
+   },
+   {
+    "quote": "would I could mount that whale and leap the topmost skies, to see whether the fabled heavens with all their countless tents really lie encamped beyond my mortal sight!",
+    "note": "The chapter ends by riding a constellation off the edge of the sky to check whether heaven is really there. It's Ahab's question — what lies behind the mask — asked in joy instead of rage."
+   }
+  ],
+  "links": [
+   {
+    "to": "ch28",
+    "why": "The other one-legged man, who makes nothing but stump-speeches."
+   },
+   {
+    "to": "ch54",
+    "why": "The savagery-under-churches argument this chapter makes personal."
+   },
+   {
+    "to": "ch36",
+    "q": "pasteboard masks",
+    "why": "Ahab's version of leaping the sky to see what lies beyond — asked in rage instead of joy."
+   },
+   {
+    "to": "ch35",
+    "q": "Descartian vortices",
+    "why": "The other place Ishmael leaves his body to look past the visible — and nearly falls."
+   }
+  ]
+ },
+ "ch58": {
+  "essay": "It opens as pastoral. The sea is a wheat field; the Right Whales swim through it with open mouths like \"morning mowers, who side by side slowly and seethingly advance their scythes through the long wet grass,\" leaving \"endless swaths of blue upon the yellow sea.\" I do not think there is a lovelier image of whales in the book, and I want to point out how deliberately it is placed. Melville needs you at ease. Everything gentle in the first four paragraphs — the harvest, the mowers, the whales as cattle \"grazing\" — is set up so that the chapter's turn toward horror lands on a reader who had let his guard down. The scythe is the hinge: a mower's tool and Death's, in one word, and he lets you choose which you saw.\n\nThen the argument builds in steps, and it is worth watching the steps because this is Melville's most sustained piece of reasoning about the sea, and it is the ground under everything that follows. The sea has no creature as kind as a dog; only the shark \"answers to him.\" The sea is \"an everlasting terra incognita\" over which Columbus sailed \"numberless unknown worlds to discover his one superficial western one\" — in a clause, the discovery of America is demoted to a surface. The sea has always killed men and always will, \"to the crack of doom,\" and no science will change that; but by sheer repetition we have lost \"the sense of the full awfulness of the sea which aboriginally belongs to it.\" Noah's flood \"is not yet subsided; two thirds of the fair world it yet covers\" — a reframe I find startling every time, geography turned into theology in a sentence. And the sea is a fiend even to its own offspring, dashing whales on the rocks. Then the three \"Consider\" paragraphs, which read like a litany: consider its subtleness, its beautiful and remorseless sharks, its \"universal cannibalism... eternal war since the world began.\" The word cannibalism is not idle. Ishmael has been sleeping with a cannibal since [[ch4|The Counterpane]]; he will call himself one; the ship is named for an exterminated people. The sea's war of all against all is not something the Pequod sails *over*. It is what the Pequod *is*.\n\nNow the last paragraph, which everyone remembers and which deserves it: \"as this appalling ocean surrounds the verdant land, so in the soul of man there lies one insular Tahiti, full of peace and joy, but encompassed by all the horrors of the half known life. God keep thee! Push not off from that isle, thou canst never return!\" Two things about it. First, the phrase \"half known.\" It is not the unknown that terrifies; it is the thing you know just enough of to be sure you don't want to know the rest — which is exactly what the whale is, and what [[ch42:above all things appalled me|whiteness]] was. Second, the grammar. The advice is in the second person, to *you*, and it is sincere, and it is useless, because it comes from a narrator who has already pushed off, in a book whose every action is the disobedience of this line. Ishmael pushed off. Ahab pushed off. You pushed off, by reading. The chapter knows this, and the tenderness of \"God keep thee\" is the tenderness of someone warning you about a road he is already at the end of.\n\nWhere it pays off: read [[ch93:the sea had jeeringly kept|The Castaway]] straight after this one, if you can bear to. Pip is left alone on the open sea for an hour and comes back with his wits gone — the one character who literally pushes off from the isle and cannot return, and what he sees out there is the loom from underneath. And read [[ch111|The Pacific]], where Ishmael, arriving on the ocean this chapter has spent five pages calling a murderer, cannot help loving it. That contradiction — the sea is a fiend, and I want to be on it — is the book's real subject, and this is the chapter that states one half of it as plainly as it will ever be stated.",
+  "annotations": [
+   {
+    "quote": "so that we seemed to be sailing through boundless fields of ripe and golden wheat.",
+    "note": "The sea as a wheat field: the most land-like, harvest-like image of the ocean in the book. Melville sets up this gentleness so that the chapter's turn toward horror lands harder."
+   },
+   {
+    "quote": "As morning mowers, who side by side slowly and seethingly advance their scythes through the long wet grass of marshy meads; even so these monsters swam",
+    "note": "The whales as mowers with scythes. It's a peaceful, agricultural picture — and a scythe is also what Death carries. Both meanings are there; Melville lets you pick."
+   },
+   {
+    "quote": "where, for example, does the ocean furnish any fish that in disposition answers to the sagacious kindness of the dog? The accursed shark alone can in any generic respect be said to bear comparative analogy to him.",
+    "note": "The sea's version of man's best friend is the shark. It's a joke, and it's the thesis: nothing in the ocean loves you."
+   },
+   {
+    "quote": "so that Columbus sailed over numberless unknown worlds to discover his one superficial western one",
+    "note": "The New World was 'superficial' — on the surface — compared to the unknown worlds under the keel. In one clause Ishmael demotes the discovery of America."
+   },
+   {
+    "quote": "yet for ever and for ever, to the crack of doom, the sea will insult and murder him, and pulverize the stateliest, stiffest frigate he can make",
+    "note": "'Insult and murder' — the sea doesn't just kill, it humiliates. This is a flat rejection of any future in which technology tames the ocean. I'm not sure Melville was wrong."
+   },
+   {
+    "quote": "Yea, foolish mortals, Noah’s flood is not yet subsided; two thirds of the fair world it yet covers.",
+    "note": "A startling reframe: the flood never ended, we just live on the parts that stick out. It turns geography into theology in one sentence."
+   },
+   {
+    "quote": "Consider, once more, the universal cannibalism of the sea; all whose creatures prey upon each other, carrying on eternal war since the world began.",
+    "note": "The third 'Consider.' The sea as a war of all against all — and remember that Ishmael has called himself a savage and a cannibal, and that the ship is named for an exterminated tribe."
+   },
+   {
+    "quote": "so in the soul of man there lies one insular Tahiti, full of peace and joy, but encompassed by all the horrors of the half known life.",
+    "note": "The soul as an island of peace in an ocean of horror. 'Half known' is the exact phrase: it's not the unknown that terrifies, it's what we know just enough of."
+   },
+   {
+    "quote": "God keep thee! Push not off from that isle, thou canst never return!",
+    "note": "Advice given to the reader in the second person, by a narrator who has already pushed off. It's sincere and it's useless — the book's own action is the disobedience of this line. The one who truly cannot return is Pip, in [[ch93:the sea had jeeringly kept|The Castaway]]."
+   },
+   {
+    "quote": "Panting and snorting like a mad battle steed that has lost its rider, the masterless ocean overruns the globe.",
+    "note": "'Masterless' is the key word. Not evil, not vengeful — riderless. This is the sea Ahab thinks he can bridle, and the sentence tells you in advance how that ends."
+   }
+  ],
+  "links": [
+   {
+    "to": "ch93",
+    "q": "the sea had jeeringly kept",
+    "why": "The one character who pushes off from the isle and cannot return."
+   },
+   {
+    "to": "ch111",
+    "why": "Ishmael in love with the ocean he has just called a murderer."
+   },
+   {
+    "to": "ch42",
+    "q": "above all things appalled me",
+    "why": "'The half known life' — the same terror the whiteness chapter tried to name."
+   },
+   {
+    "to": "ch64",
+    "q": "sharks",
+    "why": "The 'remorseless' sharks, feeding on the whale carcass by night."
+   },
+   {
+    "to": "ch4",
+    "why": "The cannibal in Ishmael's bed — before the sea's 'universal cannibalism' is named."
+   }
+  ]
+ },
+ "ch59": {
+  "essay": "A short chapter with one of the strangest sightings in the book. On a morning so still that the sun lies 'like a golden finger laid across' the water, 'enjoining some secrecy,' Daggoo sees a great white mass rise, and cries out for the White Whale. Ahab lowers instantly. What rises instead is the giant squid: 'a vast pulpy mass, furlongs in length and breadth, of a glancing cream-colour,' with 'innumerable long arms radiating from its centre... as if blindly to clutch at any hapless object within reach. No perceptible face or front did it have; no conceivable token of either sensation or instinct.'\n\nWhat I get out of it is that this is the white whale's shadow — whiteness without form, without even the dignity of an adversary. Moby Dick at least has a face, a wrinkled brow, malice you can hate. The squid is 'an unearthly, formless, chance-like apparition of life,' and Starbuck's reaction tells you everything: he'd rather have fought Moby Dick than seen 'thee, thou white ghost.' A monster you can fight is bearable; a blind, faceless mass that is simply alive is not. I keep thinking this is Melville's one glimpse of a universe that isn't even hostile, only indifferent, and that Starbuck, the believer, is the man who can least stand it.\n\nAnd Ahab 'said nothing.' He turns the boat around. There's a hint earlier that the calm nights of the spirit-spout had 'worked upon' him until he was ready to associate 'mildness and repose' with the first sight of his whale — so the squid, arriving in that same repose, is a kind of false Moby Dick, a decoy. The chapter closes in cetological mode, with the theory that the squid is the sperm whale's only food and that the Kraken of Bishop Pontoppidan 'may ultimately resolve itself into Squid.' Legend, deflated to biology. But the ghost has already been seen.",
+  "annotations": [
+   {
+    "quote": "when the long burnished sun-glade on the waters seemed a golden finger laid across them, enjoining some secrecy",
+    "note": "The sun's path on the water as a finger held to the lips: 'hush.' The whole morning is described as a kept secret, and what's about to surface is something the sea usually keeps."
+   },
+   {
+    "quote": "It seemed not a whale; and yet is this Moby Dick? thought Daggoo.",
+    "note": "Even Daggoo, who knows whales, can't tell. Whiteness alone is enough to trigger the cry — which tells you what the White Whale has become in every man's head."
+   },
+   {
+    "quote": "No perceptible face or front did it have; no conceivable token of either sensation or instinct; but undulated there on the billows, an unearthly, formless, chance-like apparition of life.",
+    "note": "'Chance-like' — recall [[ch47|the Mat-Maker]], where chance had the last blow. This is life with no face, no intention, no side. Moby Dick can be hated; this can only be seen."
+   },
+   {
+    "quote": "“Almost rather had I seen Moby Dick and fought him, than to have seen thee, thou white ghost!”",
+    "note": "Starbuck, the one man who wants to avoid the White Whale, would rather fight it than look at this. The pious mate cannot bear a universe without an adversary in it."
+   },
+   {
+    "quote": "But Ahab said nothing; turning his boat, he sailed back to the vessel; the rest as silently following.",
+    "note": "Ahab, who has a speech for everything, has nothing to say to the squid. It isn't his whale; it has no mask to strike through. Silence is his only possible response to the formless."
+   },
+   {
+    "quote": "There seems some ground to imagine that the great Kraken of Bishop Pontoppodan may ultimately resolve itself into Squid.",
+    "note": "Melville deflates the legend into biology in the same chapter that made the biology into a ghost. That double movement — myth to fact and back — is the book's signature rhythm."
+   }
+  ],
+  "links": [
+   {
+    "to": "ch42",
+    "why": "Whiteness with a face; this chapter is whiteness without one."
+   },
+   {
+    "to": "ch47",
+    "why": "'Chance-like' — the sword's last blow, now a living thing."
+   },
+   {
+    "to": "ch51",
+    "why": "The moonlit calms that primed Ahab to expect his whale in repose."
+   }
+  ]
+ },
+ "ch60": {
+  "essay": "This is one of the book's technical chapters — how the whale-line is made, coiled, and run through the boat — and it ends with one of its greatest sentences. That pattern, engineering ascending into metaphysics, is the pattern of the whole novel, and this chapter is its purest example, so it is worth watching exactly how the ascent is managed. Ishmael tells you the rope is two-thirds of an inch thick, that it has fifty-one yarns and each bears a hundred and twenty pounds, that it is coiled in a \"cheese-shaped mass,\" that the American line-tub under its painted cover looks \"as if it were pulling off with a prodigious great wedding-cake to present to the whales.\" He is exact and funny at once, and the exactness is not decoration. You need to believe in the rope as a rope before you can be made to feel it as anything else. The aside \"(since there is an æsthetics in all things)\" is Melville's whole method in a parenthesis: no object is too practical to be looked at as beautiful, and nothing beautiful is exempt from being used to kill.\n\nThen he shows you where the line runs, and this is the paragraph to read slowly. Around the loggerhead at the stern, forward across every oarsman's oar, between the men, out through the chocks at the bow, and back inside. \"Thus the whale-line folds the whole boat in its complicated coils, twisting and writhing around it in almost every direction.\" Six men row *inside* a coiled snake which, the instant the harpoon is thrown, will whip into \"ringed lightnings\" and take an arm or a body out of the boat \"with the swift, sudden turn of death.\" And they joke. \"Gayer sallies, more merry mirth, better jokes\" than you ever heard over mahogany are heard \"over the half-inch white cedar of the whale-boat, when thus hung in hangman's nooses.\" That is the crew of [[ch49|The Hyena]] again, laughing inside the noose. And then the burghers of Calais, who offered their lives to Edward with halters round their necks — Melville makes a Rodin group out of six rowers thirty years before Rodin.\n\nThe most thought-provoking move, for me, is the paragraph on the *resting* line. The running line is terrible, but \"the graceful repose of the line, as it silently serpentines about the oarsmen before being brought into actual play — this is a thing which carries more of true terror.\" The calm \"is but the wrapper and envelope of the storm; and contains it in itself, as the seemingly harmless rifle holds the fatal powder, and the ball, and the explosion.\" Potential is scarier than event. That is a real psychological observation and it explains something about the whole middle of the book, all those becalmed chapters of cetology and gams: the line is lying quietly around your ankles the entire time.\n\nThen the turn: \"All men live enveloped in whale-lines. All are born with halters round their necks; but it is only when caught in the swift, sudden turn of death, that mortals realize the silent, subtle, ever-present perils of life.\" What I get out of this is that the chapter has been about attention. The line is always there; you only feel it when it goes taut. And the last sentence cuts two ways: the philosopher in the whale-boat feels no more terror, Ishmael says, than you do \"by your evening fire with a poker, and not a harpoon, by your side.\" Read it twice. It sounds like reassurance for the man in the boat. It is really a warning for the man by the fire — the philosopher's calm is *equality* of danger, not absence of it — and I think Melville means the second reading.\n\nAnd the line keeps its promise. In [[ch72:my free will had received a mortal wound|The Monkey-Rope]] Ishmael is tied by a literal cord to Queequeg's chances. In [[ch117:Hemp only can kill thee|The Whale Watch]] Fedallah prophesies that \"hemp only can kill thee,\" and Ahab laughs, thinking of the gallows. And in [[ch135:caught him round the neck|the third day of the chase]] the line runs foul, \"the flying turn caught him round the neck,\" and Ahab is gone from the boat without a sound. The halter this chapter says every man is born with turns out to have been measured for him.",
+  "annotations": [
+   {
+    "quote": "I have here to speak of the magical, sometimes horrible whale-line.",
+    "note": "'Magical' and 'horrible' in the same breath. The chapter is going to be about a rope, and Ishmael has already told you the rope is more than a rope."
+   },
+   {
+    "quote": "and I will add (since there is an æsthetics in all things), is much more handsome and becoming to the boat, than hemp.",
+    "note": "An aesthetics of rope. This parenthesis is Melville's whole method: no object is too practical to be looked at as beautiful, and no beautiful thing is exempt from being used to kill."
+   },
+   {
+    "quote": "As the least tangle or kink in the coiling would, in running out, infallibly take somebody’s arm, leg, or entire body off, the utmost precaution is used in stowing the line in its tub.",
+    "note": "Stated flatly, mid-paragraph, like a note on procedure. The casualness is the point — this is what a harpooneer spends a morning preventing."
+   },
+   {
+    "quote": "the boat looks as if it were pulling off with a prodigious great wedding-cake to present to the whales.",
+    "note": "The line-tub under its painted cover as a wedding cake for the whale. It's a gift, of a sort: the rope that will be attached to the harpoon that will be in the whale."
+   },
+   {
+    "quote": "and in that case no town-crier would ever find her again.",
+    "note": "If the line's end were tied to the boat, the whale would drag the boat to the bottom. Ishmael's way of saying 'lost forever' is a small-town joke, which makes the depth colder."
+   },
+   {
+    "quote": "Thus the whale-line folds the whole boat in its complicated coils, twisting and writhing around it in almost every direction.",
+    "note": "After a page of precise routing, this is the picture: the boat wrapped in its own rope. Everything that follows about men and mortality is already in this sentence."
+   },
+   {
+    "quote": "and, like the six burghers of Calais before King Edward, the six men composing the crew pull into the jaws of death, with a halter around every neck, as you may say.",
+    "note": "The burghers of Calais offered their lives with nooses round their necks. Melville turns six rowers into a Rodin group before Rodin had made it."
+   },
+   {
+    "quote": "for, indeed, the calm is but the wrapper and envelope of the storm; and contains it in itself, as the seemingly harmless rifle holds the fatal powder",
+    "note": "The calm contains the storm the way a rifle contains the shot. This is why the resting line is worse than the running one: potential is scarier than event."
+   },
+   {
+    "quote": "All men live enveloped in whale-lines. All are born with halters round their necks; but it is only when caught in the swift, sudden turn of death, that mortals realize the silent, subtle, ever-present perils of life.",
+    "note": "The sentence the chapter exists for. It's the kind of line that makes you look down at your own feet for the rope. And it's earned by everything technical before it — and paid off, literally, when the line [[ch135:caught him round the neck|takes Ahab]]."
+   },
+   {
+    "quote": "you would not at heart feel one whit more of terror, than though seated before your evening fire with a poker, and not a harpoon, by your side.",
+    "note": "Read it twice. It sounds like reassurance for the man in the boat; it is really a warning for the man by the fire. The philosopher's calm is equality of danger, not absence of it."
+   },
+   {
+    "quote": "be put in play like ringed lightnings",
+    "note": "The coiled rope becomes ringed lightning the instant the harpoon flies. Melville needs the image to be electric because the point is speed: the line doesn't cut you, it *happens* to you."
+   },
+   {
+    "quote": "Yet habit—strange thing! what cannot habit accomplish?",
+    "note": "Habit lets men joke inside a noose. Remember [[ch50:for in a whaler wonders soon wane|'in a whaler wonders soon wane']] — the same law, applied now to terror instead of marvels."
+   }
+  ],
+  "links": [
+   {
+    "to": "ch72",
+    "q": "my free will had received a mortal wound",
+    "why": "The monkey-rope: another cord, another man on the far end."
+   },
+   {
+    "to": "ch117",
+    "q": "Hemp only can kill thee",
+    "why": "The prophecy this chapter has already, quietly, explained."
+   },
+   {
+    "to": "ch135",
+    "q": "caught him round the neck",
+    "why": "Where the halter closes."
+   },
+   {
+    "to": "ch49",
+    "why": "The men laughing inside the noose — the philosophy that makes it possible."
+   },
+   {
+    "to": "ch63",
+    "why": "The crotch: where the harpoons rest before the line goes live."
+   }
+  ]
+ }
+}

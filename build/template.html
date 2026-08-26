@@ -1,0 +1,440 @@
+<meta charset="utf-8">
+<title>The Whale, Annotated</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;1,9..144,300;1,9..144,500&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#EEF1EC; --bg2:#E3E8E2; --panel:#F6F8F4; --ink:#1B2229; --ink2:#4A555C; --ink3:#7C868C;
+  --rule:#CBD3CD; --accent:#2E5F6B; --accent-soft:#D6E3E5; --line:#9A3B2E; --line-soft:#F1DAD5;
+  --essay:#E8EDE6; --sel:#DCE8E9;
+  --display:'Fraunces',Georgia,'Times New Roman',serif;
+  --body:'Libre Caslon Text',Georgia,'Times New Roman',serif;
+  --mono:'IBM Plex Mono',Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){
+  --bg:#0C1218; --bg2:#101922; --panel:#121B24; --ink:#D9DED6; --ink2:#A4AEB0; --ink3:#6E7A80;
+  --rule:#233039; --accent:#E8E2CB; --accent-soft:#1E2E36; --line:#D9705E; --line-soft:#3A2420;
+  --essay:#111A22; --sel:#1B2A33;
+}}
+:root[data-theme="dark"]{
+  --bg:#0C1218; --bg2:#101922; --panel:#121B24; --ink:#D9DED6; --ink2:#A4AEB0; --ink3:#6E7A80;
+  --rule:#233039; --accent:#E8E2CB; --accent-soft:#1E2E36; --line:#D9705E; --line-soft:#3A2420;
+  --essay:#111A22; --sel:#1B2A33;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto} *{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;padding:0}
+button:focus-visible,a:focus-visible,input:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--line);outline-offset:2px}
+::selection{background:var(--sel)}
+
+/* ---------- frame ---------- */
+.app{display:grid;grid-template-columns:19rem minmax(0,1fr);grid-template-rows:auto minmax(0,1fr);min-height:100vh}
+.mast{grid-column:1/-1;display:flex;align-items:baseline;gap:1.5rem;padding:.8rem 1.4rem;border-bottom:1px solid var(--rule);background:var(--bg);position:sticky;top:0;z-index:20}
+.mast h1{font-family:var(--display);font-weight:500;font-size:1.15rem;margin:0;letter-spacing:.01em;font-variation-settings:"opsz" 30}
+.mast h1 em{font-style:italic;font-weight:300}
+.tabs{display:flex;gap:.2rem;margin-left:auto}
+.tabs button{font-family:var(--mono);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;padding:.35rem .7rem;color:var(--ink2);border-bottom:2px solid transparent}
+.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--line)}
+.leagues{font-family:var(--mono);font-size:.72rem;color:var(--ink3);letter-spacing:.06em;font-variant-numeric:tabular-nums}
+
+/* ---------- chart (sidebar) ---------- */
+.chart{border-right:1px solid var(--rule);background:var(--bg2);position:sticky;top:3.1rem;height:calc(100vh - 3.1rem);overflow-y:auto;padding:1rem 0 3rem}
+.chart .find{margin:0 1rem .9rem;position:relative}
+.chart input{width:100%;font-family:var(--mono);font-size:.78rem;padding:.45rem .6rem;border:1px solid var(--rule);background:var(--panel);color:var(--ink);border-radius:2px}
+.chart input::placeholder{color:var(--ink3)}
+.mv{margin:0}
+.mv h3{font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);margin:1.1rem 1rem .35rem;font-weight:500}
+.mv h3 span{color:var(--ink2)}
+.mv ol{list-style:none;margin:0;padding:0;position:relative}
+.mv ol::before{content:"";position:absolute;left:1.42rem;top:0;bottom:0;width:1px;background:var(--rule)}
+.mv li{position:relative}
+.mv li button{display:grid;grid-template-columns:1.3rem 1fr;gap:.55rem;align-items:baseline;width:100%;text-align:left;padding:.22rem 1rem .22rem 1rem;font-size:.86rem;line-height:1.35;color:var(--ink2)}
+.mv li button:hover{background:var(--panel);color:var(--ink)}
+.mv li button .n{font-family:var(--mono);font-size:.66rem;color:var(--ink3);text-align:right;font-variant-numeric:tabular-nums;position:relative}
+.mv li button .n::after{content:"";position:absolute;right:-.62rem;top:.3em;width:7px;height:7px;border-radius:50%;background:var(--bg2);border:1px solid var(--rule);transform:translateX(50%)}
+.mv li.read button .n::after{background:var(--accent);border-color:var(--accent)}
+.mv li.cur button{color:var(--ink);background:var(--panel)}
+.mv li.cur button .n::after{background:var(--line);border-color:var(--line);box-shadow:0 0 0 3px var(--line-soft)}
+.hits{margin:0 1rem;padding:0;list-style:none;font-size:.82rem}
+.hits li{padding:.4rem 0;border-bottom:1px solid var(--rule)}
+.hits li button{text-align:left;color:var(--ink2);line-height:1.4}
+.hits li b{color:var(--ink);font-weight:400;font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;display:block;margin-bottom:.15rem}
+.hits mark{background:var(--line-soft);color:inherit;padding:0 .1em}
+.hits .none{color:var(--ink3);font-style:italic;border:0}
+
+/* ---------- page ---------- */
+.page{padding:2.5rem 3rem 6rem;min-width:0}
+.view{display:none}.view.on{display:block}
+.reading{max-width:66ch;margin:0 auto}
+.reading.wide{max-width:calc(66ch + 24rem)}
+.chhead{margin:0 0 2.6rem}
+.chhead .kicker{font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink3);display:flex;gap:1rem;align-items:baseline}
+.chhead .kicker .mvname{color:var(--accent)}
+.chhead h2{font-family:var(--display);font-weight:300;font-size:clamp(2rem,4.2vw,3.1rem);line-height:1.05;margin:.5rem 0 0;letter-spacing:-.01em;text-wrap:balance;font-variation-settings:"opsz" 144}
+.chhead .jump{display:inline-block;margin-top:1rem;font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;color:var(--ink2);text-decoration:none;border-bottom:1px dotted var(--ink3)}
+.chhead .jump:hover{color:var(--accent);border-color:var(--accent)}
+.row{display:grid;grid-template-columns:minmax(0,66ch) 1fr;column-gap:2.2rem;align-items:start}
+.row p{margin:0 0 1.15em;max-width:66ch;hyphens:auto}
+.row p.verse{white-space:pre-line}
+.chbody > .row:first-of-type p::first-letter{font-family:var(--display);font-weight:500;font-size:3.2em;float:left;line-height:.82;padding:.08em .08em 0 0;color:var(--accent);font-variation-settings:"opsz" 144}
+.ann{background:linear-gradient(transparent 82%,var(--line-soft) 82%);border-bottom:1px solid var(--line);cursor:pointer;transition:background .15s}
+.ann:hover,.ann.hot{background:var(--line-soft)}
+.ann sup{font-family:var(--mono);font-size:.55em;color:var(--line);margin-left:.15em;font-weight:500;vertical-align:.5em}
+.notes{display:flex;flex-direction:column;gap:.7rem;padding-top:.15rem}
+.note{font-size:.84rem;line-height:1.5;color:var(--ink2);border-left:2px solid var(--line);padding:.05rem 0 .05rem .75rem;transition:color .15s}
+.note.hot{color:var(--ink)}
+.note .q{display:block;font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;color:var(--line);margin-bottom:.25rem;font-variant-numeric:tabular-nums}
+.note.solo{display:none;grid-column:1;margin:-.5rem 0 1.15rem;background:var(--panel);padding:.6rem .8rem;border-left-width:2px}
+.note.solo.open{display:block}
+.essay{margin:3.5rem 0 0;padding:2rem 2.2rem 2.2rem;background:var(--essay);border-top:1px solid var(--rule);position:relative;max-width:66ch}
+.essay::before{content:"";position:absolute;left:0;top:-1px;width:4rem;height:1px;background:var(--line)}
+.essay h3{font-family:var(--display);font-style:italic;font-weight:300;font-size:1.55rem;margin:0 0 .3rem;font-variation-settings:"opsz" 72}
+.essay .who{font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);margin:0 0 1.3rem}
+.essay p{margin:0 0 1em;font-size:.97rem;line-height:1.66;color:var(--ink)}
+.essay p:last-child{margin-bottom:0}
+.essay .missing{font-style:italic;color:var(--ink3)}
+.chnav{display:flex;justify-content:space-between;gap:1rem;margin:2.5rem 0 0;padding-top:1.2rem;border-top:1px solid var(--rule);max-width:66ch;font-family:var(--mono);font-size:.74rem;letter-spacing:.06em}
+.chnav button{color:var(--accent);text-align:left;line-height:1.5}
+.chnav button span{display:block;color:var(--ink3);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase}
+.chnav .next{text-align:right}
+.markread{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink2);border:1px solid var(--rule);padding:.4rem .8rem;border-radius:2px;margin-top:1.5rem}
+.markread:hover{border-color:var(--accent);color:var(--accent)}
+.markread.done{color:var(--accent);border-color:var(--accent)}
+
+a.xref{color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft);transition:border-color .15s}
+a.xref:hover{border-bottom-color:var(--accent)}
+.essay a.xref{font-style:italic}
+.flash{animation:flash 2.4s ease-out}
+@keyframes flash{0%,40%{background:var(--line-soft);box-shadow:0 0 0 6px var(--line-soft)}100%{background:transparent;box-shadow:none}}
+.threads{max-width:66ch;margin:1.6rem 0 0;padding:1.4rem 2.2rem 1.6rem;border-top:1px dashed var(--rule)}
+.threads h3{font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink3);margin:0 0 .9rem;font-weight:500}
+.threads ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.6rem}
+.threads li{display:grid;grid-template-columns:11rem 1fr;gap:1rem;font-size:.88rem;line-height:1.5;align-items:baseline}
+.threads li a.xref{font-family:var(--display);font-size:.98rem;font-weight:500;font-variation-settings:"opsz" 30;border:0}
+.threads li span{color:var(--ink2)}
+.threads .inc{margin:1.1rem 0 0;font-size:.8rem;color:var(--ink3);font-style:italic}
+@media (max-width:860px){.threads{padding:1.2rem 1.2rem}.threads li{grid-template-columns:1fr;gap:.15rem}}
+/* ---------- cover ---------- */
+.cover{max-width:66ch;margin:0 auto}
+.cover .kicker{font-family:var(--mono);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink3)}
+.cover h2{font-family:var(--display);font-weight:300;font-size:clamp(2.6rem,6vw,4.6rem);line-height:.98;margin:.6rem 0 .2rem;letter-spacing:-.015em;font-variation-settings:"opsz" 144;text-wrap:balance}
+.cover h2 em{font-style:italic;font-weight:300}
+.cover .by{font-family:var(--display);font-style:italic;font-size:1.15rem;color:var(--ink2);margin:0 0 2.4rem}
+.cover p{font-size:1rem;color:var(--ink);margin:0 0 1em}
+.cover .rope{height:1px;background:var(--rule);margin:2.4rem 0;position:relative}
+.cover .rope::after{content:"";position:absolute;left:0;top:0;width:4rem;height:1px;background:var(--line)}
+.mvcards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin:1.5rem 0 0}
+.mvcard{display:block;text-align:left;border:1px solid var(--rule);background:var(--panel);padding:1rem 1.1rem 1.1rem;border-radius:2px;transition:border-color .15s}
+.mvcard:hover{border-color:var(--accent)}
+.mvcard .n{font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);display:block;margin-bottom:.35rem;font-variant-numeric:tabular-nums}
+.mvcard .t{font-family:var(--display);font-size:1.25rem;font-weight:500;display:block;margin-bottom:.35rem;font-variation-settings:"opsz" 48}
+.mvcard .d{font-size:.84rem;color:var(--ink2);line-height:1.5}
+.resume{margin-top:2.2rem;font-family:var(--mono);font-size:.76rem;letter-spacing:.08em;color:var(--accent);border-bottom:1px solid var(--accent)}
+
+/* ---------- crew ---------- */
+.crew{max-width:78ch;margin:0 auto}
+.crew h2{font-family:var(--display);font-weight:300;font-size:2.6rem;margin:0 0 .3rem;font-variation-settings:"opsz" 144}
+.crew > p{color:var(--ink2);margin:0 0 2rem;max-width:66ch}
+.crew h3{font-family:var(--mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink3);margin:2.4rem 0 .8rem;padding-bottom:.4rem;border-bottom:1px solid var(--rule);font-weight:500}
+.person{display:grid;grid-template-columns:13rem 1fr;gap:1.6rem;padding:1.1rem 0;border-bottom:1px solid var(--rule);align-items:start}
+.person .id .nm{font-family:var(--display);font-size:1.35rem;font-weight:500;line-height:1.15;font-variation-settings:"opsz" 48}
+.person .id .rl{font-size:.84rem;color:var(--ink2);margin-top:.25rem;line-height:1.4}
+.person .id .fa{font-family:var(--mono);font-size:.66rem;letter-spacing:.08em;color:var(--ink3);margin-top:.5rem}
+.person .id .fa button{color:var(--accent);border-bottom:1px dotted var(--accent)}
+.person .tx p{margin:0 0 .7em;font-size:.95rem}
+.person .tx p.why{color:var(--ink2);font-style:italic;border-left:2px solid var(--line);padding-left:.75rem;margin-bottom:0}
+
+/* ---------- about ---------- */
+.about{max-width:66ch;margin:0 auto}
+.about h2{font-family:var(--display);font-weight:300;font-size:2.4rem;margin:0 0 1.2rem;font-variation-settings:"opsz" 144}
+.about p{margin:0 0 1em}
+.about .kbd{font-family:var(--mono);font-size:.78rem;background:var(--panel);border:1px solid var(--rule);padding:.05em .4em;border-radius:2px}
+
+/* ---------- responsive ---------- */
+.menu{display:none;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink2)}
+@media (max-width:1180px){
+  .row{grid-template-columns:minmax(0,66ch)}
+  .notes{display:none}
+  .row p{margin-bottom:1.15em}
+}
+@media (max-width:860px){
+  .app{grid-template-columns:1fr}
+  .chart{position:fixed;left:0;top:3.1rem;width:min(19rem,85vw);z-index:15;transform:translateX(-100%);transition:transform .2s;box-shadow:none}
+  .chart.open{transform:none;box-shadow:0 0 0 100vw rgba(0,0,0,.35)}
+  .menu{display:inline-block}
+  .page{padding:1.6rem 1.2rem 5rem}
+  .essay{padding:1.4rem 1.2rem}
+  .person{grid-template-columns:1fr;gap:.5rem}
+  .mvcards{grid-template-columns:1fr}
+  .leagues{display:none}
+}
+</style>
+
+<div class="app">
+  <header class="mast">
+    <button class="menu" id="menu" aria-label="Open chapter list">☰ Chart</button>
+    <h1>Moby-Dick; <em>or, The Whale</em></h1>
+    <span class="leagues" id="leagues"></span>
+    <nav class="tabs" role="tablist" aria-label="Sections">
+      <button role="tab" data-tab="voyage" aria-selected="true">The Voyage</button>
+      <button role="tab" data-tab="crew" aria-selected="false">The Crew</button>
+      <button role="tab" data-tab="about" aria-selected="false">The Loom</button>
+    </nav>
+  </header>
+
+  <aside class="chart" id="chart" aria-label="Chapters">
+    <div class="find"><input id="find" type="search" placeholder="find in the book…" aria-label="Find in the book"></div>
+    <div id="chartlist"></div>
+    <ul class="hits" id="hits" hidden></ul>
+  </aside>
+
+  <main class="page">
+    <section class="view on" id="view-voyage" role="tabpanel"><div id="voyage"></div></section>
+    <section class="view" id="view-crew" role="tabpanel"><div class="crew" id="crew"></div></section>
+    <section class="view" id="view-about" role="tabpanel"><div class="about" id="about"></div></section>
+  </main>
+</div>
+
+<script id="data" type="application/json">__DATA__</script>
+<script>
+(function(){
+const D = JSON.parse(document.getElementById('data').textContent);
+const CH = D.chapters, CM = D.commentary, PEOPLE = D.characters, MV = D.movements;
+const byId = Object.fromEntries(CH.map((c,i)=>[c.id,i]));
+const $ = s=>document.querySelector(s);
+const esc = s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function fmt(text){
+  // escape, then resolve [[...]] cross-references and *italics*
+  let h=esc(text);
+  h=h.replace(/\[\[([a-z0-9]+)(?::([^\]|]+))?(?:\|([^\]]+))?\]\]/g,(m,id,q,label)=>{
+    if(byId[id]==null) return label||m;
+    const c=CH[byId[id]]; const lab=label||(c.num?'Ch. '+c.num+', '+c.title:c.title);
+    return '<a class="xref" href="#'+id+'" data-go="'+id+'"'+(q?' data-q="'+q.replace(/"/g,'&quot;')+'"':'')+'>'+lab+'</a>';
+  });
+  return h;
+}
+
+/* ---- storage (best effort) ---- */
+const store = {
+  get(k,d){try{const v=localStorage.getItem('whale.'+k);return v==null?d:JSON.parse(v)}catch(e){return d}},
+  set(k,v){try{localStorage.setItem('whale.'+k,JSON.stringify(v))}catch(e){}}
+};
+let read = new Set(store.get('read',[]));
+let last = store.get('last',null);
+
+function mvOf(i){ return MV.find(m=>i>=m.from && i<=m.to); }
+function label(c){ return c.num? 'Chapter '+c.num : c.title; }
+
+/* ---- chart ---- */
+function renderChart(){
+  const el=$('#chartlist'); el.innerHTML='';
+  MV.forEach(m=>{
+    const sec=document.createElement('section'); sec.className='mv';
+    const h=document.createElement('h3'); h.innerHTML=esc(m.name)+' <span>'+esc(m.range)+'</span>'; sec.appendChild(h);
+    const ol=document.createElement('ol');
+    for(let i=m.from;i<=m.to;i++){
+      const c=CH[i]; const li=document.createElement('li'); li.dataset.id=c.id;
+      if(read.has(c.id)) li.classList.add('read');
+      const b=document.createElement('button');
+      b.innerHTML='<span class="n">'+(c.num||'·')+'</span><span>'+esc(c.title)+'</span>';
+      b.addEventListener('click',()=>{go(c.id); $('#chart').classList.remove('open')});
+      li.appendChild(b); ol.appendChild(li);
+    }
+    sec.appendChild(ol); el.appendChild(sec);
+  });
+  updateLeagues();
+}
+function updateLeagues(){
+  const n=CH.filter(c=>read.has(c.id)).length;
+  $('#leagues').textContent = n? n+' of '+CH.length+' chapters read' : 'no chapters read yet';
+}
+function markChart(id){
+  document.querySelectorAll('.mv li').forEach(li=>{li.classList.toggle('cur',li.dataset.id===id); li.classList.toggle('read',read.has(li.dataset.id))});
+  const cur=document.querySelector('.mv li.cur'); if(cur) cur.scrollIntoView({block:'nearest'});
+}
+
+/* ---- annotation wrapping ---- */
+function wrapAnnotations(paras, anns){
+  // returns [{html, notes:[{n,quote,note}]}] per paragraph; annotation numbering is per chapter
+  const out = paras.map(p=>({html:null, notes:[], raw:p}));
+  let n=0;
+  const placed = [];
+  anns.forEach(a=>{
+    for(let i=0;i<paras.length;i++){
+      const idx=paras[i].indexOf(a.quote);
+      if(idx>=0){ n++; placed.push({pi:i, idx, len:a.quote.length, n, quote:a.quote, note:a.note}); break; }
+    }
+  });
+  out.forEach((o,i)=>{
+    const here = placed.filter(x=>x.pi===i).sort((a,b)=>a.idx-b.idx);
+    let html='', cursor=0, lastEnd=-1;
+    here.forEach(x=>{
+      if(x.idx<lastEnd){ return; } // overlapping — skip wrapping, keep note
+      html += esc(o.raw.slice(cursor,x.idx));
+      html += '<span class="ann" data-n="'+x.n+'" tabindex="0" role="button" aria-label="Note '+x.n+'">'+esc(o.raw.slice(x.idx,x.idx+x.len))+'<sup>'+x.n+'</sup></span>';
+      cursor=x.idx+x.len; lastEnd=cursor;
+    });
+    html += esc(o.raw.slice(cursor));
+    o.html=html.replace(/_([^_<>]{1,200}?)_/g,'<em>$1</em>'); o.notes=here;
+  });
+  return out;
+}
+
+/* ---- chapter view ---- */
+function renderChapter(id){
+  const i=byId[id]; const c=CH[i]; const cm=CM[id]||{essay:null,annotations:[]}; const m=mvOf(i);
+  const rows=wrapAnnotations(c.paras, cm.annotations||[]);
+  const hasNotes = rows.some(r=>r.notes.length);
+  let h='<article class="reading'+(hasNotes?' wide':'')+'">';
+  h+='<header class="chhead"><div class="kicker"><span>'+esc(c.num?'Chapter '+c.num:'Front matter')+'</span><span class="mvname">'+esc(m.name)+'</span></div>';
+  h+='<h2>'+esc(c.title)+'</h2>';
+  if(cm.essay) h+='<a class="jump" href="#" data-jump>skip to my reading ↓</a>';
+  h+='</header><div class="chbody">';
+  rows.forEach(r=>{
+    const verse = c.id==='extracts' || c.id==='etymology' || /\n/.test(r.raw);
+    h+='<div class="row"><p'+(verse?' class="verse"':'')+'>'+r.html+'</p>';
+    if(r.notes.length){
+      h+='<aside class="notes">'+r.notes.map(x=>'<div class="note" data-n="'+x.n+'"><span class="q">'+x.n+' · “'+esc((x.quote.length>52?x.quote.slice(0,50)+'…':x.quote).replace(/_/g,''))+'”</span>'+fmt(x.note)+'</div>').join('')+'</aside>';
+      h+=r.notes.map(x=>'<div class="note solo" data-n="'+x.n+'"><span class="q">'+x.n+'</span>'+esc(x.note)+'</div>').join('');
+    }
+    h+='</div>';
+  });
+  h+='</div>';
+  h+='<section class="essay" id="essay"><h3>What I make of it</h3><p class="who">Claude, reading alongside you</p>';
+  if(cm.essay) h+=cm.essay.split(/\n\n+/).map(p=>'<p>'+fmt(p)+'</p>').join('');
+  else h+='<p class="missing">No reading written for this chapter yet.</p>';
+  h+='<button class="markread'+(read.has(id)?' done':'')+'" data-mark>'+(read.has(id)?'✓ marked as read':'mark as read')+'</button>';
+  h+='</section>';
+  const out=(cm.links||[]), inc=(D.incoming[id]||[]);
+  if(out.length||inc.length){
+    h+='<section class="threads"><h3>Threads</h3>';
+    if(out.length) h+='<ul>'+out.map(l=>{const t=CH[byId[l.to]]; if(!t) return ''; return '<li><a class="xref" href="#'+l.to+'" data-go="'+l.to+'"'+(l.q?' data-q="'+esc(l.q)+'"':'')+'>'+esc(t.num?'Ch. '+t.num+' · '+t.title:t.title)+'</a><span>'+fmt(l.why)+'</span></li>'}).join('')+'</ul>';
+    if(inc.length) h+='<p class="inc">Pointed here from '+inc.map(i=>{const t=CH[byId[i]]; return '<a class="xref" href="#'+i+'" data-go="'+i+'">'+esc(t.num?'Ch. '+t.num:t.title)+'</a>'}).join(', ')+'.</p>';
+    h+='</section>';
+  }
+  h+='<nav class="chnav">';
+  h+= i>0 ? '<button data-go="'+CH[i-1].id+'"><span>previous</span>'+esc(label(CH[i-1])+' · '+CH[i-1].title)+'</button>' : '<span></span>';
+  h+= i<CH.length-1 ? '<button class="next" data-go="'+CH[i+1].id+'"><span>next</span>'+esc(label(CH[i+1])+' · '+CH[i+1].title)+'</button>' : '<button class="next" data-cover><span>the end</span>back to the cover</button>';
+  h+='</nav></article>';
+  const v=$('#voyage'); v.innerHTML=h;
+
+  v.querySelectorAll('.ann').forEach(a=>{
+    const n=a.dataset.n;
+    const hot=on=>v.querySelectorAll('[data-n="'+n+'"]').forEach(x=>x.classList.toggle('hot',on));
+    a.addEventListener('mouseenter',()=>hot(true)); a.addEventListener('mouseleave',()=>hot(false));
+    a.addEventListener('focus',()=>hot(true)); a.addEventListener('blur',()=>hot(false));
+    const toggle=()=>{const s=v.querySelector('.note.solo[data-n="'+n+'"]'); if(s) s.classList.toggle('open')};
+    a.addEventListener('click',toggle); a.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle()}});
+  });
+  v.querySelectorAll('.note:not(.solo)').forEach(nt=>{
+    const n=nt.dataset.n;
+    nt.addEventListener('mouseenter',()=>v.querySelectorAll('[data-n="'+n+'"]').forEach(x=>x.classList.add('hot')));
+    nt.addEventListener('mouseleave',()=>v.querySelectorAll('[data-n="'+n+'"]').forEach(x=>x.classList.remove('hot')));
+  });
+  v.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.go)));
+  const cv=v.querySelector('[data-cover]'); if(cv) cv.addEventListener('click',()=>go('cover'));
+  const j=v.querySelector('[data-jump]'); if(j) j.addEventListener('click',e=>{e.preventDefault(); $('#essay').scrollIntoView({block:'start'})});
+  const mk=v.querySelector('[data-mark]'); mk.addEventListener('click',()=>{
+    if(read.has(id)) read.delete(id); else read.add(id);
+    store.set('read',[...read]); mk.classList.toggle('done',read.has(id)); mk.textContent=read.has(id)?'✓ marked as read':'mark as read'; markChart(id); updateLeagues();
+  });
+}
+
+/* ---- cover ---- */
+function renderCover(){
+  const lastC = last && byId[last]!=null ? CH[byId[last]] : null;
+  let h='<div class="cover"><div class="kicker">Herman Melville · 1851 · read alongside Claude</div>';
+  h+='<h2>Moby-Dick;<br><em>or, The Whale</em></h2><p class="by">The whole book, chapter by chapter, with one reader’s marginalia.</p>';
+  h+='<p>Everything in the left-hand chart is the complete text — Etymology, the Extracts, all hundred and thirty-five chapters, the Epilogue. Sentences underlined in red are the ones I couldn’t read past without saying something; the notes sit in the margin (or open when you click the line). At the end of every chapter is a short piece on what I make of it. I put it at the end on purpose, so the first read is yours and the second opinion is mine.</p>';
+  h+='<p>The book is a voyage that keeps stopping to think, and it helps to know where you are. So the chart is divided into four waters:</p>';
+  h+='<div class="mvcards">'+MV.map(m=>'<button class="mvcard" data-go="'+CH[m.from].id+'"><span class="n">'+esc(m.range)+'</span><span class="t">'+esc(m.name)+'</span><span class="d">'+esc(m.desc)+'</span></button>').join('')+'</div>';
+  h+='<div class="rope"></div>';
+  h+='<p>Melville dedicated this book to Hawthorne and told him, when it was done, that he had written a wicked book and felt spotless as the lamb. I think the wickedness he meant is the refusal to settle what the whale is. Read it slowly. Let the cetology chapters be what they are — a man trying to hold the whole animal in his mind — and let Ahab’s speeches be beautiful even where they are wrong.</p>';
+  h+= lastC ? '<button class="resume" data-go="'+lastC.id+'">resume at '+esc(label(lastC)+' · '+lastC.title)+' →</button>' : '<button class="resume" data-go="etymology">begin at the beginning →</button>';
+  h+='</div>';
+  const v=$('#voyage'); v.innerHTML=h;
+  v.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.go)));
+}
+
+/* ---- crew ---- */
+function renderCrew(){
+  const groups=[...new Set(PEOPLE.map(p=>p.group))];
+  let h='<h2>The Crew</h2><p>Who is aboard, who is ashore, and what each of them is doing in the book — in my reading, which you should feel free to argue with. Click a first appearance to go there.</p>';
+  groups.forEach(g=>{
+    h+='<h3>'+esc(g)+'</h3>';
+    PEOPLE.filter(p=>p.group===g).forEach(p=>{
+      const m=p.first.match(/^(ch\d+|etymology|extracts|epilogue)/); const fid=m?m[1]:null; const fc=fid&&byId[fid]!=null?CH[byId[fid]]:null;
+      h+='<div class="person"><div class="id"><div class="nm">'+esc(p.name)+'</div><div class="rl">'+esc(p.role)+'</div><div class="fa">first seen · '+(fc?'<button data-go="'+fid+'">'+esc(label(fc)+', '+fc.title)+'</button>':esc(p.first))+(m&&p.first.length>m[0].length?' <span>'+esc(p.first.slice(m[0].length).trim())+'</span>':'')+'</div></div>';
+      h+='<div class="tx"><p>'+esc(p.desc)+'</p><p class="why">'+esc(p.why)+'</p></div></div>';
+    });
+  });
+  const v=$('#crew'); v.innerHTML=h;
+  v.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>{showTab('voyage');go(b.dataset.go)}));
+}
+
+/* ---- about ---- */
+function renderAbout(){
+  const nAnn=Object.values(CM).reduce((s,c)=>s+(c.annotations||[]).length,0);
+  const nEss=Object.values(CM).filter(c=>c.essay).length;
+  $('#about').innerHTML='<h2>The Loom</h2>'+
+  '<p>Melville calls the world a loom — “the weaver-god, he weaves” — and this page is my attempt to weave a second thread through his. What you are reading is the Project Gutenberg text of <em>Moby-Dick</em> (the 1851 American edition), unaltered, split into its '+CH.length+' sections. Alongside it I have written '+nEss+' chapter readings and pinned '+nAnn+' notes to particular sentences.</p>'+
+  '<p>A word on what the notes are. They are not a study guide. They are the places where, reading as carefully as I can, I stopped — because a sentence turned on itself, or told a joke nobody laughs at, or said the thing the rest of the book is circling. Where I am unsure I say so. Where I disagree with the usual reading I say that too. You should treat them as a reading companion who talks a bit too much and can be ignored by not clicking.</p>'+
+  '<p>Some practical things. Your place and the chapters you mark as read are remembered in this browser only. The chart on the left divides the book into four waters, which is my division, not Melville’s; the search box finds phrases anywhere in the text. On a wide screen the notes sit in the margin; on a narrow one they open when you click the underlined line. <span class="kbd">←</span> and <span class="kbd">→</span> turn chapters.</p>'+
+  '<p>And a suggestion: read the Extracts. Everyone skips them. They are Melville clearing his throat for eighty quotations and they tell you exactly what kind of book this is going to be — one that would rather include everything than choose.</p>';
+}
+
+/* ---- routing ---- */
+function go(id, push=true, q=null){
+  window.scrollTo({top:0,behavior:'auto'});
+  if(id==='cover'){ renderCover(); markChart(null); }
+  else { renderChapter(id); last=id; store.set('last',id); markChart(id); }
+  showTab('voyage');
+  if(push) history.replaceState(null,'','#'+id);
+  if(q){
+    const needle=q.toLowerCase();
+    const target=[...document.querySelectorAll('#voyage .ann')].find(a=>a.textContent.toLowerCase().includes(needle))
+      || [...document.querySelectorAll('#voyage .row p')].find(p=>p.textContent.toLowerCase().includes(needle));
+    if(target){ target.scrollIntoView({block:'center'}); target.classList.add('flash'); const n=target.dataset.n; if(n) document.querySelectorAll('#voyage [data-n="'+n+'"]').forEach(x=>x.classList.add('hot')); setTimeout(()=>target.classList.remove('flash'),2400); }
+  }
+}
+document.addEventListener('click',e=>{
+  const a=e.target.closest('a.xref'); if(!a) return; e.preventDefault();
+  go(a.dataset.go,true,a.dataset.q||null);
+});
+function showTab(t){
+  document.querySelectorAll('.tabs [role=tab]').forEach(b=>b.setAttribute('aria-selected',b.dataset.tab===t));
+  document.querySelectorAll('.view').forEach(v=>v.classList.toggle('on',v.id==='view-'+t));
+}
+document.querySelectorAll('.tabs [role=tab]').forEach(b=>b.addEventListener('click',()=>{showTab(b.dataset.tab); window.scrollTo(0,0)}));
+$('#menu').addEventListener('click',()=>$('#chart').classList.toggle('open'));
+document.addEventListener('keydown',e=>{
+  if(e.target.tagName==='INPUT') return;
+  const cur=location.hash.slice(1); const i=byId[cur]; if(i==null) return;
+  if(e.key==='ArrowRight' && i<CH.length-1) go(CH[i+1].id);
+  if(e.key==='ArrowLeft' && i>0) go(CH[i-1].id);
+});
+window.addEventListener('hashchange',()=>{const id=location.hash.slice(1); if(id==='cover'||byId[id]!=null) go(id,false)});
+
+/* ---- find ---- */
+let ft;
+$('#find').addEventListener('input',e=>{
+  clearTimeout(ft); ft=setTimeout(()=>{
+    const q=e.target.value.trim().toLowerCase(); const hits=$('#hits'); const list=$('#chartlist');
+    if(q.length<3){hits.hidden=true; list.hidden=false; return}
+    const res=[];
+    for(const c of CH){ for(const p of c.paras){ const k=p.toLowerCase().indexOf(q); if(k>=0){ res.push({c, p, k}); if(res.length>=40) break; } } if(res.length>=40) break; }
+    hits.innerHTML = res.length? res.map(r=>{const s=Math.max(0,r.k-60), e2=Math.min(r.p.length,r.k+q.length+80); const snip=esc(r.p.slice(s,r.k))+'<mark>'+esc(r.p.slice(r.k,r.k+q.length))+'</mark>'+esc(r.p.slice(r.k+q.length,e2)); return '<li><button data-go="'+r.c.id+'"><b>'+esc(label(r.c)+' · '+r.c.title)+'</b>…'+snip+'…</button></li>'}).join('') : '<li class="none">nothing in the book matches that</li>';
+    hits.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>{go(b.dataset.go); $('#chart').classList.remove('open')}));
+    hits.hidden=false; list.hidden=true;
+  },160);
+});
+
+/* ---- boot ---- */
+renderChart(); renderCrew(); renderAbout();
+const h0=location.hash.slice(1);
+if(byId[h0]!=null) go(h0,false); else go('cover',false);
+})();
+</script>
