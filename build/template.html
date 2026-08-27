@@ -88,8 +88,13 @@ button:focus-visible,a:focus-visible,input:focus-visible,[tabindex]:focus-visibl
 .note{font-size:.84rem;line-height:1.5;color:var(--ink2);border-left:2px solid var(--line);padding:.05rem 0 .05rem .75rem;transition:color .15s}
 .note.hot{color:var(--ink)}
 .note .q{display:block;font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;color:var(--line);margin-bottom:.25rem;font-variant-numeric:tabular-nums}
-.note.solo{display:none;grid-column:1;margin:-.5rem 0 1.15rem;background:var(--panel);padding:.6rem .8rem;border-left-width:2px}
-.note.solo.open{display:block}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--panel);border-top:1px solid var(--rule);box-shadow:0 -12px 40px rgba(0,0,0,.35);padding:1rem 1.2rem calc(1.1rem + env(safe-area-inset-bottom));max-height:55vh;overflow-y:auto;transform:translateY(105%);transition:transform .22s ease-out;font-size:.92rem;line-height:1.55;color:var(--ink)}
+.sheet.on{transform:none}
+.sheet .q{display:block;font-family:var(--mono);font-size:.64rem;letter-spacing:.08em;color:var(--line);margin:0 2rem .5rem 0}
+.sheet .x{position:absolute;top:.55rem;right:.8rem;font-family:var(--mono);font-size:1rem;color:var(--ink3);padding:.2rem .5rem}
+.sheet-scrim{position:fixed;inset:0;z-index:29;display:none}
+.sheet-scrim.on{display:block}
+.ann.open{background:var(--line-soft)}
 .essay{margin:3.5rem 0 0;padding:2rem 2.2rem 2.2rem;background:var(--essay);border-top:1px solid var(--rule);position:relative;max-width:66ch}
 .essay::before{content:"";position:absolute;left:0;top:-1px;width:4rem;height:1px;background:var(--line)}
 .essay h3{font-family:var(--display);font-style:italic;font-weight:300;font-size:1.55rem;margin:0 0 .3rem;font-variation-settings:"opsz" 72}
@@ -196,6 +201,8 @@ a.xref:hover{border-bottom-color:var(--accent)}
   </header>
 
   <div class="scrim" id="scrim"></div>
+  <div class="sheet-scrim" id="sheetscrim"></div>
+  <aside class="sheet" id="sheet" role="dialog" aria-label="Note"><button class="x" id="sheetx" aria-label="Close note">×</button><span class="q" id="sheetq"></span><div id="sheetb"></div></aside>
   <aside class="chart" id="chart" aria-label="Chapters">
     <div class="find"><input id="find" type="search" placeholder="find in the book…" aria-label="Find in the book"></div>
     <div id="chartlist"></div>
@@ -298,6 +305,7 @@ function wrapAnnotations(paras, anns){
 function renderChapter(id){
   const i=byId[id]; const c=CH[i]; const cm=CM[id]||{essay:null,annotations:[]}; const m=mvOf(i);
   const rows=wrapAnnotations(c.paras, cm.annotations||[]);
+  const r_notes={}; rows.forEach(r=>r.notes.forEach(x=>{r_notes[x.n]=x}));
   const hasNotes = rows.some(r=>r.notes.length);
   let h='<article class="reading'+(hasNotes?' wide':'')+'">';
   h+='<header class="chhead"><div class="kicker"><span>'+esc(c.num?'Chapter '+c.num:'Front matter')+'</span><span class="mvname">'+esc(m.name)+'</span></div>';
@@ -309,7 +317,6 @@ function renderChapter(id){
     h+='<div class="row"><p'+(verse?' class="verse"':'')+'>'+r.html+'</p>';
     if(r.notes.length){
       h+='<aside class="notes">'+r.notes.map(x=>'<div class="note" data-n="'+x.n+'"><span class="q">'+x.n+' · “'+esc((x.quote.length>52?x.quote.slice(0,50)+'…':x.quote).replace(/_/g,''))+'”</span>'+fmt(x.note)+'</div>').join('')+'</aside>';
-      h+=r.notes.map(x=>'<div class="note solo" data-n="'+x.n+'"><span class="q">'+x.n+'</span>'+esc(x.note)+'</div>').join('');
     }
     h+='</div>';
   });
@@ -337,7 +344,16 @@ function renderChapter(id){
     const hot=on=>v.querySelectorAll('[data-n="'+n+'"]').forEach(x=>x.classList.toggle('hot',on));
     a.addEventListener('mouseenter',()=>hot(true)); a.addEventListener('mouseleave',()=>hot(false));
     a.addEventListener('focus',()=>hot(true)); a.addEventListener('blur',()=>hot(false));
-    const toggle=()=>{const s=v.querySelector('.note.solo[data-n="'+n+'"]'); if(s) s.classList.toggle('open')};
+    const toggle=()=>{
+      const marginVisible = window.innerWidth>1180;
+      if(marginVisible){ const m=v.querySelector('.notes .note[data-n="'+n+'"]'); if(m) m.scrollIntoView({block:'nearest'}); return; }
+      const note=r_notes[n]; if(!note) return;
+      if(a.classList.contains('open')){ closeSheet(); return; }
+      v.querySelectorAll('.ann.open').forEach(x=>x.classList.remove('open')); a.classList.add('open');
+      $('#sheetq').textContent=n+' · “'+(note.quote.length>70?note.quote.slice(0,68)+'…':note.quote).replace(/_/g,'')+'”';
+      $('#sheetb').innerHTML=fmt(note.note);
+      $('#sheet').classList.add('on'); $('#sheetscrim').classList.add('on');
+    };
     a.addEventListener('click',toggle); a.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle()}});
   });
   v.querySelectorAll('.note:not(.solo)').forEach(nt=>{
@@ -399,6 +415,7 @@ function renderAbout(){
 
 /* ---- routing ---- */
 function go(id, push=true, q=null){
+  closeSheet();
   window.scrollTo({top:0,behavior:'auto'});
   if(id==='cover'){ renderCover(); markChart(null); }
   else { renderChapter(id); last=id; store.set('last',id); markChart(id); }
@@ -420,6 +437,9 @@ function showTab(t){
   document.querySelectorAll('.view').forEach(v=>v.classList.toggle('on',v.id==='view-'+t));
 }
 document.querySelectorAll('.tabs [role=tab]').forEach(b=>b.addEventListener('click',()=>{showTab(b.dataset.tab); window.scrollTo(0,0)}));
+function closeSheet(){ $('#sheet').classList.remove('on'); $('#sheetscrim').classList.remove('on'); document.querySelectorAll('.ann.open').forEach(x=>x.classList.remove('open')); }
+$('#sheetx').addEventListener('click',closeSheet); $('#sheetscrim').addEventListener('click',closeSheet);
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeSheet(); });
 function setChart(open){ $('#chart').classList.toggle('open',open); $('#scrim').classList.toggle('on',open); }
 $('#menu').addEventListener('click',()=>setChart(!$('#chart').classList.contains('open')));
 $('#scrim').addEventListener('click',()=>setChart(false));
