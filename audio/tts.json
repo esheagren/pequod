@@ -1,0 +1,17 @@
+{
+ "ch1": {
+  "1": "/audio/tts/ch1/1.mp3",
+  "2": "/audio/tts/ch1/2.mp3",
+  "3": "/audio/tts/ch1/3.mp3",
+  "4": "/audio/tts/ch1/4.mp3",
+  "5": "/audio/tts/ch1/5.mp3",
+  "6": "/audio/tts/ch1/6.mp3",
+  "7": "/audio/tts/ch1/7.mp3",
+  "8": "/audio/tts/ch1/8.mp3",
+  "9": "/audio/tts/ch1/9.mp3",
+  "10": "/audio/tts/ch1/10.mp3",
+  "11": "/audio/tts/ch1/11.mp3",
+  "12": "/audio/tts/ch1/12.mp3",
+  "13": "/audio/tts/ch1/13.mp3"
+ }
+}

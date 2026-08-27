@@ -123,6 +123,24 @@ a.xref:hover{border-bottom-color:var(--accent)}
 .threads li span{color:var(--ink2)}
 .threads .inc{margin:1.1rem 0 0;font-size:.8rem;color:var(--ink3);font-style:italic}
 @media (max-width:860px){.threads{padding:1.2rem 1.2rem}.threads li{grid-template-columns:1fr;gap:.15rem}}
+/* ---------- audio ---------- */
+::highlight(narr){background:var(--sel);color:var(--ink)}
+::highlight(narrword){background:var(--accent-soft)}
+.abar{position:fixed;left:0;right:0;bottom:0;z-index:25;display:none;align-items:center;gap:.9rem;padding:.55rem 1rem calc(.55rem + env(safe-area-inset-bottom));background:var(--bg2);border-top:1px solid var(--rule);font-family:var(--mono);font-size:.7rem;letter-spacing:.06em;color:var(--ink2)}
+.abar.on{display:flex}
+.abar .play{width:2.2rem;height:2.2rem;border:1px solid var(--accent);border-radius:50%;color:var(--accent);display:grid;place-items:center;font-size:.9rem;flex:none}
+.abar .time{font-variant-numeric:tabular-nums;white-space:nowrap}
+.abar .bar{flex:1;height:2px;background:var(--rule);position:relative;cursor:pointer}
+.abar .bar i{position:absolute;left:0;top:0;bottom:0;background:var(--accent);width:0}
+.abar select,.abar label{font:inherit;color:inherit;background:none;border:0}
+.abar label{display:flex;align-items:center;gap:.35rem;white-space:nowrap;cursor:pointer}
+.abar .who{color:var(--ink3);white-space:nowrap}
+body.has-audio .page{padding-bottom:8rem}
+body.has-audio .chart{padding-bottom:5rem}
+body.has-audio .sheet{bottom:3.4rem}
+.chhead .listen{display:inline-block;margin:1rem 0 0 1.2rem;font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;color:var(--accent);border-bottom:1px dotted var(--accent);text-decoration:none}
+@media (max-width:860px){.abar .who,.abar .time .dur{display:none}.abar{gap:.6rem}}
+
 /* ---------- cover ---------- */
 .cover{max-width:66ch;margin:0 auto}
 .cover .kicker{font-family:var(--mono);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink3)}
@@ -201,6 +219,8 @@ a.xref:hover{border-bottom-color:var(--accent)}
   </header>
 
   <div class="scrim" id="scrim"></div>
+  <div class="abar" id="abar"><button class="play" id="aplay" aria-label="Play">▶</button><span class="time" id="atime">0:00<span class="dur"> / 0:00</span></span><div class="bar" id="abarline"><i id="afill"></i></div><select id="arate" aria-label="Speed"><option value="1">1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option></select><label><input type="checkbox" id="apause" checked> pause at notes</label><span class="who">read by Stewart Wills · LibriVox</span></div>
+  <audio id="audio" preload="metadata"></audio>
   <div class="sheet-scrim" id="sheetscrim"></div>
   <aside class="sheet" id="sheet" role="dialog" aria-label="Note"><button class="x" id="sheetx" aria-label="Close note">×</button><span class="q" id="sheetq"></span><div id="sheetb"></div></aside>
   <aside class="chart" id="chart" aria-label="Chapters">
@@ -311,6 +331,7 @@ function renderChapter(id){
   h+='<header class="chhead"><div class="kicker"><span>'+esc(c.num?'Chapter '+c.num:'Front matter')+'</span><span class="mvname">'+esc(m.name)+'</span></div>';
   h+='<h2>'+esc(c.title)+'</h2>';
   if(cm.essay) h+='<a class="jump" href="#" data-jump>skip to my reading ↓</a>';
+  if(D.audio&&D.audio[id]) h+='<a class="listen" href="#" data-listen>▶ listen &amp; follow</a>';
   h+='</header><div class="chbody">';
   rows.forEach(r=>{
     const verse = c.id==='extracts' || c.id==='etymology' || /\n/.test(r.raw);
@@ -364,6 +385,8 @@ function renderChapter(id){
   v.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.go)));
   const cv=v.querySelector('[data-cover]'); if(cv) cv.addEventListener('click',()=>go('cover'));
   const j=v.querySelector('[data-jump]'); if(j) j.addEventListener('click',e=>{e.preventDefault(); $('#essay').scrollIntoView({block:'start'})});
+  setupAudio(id, rows);
+  const li=v.querySelector('[data-listen]'); if(li) li.addEventListener('click',e=>{e.preventDefault(); audioPlay()});
   const mk=v.querySelector('[data-mark]'); mk.addEventListener('click',()=>{
     if(read.has(id)) read.delete(id); else read.add(id);
     store.set('read',[...read]); mk.classList.toggle('done',read.has(id)); mk.textContent=read.has(id)?'✓ marked as read':'mark as read'; markChart(id); updateLeagues();
@@ -412,6 +435,93 @@ function renderAbout(){
   '<p>Some practical things. Your place and the chapters you mark as read are remembered in this browser only. The chart on the left divides the book into four waters, which is my division, not Melville’s; the search box finds phrases anywhere in the text. On a wide screen the notes sit in the margin; on a narrow one they open when you click the underlined line. <span class="kbd">←</span> and <span class="kbd">→</span> turn chapters.</p>'+
   '<p>And a suggestion: read the Extracts. Everyone skips them. They are Melville clearing his throat for eighty quotations and they tell you exactly what kind of book this is going to be — one that would rather include everything than choose.</p>';
 }
+
+/* ---- audio: narration synced to text ---- */
+const A = { el:$('#audio'), ch:null, words:[], sents:[], stops:[], fired:new Set(), paused:false, lastScroll:0, holdTimer:null };
+const SENT_END=/[.!?;:]["’”)\]]*\s+(?=[A-Z“"‘(])/g;
+function fmtTime(t){t=Math.max(0,t|0);return (t/60|0)+':'+String(t%60).padStart(2,'0')}
+function setupAudio(id, rows){
+  const d=D.audio&&D.audio[id];
+  A.ch=null; A.words=[]; A.sents=[]; A.stops=[]; A.fired.clear(); clearTimeout(A.holdTimer); A.holdTimer=null;
+  if(CSS.highlights){ CSS.highlights.delete('narr'); CSS.highlights.delete('narrword'); }
+  document.body.classList.toggle('has-audio', !!d);
+  $('#abar').classList.toggle('on', !!d);
+  if(!d){ A.el.pause(); A.el.removeAttribute('src'); return; }
+  A.ch=id;
+  if(A.el.getAttribute('src')!==d.src){ A.el.src=d.src; A.el.load(); }
+  const ps=[...document.querySelectorAll('#voyage .row p')];
+  d.paras.forEach((wl,pi)=>{
+    const p=ps[pi]; if(!p||!wl.length) return;
+    wl.forEach(w=>A.words.push({pi,cs:w[0],ce:w[1],t0:w[2],t1:w[3],p}));
+    // sentences from the paragraph text, timed by the words they contain
+    const text=rows[pi].raw; let last=0; const bounds=[];
+    for(const m of text.matchAll(SENT_END)){ bounds.push([last,m.index+m[0].trimEnd().length]); last=m.index+m[0].length; }
+    bounds.push([last,text.length]);
+    bounds.forEach(([cs,ce])=>{ const ws=wl.filter(w=>w[0]>=cs&&w[1]<=ce); if(ws.length) A.sents.push({pi,cs,ce,t0:ws[0][2],t1:ws[ws.length-1][3],p}); });
+    // note stops: end time of the last word inside each annotated span
+    rows[pi].notes.forEach(x=>{ const ws=wl.filter(w=>w[0]>=x.idx&&w[1]<=x.idx+x.len); if(ws.length) A.stops.push({t:ws[ws.length-1][3], n:x.n, pi}); });
+  });
+  A.stops.sort((a,b)=>a.t-b.t);
+  // seek to a sentence when its paragraph is clicked (not on annotation spans / links)
+  ps.forEach((p,pi)=>p.addEventListener('click',e=>{
+    if(e.target.closest('.ann, a')) return;
+    const off=caretOffset(p,e.clientX,e.clientY); if(off==null) return;
+    const snt=A.sents.find(s=>s.pi===pi&&off>=s.cs&&off<=s.ce); if(!snt) return;
+    A.el.currentTime=snt.t0; A.fired.clear(); audioPlay();
+  }));
+  const first=A.words[0]; if(first && A.el.readyState>0 && (A.el.currentTime<first.t0-2 || A.el.currentTime>A.words[A.words.length-1].t1+2)) A.el.currentTime=first.t0;
+  A.el.addEventListener('loadedmetadata',()=>{ if(A.ch===id && A.words[0]) A.el.currentTime=A.words[0].t0; updateBar(); },{once:true});
+  updateBar();
+}
+function textWalk(p){ // [node, startOffset] for text nodes, skipping sup markers
+  const out=[]; let pos=0; const it=document.createTreeWalker(p,NodeFilter.SHOW_TEXT,{acceptNode:n=>n.parentElement.closest('sup')?NodeFilter.FILTER_REJECT:NodeFilter.FILTER_ACCEPT});
+  let n; while((n=it.nextNode())){ out.push([n,pos]); pos+=n.data.length; } return out;
+}
+function rangeFor(p,cs,ce){
+  const nodes=textWalk(p); let sN,sO,eN,eO;
+  for(const [n,st] of nodes){ const en=st+n.data.length; if(sN==null && cs<en){ sN=n; sO=Math.max(0,cs-st); } if(ce<=en){ eN=n; eO=Math.max(0,ce-st); break; } }
+  if(!sN||!eN) return null; const r=new Range(); r.setStart(sN,sO); r.setEnd(eN,eO); return r;
+}
+function caretOffset(p,x,y){
+  let node,off; if(document.caretPositionFromPoint){const c=document.caretPositionFromPoint(x,y); if(!c) return null; node=c.offsetNode; off=c.offset;} else if(document.caretRangeFromPoint){const r=document.caretRangeFromPoint(x,y); if(!r) return null; node=r.startContainer; off=r.startOffset;} else return null;
+  for(const [n,st] of textWalk(p)) if(n===node) return st+off; return null;
+}
+let curSent=null;
+function onTime(){
+  if(!A.ch) return; const t=A.el.currentTime; updateBar();
+  const snt=A.sents.find(s=>t>=s.t0&&t<s.t1) || null;
+  if(snt!==curSent){ curSent=snt; if(CSS.highlights){ const r=snt&&rangeFor(snt.p,snt.cs,snt.ce); if(r) CSS.highlights.set('narr',new Highlight(r)); else CSS.highlights.delete('narr'); }
+    if(snt && Date.now()-A.lastScroll>1500){ const rc=snt.p.getBoundingClientRect(); const top=$('.mast').offsetHeight; if(rc.top<top+20||rc.bottom>innerHeight-140) snt.p.scrollIntoView({block:'center',behavior:'smooth'}); }
+  }
+  if(CSS.highlights){ const w=A.words.find(w=>t>=w.t0&&t<w.t1); const r=w&&rangeFor(w.p,w.cs,w.ce); if(r) CSS.highlights.set('narrword',new Highlight(r)); }
+  if($('#apause').checked && !A.el.paused){
+    const st=A.stops.find(x=>!A.fired.has(x.n) && t>=x.t && t<x.t+1.2);
+    if(st){ A.fired.add(st.n); holdForNote(st); }
+  }
+}
+function holdForNote(st){
+  A.el.pause(); A.paused=true;
+  const a=document.querySelector('#voyage .ann[data-n="'+st.n+'"]');
+  if(a){ document.querySelectorAll('#voyage .hot').forEach(x=>x.classList.remove('hot')); document.querySelectorAll('#voyage [data-n="'+st.n+'"]').forEach(x=>x.classList.add('hot')); if(innerWidth<=1180) a.click(); }
+  const resume=()=>{ if(!A.paused) return; A.paused=false; closeSheet(); document.querySelectorAll('#voyage .hot').forEach(x=>x.classList.remove('hot')); audioPlay(); };
+  const note=D.commentary[A.ch]&&D.commentary[A.ch].annotations; // spoken note, if we have one
+  const tts=D.tts&&D.tts[A.ch]&&D.tts[A.ch][st.n];
+  if(tts){ const v=new Audio(tts); v.playbackRate=A.el.playbackRate; v.addEventListener('ended',resume,{once:true}); v.play().catch(()=>{ A.holdTimer=setTimeout(resume,5000); }); A.voice=v; }
+  else { A.holdTimer=setTimeout(resume, innerWidth<=1180?8000:5000); }
+  $('#aplay').textContent='▶';
+}
+function audioPlay(){ clearTimeout(A.holdTimer); A.paused=false; if(A.voice){A.voice.pause();A.voice=null;} A.el.play().then(()=>{$('#aplay').textContent='❚❚'}).catch(()=>{}); }
+function audioPause(){ A.el.pause(); $('#aplay').textContent='▶'; }
+function updateBar(){ const d=A.el.duration||0, t=A.el.currentTime||0; $('#atime').innerHTML=fmtTime(t)+'<span class="dur"> / '+fmtTime(d)+'</span>'; $('#afill').style.width=(d?t/d*100:0)+'%'; }
+$('#aplay').addEventListener('click',()=>{ if(A.el.paused) audioPlay(); else audioPause(); });
+$('#arate').addEventListener('change',e=>{ A.el.playbackRate=+e.target.value; if(A.voice) A.voice.playbackRate=+e.target.value; });
+$('#abarline').addEventListener('click',e=>{ const r=e.currentTarget.getBoundingClientRect(); if(A.el.duration){ A.el.currentTime=(e.clientX-r.left)/r.width*A.el.duration; A.fired.clear(); } });
+A.el.addEventListener('timeupdate',onTime); A.el.addEventListener('play',()=>$('#aplay').textContent='❚❚'); A.el.addEventListener('pause',()=>{ if(!A.paused) $('#aplay').textContent='▶'; });
+A.el.addEventListener('ended',()=>{ $('#aplay').textContent='▶'; });
+window.addEventListener('scroll',()=>{A.lastScroll=Date.now()},{passive:true});
+// keep the sheet's close from fighting the hold: closing the sheet during a hold resumes
+$('#sheetx').addEventListener('click',()=>{ if(A.paused){ clearTimeout(A.holdTimer); A.paused=false; audioPlay(); } });
+$('#sheetscrim').addEventListener('click',()=>{ if(A.paused){ clearTimeout(A.holdTimer); A.paused=false; audioPlay(); } });
 
 /* ---- routing ---- */
 function go(id, push=true, q=null){

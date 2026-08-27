@@ -1,3 +1,6 @@
 .DS_Store
 .vercel
 build/mobydick.txt
+audio/mp3/
+audio/cache/*.words.json
+audio/.venv/
