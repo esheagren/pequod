@@ -4,7 +4,7 @@ A reading companion for *Moby-Dick*: the complete 1851 text, chapter by chapter,
 chapter essay and line-pinned marginal notes written by Claude, cross-linked across the
 book, plus a Crew tab of characters.
 
-**Live:** deployed on Vercel (see the repo's deployments).
+**Live:** https://pequod.vercel.app
 
 ## Layout
 
