@@ -57,6 +57,9 @@ button:focus-visible,a:focus-visible,input:focus-visible,[tabindex]:focus-visibl
 /* ---------- chart (sidebar) ---------- */
 :root{--mast-h:3.1rem}
 .chart{border-right:1px solid var(--rule);background:var(--bg2);position:sticky;top:var(--mast-h);height:calc(100vh - var(--mast-h));overflow-y:auto;padding:1rem 0 3rem}
+/* cover (main page): no chapter chart, content takes the full width */
+body.on-cover .app{grid-template-columns:minmax(0,1fr)}
+body.on-cover .chart,body.on-cover .menu{display:none}
 .chart .find{margin:0 1rem .9rem;position:relative}
 .chart input{width:100%;font-family:var(--mono);font-size:.78rem;padding:.45rem .6rem;border:1px solid var(--rule);background:var(--panel);color:var(--ink);border-radius:2px}
 .chart input::placeholder{color:var(--ink3)}
@@ -183,7 +186,7 @@ svg.focus .cm-edge{opacity:.04}
 svg.focus .cm-edge.lit{stroke:var(--line);opacity:.9;stroke-width:1.6}
 .cm-node{cursor:pointer}
 .cm-node circle{stroke:var(--bg);stroke-width:2}
-.cm-node .num{font-family:'IBM Plex Mono',monospace;fill:var(--ink3)}
+.cm-node .num{font-family:'IBM Plex Mono',monospace;fill:var(--bg);font-weight:500;pointer-events:none}
 .cm-node .ttl{font-family:'Libre Caslon Text',Georgia,serif;fill:var(--ink2)}
 .cm-node:hover .ttl,.cm-node.lit .ttl{fill:var(--ink)}
 svg.focus .cm-node:not(.lit):not(.src){opacity:.35}
@@ -461,15 +464,15 @@ function buildMap(){
   // the dotted trail, in reading order
   svg+='<path class="cm-trail" d="'+CH.map((c,i)=>(i?'L':'M')+pos[c.id].x+' '+pos[c.id].y).join(' ')+'"/>';
   // movement label where each water begins
-  MV.forEach(m=>{ const P=pos[CH[m.from].id]; svg+='<text class="cm-mv" x="'+P.x+'" y="'+(P.y-26)+'" text-anchor="middle" font-size="9">'+esc(m.name.toUpperCase())+'</text>'; });
+  MV.forEach(m=>{ const P=pos[CH[m.from].id]; svg+='<text class="cm-mv" x="'+P.x+'" y="'+(P.y-22)+'" text-anchor="middle" font-size="9">'+esc(m.name.toUpperCase())+'</text>'; });
   // nodes
   CH.forEach((c,i)=>{
     const P=pos[c.id], mi=mvOfI(i);
     const lines=wrapTitle(c.title);
     svg+='<g class="cm-node" data-id="'+c.id+'" tabindex="0" role="link" aria-label="'+esc(label(c)+', '+c.title)+'">';
-    svg+='<circle cx="'+P.x+'" cy="'+P.y+'" r="6.5" fill="var(--m'+mi+')"/>';
-    svg+='<text class="num" x="'+P.x+'" y="'+(P.y-13)+'" text-anchor="middle" font-size="8.5">'+(c.num||'·')+'</text>';
-    lines.forEach((ln,li)=>{ svg+='<text class="ttl" x="'+P.x+'" y="'+(P.y+22+li*13)+'" text-anchor="middle" font-size="11">'+esc(ln)+'</text>'; });
+    svg+='<circle cx="'+P.x+'" cy="'+P.y+'" r="11.5" fill="var(--m'+mi+')"/>';
+    svg+='<text class="num" x="'+P.x+'" y="'+P.y+'" text-anchor="middle" dominant-baseline="central" font-size="9.5">'+(c.num||'·')+'</text>';
+    lines.forEach((ln,li)=>{ svg+='<text class="ttl" x="'+P.x+'" y="'+(P.y+27+li*13)+'" text-anchor="middle" font-size="11">'+esc(ln)+'</text>'; });
     svg+='</g>';
   });
   svg+='</svg>';
@@ -632,7 +635,8 @@ $('#sheetscrim').addEventListener('click',()=>{ if(A.paused){ clearTimeout(A.hol
 function go(id, push=true, q=null){
   closeSheet();
   window.scrollTo({top:0,behavior:'auto'});
-  if(id==='cover'){ renderCover(); markChart(null); }
+  document.body.classList.toggle('on-cover', id==='cover');
+  if(id==='cover'){ renderCover(); markChart(null); setChart(false); }
   else { renderChapter(id); last=id; store.set('last',id); markChart(id); }
   showTab('voyage');
   if(push) history.replaceState(null,'','#'+id);
