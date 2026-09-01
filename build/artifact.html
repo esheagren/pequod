@@ -7,6 +7,7 @@
   --bg:#EEF1EC; --bg2:#E3E8E2; --panel:#F6F8F4; --ink:#1B2229; --ink2:#4A555C; --ink3:#7C868C;
   --rule:#CBD3CD; --accent:#2E5F6B; --accent-soft:#D6E3E5; --line:#9A3B2E; --line-soft:#F1DAD5;
   --essay:#E8EDE6; --sel:#DCE8E9;
+  --m0:#2E5F6B; --m1:#7A6A45; --m2:#5C7A62; --m3:#9A3B2E;
   --display:'Fraunces',Georgia,'Times New Roman',serif;
   --body:'Libre Caslon Text',Georgia,'Times New Roman',serif;
   --mono:'IBM Plex Mono',Menlo,Consolas,monospace;
@@ -15,11 +16,13 @@
   --bg:#0C1218; --bg2:#101922; --panel:#121B24; --ink:#D9DED6; --ink2:#A4AEB0; --ink3:#6E7A80;
   --rule:#233039; --accent:#E8E2CB; --accent-soft:#1E2E36; --line:#D9705E; --line-soft:#3A2420;
   --essay:#111A22; --sel:#1B2A33;
+  --m0:#7FB3BE; --m1:#C9B37E; --m2:#8FB896; --m3:#D9705E;
 }}
 :root[data-theme="dark"]{
   --bg:#0C1218; --bg2:#101922; --panel:#121B24; --ink:#D9DED6; --ink2:#A4AEB0; --ink3:#6E7A80;
   --rule:#233039; --accent:#E8E2CB; --accent-soft:#1E2E36; --line:#D9705E; --line-soft:#3A2420;
   --essay:#111A22; --sel:#1B2A33;
+  --m0:#7FB3BE; --m1:#C9B37E; --m2:#8FB896; --m3:#D9705E;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -160,6 +163,26 @@ body.has-audio .sheet{bottom:var(--abar-h,3.4rem)}
 .mvcard .d{font-size:.84rem;color:var(--ink2);line-height:1.5}
 .resume{margin-top:2.2rem;font-family:var(--mono);font-size:.76rem;letter-spacing:.08em;color:var(--accent);border-bottom:1px solid var(--accent)}
 
+/* ---------- voyage map ---------- */
+.cmap{margin:2rem 0 0}
+.cmap svg{width:100%;height:auto;display:block}
+.cm-trail{stroke:var(--rule);stroke-width:1.4;fill:none;stroke-dasharray:1 7;stroke-linecap:round}
+.cm-edge{stroke:var(--accent);fill:none;opacity:.13;stroke-width:1}
+svg.focus .cm-edge{opacity:.04}
+svg.focus .cm-edge.lit{stroke:var(--line);opacity:.9;stroke-width:1.6}
+.cm-node{cursor:pointer}
+.cm-node circle{stroke:var(--bg);stroke-width:2}
+.cm-node .num{font-family:'IBM Plex Mono',monospace;fill:var(--ink3)}
+.cm-node .ttl{font-family:'Libre Caslon Text',Georgia,serif;fill:var(--ink2)}
+.cm-node:hover .ttl,.cm-node.lit .ttl{fill:var(--ink)}
+svg.focus .cm-node:not(.lit):not(.src){opacity:.35}
+.cm-node.src circle{stroke:var(--line);stroke-width:2.5}
+.cm-mv{font-family:'IBM Plex Mono',monospace;fill:var(--ink3);letter-spacing:.18em}
+.cm-legend{display:flex;flex-wrap:wrap;gap:1.1rem;margin:1.6rem 0 0;font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink2)}
+.cm-legend i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:.45rem}
+.cm-hint{font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;color:var(--ink3);margin:.6rem 0 0}
+.coverhead{max-width:66ch}
+
 /* ---------- crew ---------- */
 .crew{max-width:78ch;margin:0 auto}
 .crew h2{font-family:var(--display);font-weight:300;font-size:2.6rem;margin:0 0 .3rem;font-variation-settings:"opsz" 144}
@@ -212,7 +235,6 @@ body.has-audio .sheet{bottom:var(--abar-h,3.4rem)}
   <header class="mast">
     <button class="menu" id="menu" aria-label="Open chapter list">☰</button>
     <h1>Moby-Dick<span class="sub">; <em>or, The Whale</em></span></h1>
-    <span class="leagues" id="leagues"></span>
     <nav class="tabs" role="tablist" aria-label="Sections">
       <button role="tab" data-tab="voyage" aria-selected="true"><span class="long">The </span>Voyage</button>
       <button role="tab" data-tab="crew" aria-selected="false"><span class="long">The </span>Crew</button>
@@ -262,7 +284,6 @@ const store = {
   get(k,d){try{const v=localStorage.getItem('whale.'+k);return v==null?d:JSON.parse(v)}catch(e){return d}},
   set(k,v){try{localStorage.setItem('whale.'+k,JSON.stringify(v))}catch(e){}}
 };
-let read = new Set(store.get('read',[]));
 let last = store.get('last',null);
 
 function mvOf(i){ return MV.find(m=>i>=m.from && i<=m.to); }
@@ -277,7 +298,6 @@ function renderChart(){
     const ol=document.createElement('ol');
     for(let i=m.from;i<=m.to;i++){
       const c=CH[i]; const li=document.createElement('li'); li.dataset.id=c.id;
-      if(read.has(c.id)) li.classList.add('read');
       const b=document.createElement('button');
       b.innerHTML='<span class="n">'+(c.num||'·')+'</span><span class="dot"></span><span>'+esc(c.title)+'</span>';
       b.addEventListener('click',()=>{go(c.id); setChart(false)});
@@ -285,14 +305,9 @@ function renderChart(){
     }
     sec.appendChild(ol); el.appendChild(sec);
   });
-  updateLeagues();
-}
-function updateLeagues(){
-  const n=CH.filter(c=>read.has(c.id)).length;
-  $('#leagues').textContent = n? n+' of '+CH.length+' chapters read' : 'no chapters read yet';
 }
 function markChart(id){
-  document.querySelectorAll('.mv li').forEach(li=>{li.classList.toggle('cur',li.dataset.id===id); li.classList.toggle('read',read.has(li.dataset.id))});
+  document.querySelectorAll('.mv li').forEach(li=>li.classList.toggle('cur',li.dataset.id===id));
   const cur=document.querySelector('.mv li.cur'); if(cur) cur.scrollIntoView({block:'nearest'});
 }
 
@@ -348,7 +363,6 @@ function renderChapter(id){
   h+='<section class="essay" id="essay"><h3>What I make of it</h3><p class="who">Claude, reading alongside you</p>';
   if(cm.essay) h+=cm.essay.split(/\n\n+/).map(p=>'<p>'+fmt(p)+'</p>').join('');
   else h+='<p class="missing">No reading written for this chapter yet.</p>';
-  h+='<button class="markread'+(read.has(id)?' done':'')+'" data-mark>'+(read.has(id)?'✓ marked as read':'mark as read')+'</button>';
   h+='</section>';
   const out=(cm.links||[]), inc=(D.incoming[id]||[]);
   if(out.length||inc.length){
@@ -387,27 +401,103 @@ function renderChapter(id){
   const j=v.querySelector('[data-jump]'); if(j) j.addEventListener('click',e=>{e.preventDefault(); $('#essay').scrollIntoView({block:'start'})});
   setupAudio(id, rows);
   const li=v.querySelector('[data-listen]'); if(li) li.addEventListener('click',e=>{e.preventDefault(); audioPlay()});
-  const mk=v.querySelector('[data-mark]'); mk.addEventListener('click',()=>{
-    if(read.has(id)) read.delete(id); else read.add(id);
-    store.set('read',[...read]); mk.classList.toggle('done',read.has(id)); mk.textContent=read.has(id)?'✓ marked as read':'mark as read'; markChart(id); updateLeagues();
-  });
+
 }
 
-/* ---- cover ---- */
+/* ---- cover: the wandering chart ---- */
+function edgeList(){
+  const seen=new Set(), out=[];
+  for(const b in D.incoming) for(const a of D.incoming[b]){
+    const k=a+'>'+b; if(a===b||seen.has(k)) continue; seen.add(k); out.push([a,b]);
+  }
+  return out;
+}
+function wrapTitle(t){
+  const words=t.split(' '); const lines=['']; 
+  for(const w of words){ const cur=lines[lines.length-1];
+    if((cur+' '+w).trim().length<=15) lines[lines.length-1]=(cur+' '+w).trim();
+    else if(lines.length<2) lines.push(w);
+    else { lines[1]=lines[1].replace(/…?$/,'')+'…'; break; } }
+  return lines;
+}
+let mapBuiltW=0;
+function buildMap(){
+  const host=document.getElementById('cmap'); if(!host) return;
+  const W=host.clientWidth||900; mapBuiltW=W;
+  const cell=Math.max(118,Math.min(180,W/Math.max(3,Math.floor(W/150))));
+  const perRow=Math.max(3,Math.floor(W/cell));
+  const rowH=104, mTop=44, mBot=40, mSide=Math.max(10,(W-perRow*cell)/2);
+  const pos={};
+  CH.forEach((c,i)=>{
+    const r=Math.floor(i/perRow), k=i%perRow, kk=(r%2? perRow-1-k : k);
+    pos[c.id]={x:mSide+(kk+0.5)*cell, y:mTop+r*rowH, i, r};
+  });
+  const H=mTop+Math.ceil(CH.length/perRow)*rowH+mBot;
+  const mvOfI=i=>MV.findIndex(m=>i>=m.from&&i<=m.to);
+  let svg='<svg viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Chart of the voyage">';
+  // faint cross-reference arcs
+  svg+='<g id="cmedges">';
+  for(const [a,b] of edgeList()){
+    const A=pos[a],B=pos[b]; if(!A||!B) continue;
+    const dx=B.x-A.x, dy=B.y-A.y, d=Math.hypot(dx,dy)||1;
+    const k=Math.min(110,20+d*0.16), nx=-dy/d*k, ny=dx/d*k;
+    svg+='<path class="cm-edge" data-a="'+a+'" data-b="'+b+'" d="M'+A.x+' '+A.y+' Q'+((A.x+B.x)/2+nx)+' '+((A.y+B.y)/2+ny)+' '+B.x+' '+B.y+'"/>';
+  }
+  svg+='</g>';
+  // the dotted trail, in reading order
+  svg+='<path class="cm-trail" d="'+CH.map((c,i)=>(i?'L':'M')+pos[c.id].x+' '+pos[c.id].y).join(' ')+'"/>';
+  // movement label where each water begins
+  MV.forEach(m=>{ const P=pos[CH[m.from].id]; svg+='<text class="cm-mv" x="'+P.x+'" y="'+(P.y-26)+'" text-anchor="middle" font-size="9">'+esc(m.name.toUpperCase())+'</text>'; });
+  // nodes
+  CH.forEach((c,i)=>{
+    const P=pos[c.id], mi=mvOfI(i);
+    const lines=wrapTitle(c.title);
+    svg+='<g class="cm-node" data-id="'+c.id+'" tabindex="0" role="link" aria-label="'+esc(label(c)+', '+c.title)+'">';
+    svg+='<circle cx="'+P.x+'" cy="'+P.y+'" r="6.5" fill="var(--m'+mi+')"/>';
+    svg+='<text class="num" x="'+P.x+'" y="'+(P.y-13)+'" text-anchor="middle" font-size="8.5">'+(c.num||'·')+'</text>';
+    lines.forEach((ln,li)=>{ svg+='<text class="ttl" x="'+P.x+'" y="'+(P.y+22+li*13)+'" text-anchor="middle" font-size="11">'+esc(ln)+'</text>'; });
+    svg+='</g>';
+  });
+  svg+='</svg>';
+  host.innerHTML=svg;
+  const el=host.firstChild;
+  const focus=id=>{
+    el.classList.add('focus');
+    const touched=new Set([id]);
+    el.querySelectorAll('.cm-edge').forEach(e=>{
+      const hit=e.dataset.a===id||e.dataset.b===id;
+      e.classList.toggle('lit',hit);
+      if(hit){ touched.add(e.dataset.a); touched.add(e.dataset.b); }
+    });
+    el.querySelectorAll('.cm-node').forEach(nd=>{ nd.classList.toggle('lit',touched.has(nd.dataset.id)&&nd.dataset.id!==id); nd.classList.toggle('src',nd.dataset.id===id); });
+  };
+  const blur=()=>{ el.classList.remove('focus'); el.querySelectorAll('.lit,.src').forEach(x=>x.classList.remove('lit','src')); };
+  el.querySelectorAll('.cm-node').forEach(nd=>{
+    nd.addEventListener('mouseenter',()=>focus(nd.dataset.id));
+    nd.addEventListener('mouseleave',blur);
+    nd.addEventListener('focus',()=>focus(nd.dataset.id));
+    nd.addEventListener('blur',blur);
+    nd.addEventListener('click',()=>go(nd.dataset.id));
+    nd.addEventListener('keydown',e=>{if(e.key==='Enter') go(nd.dataset.id)});
+  });
+}
 function renderCover(){
   const lastC = last && byId[last]!=null ? CH[byId[last]] : null;
-  let h='<div class="cover"><div class="kicker">Herman Melville · 1851 · read alongside Claude</div>';
+  let h='<div class="cover" style="max-width:none"><div class="coverhead">';
+  h+='<div class="kicker">Herman Melville · 1851 · read alongside Claude</div>';
   h+='<h2>Moby-Dick;<br><em>or, The Whale</em></h2><p class="by">The whole book, chapter by chapter, with one reader’s marginalia.</p>';
-  h+='<p>Everything in the left-hand chart is the complete text — Etymology, the Extracts, all hundred and thirty-five chapters, the Epilogue. Sentences underlined in red are the ones I couldn’t read past without saying something; the notes sit in the margin (or open when you click the line). At the end of every chapter is a short piece on what I make of it. I put it at the end on purpose, so the first read is yours and the second opinion is mine.</p>';
-  h+='<p>The book is a voyage that keeps stopping to think, and it helps to know where you are. So the chart is divided into four waters:</p>';
-  h+='<div class="mvcards">'+MV.map(m=>'<button class="mvcard" data-go="'+CH[m.from].id+'"><span class="n">'+esc(m.range)+'</span><span class="t">'+esc(m.name)+'</span><span class="d">'+esc(m.desc)+'</span></button>').join('')+'</div>';
-  h+='<div class="rope"></div>';
-  h+='<p>Melville dedicated this book to Hawthorne and told him, when it was done, that he had written a wicked book and felt spotless as the lamb. I think the wickedness he meant is the refusal to settle what the whale is. Read it slowly. Let the cetology chapters be what they are — a man trying to hold the whole animal in his mind — and let Ahab’s speeches be beautiful even where they are wrong.</p>';
+  h+='<p>Below is the voyage entire — every chapter a landing on the trail, colored by its waters. The faint arcs are the places my notes reach across the book: hover a chapter to see what it speaks to and what speaks back. Click one and start reading; sentences underlined in red carry my notes, and each chapter ends with what I make of it.</p>';
   h+= lastC ? '<button class="resume" data-go="'+lastC.id+'">resume at '+esc(label(lastC)+' · '+lastC.title)+' →</button>' : '<button class="resume" data-go="etymology">begin at the beginning →</button>';
+  h+='<div class="cm-legend">'+MV.map((m,i)=>'<span><i style="background:var(--m'+i+')"></i>'+esc(m.name)+'</span>').join('')+'<span style="margin-left:auto;color:var(--ink3)">arcs = cross-references in the notes</span></div>';
+  h+='</div>';
+  h+='<div class="cmap" id="cmap"></div>';
   h+='</div>';
   const v=$('#voyage'); v.innerHTML=h;
   v.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.go)));
+  buildMap();
 }
+let mapRT;
+window.addEventListener('resize',()=>{ clearTimeout(mapRT); mapRT=setTimeout(()=>{ const host=document.getElementById('cmap'); if(host && Math.abs(host.clientWidth-mapBuiltW)>60) buildMap(); },200); });
 
 /* ---- crew ---- */
 function renderCrew(){
@@ -432,7 +522,7 @@ function renderAbout(){
   $('#about').innerHTML='<h2>The Loom</h2>'+
   '<p>Melville calls the world a loom — “the weaver-god, he weaves” — and this page is my attempt to weave a second thread through his. What you are reading is the Project Gutenberg text of <em>Moby-Dick</em> (the 1851 American edition), unaltered, split into its '+CH.length+' sections. Alongside it I have written '+nEss+' chapter readings and pinned '+nAnn+' notes to particular sentences.</p>'+
   '<p>A word on what the notes are. They are not a study guide. They are the places where, reading as carefully as I can, I stopped — because a sentence turned on itself, or told a joke nobody laughs at, or said the thing the rest of the book is circling. Where I am unsure I say so. Where I disagree with the usual reading I say that too. You should treat them as a reading companion who talks a bit too much and can be ignored by not clicking.</p>'+
-  '<p>Some practical things. Your place and the chapters you mark as read are remembered in this browser only. The chart on the left divides the book into four waters, which is my division, not Melville’s; the search box finds phrases anywhere in the text. On a wide screen the notes sit in the margin; on a narrow one they open when you click the underlined line. <span class="kbd">←</span> and <span class="kbd">→</span> turn chapters.</p>'+
+  '<p>Some practical things. Your place is remembered in this browser only. The chart on the left divides the book into four waters, which is my division, not Melville’s; the search box finds phrases anywhere in the text. On a wide screen the notes sit in the margin; on a narrow one they open when you click the underlined line. <span class="kbd">←</span> and <span class="kbd">→</span> turn chapters.</p>'+
   '<p>And a suggestion: read the Extracts. Everyone skips them. They are Melville clearing his throat for eighty quotations and they tell you exactly what kind of book this is going to be — one that would rather include everything than choose.</p>';
 }
 
