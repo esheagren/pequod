@@ -12,7 +12,7 @@
 <meta charset="utf-8">
 <title>Pequod</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;1,9..144,300;1,9..144,500&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;1,9..144,300;1,9..144,500&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&family=Gentium+Book+Plus:ital@0;1&display=swap">
 <style>
 :root{
   --bg:#EEF1EC; --bg2:#E3E8E2; --panel:#F6F8F4; --ink:#1B2229; --ink2:#4A555C; --ink3:#7C868C;
@@ -215,6 +215,15 @@ svg.focus .cm-node:not(.lit):not(.src){opacity:.35}
 .cm-hint{font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;color:var(--ink3);margin:.6rem 0 0}
 .coverhead{max-width:66ch}
 
+/* dense commentary: margin notes are two-line teasers that open over the page, so long notes do not push the verse apart */
+body.dense .notes{gap:.4rem}
+body.dense .note{position:relative;height:4.5em;border-left:0;padding:0}
+body.dense .note .ni{position:absolute;left:0;right:0;top:0;max-height:4.5em;overflow:hidden;border-left:2px solid var(--line);padding:.05rem 0 .05rem .75rem;cursor:pointer}
+body.dense .note .ni::after{content:"";position:absolute;left:2px;right:0;bottom:0;height:1.3em;background:linear-gradient(transparent,var(--bg))}
+body.dense .note.hot .ni,body.dense .note.pin .ni{max-height:none;background:var(--panel);z-index:6;box-shadow:0 12px 32px rgba(0,0,0,.4);padding:.55rem .8rem .7rem .75rem;color:var(--ink)}
+body.dense .note.hot .ni::after,body.dense .note.pin .ni::after{display:none}
+body.dense .note.pin .ni{border-left-color:var(--accent)}
+.grk{font-family:'Gentium Book Plus','Gentium Plus','New Athena Unicode',Georgia,serif;font-size:1.06em;font-style:normal}
 .spk{font-family:var(--mono);font-size:.7em;letter-spacing:.12em;color:var(--ink3)}
 
 /* ---------- crew ---------- */
@@ -296,7 +305,7 @@ svg.focus .cm-node:not(.lit):not(.src){opacity:.35}
   </main>
 </div>
 
-<script id="shelf" type="application/json">[{"id": "moby-dick", "title": "Moby-Dick", "sub": "or, The Whale", "author": "Herman Melville", "year": "1851", "icon": "whale", "stats": "138 chapters · 1,090 notes · read-along audio"}, {"id": "crime-and-punishment", "title": "Crime and Punishment", "sub": "", "author": "Fyodor Dostoevsky", "year": "1866", "icon": "stairs", "stats": "41 chapters · 403 notes"}, {"id": "five-dialogues", "title": "Five Dialogues", "sub": "Euthyphro, Apology, Crito, Meno, Phaedo", "author": "Plato", "year": "4th century BC", "icon": "columns", "stats": "37 sections · 318 notes"}, {"id": "oedipus-the-king", "title": "Oedipus the King", "sub": "", "author": "Sophocles", "year": "c. 429 BC", "icon": "mask", "stats": "13 sections · 77 notes"}, {"id": "antigone", "title": "Antigone", "sub": "", "author": "Sophocles", "year": "c. 441 BC", "icon": "mask", "stats": "13 sections · 82 notes"}]</script>
+<script id="shelf" type="application/json">[{"id": "moby-dick", "title": "Moby-Dick", "sub": "or, The Whale", "author": "Herman Melville", "year": "1851", "icon": "whale", "stats": "138 chapters · 1,090 notes · read-along audio"}, {"id": "crime-and-punishment", "title": "Crime and Punishment", "sub": "", "author": "Fyodor Dostoevsky", "year": "1866", "icon": "stairs", "stats": "41 chapters · 403 notes"}, {"id": "five-dialogues", "title": "Five Dialogues", "sub": "Euthyphro, Apology, Crito, Meno, Phaedo", "author": "Plato", "year": "4th century BC", "icon": "columns", "stats": "37 sections · 318 notes"}, {"id": "oedipus-the-king", "title": "Oedipus the King", "sub": "", "author": "Sophocles", "year": "c. 429 BC", "icon": "mask", "stats": "13 sections · 77 notes"}, {"id": "antigone", "title": "Antigone", "sub": "", "author": "Sophocles", "year": "c. 441 BC", "icon": "mask", "stats": "13 sections · 740 notes"}]</script>
 <script id="data" type="application/json"></script>
 <script>
 (async function(){
@@ -345,6 +354,7 @@ const META = D.meta || {};
 const CH = D.chapters, CM = D.commentary, PEOPLE = D.characters||[], MV = D.movements;
 const byId = Object.fromEntries(CH.map((c,i)=>[c.id,i]));
 const TABS = META.tabs || ['The Voyage','The Crew','The Loom'];
+document.body.classList.toggle('dense', !!META.dense);
 document.querySelectorAll('.tabs [role=tab]').forEach((b,i)=>{ const t=TABS[i]||''; b.innerHTML=t.startsWith('The ')?'<span class="long">The </span>'+esc(t.slice(4)):esc(t); if(i===1&&!PEOPLE.length) b.style.display='none'; });
 function fmt(text){
   // escape, then resolve [[...]] cross-references and *italics*
@@ -354,6 +364,8 @@ function fmt(text){
     const c=CH[byId[id]]; const lab=label||((ref(c)?ref(c)+', ':'')+c.title);
     return '<a class="xref" href="#'+id+'" data-go="'+id+'"'+(q?' data-q="'+q.replace(/"/g,'&quot;')+'"':'')+'>'+lab+'</a>';
   });
+  h=h.replace(/(^|[\s(“‘"'—])_([^_<>]{1,90}?)_(?=[\s.,;:!?)”’"'—]|$)/g,'$1<em>$2</em>');
+  h=h.replace(/[\u0370-\u03FF\u1F00-\u1FFF][\u0370-\u03FF\u1F00-\u1FFFʼ’ ]*[\u0370-\u03FF\u1F00-\u1FFFʼ’]|[\u0370-\u03FF\u1F00-\u1FFF]/g,m=>'<span class="grk" lang="grc">'+m+'</span>');
   return h;
 }
 
@@ -435,7 +447,7 @@ function renderChapter(id){
     const verse = c.id==='extracts' || c.id==='etymology' || /\n/.test(r.raw);
     h+='<div class="row"><p'+(verse?' class="verse"':'')+'>'+r.html+'</p>';
     if(r.notes.length){
-      h+='<aside class="notes">'+r.notes.map(x=>'<div class="note" data-n="'+x.n+'"><span class="q">'+x.n+' · “'+esc((x.quote.length>52?x.quote.slice(0,50)+'…':x.quote).replace(/_/g,''))+'”</span>'+fmt(x.note)+'</div>').join('')+'</aside>';
+      h+='<aside class="notes">'+r.notes.map(x=>'<div class="note" data-n="'+x.n+'"><div class="ni"><span class="q">'+x.n+' · “'+esc((x.quote.length>52?x.quote.slice(0,50)+'…':x.quote).replace(/_/g,''))+'”</span>'+fmt(x.note)+'</div></div>').join('')+'</aside>';
     }
     h+='</div>';
   });
@@ -464,13 +476,14 @@ function renderChapter(id){
     a.addEventListener('focus',()=>hot(true)); a.addEventListener('blur',()=>hot(false));
     const toggle=()=>{
       const marginVisible = window.innerWidth>1180;
-      if(marginVisible){ const m=v.querySelector('.notes .note[data-n="'+n+'"]'); if(m) m.scrollIntoView({block:'nearest'}); return; }
+      if(marginVisible){ const m=v.querySelector('.notes .note[data-n="'+n+'"]'); if(m){ if(META.dense){ const was=m.classList.contains('pin'); v.querySelectorAll('.note.pin').forEach(x=>x.classList.remove('pin')); m.classList.toggle('pin',!was); } m.scrollIntoView({block:'nearest'}); } return; }
       const note=r_notes[n]; if(!note) return;
       if(a.classList.contains('open')){ closeSheet(); return; }
       openSheet(a, note);
     };
     a.addEventListener('click',toggle); a.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle()}});
   });
+  if(META.dense) v.querySelectorAll('.notes .note').forEach(nt=>nt.addEventListener('click',e=>{ if(e.target.closest('a')) return; const was=nt.classList.contains('pin'); v.querySelectorAll('.note.pin').forEach(x=>x.classList.remove('pin')); nt.classList.toggle('pin',!was); }));
   v.querySelectorAll('.note:not(.solo)').forEach(nt=>{
     const n=nt.dataset.n;
     nt.addEventListener('mouseenter',()=>v.querySelectorAll('[data-n="'+n+'"]').forEach(x=>x.classList.add('hot')));

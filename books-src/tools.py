@@ -6,6 +6,9 @@
   mksections <book> <key>              build chapters_<key>.json from raw + sections_<key>.json (run after writing sections)
   dump <book> <id> [<id> ...]          numbered paragraphs of finished sections
   verify <book> <commentary file> [--allow id,id]   check quotes are verbatim and link targets exist
+  greek <book> <from> <to>             the Greek text by standard line number (books that have greek.json)
+  notes <book> <id>                    the notes a section already has
+  verifydense <book> <file>            check a dense-notes file: verbatim quotes, no overlaps, Greek words really in the Greek text
 """
 import json, sys, os, re, glob
 R = os.path.dirname(os.path.abspath(__file__))
@@ -20,6 +23,14 @@ def chapters(book):
 def rawfile(book, key): return f'{R}/{book}/raw.json' if key == '-' else f'{R}/{book}/raw_{key}.json'
 
 def show(p): return p.replace('\n', '\n      ')
+
+def gnorm(w):
+    import unicodedata
+    w = unicodedata.normalize('NFD', w)
+    w = ''.join(ch for ch in w if not unicodedata.combining(ch)).lower().replace('ς', 'σ')
+    return w
+GREEK_RE = r'[Ͱ-Ͽἀ-῿]+'
+
 
 cmd = sys.argv[1] if len(sys.argv) > 1 else ''
 if cmd == 'example':
@@ -79,6 +90,43 @@ elif cmd == 'verify':
             if r not in chs and r not in allow: print('BAD LINK TARGET', cid, r); bad += 1
             if r == cid: print('SELF LINK', cid); bad += 1
         print(f"{cid:6} essay {len(e.get('essay','').split()):4} words, {len(e.get('annotations',[]))} notes, {len(e.get('links',[]))} links")
+    print('sections', len(data), 'bad', bad)
+elif cmd == 'greek':
+    g = json.load(open(f'{R}/{sys.argv[2]}/greek.json')); a, b = int(sys.argv[3]), int(sys.argv[4]); last = None
+    for l in g:
+        m = re.match(r'\d+', l['n'])
+        if not m or not (a <= int(m.group(0)) <= b): continue
+        if l['sp'] != last: print(f"   — {l['sp']} —"); last = l['sp']
+        print(f"{l['n']:>5}  {l['t']}")
+elif cmd == 'notes':
+    for f in sorted(glob.glob(f'{R}/{sys.argv[2]}/commentary_*.json')):
+        e = json.load(open(f)).get(sys.argv[3])
+        if e:
+            for a in e['annotations']: print(f"QUOTE: {a['quote']}\nNOTE:  {a['note']}\n")
+elif cmd == 'verifydense':
+    book, f = sys.argv[2], sys.argv[3]
+    chs = {c['id']: c for c in chapters(book)}
+    gw = set()
+    for l in json.load(open(f'{R}/{book}/greek.json')): gw.update(gnorm(w) for w in re.findall(GREEK_RE, l['t']))
+    data = json.load(open(f if os.path.isabs(f) else f'{R}/{book}/{f}'))
+    bad = 0
+    for cid, notes in data.items():
+        if cid not in chs: print('UNKNOWN SECTION', cid); bad += 1; continue
+        spans = {}; ng = 0
+        for a in notes:
+            q = a['quote']; hit = [(i, p.find(q)) for i, p in enumerate(chs[cid]['paras']) if q in p]
+            if not hit: print('QUOTE NOT VERBATIM IN ONE PARAGRAPH', cid, repr(q[:70])); bad += 1; continue
+            i, k = hit[0]
+            for (s0, e0, q0) in spans.get(i, []):
+                if k < e0 and s0 < k + len(q): print('OVERLAPPING QUOTES', cid, repr(q[:40]), '<->', repr(q0[:40])); bad += 1
+            spans.setdefault(i, []).append((k, k + len(q), q))
+            words = re.findall(GREEK_RE, a['note']); ng += bool(words)
+            for w in words:
+                if gnorm(w) not in gw: print('GREEK WORD NOT IN THE PLAY', cid, w, '| in note on', repr(q[:40])); bad += 1
+            for r in re.findall(r'\[\[([a-z0-9]+)', a['note']):
+                if r not in chs: print('BAD LINK TARGET', cid, r); bad += 1
+        lines = sum(p.count('\n') for p in chs[cid]['paras'])
+        print(f"{cid:4} {len(notes):3} notes over {lines} verse lines; {ng} use Greek; mean note {sum(len(a['note'].split()) for a in notes)//max(1,len(notes))} words")
     print('sections', len(data), 'bad', bad)
 else:
     print(__doc__)
