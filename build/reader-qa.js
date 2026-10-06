@@ -4,6 +4,10 @@ window.readerQA=()=>{
   const errors=[],report=[],start={id:R.id,anchor:R.anchor};
   const assert=(ok,message)=>{if(!ok)errors.push(message)};
   const candidates=[...new Set([CH[0].id,CH.at(-1).id,...MV.flatMap(m=>[CH[m.from].id,CH[m.to].id]),CH.reduce((a,c)=>c.paras.join('').length>a.paras.join('').length?c:a).id,...Object.keys(D.audio||{})])];
+  go('cover',false);
+  assert(!!$('#voyage .work-introduction'),'introduction missing');
+  assert(!$('#menu')&&!$('#book-title'),'redundant masthead controls');
+  assert(!!$('#brand svg'),'whale logo missing');
   for(const id of candidates){
     go(id,false,null,0);
     const win=$('#folio-window').getBoundingClientRect(),flow=$('#folio-flow');
@@ -26,6 +30,12 @@ window.readerQA=()=>{
     });
     assert(!clipped,id+': '+clipped+' vertically clipped text samples');
     assert(!unreachable,id+': '+unreachable+' unreachable text samples');
+    assert(!$('#voyage .chhead'),'chapter heading remains');
+    assert($('#resource-panel').inert&&$('#resources-toggle').getAttribute('aria-expanded')==='false','resources must start closed');
+    const person=$('#folio-flow .person-reference');
+    if(person){person.click();assert(R.mode==='person'&&!!$('#dock-content .person-role'),id+': character reminder');$('#dock-content .notes-back').click();assert(R.mode==='notes',id+': return to notes')}
+    const annotatedPerson=$('#folio-flow .ann .person-reference');
+    if(annotatedPerson){annotatedPerson.click();assert(R.mode==='person',id+': character inside annotation');annotatedPerson.closest('.ann').querySelector('sup').click();assert(R.mode==='notes',id+': separate passage action')}
     const pageCount=R.pages;
     setPage(pageCount-1,false);
     assert(R.page===pageCount-1,id+': last page unavailable');

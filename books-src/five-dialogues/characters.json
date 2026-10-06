@@ -5,7 +5,10 @@
   "role": "Of Athens; about seventy",
   "first": "eu1",
   "desc": "A stonecutter’s son who has spent his life in the marketplace asking people what they mean. He claims to know nothing, charges no fee, writes nothing down, and is about to be tried for impiety and corrupting the young.",
-  "why": "Everything here is Plato’s Socrates, written after his death by a man who loved him. I try to keep both facts in mind: the arguments are real arguments, and the portrait is an act of devotion."
+  "why": "Everything here is Plato’s Socrates, written after his death by a man who loved him. I try to keep both facts in mind: the arguments are real arguments, and the portrait is an act of devotion.",
+  "aliases": [
+   "Socrates"
+  ]
  },
  {
   "group": "The man on trial",
@@ -15,7 +18,10 @@
   "in_": "ap",
   "desc": "A young poet, little known, who lodged the indictment. Socrates cross-examines him in court and ties him in knots within a page.",
   "why": "He is made to look a fool, and I think too easily. The real charge was never his to defend.",
-  "first": "ap3"
+  "first": "ap3",
+  "aliases": [
+   "Meletus"
+  ]
  },
  {
   "group": "The man on trial",
@@ -25,7 +31,10 @@
   "in_": "me",
   "desc": "He appears in person only in the Meno, where he warns Socrates to be careful how he speaks of Athens’s great men. In the Apology he is a name on the indictment.",
   "why": "The Meno lets us watch the trial being decided years early, in one offended exit.",
-  "first": "me7"
+  "first": "me7",
+  "aliases": [
+   "Anytus"
+  ]
  },
  {
   "group": "The man on trial",
@@ -35,7 +44,12 @@
   "in_": "ap",
   "desc": "Chaerephon asked the oracle whether anyone was wiser than Socrates, and was told no one. Socrates says his whole way of life is an attempt to prove the god wrong.",
   "why": "It is either the most honest account of a vocation I know or a superb piece of courtroom strategy. Possibly both.",
-  "first": "ap2"
+  "first": "ap2",
+  "aliases": [
+   "Chaerephon and the oracle",
+   "Chaerephon",
+   "the oracle"
+  ]
  },
  {
   "group": "The ones he questions",
@@ -43,7 +57,10 @@
   "role": "A seer, prosecuting his own father",
   "first": "eu1",
   "desc": "He is on his way to charge his father with murder and is entirely sure the gods approve. Socrates asks him what piety is, since he must know.",
-  "why": "He is not stupid, only certain, and the dialogue is about what certainty costs."
+  "why": "He is not stupid, only certain, and the dialogue is about what certainty costs.",
+  "aliases": [
+   "Euthyphro"
+  ]
  },
  {
   "group": "The ones he questions",
@@ -51,7 +68,10 @@
   "role": "A young Thessalian aristocrat, pupil of Gorgias",
   "first": "me1",
   "desc": "Rich, handsome, used to having speeches ready. He opens by asking whether virtue can be taught and is stopped by the prior question of what it is.",
-  "why": "He gives the book its best image of what Socrates does to people: the torpedo fish that numbs whatever touches it."
+  "why": "He gives the book its best image of what Socrates does to people: the torpedo fish that numbs whatever touches it.",
+  "aliases": [
+   "Meno"
+  ]
  },
  {
   "group": "The ones he questions",
@@ -61,7 +81,11 @@
   "in_": "me",
   "desc": "Called over to work a geometry problem he has never been taught. He gets it wrong twice, confidently, and then right.",
   "why": "The demonstration is meant to prove we are born knowing. Read the questions closely and decide how much the boy finds for himself.",
-  "first": "me5"
+  "first": "me5",
+  "aliases": [
+   "The slave boy",
+   "SLAVE"
+  ]
  },
  {
   "group": "The friends",
@@ -69,7 +93,10 @@
   "role": "An old friend, of the same deme, and rich",
   "first": "cr1",
   "desc": "He has bribed the guard and arranged everything for an escape to Thessaly. He is at the trial, at the prison before dawn, and at the end.",
-  "why": "He argues from love and from what people will say, and neither is contemptible. He is also the one who closes Socrates’s eyes."
+  "why": "He argues from love and from what people will say, and neither is contemptible. He is also the one who closes Socrates’s eyes.",
+  "aliases": [
+   "Crito"
+  ]
  },
  {
   "group": "The friends",
@@ -77,7 +104,10 @@
   "role": "Of Elis; the narrator of the last day",
   "first": "pha1",
   "desc": "He was there, and some time afterwards tells the whole day to Echecrates in another city.",
-  "why": "The frame matters. We are hearing a memory being handed on, and twice the listener interrupts because he cannot bear the argument to fail."
+  "why": "The frame matters. We are hearing a memory being handed on, and twice the listener interrupts because he cannot bear the argument to fail.",
+  "aliases": [
+   "Phaedo"
+  ]
  },
  {
   "group": "The friends",
@@ -85,7 +115,10 @@
   "role": "A Pythagorean of Phlius; the listener",
   "first": "pha1",
   "desc": "He asks Phaedo to tell him everything that was said and done.",
-  "why": "He stands where we stand."
+  "why": "He stands where we stand.",
+  "aliases": [
+   "Echecrates"
+  ]
  },
  {
   "group": "The friends",
@@ -95,7 +128,12 @@
   "in_": "pha",
   "desc": "They do most of the arguing on the last day. Each raises an objection strong enough that the room goes silent.",
   "why": "They are the reason the Phaedo is philosophy and not consolation. Socrates is delighted to be opposed.",
-  "first": "pha1"
+  "first": "pha1",
+  "aliases": [
+   "Simmias and Cebes",
+   "Simmias",
+   "Cebes"
+  ]
  },
  {
   "group": "The friends",
@@ -105,7 +143,10 @@
   "in_": "pha",
   "desc": "She is at the prison with their youngest child when the friends arrive, and is sent home.",
   "why": "She gets three sentences. I notice how quickly the dialogue wants her out of the room.",
-  "first": "pha1"
+  "first": "pha1",
+  "aliases": [
+   "Xanthippe"
+  ]
  },
  {
   "group": "Athens",
@@ -115,7 +156,10 @@
   "in_": "cr",
   "desc": "In the Crito Socrates imagines the Laws standing in the doorway and asking what he thinks he is doing.",
   "why": "It is the argument that kept him in the cell. I find it less airtight than he does and the commentary says where.",
-  "first": "cr3"
+  "first": "cr3",
+  "aliases": [
+   "The Laws"
+  ]
  },
  {
   "group": "Athens",
@@ -125,6 +169,9 @@
   "in_": "phb",
   "desc": "He comes to say it is time, calls Socrates the noblest and gentlest man who ever came there, and bursts into tears.",
   "why": "The one judgement on Socrates in these dialogues from someone with nothing to gain.",
-  "first": "phb7"
+  "first": "phb7",
+  "aliases": [
+   "The jailer"
+  ]
  }
 ]

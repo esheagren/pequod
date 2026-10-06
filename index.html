@@ -276,14 +276,18 @@ body.dense .note.pin .ni{border-left-color:var(--accent)}
 [hidden]{display:none!important}
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#19211F;--desk:#101614;--paper-shadow:rgba(0,0,0,.35)}}
 :root[data-theme="dark"]{--paper:#19211F;--desk:#101614;--paper-shadow:rgba(0,0,0,.35)}
-.chapter-rail,.resource-toggle,.book-title{display:none}
+.chapter-rail,.resource-toggle,.tabs{display:none}
+.pequod-logo{display:block;width:32px;height:32px}
+.mast{align-items:center}
+body.on-reader .resource-toggle{display:grid;place-items:center;width:34px;height:34px;flex:none;color:var(--ink2);border-radius:4px}
+.resource-toggle:hover{background:var(--paper)}
+.resource-toggle svg{width:23px;height:23px}
+.resource-toggle[aria-expanded="true"] .expansion-arrow{transform:translateX(21px) scaleX(-1)}
 body.on-reader{overflow:hidden;background:var(--desk)}
 body.on-reader .app{display:block;height:100dvh;min-height:0}
 body.on-reader .mast{align-items:center;gap:1rem;padding:.45rem 1rem;position:relative;min-height:3.2rem;background:var(--desk)}
 body.on-reader .mast h1{flex:none;font-size:1rem}
 body.on-reader .tabs{display:none}
-body.on-reader .menu{display:block;font-size:.85rem;border:0;padding:.3rem}
-body.on-reader .book-title{display:block;font-family:var(--mono);font-size:.62rem;color:var(--ink2);white-space:nowrap;max-width:10rem;overflow:hidden;text-overflow:ellipsis}
 body.on-reader .chapter-rail{display:flex;align-items:center;gap:1.3rem;flex:1;min-width:0;overflow-x:auto;scrollbar-width:none;padding:.15rem .35rem}
 .rail-group{display:flex;align-items:center;gap:.1rem;flex:none}
 .rail-label{font-family:var(--mono);font-size:.58rem;letter-spacing:.09em;text-transform:uppercase;color:var(--ink2);white-space:nowrap;margin-right:.6rem}
@@ -297,15 +301,13 @@ body.on-reader #view-voyage,body.on-reader #voyage{height:100%}
 body.on-reader .chart{position:fixed;top:var(--mast-h);left:0;width:min(24rem,88vw);height:calc(100dvh - var(--mast-h));transform:translateX(-105%);z-index:35;border-right:1px solid var(--rule);padding:1rem 0 3rem}
 body.on-reader .chart.open{transform:none;box-shadow:12px 0 50px var(--paper-shadow)}
 body.on-reader .scrim{position:fixed;inset:var(--mast-h) 0 0;z-index:34;background:rgba(0,0,0,.3);display:none}
-body.on-reader .scrim.on{display:block}
-.reader-layout{height:100%;display:grid;grid-template-columns:minmax(0,4fr) minmax(230px,1fr)}
+body.on-reader .scrim.on{display:none}
+@media(max-width:760px){body.on-reader .scrim.on{display:block}}
+.reader-layout{height:100%;display:grid;grid-template-columns:minmax(0,1fr) 0%;transition:grid-template-columns .3s ease}
+.reader-layout.resources-open{grid-template-columns:minmax(0,1fr) 20%}
 .reader-layout .reading{width:100%;max-width:none;min-width:0;min-height:0;padding:1.4rem 2rem 0;display:grid;grid-template-rows:minmax(0,1fr) minmax(145px,20%);gap:1.2rem;margin:0}
 .book-surface{background:var(--paper);box-shadow:0 12px 45px var(--paper-shadow),3px 3px 0 var(--rule),6px 6px 0 var(--paper);position:relative;min-height:0;display:flex;flex-direction:column;padding:1.5rem 3.8rem .7rem;border-radius:2px 5px 5px 2px}
 .book-surface::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:35px;transform:translateX(-50%);background:linear-gradient(90deg,transparent,rgba(0,0,0,.045),transparent);pointer-events:none}
-.book-surface .chhead{margin:0 0 1.3rem;position:relative;flex:none;display:flex;justify-content:space-between;align-items:baseline;gap:1.5rem}
-.book-surface .chhead .kicker{font-size:.58rem;letter-spacing:.12em;gap:.6rem;display:block}
-.book-surface .chhead h2{font-size:clamp(1.4rem,2.25vw,2.25rem);margin:.3rem 0 0;line-height:1.15}
-.book-surface .chhead .listen{white-space:nowrap;font-size:.6rem;margin:0}
 .folio-window{min-height:0;flex:1;overflow:hidden;position:relative}
 .folio-flow{height:100%;column-count:2;column-gap:4rem;column-fill:auto;transition:transform .3s ease;line-height:1.8;font-size:clamp(16px,1.2vw,20px);will-change:transform}
 .folio-flow .row{display:block;break-inside:auto}
@@ -337,13 +339,15 @@ body.on-reader .scrim.on{display:block}
 .dock-content .threads{max-width:none;margin:.8rem 0 0;padding:.7rem 0}
 .dock-content .threads li{grid-template-columns:1fr;gap:.2rem;font-size:.82rem}
 .dock-empty{color:var(--ink3);font-style:italic}
-.resource-panel{min-width:0;overflow:auto;border-left:1px solid var(--rule);padding:1.5rem 1.2rem 2rem;background:var(--desk);scrollbar-width:thin}
+.resource-panel{min-width:0;overflow:auto;padding:0;background:var(--desk);scrollbar-width:thin;visibility:hidden;opacity:0;transition:opacity .2s}
+.resource-panel.open{visibility:visible;opacity:1;border-left:1px solid var(--rule)}
+.resource-inner{padding:1.5rem 1.2rem 2rem}
 .resource-panel .eyebrow{font-family:var(--mono);font-size:.56rem;letter-spacing:.16em;color:var(--ink3);text-transform:uppercase}
 .resource-panel h2{font-family:var(--display);font-weight:300;font-size:1.6rem;line-height:1.15;margin:.4rem 0 .2rem}
 .resource-panel .byline{color:var(--ink3);font-size:.75rem;margin:0 0 1.5rem}
-.resource-panel>details{border-top:1px solid var(--rule);padding:.8rem 0}
+.resource-inner>details{border-top:1px solid var(--rule);padding:.8rem 0}
 .resource-panel summary{cursor:pointer;list-style:none;color:var(--ink2)}
-.resource-panel>details>summary{font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;display:flex;justify-content:space-between}
+.resource-inner>details>summary{font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;display:flex;justify-content:space-between}
 .resource-panel summary::after{content:"+";color:var(--ink3)}
 .resource-panel details[open]>summary::after{content:"−"}
 .resource-panel p{font-size:.78rem;color:var(--ink2);line-height:1.65;margin:.7rem 0}
@@ -358,29 +362,23 @@ body.on-reader .scrim.on{display:block}
 body.on-reader .sheet,body.on-reader .sheet-scrim{display:none}
 @media(min-width:1900px){.reader-layout{max-width:1900px;margin:auto;border-right:1px solid var(--rule)}.reader-layout .reading{padding:2rem 3rem 0}.book-surface{padding:2rem 4.8rem 1rem}}
 @media(max-width:1100px){
-  .reader-layout{grid-template-columns:minmax(0,3fr) minmax(210px,1fr)}
+  .reader-layout.resources-open{grid-template-columns:minmax(0,1fr) 26%}
   .reader-layout .reading{padding:1rem 1.2rem 0;gap:1rem}
   .book-surface{padding:1.3rem 3rem .7rem}
   .book-surface::before{display:none}
   .folio-flow{column-count:1;font-size:17px}
   .dock-note{grid-template-columns:1fr;gap:.55rem}
   .dock-note blockquote{font-size:.72rem}
-  body.on-reader .book-title{display:none}
 }
 @media(max-width:760px){
-  .reader-layout{grid-template-columns:minmax(0,1fr)}
+  .reader-layout,.reader-layout.resources-open{grid-template-columns:minmax(0,1fr) 0%}
   .reader-layout .reading{padding:.75rem .75rem 0;gap:.75rem;grid-template-rows:minmax(0,1fr) minmax(150px,23%)}
   .book-surface{padding:1rem 2.2rem .6rem}
-  .book-surface .chhead{margin-bottom:1rem}
-  .book-surface .chhead h2{font-size:1.45rem}
-  .book-surface .chhead .listen{font-size:0}
-  .book-surface .chhead .listen::before{content:"▶";font-size:.8rem}
   .folio-flow{font-size:16px;line-height:1.8;column-count:1}
   .page-turn{width:1.7rem;font-size:1.4rem}.page-turn.prev{left:.1rem}.page-turn.next{right:.1rem}
   .folio-footer{font-size:.52rem;gap:.4rem}.folio-footer .reading-hint{display:none}
-  .resource-panel{display:none;position:fixed;inset:var(--mast-h) 0 0 auto;width:min(330px,90vw);z-index:36;box-shadow:-20px 0 50px var(--paper-shadow)}
-  .resource-panel.open{display:block}
-  body.on-reader .resource-toggle{display:block;font-family:var(--mono);font-size:.58rem;color:var(--ink2);flex:none}
+  .resource-panel{position:fixed;transform:translateX(100%);transition:transform .3s ease,opacity .2s;inset:var(--mast-h) 0 0 auto;width:min(330px,90vw);z-index:36;box-shadow:-20px 0 50px var(--paper-shadow)}
+  .resource-panel.open{transform:none}
   body.on-reader .mast{gap:.6rem;padding:.3rem .7rem;flex-wrap:nowrap}
   body.on-reader .mast h1{font-size:.9rem;flex:none}
   body.on-reader .chapter-rail{gap:.8rem}
@@ -388,7 +386,41 @@ body.on-reader .sheet,body.on-reader .sheet-scrim{display:none}
   .dock-toolbar{gap:.7rem;font-size:.58rem}.note-picker select{max-width:6.5rem}
   .dock-note{gap:.45rem}.dock-content{font-size:.8rem}
 }
-@media(max-height:560px){.reader-layout .reading{grid-template-rows:minmax(0,1fr) minmax(95px,22%);padding-top:.5rem;gap:.5rem}.book-surface{padding-top:.7rem}.book-surface .chhead{margin-bottom:.7rem}.book-surface .chhead h2{font-size:1.25rem}}
+
+/* Two faces of a turning leaf, hinged at the book's gutter. */
+.paper-turn{position:absolute;inset:0;perspective:1800px;z-index:4;pointer-events:none}
+.paper-leaf{position:absolute;top:0;height:100%;transform-style:preserve-3d;will-change:transform}
+.paper-face{position:absolute;inset:0;overflow:hidden;backface-visibility:hidden;background:var(--paper)}
+.paper-back{transform:rotateY(180deg)}
+.paper-face::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.12),transparent 18%,rgba(255,255,255,.07) 75%,rgba(0,0,0,.025));box-shadow:inset 0 0 1px rgba(0,0,0,.12)}
+.paper-back::after{background:linear-gradient(270deg,rgba(0,0,0,.15),transparent 22%)}
+.paper-copy.book-surface{position:absolute;top:0;margin:0;box-shadow:none;flex:none}
+.paper-still{right:auto;z-index:0}
+.folio-footer .listen{color:var(--accent);font:inherit;white-space:nowrap}
+.person-reference{font:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;display:inline;padding:0;text-align:inherit;text-decoration:underline dotted;text-decoration-color:color-mix(in srgb,var(--ink3) 45%,transparent);text-underline-offset:.18em}
+.person-reference:hover,.person-reference.active{color:var(--line);text-decoration-color:var(--line)}
+.character-note h3{font-family:var(--display);font-weight:400;font-size:1.25rem;margin:0 0 .2rem}
+.character-note .person-role{color:var(--ink2)}
+.character-note details{font-size:.8rem;color:var(--ink2);margin:.6rem 0}
+.character-note summary{cursor:pointer;color:var(--ink3)}
+.notes-back{font-family:var(--mono);font-size:.58rem;color:var(--ink3);margin-bottom:.5rem}
+.resource-people{list-style:none;padding:0;margin:0}
+.resource-people button{font-size:.85rem;padding:.3rem 0;text-align:left;color:var(--ink2)}
+.work-introduction{max-width:44rem;margin:1.5rem auto 3rem;padding:0 1rem}
+.work-introduction h2{font-family:var(--display);font-size:clamp(2.4rem,6vw,4rem);font-weight:300;line-height:1.1;margin:.4rem 0 .7rem}
+.work-introduction .intro-byline{font-family:var(--mono);font-size:.65rem;letter-spacing:.08em;color:var(--ink3)}
+.work-introduction .intro-context{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin:2rem 0 1.3rem}
+.work-introduction h3{font-family:var(--mono);font-size:.63rem;letter-spacing:.09em;text-transform:uppercase;font-weight:400;color:var(--ink3);margin:0 0 .7rem}
+.work-introduction p{font-size:.94rem;line-height:1.8;color:var(--ink2);margin:0 0 1rem}
+.work-introduction .intro-enter{margin:1.5rem 0 0;font-family:var(--mono);font-size:.75rem;color:var(--accent);border-bottom:1px solid var(--line);padding:.4rem 0}
+.work-introduction .intro-start{margin-left:1.4rem;font-family:var(--mono);font-size:.62rem;color:var(--ink3)}
+.work-introduction .intro-sources{margin-top:2rem;font-size:.63rem;color:var(--ink3)}
+.intro-sources a{color:var(--ink3);text-decoration:none;border-bottom:1px dotted var(--rule);margin-right:1rem}
+@media(max-width:760px){.work-introduction{margin-top:.7rem}.work-introduction .intro-context{grid-template-columns:1fr;gap:.8rem;margin:1.5rem 0}.work-introduction p{font-size:.9rem}.work-introduction .intro-enter{margin-top:.7rem}.pequod-logo{width:28px;height:28px}}
+
+.resource-inner .find{margin:.7rem 0}
+.resource-inner input{width:100%;font-family:var(--mono);font-size:.7rem;padding:.5rem;border:1px solid var(--rule);background:var(--paper);color:var(--ink);border-radius:2px}
+.resource-inner .hits{margin:0}
 
 </style>
 </head>
@@ -397,11 +429,9 @@ body.on-reader .sheet,body.on-reader .sheet-scrim{display:none}
 
 <div class="app">
   <header class="mast">
-    <button class="menu" id="menu" aria-label="Open chapter list">☰</button>
-    <h1><a href="#home" id="brand">Pequod</a></h1>
-    <button class="book-title" id="book-title" aria-label="Book overview"></button>
+    <h1><a href="#home" id="brand" aria-label="Pequod home"><svg class="pequod-logo" viewBox="0 0 100 100" role="img" aria-label="Pequod"><rect width="100" height="100" rx="8" fill="#0C1218"/><g transform="translate(0,4)"><path fill="#E8E2CB" d="M10 40 Q9 30 22 29 L54 31 Q72 34 82 46 L90 36 Q96 40 95 47 Q97 54 91 59 L82 50 Q72 64 54 67 L22 69 Q9 68 10 58 Z"/><circle cx="24" cy="46" r="2.2" fill="#0C1218"/><path d="M17 61 Q26 55 36 60" stroke="#0C1218" stroke-width="1.4" fill="none" stroke-linecap="round"/></g><rect x="8" y="86" width="16" height="1.2" fill="#D9705E"/></svg></a></h1>
     <nav class="chapter-rail" id="chapter-rail" aria-label="Chapters and major sections"></nav>
-    <button class="resource-toggle" id="resources-toggle" aria-expanded="false">Resources</button>
+    <button class="resource-toggle" id="resources-toggle" aria-expanded="false" aria-controls="resource-panel" aria-label="Open resources" title="Open resources"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M16 4v16"/><path class="expansion-arrow" d="m12 9-3 3 3 3"/></svg></button>
     <nav class="tabs" role="tablist" aria-label="Sections">
       <button role="tab" data-tab="voyage" aria-selected="true"><span class="long">The </span>Voyage</button>
       <button role="tab" data-tab="crew" aria-selected="false"><span class="long">The </span>Crew</button>
@@ -452,7 +482,7 @@ function wireShelf(root, pick){
   root.querySelectorAll('[data-book]').forEach(b=>b.addEventListener('click',()=>pick(b.dataset.book)));
   const d=root.querySelector('[data-down]'); if(d) d.addEventListener('click',()=>root.querySelector('.shelf').scrollIntoView({behavior:'smooth'}));
 }
-const openBook = id => { location.href='?b='+encodeURIComponent(id)+'#read'; };
+const openBook = id => { location.href='?b='+encodeURIComponent(id)+'#cover'; };
 if(!BOOK){
   // No book chosen: this is the landing page. Old links (#ch36, #cover) predate the shelf and meant Moby-Dick.
   const h=location.hash.slice(1);
@@ -555,14 +585,12 @@ function wrapAnnotations(paras, anns){
 
 /* ---- chapter view ---- */
 /* Responsive pagination keeps the original paragraphs and annotation anchors intact. */
-const R={id:null,page:0,pages:1,stride:0,leaves:2,visible:[],selected:null,mode:'notes',anchor:null};
-let readerResize;
+const R={id:null,page:0,pages:1,stride:0,leaves:2,visible:[],selected:null,mode:'notes',person:null,anchor:null};
+let readerResize, folioObserver, paperTurn;
 
 function renderRail(){
   $('#chapter-rail').innerHTML=MV.map(m=>'<div class="rail-group"><button class="rail-label" data-chapter="'+CH[m.from].id+'">'+esc(m.name)+'</button>'+CH.slice(m.from,m.to+1).map(c=>'<button class="chapter-dot" data-chapter="'+c.id+'" title="'+esc(named(c))+'" aria-label="'+esc(named(c))+'"><i aria-hidden="true"></i></button>').join('')+'</div>').join('');
   $('#chapter-rail').querySelectorAll('[data-chapter]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.chapter)));
-  $('#book-title').textContent=META.title;
-  $('#book-title').addEventListener('click',()=>go('cover'));
 }
 function markRail(id){
   $('#chapter-rail').querySelectorAll('.chapter-dot').forEach(b=>{if(b.dataset.chapter===id)b.setAttribute('aria-current','location');else b.removeAttribute('aria-current')});
@@ -570,20 +598,66 @@ function markRail(id){
   if(dot){const rail=$('#chapter-rail');rail.scrollLeft=Math.max(0,dot.offsetLeft-rail.offsetLeft-rail.clientWidth/2)}
 }
 
-function contextHTML(){
-  const ctx=META.context||{};
-  const first=p=>(p.first||'').match(/^([a-z0-9]+)/)?.[1];
-  const source=s=>s?'<a class="context-source" href="'+esc(s.url)+'" target="_blank" rel="noopener noreferrer">'+esc(s.label)+' ↗</a>':'';
-  let h='<div class="eyebrow">Alongside the book</div><h2>'+esc(META.title)+'</h2><p class="byline">'+esc(META.author||'')+' · '+esc(META.year||'')+'</p>';
-  if(ctx.world)h+='<details><summary>The world of the work</summary><p>'+esc(ctx.world)+'</p>'+source(ctx.worldSource)+'</details>';
-  if(ctx.author)h+='<details><summary>About '+esc(META.author||'the author')+'</summary><p>'+esc(ctx.author)+'</p>'+source(ctx.authorSource)+'</details>';
-  if(PEOPLE.length){
-    h+='<details open><summary>Characters <span>'+PEOPLE.length+'</span></summary>';
-    h+=PEOPLE.map(p=>{const fid=first(p);return '<details class="character"><summary>'+esc(p.name)+'<span class="role">'+esc(p.role)+'</span></summary><p>'+esc(p.desc)+'</p><p>'+esc(p.why||'')+'</p>'+(byId[fid]!=null?'<button class="first-seen" data-go="'+fid+'">First appearance →</button>':'')+'</details>'}).join('');
-    h+='</details>';
+const PERSONS=[...PEOPLE,...(META.references||[])];
+const passageSearch={find:$('#chart .find'),hits:$('#hits')};
+function personAliases(){
+  const aliases=new Map();
+  PERSONS.forEach((p,index)=>(p.aliases||[p.name]).forEach(name=>{
+    const key=name.toLocaleLowerCase();
+    if(!aliases.has(key))aliases.set(key,index);else if(aliases.get(key)!==index)aliases.set(key,null);
+  }));
+  return aliases;
+}
+const PERSON_ALIASES=personAliases();
+function findPersonMentions(text){
+  const names=[...PERSON_ALIASES.keys()].filter(n=>PERSON_ALIASES.get(n)!=null).sort((a,b)=>b.length-a.length);
+  if(!names.length)return [];
+  const escapeRegex=s=>s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+  const pattern=new RegExp('(^|[^\\p{L}\\p{N}_])('+names.map(escapeRegex).join('|')+')(?=$|[^\\p{L}\\p{N}_])','giu');
+  const mentions=[];
+  for(const m of text.matchAll(pattern)){
+    const name=m[2],index=PERSON_ALIASES.get(name.toLocaleLowerCase());
+    // Generic cast roles are cues only when printed as speaker labels.
+    if(/^(guard|messenger|second messenger|priest|chorus|herdsman|jailer)$/i.test(name)&&name!==name.toUpperCase())continue;
+    mentions.push({start:m.index+m[1].length,end:m.index+m[1].length+name.length,index});
   }
-  h+='<details><summary>This edition &amp; reading guide</summary><div class="about-copy">'+$('#about').innerHTML+'</div><p>Turn pages with the arrows, or swipe across the text. The dots above jump to chapters and sections. Select an underlined passage to read its note below. Your place is remembered in this browser.</p><button class="panel-link" data-cover>Book overview →</button></details>';
-  return h;
+  return mentions;
+}
+function linkPeople(){
+  const root=$('#folio-flow'),walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT),nodes=[];
+  while(walker.nextNode()){const n=walker.currentNode;if(!n.parentElement.closest('sup'))nodes.push(n)}
+  nodes.forEach(node=>{
+    const matches=findPersonMentions(node.data);if(!matches.length)return;
+    const fragment=document.createDocumentFragment();let cursor=0;
+    matches.forEach(m=>{
+      fragment.append(document.createTextNode(node.data.slice(cursor,m.start)));
+      const button=document.createElement('button');button.className='person-reference';button.dataset.person=m.index;
+      button.textContent=node.data.slice(m.start,m.end);button.setAttribute('aria-label','About '+PERSONS[m.index].name);
+      fragment.append(button);cursor=m.end;
+    });
+    fragment.append(document.createTextNode(node.data.slice(cursor)));node.replaceWith(fragment);
+  });
+  // A name can occur inside a passage note; give each action its own focus target.
+  root.querySelectorAll('.ann').forEach(a=>{
+    if(!a.querySelector('.person-reference'))return;
+    a.removeAttribute('role');a.removeAttribute('aria-label');a.tabIndex=-1;
+    const walker=document.createTreeWalker(a,NodeFilter.SHOW_TEXT),texts=[];
+    while(walker.nextNode()){const n=walker.currentNode;if(!n.parentElement.closest('.person-reference,sup')&&n.data.trim())texts.push(n)}
+    texts.forEach(n=>{const span=document.createElement('span');span.className='annotation-trigger';span.setAttribute('role','button');span.tabIndex=0;span.setAttribute('aria-label','Note '+a.dataset.n);n.replaceWith(span);span.append(n)});
+    const sup=a.querySelector('sup');if(sup){sup.setAttribute('role','button');sup.tabIndex=0;sup.setAttribute('aria-label','Note '+a.dataset.n)}
+  });
+  root.querySelectorAll('[data-person]').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();showPerson(+b.dataset.person,b)}));
+}
+function showPerson(index,target=null){
+  if(!PERSONS[index])return;
+  const direct=target?.closest('.ann');
+  const note=direct?A.notes[direct.dataset.n]:null;
+  R.person={index,note};R.mode='person';updateDock();
+}
+function contextHTML(){
+  return '<div class="eyebrow">Reading companion</div><h2>'+esc(META.title)+'</h2><button class="panel-link" data-cover>Introduction →</button>'+
+    (PERSONS.length?'<details><summary>People in the work</summary><ul class="resource-people">'+PERSONS.map((p,i)=>'<li><button data-person="'+i+'">'+esc(p.name)+'</button></li>').join('')+'</ul></details>':'')+
+    '<details><summary>Find a passage</summary><div data-search-host></div></details><details><summary>This edition</summary><div class="about-copy">'+$('#about').innerHTML+'</div></details><p>Click a speaker or a person’s name for a reminder in Notes. Turn the page with the arrows or a swipe; the dots above jump between sections.</p>';
 }
 function chapterReadingHTML(id){
   const cm=CM[id]||{}, out=cm.links||[],inc=D.incoming[id]||[];
@@ -598,18 +672,23 @@ function chapterReadingHTML(id){
 
 function renderChapter(id, pageHint=null){
   const i=byId[id],c=CH[i],cm=CM[id]||{},m=mvOf(i),rows=wrapAnnotations(c.paras,cm.annotations||[]);
-  R.id=id;R.page=0;R.selected=null;R.mode='notes';R.anchor=null;
+  finishPaperTurn();
+  folioObserver?.disconnect();clearTimeout(readerResize);
+  R.id=id;R.page=0;R.selected=null;R.mode='notes';R.person=null;R.anchor=null;
   A.notes={};rows.forEach(r=>r.notes.forEach(n=>A.notes[n.n]=n));
-  $('#voyage').innerHTML='<div class="reader-layout"><article class="reading" aria-label="'+esc(c.title)+'"><div class="book-surface"><header class="chhead"><div><div class="kicker">'+esc(c.kicker||label(c))+' · '+esc(m?.name||'')+'</div><h2>'+esc(c.title)+'</h2></div>'+(D.audio?.[id]?'<button class="listen" data-listen>▶ listen &amp; follow</button>':'')+'</header><div class="folio-window" id="folio-window"><div class="folio-flow chbody" id="folio-flow">'+rows.map((r,pi)=>'<div class="row"><p data-para="'+pi+'"'+(/\n/.test(r.raw)||id==='extracts'||id==='etymology'?' class="verse"':'')+'>'+r.html+'</p></div>').join('')+'</div></div><button class="page-turn prev" id="turn-prev" aria-label="Previous page">‹</button><button class="page-turn next" id="turn-next" aria-label="Next page">›</button><footer class="folio-footer"><button data-cover>'+esc(META.title)+'</button><span class="reading-hint">← turn the page →</span><label class="page-count"><span id="page-label"></span> <select id="page-select" aria-label="Go to page"></select></label></footer></div><section class="notes-dock" aria-label="Notes and chapter reading"><div class="dock-toolbar" role="tablist" aria-label="Reading companion"><button role="tab" id="dock-notes" aria-selected="true" aria-controls="dock-content">Notes</button><button role="tab" id="dock-reading" aria-selected="false" aria-controls="dock-content">Chapter reading</button><div class="note-picker" id="note-picker"><span id="note-count"></span><select id="note-select" aria-label="Select a note on this page"></select></div></div><div class="dock-content" id="dock-content" role="tabpanel" tabindex="0"></div></section></article><aside class="resource-panel" id="resource-panel" aria-label="Resources">'+contextHTML()+'</aside></div>';
+  $('#voyage').innerHTML='<div class="reader-layout"><article class="reading" aria-label="'+esc(c.title)+'"><div class="book-surface"><div class="folio-window" id="folio-window"><div class="folio-flow chbody" id="folio-flow">'+rows.map((r,pi)=>'<div class="row"><p data-para="'+pi+'"'+(/\n/.test(r.raw)||id==='extracts'||id==='etymology'?' class="verse"':'')+'>'+r.html+'</p></div>').join('')+'</div></div><button class="page-turn prev" id="turn-prev" aria-label="Previous page">‹</button><button class="page-turn next" id="turn-next" aria-label="Next page">›</button><footer class="folio-footer"><button data-cover>'+esc(META.title)+'</button>'+(D.audio?.[id]?'<button class="listen" data-listen>▶ listen &amp; follow</button>':'')+'<span class="reading-hint">← turn the page →</span><label class="page-count"><span id="page-label"></span> <select id="page-select" aria-label="Go to page"></select></label></footer></div><section class="notes-dock" aria-label="Notes and chapter reading"><div class="dock-toolbar" role="tablist" aria-label="Reading companion"><button role="tab" id="dock-notes" aria-selected="true" aria-controls="dock-content">Notes</button><button role="tab" id="dock-reading" aria-selected="false" aria-controls="dock-content">Chapter reading</button><div class="note-picker" id="note-picker"><span id="note-count"></span><select id="note-select" aria-label="Select a note on this page"></select></div></div><div class="dock-content" id="dock-content" role="tabpanel" tabindex="0"></div></section></article><aside class="resource-panel" id="resource-panel" aria-label="Resources" aria-hidden="true" inert><div class="resource-inner">'+contextHTML()+'</div></aside></div>';
+  $('#resource-panel [data-search-host]').append(passageSearch.find,passageSearch.hits);
   $('#turn-prev').addEventListener('click',()=>turnPage(-1));$('#turn-next').addEventListener('click',()=>turnPage(1));
   $('#page-select').addEventListener('change',e=>setPage(+e.target.value));
   $('#note-select').addEventListener('change',e=>selectNote(+e.target.value));
   $('#dock-notes').addEventListener('click',()=>{R.mode='notes';updateDock()});
   $('#dock-reading').addEventListener('click',()=>{R.mode='reading';updateDock()});
   $('#voyage .dock-toolbar').addEventListener('keydown',e=>{if(e.target.matches('[role="tab"]')&&['ArrowLeft','ArrowRight'].includes(e.key)){e.preventDefault();e.stopPropagation();const next=e.target.id==='dock-notes'?$('#dock-reading'):$('#dock-notes');next.click();next.focus()}});
+  linkPeople();
+  $('#resource-panel').querySelectorAll('[data-person]').forEach(b=>b.addEventListener('click',()=>{showPerson(+b.dataset.person);setResources(false)}));
   $('#voyage').querySelectorAll('.ann').forEach(a=>{
     const activate=()=>{if(A.notes[a.dataset.n])selectNote(+a.dataset.n)};
-    a.addEventListener('click',activate);a.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();activate()}});
+    a.addEventListener('click',activate);a.addEventListener('keydown',e=>{if(!e.target.closest('.person-reference')&&(e.key==='Enter'||e.key===' ')){e.preventDefault();activate()}});
   });
   $('#voyage').querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.go)));
   $('#voyage').querySelectorAll('[data-cover]').forEach(b=>b.addEventListener('click',()=>go('cover')));
@@ -621,13 +700,21 @@ function renderChapter(id, pageHint=null){
   const saved=store.get('position',null);
   const anchor=pageHint==null&&saved?.id===id?saved:null;
   paginate(anchor,pageHint);
-  document.fonts.ready.then(()=>{if(R.id===id&&document.body.classList.contains('on-reader'))paginate(R.anchor||anchor,R.anchor?null:pageHint)});
+  if(document.fonts.status!=='loaded')document.fonts.ready.then(()=>{if(R.id===id&&document.body.classList.contains('on-reader'))paginate(R.anchor||anchor,R.anchor?null:pageHint)});
   markRail(id);
+  let width=$('#folio-window').clientWidth,height=$('#folio-window').clientHeight;
+  folioObserver=new ResizeObserver(()=>{
+    const win=$('#folio-window');if(!win||R.id!==id)return;if(win.clientWidth===width&&win.clientHeight===height)return;
+    width=win.clientWidth;height=win.clientHeight;
+    clearTimeout(readerResize);
+    readerResize=setTimeout(()=>{if(R.id===id&&document.body.classList.contains('on-reader'))paginate(R.anchor)},100);
+  });
+  folioObserver.observe($('#folio-window'));
 }
 
 function paginate(anchor=null,hint=null){
   const flow=$('#folio-flow'),win=$('#folio-window');if(!flow||!win.clientWidth||!win.clientHeight)return;
-  flow.getAnimations().forEach(a=>a.cancel());
+  finishPaperTurn();
   const style=getComputedStyle(flow),line=parseFloat(style.lineHeight);
   flow.style.height=Math.max(line,Math.floor(win.clientHeight/line)*line)+'px';
   R.stride=win.clientWidth+parseFloat(style.columnGap);R.leaves=+style.columnCount;
@@ -636,7 +723,9 @@ function paginate(anchor=null,hint=null){
   $('#page-select').innerHTML=Array.from({length:R.pages},(_,i)=>'<option value="'+i+'">'+(i*R.leaves+1)+(R.leaves>1?'–'+(i*R.leaves+R.leaves):'')+'</option>').join('');
   let page=hint==='end'?R.pages-1:typeof hint==='number'?hint:0;
   if(anchor){const p=flow.querySelector('[data-para="'+anchor.pi+'"]');if(p){const range=rangeFor(p,anchor.offset||0,(anchor.offset||0)+1);const rect=range?.getBoundingClientRect()||p.getClientRects()[0];if(rect)page=Math.floor((rect.left-win.getBoundingClientRect().left)/R.stride)}}
+  const companion={mode:R.mode,person:R.person,selected:R.selected};
   setPage(page,false);
+  R.mode=companion.mode;R.person=companion.person;if(R.visible.includes(companion.selected))R.selected=companion.selected;updateDock();
 }
 function visibleRect(rect){const win=$('#folio-window').getBoundingClientRect();return rect.width>0&&rect.right>win.left+1&&rect.left<win.right-1&&rect.bottom>win.top&&rect.top<win.bottom}
 function rememberPage(){
@@ -656,7 +745,45 @@ function rememberPage(){
     }
   }
 }
+function finishPaperTurn(){
+  if(!paperTurn)return;
+  const current=paperTurn;paperTurn=null;
+  current.animations.forEach(a=>a.cancel());current.layer.remove();
+}
+function capturePaper(){
+  finishPaperTurn();
+  if(!window.matchMedia('(prefers-reduced-motion: no-preference)').matches)return null;
+  const stage=$('#voyage .book-surface');if(!stage)return null;
+  const copy=stage.cloneNode(true),rect=stage.getBoundingClientRect();
+  copy.querySelectorAll('[id]').forEach(el=>el.removeAttribute('id'));
+  copy.querySelectorAll('button,select,a,.ann').forEach(el=>el.tabIndex=-1);
+  copy.classList.add('paper-copy');copy.style.width=rect.width+'px';copy.style.height=rect.height+'px';
+  copy.inert=true;copy.setAttribute('aria-hidden','true');
+  return {copy,width:rect.width,height:rect.height,leaves:R.leaves};
+}
+function flipPaper(outgoing,dir){
+  const incoming=capturePaper(),stage=$('#voyage .book-surface');if(!incoming||!stage)return;
+  const two=outgoing.leaves===2,w=outgoing.width,leafWidth=two?w/2:w;
+  const layer=document.createElement('div');layer.className='paper-turn';layer.inert=true;layer.setAttribute('aria-hidden','true');
+  const face=(copy,offset)=>{const host=document.createElement('div');host.className='paper-face';copy.style.left=(-offset)+'px';host.append(copy);return host};
+  if(two){const still=face(outgoing.copy.cloneNode(true),dir>0?0:w/2);still.classList.add('paper-still');still.style.width=leafWidth+'px';still.style.left=(dir>0?0:w/2)+'px';layer.append(still)}
+  const leaf=document.createElement('div');leaf.className='paper-leaf';leaf.style.width=leafWidth+'px';
+  leaf.style.left=(two&&dir>0?w/2:0)+'px';leaf.style.transformOrigin=dir>0?'left center':'right center';
+  const front=face(outgoing.copy,two&&dir>0?w/2:0);
+  const back=face(incoming.copy,two&&dir<0?w/2:0);back.classList.add('paper-back');
+  leaf.append(front,back);layer.append(leaf);stage.append(layer);
+  const duration=720;
+  const rotation=leaf.animate([{transform:'rotateY(0deg)'},{transform:'rotateY('+(-dir*88)+'deg) skewY('+(-dir*1.2)+'deg)',offset:.5},{transform:'rotateY('+(-dir*180)+'deg)'}],{duration,easing:'cubic-bezier(.32,.05,.2,1)',fill:'forwards'});
+  const animations=[rotation];
+  const still=layer.querySelector('.paper-still');if(still)animations.push(still.animate([{opacity:1,offset:0},{opacity:1,offset:.85},{opacity:0}],{duration,fill:'forwards'}));
+  animations.forEach(a=>a.finished.catch(()=>{}));
+  paperTurn={layer,animations};
+  rotation.finished.then(()=>{if(paperTurn?.layer===layer){paperTurn=null;layer.remove()}},()=>{});
+}
+
 function setPage(page,animate=true){
+  const oldPage=R.page;
+  const outgoing=animate&&page!==oldPage?capturePaper():null;
   R.page=Math.max(0,Math.min(R.pages-1,page));
   const flow=$('#folio-flow');if(!flow)return;
   flow.getAnimations().forEach(a=>a.cancel());
@@ -666,16 +793,18 @@ function setPage(page,animate=true){
   $('#page-select').value=String(R.page);$('#page-label').textContent='Page';
   const i=byId[R.id];$('#turn-prev').disabled=R.page===0&&i===0;$('#turn-next').disabled=R.page===R.pages-1&&i===CH.length-1;
   const visible=new Set();
-  $('#folio-flow').querySelectorAll('.ann').forEach(a=>{const shown=[...a.getClientRects()].some(visibleRect);a.tabIndex=shown?0:-1;if(shown)visible.add(+a.dataset.n)});
+  $('#folio-flow').querySelectorAll('.ann').forEach(a=>{const shown=[...a.getClientRects()].some(visibleRect);a.tabIndex=shown&&a.hasAttribute('role')?0:-1;a.querySelectorAll('.annotation-trigger,sup[role=button]').forEach(t=>t.tabIndex=shown?0:-1);if(shown)visible.add(+a.dataset.n)});
+  $('#folio-flow').querySelectorAll('.person-reference').forEach(b=>b.tabIndex=[...b.getClientRects()].some(visibleRect)?0:-1);
+  R.person=null;
   R.visible=[...visible];if(!R.visible.includes(R.selected))R.selected=R.visible[0]||null;
   R.mode='notes';updateDock();rememberPage();
   $('#page-select').title='Page '+(R.page*R.leaves+1)+' of '+R.pages*R.leaves+' in this section';
-  if(animate&&window.matchMedia('(prefers-reduced-motion: no-preference)').matches){flow.animate([{opacity:.4},{opacity:1}],{duration:320,easing:'ease-out'});}
+  if(outgoing&&R.page!==oldPage)flipPaper(outgoing,R.page>oldPage?1:-1);
 }
 function turnPage(dir){
   if(!document.body.classList.contains('on-reader'))return;
   if(R.page+dir>=0&&R.page+dir<R.pages){setPage(R.page+dir);return}
-  const next=byId[R.id]+dir;if(CH[next])go(CH[next].id,true,null,dir<0?'end':0);
+  const next=byId[R.id]+dir;if(CH[next]){const outgoing=capturePaper();go(CH[next].id,true,null,dir<0?'end':0);if(outgoing)flipPaper(outgoing,dir)}
 }
 function revealPassage(target,offset=0){
   const rect=rangeFor(target,offset,offset+1)?.getBoundingClientRect()||target.getClientRects()[0];if(!rect)return;
@@ -684,15 +813,31 @@ function revealPassage(target,offset=0){
 function selectNote(n){if(!A.notes[n])return;R.mode='notes';R.selected=n;updateDock();}
 function updateDock(){
   const host=$('#dock-content');if(!host)return;
-  $('#dock-notes').setAttribute('aria-selected',R.mode==='notes');$('#dock-reading').setAttribute('aria-selected',R.mode==='reading');
-  host.setAttribute('aria-labelledby',R.mode==='notes'?'dock-notes':'dock-reading');
+  $('#dock-notes').setAttribute('aria-selected',R.mode!=='reading');$('#dock-reading').setAttribute('aria-selected',R.mode==='reading');
+  host.setAttribute('aria-labelledby',R.mode==='reading'?'dock-reading':'dock-notes');
   $('#note-picker').hidden=R.mode!=='notes';$('#note-count').textContent=R.visible.length+' on this page';
   $('#note-select').innerHTML=R.visible.map(n=>'<option value="'+n+'">Note '+n+'</option>').join('');$('#note-select').hidden=!R.visible.length;$('#note-select').value=String(R.selected);
   $('#folio-flow').querySelectorAll('.ann').forEach(a=>a.classList.toggle('open',R.mode==='notes'&&+a.dataset.n===R.selected));
   const n=A.notes[R.selected];host.innerHTML=R.mode==='reading'?chapterReadingHTML(R.id):n?'<div class="dock-note"><blockquote>'+esc(n.quote.replace(/_/g,''))+'</blockquote><div class="note-prose">'+fmt(n.note)+'</div></div>':'<p class="dock-empty">No notes on this page. Keep reading, or open the chapter reading.</p>';
+  $('#folio-flow').querySelectorAll('[data-person]').forEach(b=>b.classList.toggle('active',R.mode==='person'&&+b.dataset.person===R.person?.index));
+  if(R.mode==='person'&&R.person){
+    const p=PERSONS[R.person.index],note=R.person.note;
+    host.innerHTML='<div class="character-note"><button class="notes-back">← Passage notes</button><h3>'+esc(p.name)+'</h3><p class="person-role">'+esc(p.reminder||p.role||'')+'</p>'+(note?'<div class="dock-note"><blockquote>'+esc(note.quote.replace(/_/g,''))+'</blockquote><div class="note-prose">'+fmt(note.note)+'</div></div>':'')+(p.desc||p.why?'<details><summary>More about '+esc(p.name)+'</summary><p>'+esc(p.desc||'')+'</p><p>'+esc(p.why||'')+'</p></details>':'')+'</div>';
+    host.querySelector('.notes-back').addEventListener('click',()=>{R.mode='notes';R.person=null;updateDock()});
+  }
   host.scrollTop=0;
 }
-function setResources(open){$('#resource-panel')?.classList.toggle('open',open);$('#resources-toggle').setAttribute('aria-expanded',String(open));$('#scrim').classList.toggle('on',open);}
+function setResources(open){
+  finishPaperTurn();
+  const panel=$('#resource-panel'),toggle=$('#resources-toggle');
+  panel?.classList.toggle('open',open);
+  panel?.closest('.reader-layout').classList.toggle('resources-open',open);
+  if(panel){if(!open&&panel.contains(document.activeElement))toggle.focus({preventScroll:true});panel.inert=!open;panel.setAttribute('aria-hidden',String(!open))}
+  toggle.setAttribute('aria-expanded',String(open));
+  toggle.setAttribute('aria-label',open?'Close resources':'Open resources');
+  toggle.title=open?'Close resources':'Open resources';
+  $('#scrim').classList.toggle('on',open);
+}
 $('#resources-toggle').addEventListener('click',()=>setResources(!$('#resource-panel')?.classList.contains('open')));
 window.addEventListener('resize',()=>{clearTimeout(readerResize);readerResize=setTimeout(()=>{if(document.body.classList.contains('on-reader'))paginate(R.anchor)},150)});
 
@@ -700,7 +845,7 @@ window.addEventListener('resize',()=>{clearTimeout(readerResize);readerResize=se
 /* ---- home: the shelf ---- */
 function renderHome(){
   document.body.classList.remove('has-audio'); $('#abar').classList.remove('on'); A.el.pause();
-  const v=$('#voyage'); v.innerHTML=shelfHTML(); wireShelf(v, id=>{ if(id===BOOK) go(byId[last]!=null?last:CH[0].id); else openBook(id); });
+  const v=$('#voyage'); v.innerHTML=shelfHTML(); wireShelf(v, id=>{ if(id===BOOK) go('cover'); else openBook(id); });
 }
 
 /* ---- cover: the wandering chart ---- */
@@ -781,20 +926,17 @@ function buildMap(){
   });
 }
 function renderCover(){
-  const lastC = last && byId[last]!=null ? CH[byId[last]] : null;
-  let h='<div class="cover" style="max-width:none"><div class="coverhead">';
-  h+='<div class="kicker">'+esc([META.author,META.year].filter(Boolean).join(' · '))+'</div>';
-  h+='<h2>'+esc(META.title||'')+(META.sub?';<br><em>'+esc(META.sub)+'</em>':'')+'</h2>'+(META.tagline?'<p class="by">'+esc(META.tagline)+'</p>':'');
-  if(META.coverIntro) h+='<p>'+esc(META.coverIntro)+'</p>';
-  h+= lastC ? '<button class="resume" data-go="'+lastC.id+'">resume at '+esc(named(lastC))+' →</button>' : '<button class="resume" data-go="'+CH[0].id+'">begin at the beginning →</button>';
-  h+='<div class="cm-legend">'+MV.map((m,i)=>'<span><i style="background:var(--m'+(i%7)+')"></i>'+esc(m.name)+'</span>').join('')+'<span style="margin-left:auto;color:var(--ink3)">arcs = cross-references in the notes</span></div>';
-  h+='</div>';
-  h+='<div class="cmap" id="cmap"></div>';
-  h+='</div>';
-  const v=$('#voyage'); v.innerHTML=h;
+  const ctx=META.context||{},lastC=last&&byId[last]!=null?CH[byId[last]]:null;
+  const source=s=>s?'<a href="'+esc(s.url)+'" target="_blank" rel="noopener noreferrer">'+esc(s.label)+' ↗</a>':'';
+  let h='<article class="work-introduction"><div class="intro-byline">'+esc([META.author,META.year].filter(Boolean).join(' · '))+'</div><h2>'+esc(META.title)+'</h2>';
+  h+='<div class="intro-context"><section><h3>The author</h3><p>'+esc(ctx.author||META.author||'')+'</p></section><section><h3>The world of the work</h3><p>'+esc(ctx.world||'')+'</p></section></div>';
+  if(ctx.importance)h+='<section><h3>Why it matters</h3>'+ctx.importance.split(/\n\n+/).map(p=>'<p>'+esc(p)+'</p>').join('')+'</section>';
+  h+='<button class="intro-enter" data-go="'+(lastC?.id||CH[0].id)+'">'+(lastC?'Continue reading':'Enter the work')+' →</button>'+(lastC?'<button class="intro-start" data-go="'+CH[0].id+'">Start from the beginning</button>':'');
+  h+='<div class="intro-sources">'+source(ctx.authorSource)+source(ctx.worldSource)+source(ctx.importanceSource)+'</div></article>';
+  const v=$('#voyage');v.innerHTML=h;
   v.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.go)));
-  buildMap();
 }
+
 let mapRT;
 window.addEventListener('resize',()=>{ clearTimeout(mapRT); mapRT=setTimeout(()=>{ const host=document.getElementById('cmap'); if(host && Math.abs(host.clientWidth-mapBuiltW)>60) buildMap(); },200); });
 
@@ -913,6 +1055,7 @@ $('#sheetscrim').addEventListener('click',()=>{ if(A.paused){ clearTimeout(A.hol
 /* ---- routing ---- */
 function go(id, push=true, q=null, pageHint=null){
   if(id==='home' && !EMBED){ location.href=location.pathname; return; }
+  if(byId[id]==null){folioObserver?.disconnect();clearTimeout(readerResize)}
   closeSheet(); setResources(false); setChart(false);
   document.body.classList.toggle('on-reader',byId[id]!=null);
   document.documentElement.style.setProperty('--mast-h',$('.mast').offsetHeight+'px');
@@ -951,8 +1094,7 @@ function openSheet(a, note){
 function closeSheet(){ $('#sheet').classList.remove('on'); $('#sheetscrim').classList.remove('on'); document.querySelectorAll('.ann.open').forEach(x=>x.classList.remove('open')); }
 $('#sheetx').addEventListener('click',closeSheet); $('#sheetscrim').addEventListener('click',closeSheet);
 document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ closeSheet(); setChart(false); setResources(false); } });
-function setChart(open){ $('#chart').inert=!open; $('#menu').setAttribute('aria-expanded',String(open)); $('#chart').classList.toggle('open',open); $('#scrim').classList.toggle('on',open); }
-$('#menu').addEventListener('click',()=>setChart(!$('#chart').classList.contains('open')));
+function setChart(open){ $('#chart').inert=!open; $('#chart').classList.toggle('open',open); $('#scrim').classList.toggle('on',open); }
 $('#scrim').addEventListener('click',()=>{setChart(false);setResources(false)});
 const mastRO=new ResizeObserver(()=>document.documentElement.style.setProperty('--mast-h',$('.mast').offsetHeight+'px')); mastRO.observe($('.mast'));
 document.addEventListener('keydown',e=>{
@@ -981,7 +1123,7 @@ $('#find').addEventListener('input',e=>{
 /* ---- boot ---- */
 renderChart(); renderCrew(); renderAbout(); renderRail(); setChart(false);
 const h0=location.hash.slice(1);
-if(h0==='read') go(byId[last]!=null?last:CH[0].id,false); else if(byId[h0]!=null||h0==='cover') go(h0,false); else go('home',false);
+if(h0==='read') go(byId[last]!=null?last:CH[0].id,false); else if(byId[h0]!=null||h0==='cover') go(h0,false); else go('cover',false);
 })();
 </script>
 

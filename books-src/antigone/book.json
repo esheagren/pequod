@@ -64,6 +64,33 @@
   "worldSource": {
    "url": "https://www.metmuseum.org/essays/theater-in-ancient-greece",
    "label": "The Met · Theater in ancient Greece"
+  },
+  "importance": "Antigone sets two obligations against one another: the duty to bury a brother and the duty to obey the city. Its power comes from making the disagreement costly and personal. A ruler’s decree reaches into a family; a private act becomes a public challenge.\n\nThe play keeps returning to questions that outlive its ancient setting: when should conscience resist authority, who gets to speak for a community, and what happens when certainty makes listening impossible? Read for the arguments, but also for the people those arguments leave exposed.",
+  "importanceSource": {
+   "url": "https://repub.eur.nl/pub/101348",
+   "label": "Further reading · Antigone and ethical life"
   }
- }
+ },
+ "references": [
+  {
+   "name": "Oedipus",
+   "role": "Father of Antigone and Ismene; the former king of Thebes."
+  },
+  {
+   "name": "Jocasta",
+   "role": "Mother of Antigone and Ismene."
+  },
+  {
+   "name": "Polyneices",
+   "aliases": [
+    "Polyneices",
+    "Polynices"
+   ],
+   "role": "Brother of Antigone and Ismene. Creon has forbidden his burial after he attacked Thebes."
+  },
+  {
+   "name": "Eteocles",
+   "role": "Brother of Antigone and Ismene; he died fighting Polyneices for Thebes."
+  }
+ ]
 }

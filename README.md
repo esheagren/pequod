@@ -28,16 +28,24 @@ python3 build.py
 
 ## Book reader
 
-Opening a book takes you to the text and restores your place in this browser. The
-reader shows a two-page spread on wide screens and a single page on smaller ones.
-Turn pages with the edge arrows, keyboard arrows, or a horizontal swipe. Labeled
-groups of dots above the book jump to chapters or major sections; the chapter-list
-button also provides full-text search.
+Opening a book shows a short introduction: the author, the world of the work,
+and why it matters. **Enter the work** starts reading; **Continue reading** restores
+your place. The whale logo returns to the top of the homepage.
 
-The lower fifth holds notes for the visible passages and a **Chapter reading** tab
-with the section essay and cross-references. The right panel contains characters,
-source-linked author and historical context, and edition information. On phones,
-**Resources** opens that panel as a drawer.
+The reader shows a two-page spread on wide screens and a single page on smaller
+ones. A sheet rotates around the spine when you turn with the edge arrows,
+keyboard arrows, or a horizontal swipe. Reduced-motion preferences skip the flip.
+Labeled dots above the book jump to chapters or major sections.
+
+The lower fifth holds notes for visible passages and a **Chapter reading** tab.
+Click a speaker or a recognized character name for a brief reminder in Notes.
+Names inside annotated passages also retain the passage commentary; the note
+marker and other passage text open it separately. Aliases and additional people
+mentioned in the text are defined in each book's character and metadata files.
+
+The small top-right icon opens resources to the left. The panel and its character
+list start closed. Author and historical context live in the introduction;
+the reader's drawer provides a compact people index, passage search, and edition information.
 
 The reader source is `build/reader.css` and `build/reader.js`, included by
 `build/build.py` in the generated site and single-book artifact. Page sizes adapt

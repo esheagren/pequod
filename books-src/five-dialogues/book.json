@@ -97,6 +97,11 @@
   "worldSource": {
    "url": "https://plato.stanford.edu/entries/plato/",
    "label": "Stanford · Dialogues and Socrates"
+  },
+  "importance": "These dialogues put philosophy into conversation. Socrates asks what people mean by piety, virtue, knowledge, and justice, then follows their answers into difficulties they did not expect. The questions matter because they bear on how a person should live.\n\nThe collection connects that practice of questioning to the trial and death of Socrates. It gives us arguments to examine and a life against which to test them. Its lasting invitation is to take responsibility for our reasons, including the ones we inherit without noticing.",
+  "importanceSource": {
+   "url": "https://plato.stanford.edu/entries/plato/",
+   "label": "Stanford · Plato"
   }
  }
 }
