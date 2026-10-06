@@ -8,3 +8,4 @@ audio/.venv/
 # in-copyright texts and their private build: never commit, never deploy
 private/
 private-src/
+reader-preview.html

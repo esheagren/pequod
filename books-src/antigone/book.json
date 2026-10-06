@@ -20,7 +20,7 @@
  "about": [
   "This is the Project Gutenberg text of F. Storr’s translation, made for the Loeb Classical Library in 1912, unaltered. Storr put Sophocles into English blank verse with rhymed choruses, in an English that was already old-fashioned when he wrote it: “weird” for fate, “thou” throughout. It takes a page to tune the ear. The notes gloss the hard words.",
   "The section titles are mine. The divisions are the play’s own; a Greek audience felt each one as the Chorus began to sing. There are {sections} sections here, with a reading of each.",
-  "The line notes here are a commentary in the old sense: {notes} of them, going through the play nearly line by line, the way a tutor would with the text open on the table. Where a single Greek word carries more than Storr’s English could, the note gives the word as Sophocles wrote it, a transliteration, and what changes when you put it back. Greek is quoted from Jebb’s text and cited by line number, since Storr prints none. On a wide screen each note shows its first lines in the margin and opens when you hover or click the line it belongs to.",
+  "The line notes here are a commentary in the old sense: {notes} of them, going through the play nearly line by line, the way a tutor would with the text open on the table. Where a single Greek word carries more than Storr’s English could, the note gives the word as Sophocles wrote it, a transliteration, and what changes when you put it back. Greek is quoted from Jebb’s text and cited by line number, since Storr prints none. Select an underlined line to open its commentary in the Notes band beneath the book.",
   "The play was first performed in Athens around 441 BC. Its story comes last in the Theban cycle, after <em>Oedipus the King</em>, though Sophocles wrote it more than a decade earlier. Its ending was no secret to its first audience and the notes do not treat it as one."
  ],
  "movements": [
@@ -53,5 +53,17 @@
    "desc": "The prophet breaks Creon in a few minutes, Creon hurries to undo everything in the wrong order, and his house falls on him."
   }
  ],
- "dense": true
+ "dense": true,
+ "context": {
+  "author": "Sophocles (c. 496–406 BC) was a playwright and public figure in Athens. He competed in the city’s dramatic festivals and also served in political and military office. Seven of his tragedies survive complete.",
+  "world": "Greek tragedy was a public experience, performed at festivals of Dionysus. Actors and a singing, dancing chorus brought heroic myths before an Athenian audience. Family obligations and civic authority could be debated in the same theatrical space.",
+  "authorSource": {
+   "url": "https://kvl.cch.kcl.ac.uk/THEATRON/biographys/biosophocles.html",
+   "label": "King’s College London · Sophocles"
+  },
+  "worldSource": {
+   "url": "https://www.metmuseum.org/essays/theater-in-ancient-greece",
+   "label": "The Met · Theater in ancient Greece"
+  }
+ }
 }

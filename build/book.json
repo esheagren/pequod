@@ -13,7 +13,7 @@
  "about": [
   "Melville calls the world a loom — “the weaver-god, he weaves” — and this page is my attempt to weave a second thread through his. What you are reading is the Project Gutenberg text of <em>Moby-Dick</em> (the 1851 American edition), unaltered, split into its {sections} sections. Alongside it I have written {essays} chapter readings and pinned {notes} notes to particular sentences.",
   "A word on what the notes are. They are not a study guide. They are the places where, reading as carefully as I can, I stopped — because a sentence turned on itself, or told a joke nobody laughs at, or said the thing the rest of the book is circling. Where I am unsure I say so. Where I disagree with the usual reading I say that too. You should treat them as a reading companion who talks a bit too much and can be ignored by not clicking.",
-  "Some practical things. Your place is remembered in this browser only. The chart on the left divides the book into four waters, which is my division, not Melville’s; the search box finds phrases anywhere in the text. On a wide screen the notes sit in the margin; on a narrow one they open when you click the underlined line. <span class=\"kbd\">←</span> and <span class=\"kbd\">→</span> turn chapters.",
+  "Your place is remembered in this browser only. The dots above divide the book into four waters, which is my division, not Melville’s; the chapter list also lets you search phrases anywhere in the text. The arrows turn pages. Underlined lines open their notes below the book, and the chapter reading sits beside the Notes tab.",
   "And a suggestion: read the Extracts. Everyone skips them. They are Melville clearing his throat for eighty quotations and they tell you exactly what kind of book this is going to be — one that would rather include everything than choose."
  ],
  "movements": [
@@ -52,5 +52,17 @@
   "The Crew",
   "The Loom"
  ],
- "order": 1
+ "order": 1,
+ "context": {
+  "author": "Herman Melville (1819–1891) sailed on the whaler Acushnet in 1841. His years at sea fed his early books and the whaling world of Moby-Dick. He dedicated the novel to Nathaniel Hawthorne.",
+  "authorSource": {
+   "url": "https://www.pbs.org/wgbh/americanexperience/features/whaling-biography-herman-melville/",
+   "label": "PBS · Melville’s life"
+  },
+  "world": "Published in 1851, at the height of American whaling, the novel draws on an industry that sent New England ships across the world. Melville’s fictional whale also has roots in accounts of Mocha Dick and the sinking of the Essex.",
+  "worldSource": {
+   "url": "https://oceanservice.noaa.gov/facts/mobydick.html",
+   "label": "NOAA · The world behind the whale"
+  }
+ }
 }

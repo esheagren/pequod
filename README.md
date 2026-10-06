@@ -26,6 +26,38 @@ python3 verify.py commentary_3.json   # optional, per file
 python3 build.py
 ```
 
+## Book reader
+
+Opening a book takes you to the text and restores your place in this browser. The
+reader shows a two-page spread on wide screens and a single page on smaller ones.
+Turn pages with the edge arrows, keyboard arrows, or a horizontal swipe. Labeled
+groups of dots above the book jump to chapters or major sections; the chapter-list
+button also provides full-text search.
+
+The lower fifth holds notes for the visible passages and a **Chapter reading** tab
+with the section essay and cross-references. The right panel contains characters,
+source-linked author and historical context, and edition information. On phones,
+**Resources** opens that panel as a drawer.
+
+The reader source is `build/reader.css` and `build/reader.js`, included by
+`build/build.py` in the generated site and single-book artifact. Page sizes adapt
+to the viewport; saved positions use a paragraph and text offset.
+
+To review all public books without a web server:
+
+```sh
+python3 build/build.py
+python3 build/preview.py
+open reader-preview.html
+```
+
+The preview embeds public book data and is excluded from Git and deployment.
+Run `node build/check-reader.js` for text-preservation and position regression checks.
+`JSON.stringify(readerQA())` in its browser console checks sample chapters across
+every movement, the longest section, text preservation, page reachability, note
+selection, saved positions, and chapter boundaries. The QA helper is only included
+in the local preview.
+
 ## Commentary syntax
 
 Inside essays and notes: `[[ch42]]`, `[[ch42|label]]`, or `[[ch42:quote fragment|label]]`

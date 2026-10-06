@@ -51,5 +51,17 @@
    "to": "s13",
    "desc": "Jocasta's death and the blinding are reported, and Oedipus comes out to be seen, to judge himself, and to part from his daughters."
   }
- ]
+ ],
+ "context": {
+  "author": "Sophocles (c. 496–406 BC) was a playwright and public figure in Athens. He competed in the city’s dramatic festivals and also served in political and military office. Seven of his tragedies survive complete.",
+  "world": "Greek tragedy was a public experience, performed at festivals of Dionysus. Actors and a singing, dancing chorus brought heroic myths before an Athenian audience. Family obligations and civic authority could be debated in the same theatrical space.",
+  "authorSource": {
+   "url": "https://kvl.cch.kcl.ac.uk/THEATRON/biographys/biosophocles.html",
+   "label": "King’s College London · Sophocles"
+  },
+  "worldSource": {
+   "url": "https://www.metmuseum.org/essays/theater-in-ancient-greece",
+   "label": "The Met · Theater in ancient Greece"
+  }
+ }
 }

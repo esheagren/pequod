@@ -72,5 +72,17 @@
    "to": "ep2",
    "desc": "Siberia."
   }
- ]
+ ],
+ "context": {
+  "author": "Fyodor Dostoevsky was born in Moscow in 1821. Arrested for his involvement in socialist circles in 1849, he survived a mock execution and spent four years in a Siberian labor camp. His fiction explores the pressure of moral, political, and religious ideas on individual lives.",
+  "world": "The novel’s Petersburg belongs to a Russia arguing over social change, inherited values, and the place of the individual. Read the characters’ theories alongside their material circumstances: poverty, dependence, and the desire for a way out.",
+  "authorSource": {
+   "url": "https://www.sparknotes.com/lit/crime/context/",
+   "label": "SparkNotes · Dostoevsky’s background"
+  },
+  "worldSource": {
+   "url": "https://www.sparknotes.com/lit/crime/context/",
+   "label": "SparkNotes · Literary and social context"
+  }
+ }
 }

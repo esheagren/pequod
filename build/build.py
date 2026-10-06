@@ -87,7 +87,9 @@ def page(template, shelf, embed=''):
 
 
 def main():
-    template = open(f'{B}/build/template.html').read()
+    template = (open(f'{B}/build/template.html').read()
+                .replace('__READER_CSS__', open(f'{B}/build/reader.css').read())
+                .replace('__READER_JS__', open(f'{B}/build/reader.js').read()))
     sources = [f'{B}/build'] + sorted(d for d in glob.glob(f'{B}/books-src/*') if os.path.exists(f'{d}/book.json') and os.path.exists(f'{d}/chapters.json'))
     private_sources = sorted(d for d in glob.glob(f'{B}/private-src/*') if os.path.exists(f'{d}/book.json'))
 

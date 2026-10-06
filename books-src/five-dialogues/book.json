@@ -86,5 +86,17 @@
    "to": "phb7",
    "desc": "The last day: arguments for the soul’s immortality, a myth, and the cup."
   }
- ]
+ ],
+ "context": {
+  "author": "Plato made philosophical inquiry into a literary conversation. His Socrates is both a portrait of a historical person and a character through whom Plato develops arguments; the dialogues are more than transcripts of the teacher’s words.",
+  "world": "These conversations take philosophy into the social world of Athens: the courthouse, a prison, a friend’s house. Questions of piety, justice, virtue, and the soul become questions people ask one another, under the pressure of Socrates’ trial and death.",
+  "authorSource": {
+   "url": "https://plato.stanford.edu/entries/plato/",
+   "label": "Stanford · Plato"
+  },
+  "worldSource": {
+   "url": "https://plato.stanford.edu/entries/plato/",
+   "label": "Stanford · Dialogues and Socrates"
+  }
+ }
 }
