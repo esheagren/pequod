@@ -225,6 +225,11 @@ function revealPassage(target,offset=0){
   const win=$('#folio-window').getBoundingClientRect();const page=Math.floor((rect.left-win.left+R.page*R.stride)/R.stride);if(page!==R.page)setPage(page);
 }
 function selectNote(n){if(!A.notes[n])return;R.mode='notes';R.selected=n;updateDock();}
+function noteHTML(note){
+  const quote=note.quote.replace(/_/g,'').trim(),words=quote.split(/\s+/);
+  const excerpt=words.slice(0,8).join(' ')+(words.length>8?'…':'');
+  return '<div class="dock-note"><blockquote title="'+esc(quote)+'"><span class="note-number" aria-label="Note '+note.n+'">'+note.n+'</span><span class="note-excerpt">'+esc(excerpt)+'</span></blockquote><div class="note-prose">'+fmt(note.note)+'</div></div>';
+}
 function updateDock(){
   const host=$('#dock-content');if(!host)return;
   $('#dock-notes').setAttribute('aria-selected',R.mode!=='reading');$('#dock-reading').setAttribute('aria-selected',R.mode==='reading');
@@ -232,11 +237,11 @@ function updateDock(){
   $('#note-picker').hidden=R.mode!=='notes';$('#note-count').textContent=R.visible.length+' on this page';
   $('#note-select').innerHTML=R.visible.map(n=>'<option value="'+n+'">Note '+n+'</option>').join('');$('#note-select').hidden=!R.visible.length;$('#note-select').value=String(R.selected);
   $('#folio-flow').querySelectorAll('.ann').forEach(a=>a.classList.toggle('open',R.mode==='notes'&&+a.dataset.n===R.selected));
-  const n=A.notes[R.selected];host.innerHTML=R.mode==='reading'?chapterReadingHTML(R.id):n?'<div class="dock-note"><blockquote>'+esc(n.quote.replace(/_/g,''))+'</blockquote><div class="note-prose">'+fmt(n.note)+'</div></div>':'<p class="dock-empty">No notes on this page. Keep reading, or open the chapter reading.</p>';
+  const n=A.notes[R.selected];host.innerHTML=R.mode==='reading'?chapterReadingHTML(R.id):n?noteHTML(n):'<p class="dock-empty">No notes on this page. Keep reading, or open the chapter reading.</p>';
   $('#folio-flow').querySelectorAll('[data-person]').forEach(b=>b.classList.toggle('active',R.mode==='person'&&+b.dataset.person===R.person?.index));
   if(R.mode==='person'&&R.person){
     const p=PERSONS[R.person.index],note=R.person.note;
-    host.innerHTML='<div class="character-note"><button class="notes-back">← Passage notes</button><h3>'+esc(p.name)+'</h3><p class="person-role">'+esc(p.reminder||p.role||'')+'</p>'+(note?'<div class="dock-note"><blockquote>'+esc(note.quote.replace(/_/g,''))+'</blockquote><div class="note-prose">'+fmt(note.note)+'</div></div>':'')+(p.desc||p.why?'<details><summary>More about '+esc(p.name)+'</summary><p>'+esc(p.desc||'')+'</p><p>'+esc(p.why||'')+'</p></details>':'')+'</div>';
+    host.innerHTML='<div class="character-note"><button class="notes-back">← Passage notes</button><h3>'+esc(p.name)+'</h3><p class="person-role">'+esc(p.reminder||p.role||'')+'</p>'+(note?noteHTML(note):'')+(p.desc||p.why?'<details><summary>More about '+esc(p.name)+'</summary><p>'+esc(p.desc||'')+'</p><p>'+esc(p.why||'')+'</p></details>':'')+'</div>';
     host.querySelector('.notes-back').addEventListener('click',()=>{R.mode='notes';R.person=null;updateDock()});
   }
   host.scrollTop=0;

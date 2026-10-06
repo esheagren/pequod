@@ -39,7 +39,7 @@ window.readerQA=()=>{
     const pageCount=R.pages;
     setPage(pageCount-1,false);
     assert(R.page===pageCount-1,id+': last page unavailable');
-    if(R.visible.length){const n=R.visible.at(-1);selectNote(n);assert($('#dock-content').textContent.includes(A.notes[n].quote.replace(/_/g,'')),id+': note selection')}
+    if(R.visible.length){const n=R.visible.at(-1);selectNote(n);assert($('#dock-content .note-number')?.textContent===String(n)&&$('#dock-content .note-prose')?.innerHTML===fmt(A.notes[n].note),id+': note selection')}
     const saved=R.anchor;paginate(saved);assert(R.page===pageCount-1,id+': restore expected '+(pageCount-1)+' actual '+R.page+' anchor '+JSON.stringify(saved));
     const i=byId[id];if(i<CH.length-1){turnPage(1);assert(R.id===CH[i+1].id&&R.page===0,id+': next chapter boundary');turnPage(-1);assert(R.id===id&&R.page===R.pages-1,id+': previous chapter boundary')}
     report.push({id,pages:pageCount,samples,clipped,unreachable});

@@ -332,9 +332,11 @@ body.on-reader .scrim.on{display:none}
 .dock-toolbar .note-picker{margin-left:auto;display:flex;align-items:center;gap:.6rem;min-width:0}
 .note-picker select{font:inherit;color:var(--ink2);background:var(--desk);border:1px solid var(--rule);padding:.2rem;max-width:10rem}
 .dock-content{overflow:auto;min-height:0;font-size:.83rem;line-height:1.65;scrollbar-width:thin}
-.dock-note{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,3fr);gap:1.4rem}
-.dock-note blockquote{margin:0;color:var(--line);font-style:italic;border-left:2px solid var(--line);padding-left:.8rem;font-size:.8rem}
-.dock-note .note-prose{color:var(--ink2);padding-right:.6rem}
+.dock-note{display:flex;flex-direction:column;gap:.55rem}
+.dock-note blockquote{display:flex;align-items:baseline;gap:.5rem;margin:0;color:var(--line);font-size:.8rem;line-height:1.5}
+.note-number{flex:none;font-family:var(--mono);font-size:.64rem;font-variant-numeric:tabular-nums}
+.note-excerpt{background:var(--line-soft);padding:.05rem .25rem;border-radius:2px}
+.dock-note .note-prose{color:var(--ink2);width:100%}
 .dock-content p{margin:0 0 .8rem}
 .dock-content .threads{max-width:none;margin:.8rem 0 0;padding:.7rem 0}
 .dock-content .threads li{grid-template-columns:1fr;gap:.2rem;font-size:.82rem}
@@ -367,7 +369,6 @@ body.on-reader .sheet,body.on-reader .sheet-scrim{display:none}
   .book-surface{padding:1.3rem 3rem .7rem}
   .book-surface::before{display:none}
   .folio-flow{column-count:1;font-size:17px}
-  .dock-note{grid-template-columns:1fr;gap:.55rem}
   .dock-note blockquote{font-size:.72rem}
 }
 @media(max-width:760px){
@@ -811,6 +812,11 @@ function revealPassage(target,offset=0){
   const win=$('#folio-window').getBoundingClientRect();const page=Math.floor((rect.left-win.left+R.page*R.stride)/R.stride);if(page!==R.page)setPage(page);
 }
 function selectNote(n){if(!A.notes[n])return;R.mode='notes';R.selected=n;updateDock();}
+function noteHTML(note){
+  const quote=note.quote.replace(/_/g,'').trim(),words=quote.split(/\s+/);
+  const excerpt=words.slice(0,8).join(' ')+(words.length>8?'…':'');
+  return '<div class="dock-note"><blockquote title="'+esc(quote)+'"><span class="note-number" aria-label="Note '+note.n+'">'+note.n+'</span><span class="note-excerpt">'+esc(excerpt)+'</span></blockquote><div class="note-prose">'+fmt(note.note)+'</div></div>';
+}
 function updateDock(){
   const host=$('#dock-content');if(!host)return;
   $('#dock-notes').setAttribute('aria-selected',R.mode!=='reading');$('#dock-reading').setAttribute('aria-selected',R.mode==='reading');
@@ -818,11 +824,11 @@ function updateDock(){
   $('#note-picker').hidden=R.mode!=='notes';$('#note-count').textContent=R.visible.length+' on this page';
   $('#note-select').innerHTML=R.visible.map(n=>'<option value="'+n+'">Note '+n+'</option>').join('');$('#note-select').hidden=!R.visible.length;$('#note-select').value=String(R.selected);
   $('#folio-flow').querySelectorAll('.ann').forEach(a=>a.classList.toggle('open',R.mode==='notes'&&+a.dataset.n===R.selected));
-  const n=A.notes[R.selected];host.innerHTML=R.mode==='reading'?chapterReadingHTML(R.id):n?'<div class="dock-note"><blockquote>'+esc(n.quote.replace(/_/g,''))+'</blockquote><div class="note-prose">'+fmt(n.note)+'</div></div>':'<p class="dock-empty">No notes on this page. Keep reading, or open the chapter reading.</p>';
+  const n=A.notes[R.selected];host.innerHTML=R.mode==='reading'?chapterReadingHTML(R.id):n?noteHTML(n):'<p class="dock-empty">No notes on this page. Keep reading, or open the chapter reading.</p>';
   $('#folio-flow').querySelectorAll('[data-person]').forEach(b=>b.classList.toggle('active',R.mode==='person'&&+b.dataset.person===R.person?.index));
   if(R.mode==='person'&&R.person){
     const p=PERSONS[R.person.index],note=R.person.note;
-    host.innerHTML='<div class="character-note"><button class="notes-back">← Passage notes</button><h3>'+esc(p.name)+'</h3><p class="person-role">'+esc(p.reminder||p.role||'')+'</p>'+(note?'<div class="dock-note"><blockquote>'+esc(note.quote.replace(/_/g,''))+'</blockquote><div class="note-prose">'+fmt(note.note)+'</div></div>':'')+(p.desc||p.why?'<details><summary>More about '+esc(p.name)+'</summary><p>'+esc(p.desc||'')+'</p><p>'+esc(p.why||'')+'</p></details>':'')+'</div>';
+    host.innerHTML='<div class="character-note"><button class="notes-back">← Passage notes</button><h3>'+esc(p.name)+'</h3><p class="person-role">'+esc(p.reminder||p.role||'')+'</p>'+(note?noteHTML(note):'')+(p.desc||p.why?'<details><summary>More about '+esc(p.name)+'</summary><p>'+esc(p.desc||'')+'</p><p>'+esc(p.why||'')+'</p></details>':'')+'</div>';
     host.querySelector('.notes-back').addEventListener('click',()=>{R.mode='notes';R.person=null;updateDock()});
   }
   host.scrollTop=0;

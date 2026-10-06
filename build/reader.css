@@ -59,9 +59,11 @@ body.on-reader .scrim.on{display:none}
 .dock-toolbar .note-picker{margin-left:auto;display:flex;align-items:center;gap:.6rem;min-width:0}
 .note-picker select{font:inherit;color:var(--ink2);background:var(--desk);border:1px solid var(--rule);padding:.2rem;max-width:10rem}
 .dock-content{overflow:auto;min-height:0;font-size:.83rem;line-height:1.65;scrollbar-width:thin}
-.dock-note{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,3fr);gap:1.4rem}
-.dock-note blockquote{margin:0;color:var(--line);font-style:italic;border-left:2px solid var(--line);padding-left:.8rem;font-size:.8rem}
-.dock-note .note-prose{color:var(--ink2);padding-right:.6rem}
+.dock-note{display:flex;flex-direction:column;gap:.55rem}
+.dock-note blockquote{display:flex;align-items:baseline;gap:.5rem;margin:0;color:var(--line);font-size:.8rem;line-height:1.5}
+.note-number{flex:none;font-family:var(--mono);font-size:.64rem;font-variant-numeric:tabular-nums}
+.note-excerpt{background:var(--line-soft);padding:.05rem .25rem;border-radius:2px}
+.dock-note .note-prose{color:var(--ink2);width:100%}
 .dock-content p{margin:0 0 .8rem}
 .dock-content .threads{max-width:none;margin:.8rem 0 0;padding:.7rem 0}
 .dock-content .threads li{grid-template-columns:1fr;gap:.2rem;font-size:.82rem}
@@ -94,7 +96,6 @@ body.on-reader .sheet,body.on-reader .sheet-scrim{display:none}
   .book-surface{padding:1.3rem 3rem .7rem}
   .book-surface::before{display:none}
   .folio-flow{column-count:1;font-size:17px}
-  .dock-note{grid-template-columns:1fr;gap:.55rem}
   .dock-note blockquote{font-size:.72rem}
 }
 @media(max-width:760px){
