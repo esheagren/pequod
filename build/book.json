@@ -1,0 +1,49 @@
+{
+ "id": "moby-dick",
+ "title": "Moby-Dick",
+ "sub": "or, The Whale",
+ "author": "Herman Melville",
+ "year": "1851",
+ "icon": "whale",
+ "storeKey": "whale",
+ "unit": "chapters",
+ "tagline": "The whole book, chapter by chapter, with one reader’s marginalia.",
+ "coverIntro": "Below is the voyage entire — every chapter a landing on the trail, colored by its waters. The faint arcs are the places my notes reach across the book: hover a chapter to see what it speaks to and what speaks back. Click one and start reading; sentences underlined in red carry my notes, and each chapter ends with what I make of it.",
+ "aboutTitle": "The Loom",
+ "about": [
+  "Melville calls the world a loom — “the weaver-god, he weaves” — and this page is my attempt to weave a second thread through his. What you are reading is the Project Gutenberg text of <em>Moby-Dick</em> (the 1851 American edition), unaltered, split into its {sections} sections. Alongside it I have written {essays} chapter readings and pinned {notes} notes to particular sentences.",
+  "A word on what the notes are. They are not a study guide. They are the places where, reading as carefully as I can, I stopped — because a sentence turned on itself, or told a joke nobody laughs at, or said the thing the rest of the book is circling. Where I am unsure I say so. Where I disagree with the usual reading I say that too. You should treat them as a reading companion who talks a bit too much and can be ignored by not clicking.",
+  "Some practical things. Your place is remembered in this browser only. The chart on the left divides the book into four waters, which is my division, not Melville’s; the search box finds phrases anywhere in the text. On a wide screen the notes sit in the margin; on a narrow one they open when you click the underlined line. <span class=\"kbd\">←</span> and <span class=\"kbd\">→</span> turn chapters.",
+  "And a suggestion: read the Extracts. Everyone skips them. They are Melville clearing his throat for eighty quotations and they tell you exactly what kind of book this is going to be — one that would rather include everything than choose."
+ ],
+ "movements": [
+  {
+   "name": "Ashore",
+   "range": "Etymology – Ch. 22",
+   "from": "etymology",
+   "to": "ch22",
+   "desc": "New Bedford and Nantucket. Ishmael finds a bedfellow, a sermon, a ship, and a prophet; the sea is still a promise."
+  },
+  {
+   "name": "The Ship",
+   "range": "Ch. 23 – 47",
+   "from": "ch23",
+   "to": "ch47",
+   "desc": "The Pequod at sea. The crew, the mates, Ahab at last, the doubloon nailed to the mast, and the whiteness of the whale."
+  },
+  {
+   "name": "The Hunt",
+   "range": "Ch. 48 – 105",
+   "from": "ch48",
+   "to": "ch105",
+   "desc": "Lowering, killing, cutting-in, trying-out; other ships met; whole chapters given to the whale’s head, tail, skin, and skeleton."
+  },
+  {
+   "name": "The Chase",
+   "range": "Ch. 106 – Epilogue",
+   "from": "ch106",
+   "to": "epilogue",
+   "desc": "The Pacific. The coffin, the forge, the candles, the Rachel, one quiet morning — and three days."
+  }
+ ]
+}

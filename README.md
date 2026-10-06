@@ -34,3 +34,11 @@ Inside essays and notes: `[[ch42]]`, `[[ch42|label]]`, or `[[ch42:quote fragment
 Threads block; back-links are computed at build time.
 
 Text: Project Gutenberg, public domain. Commentary © Erik Sheagren / Claude.
+
+## Multiple books (2026-10-06)
+
+Pequod is now a shelf. `index.html` is a small shell; each book is one data file, `books/<id>.json`, fetched when the book is opened (`/?b=<id>#<section>`; old `/#ch36` links redirect to Moby-Dick).
+
+A book is a source folder with `book.json` (title, author, cover prose, movements), `chapters.json`, `commentary_*.json`, and optionally `characters.json`. Moby-Dick's source is `build/`; further public books go in `books-src/<id>/`. `python3 build/build.py` builds them all and checks that every note's quote is verbatim.
+
+**Private books.** This repository and the site are public, so only public-domain text belongs here. For in-copyright translations you own, put the source folder in `private-src/<id>/` (gitignored, never deployed) and run `python3 build/build.py --private`, which writes a complete local copy of the site, including those books, to `private/` (also gitignored). Serve it with `python3 -m http.server -d private 8740`.

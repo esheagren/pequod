@@ -57,7 +57,8 @@ body.at-home .home{min-height:95vh}
 .home .down{position:absolute;bottom:1.5rem;font-family:var(--mono);font-size:.9rem;color:var(--ink3);background:none;border:0;cursor:pointer;animation:bob 2.4s ease-in-out infinite}
 @keyframes bob{0%,100%{transform:none}50%{transform:translateY(6px)}}
 @media (prefers-reduced-motion:reduce){.home .down{animation:none}}
-.shelf{min-height:70vh;display:flex;align-items:center;justify-content:center;padding:3rem 1rem 6rem}
+.shelf{min-height:70vh;display:flex;flex-direction:column;gap:1.2rem;align-items:center;justify-content:center;padding:3rem 1rem 6rem}
+.bookcard{width:100%}
 .bookcard{display:grid;grid-template-columns:auto 1fr;gap:1.8rem;align-items:center;max-width:36rem;border:1px solid var(--rule);background:var(--panel);padding:1.8rem 2rem;text-align:left;cursor:pointer;transition:border-color .15s}
 .bookcard:hover{border-color:var(--accent)}
 .bookcard svg{width:78px;height:78px;flex:none}
@@ -279,14 +280,51 @@ svg.focus .cm-node:not(.lit):not(.src){opacity:.35}
   </main>
 </div>
 
+<script id="shelf" type="application/json">__SHELF__</script>
 <script id="data" type="application/json">__DATA__</script>
 <script>
-(function(){
-const D = JSON.parse(document.getElementById('data').textContent);
-const CH = D.chapters, CM = D.commentary, PEOPLE = D.characters, MV = D.movements;
-const byId = Object.fromEntries(CH.map((c,i)=>[c.id,i]));
+(async function(){
 const $ = s=>document.querySelector(s);
 const esc = s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+/* ---- the shelf: which books exist; a book's data loads only when it is opened ---- */
+const SHELF = JSON.parse(document.getElementById('shelf').textContent.trim()||'[]');
+const EMBED = document.getElementById('data').textContent.trim();   // single-file build carries one book inline
+const BOOK = new URLSearchParams(location.search).get('b') || (EMBED ? 'moby-dick' : null);
+const ICONS = {
+  whale:'<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="100" height="100" fill="var(--bg2)"/><g transform="translate(0,4)"><path fill="var(--accent)" d="M10 40 Q9 30 22 29 L54 31 Q72 34 82 46 L90 36 Q96 40 95 47 Q97 54 91 59 L82 50 Q72 64 54 67 L22 69 Q9 68 10 58 Z"/><circle cx="24" cy="46" r="2.2" fill="var(--bg2)"/></g><rect x="8" y="86" width="16" height="1.2" fill="var(--line)"/></svg>',
+  book:'<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="100" height="100" fill="var(--bg2)"/><path fill="none" stroke="var(--accent)" stroke-width="3" stroke-linejoin="round" d="M50 30 Q36 22 18 26 V72 Q36 68 50 76 Q64 68 82 72 V26 Q64 22 50 30 Z M50 30 V76"/><rect x="8" y="86" width="16" height="1.2" fill="var(--line)"/></svg>'
+};
+function shelfHTML(){
+  return '<div class="home"><h2 class="word">Pequod</h2><button class="down" data-down aria-label="Scroll to the shelf">↓</button></div>'+
+    '<div class="shelf">'+SHELF.map(b=>'<button class="bookcard" data-book="'+esc(b.id)+'">'+(ICONS[b.icon]||ICONS.book)+'<span><span class="t">'+esc(b.title)+(b.sub?'; <em>'+esc(b.sub)+'</em>':'')+'</span><span class="a" style="display:block">'+esc([b.author,b.year].filter(Boolean).join(' · '))+'</span><span class="m" style="display:block">'+esc(b.stats||'')+'</span></span></button>').join('')+'</div>';
+}
+function wireShelf(root, pick){
+  root.querySelectorAll('[data-book]').forEach(b=>b.addEventListener('click',()=>pick(b.dataset.book)));
+  const d=root.querySelector('[data-down]'); if(d) d.addEventListener('click',()=>root.querySelector('.shelf').scrollIntoView({behavior:'smooth'}));
+}
+const openBook = id => { location.href='?b='+encodeURIComponent(id)+'#cover'; };
+if(!BOOK){
+  // No book chosen: this is the landing page. Old links (#ch36, #cover) predate the shelf and meant Moby-Dick.
+  const h=location.hash.slice(1);
+  if(/^(cover|etymology|extracts|epilogue|ch\d+)$/.test(h)){ location.replace('?b=moby-dick#'+h); return; }
+  document.body.classList.add('on-cover','at-home');
+  $('#voyage').innerHTML=shelfHTML(); wireShelf($('#voyage'), openBook);
+  return;
+}
+let D;
+if(EMBED){ D=JSON.parse(EMBED); }
+else {
+  const res = await fetch('books/'+encodeURIComponent(BOOK)+'.json').catch(()=>null);
+  if(!res || !res.ok){
+    document.body.classList.add('on-cover','at-home');
+    $('#voyage').innerHTML='<div class="home"><h2 class="word" style="font-size:2.6rem">Not on this shelf</h2><p style="margin-top:1.2rem"><a href="./">back to Pequod</a></p></div>';
+    return;
+  }
+  D = await res.json();
+}
+const META = D.meta || {};
+const CH = D.chapters, CM = D.commentary, PEOPLE = D.characters||[], MV = D.movements;
+const byId = Object.fromEntries(CH.map((c,i)=>[c.id,i]));
 function fmt(text){
   // escape, then resolve [[...]] cross-references and *italics*
   let h=esc(text);
@@ -299,9 +337,10 @@ function fmt(text){
 }
 
 /* ---- storage (best effort) ---- */
+const SKEY=(META.storeKey||META.id||BOOK)+'.';
 const store = {
-  get(k,d){try{const v=localStorage.getItem('whale.'+k);return v==null?d:JSON.parse(v)}catch(e){return d}},
-  set(k,v){try{localStorage.setItem('whale.'+k,JSON.stringify(v))}catch(e){}}
+  get(k,d){try{const v=localStorage.getItem(SKEY+k);return v==null?d:JSON.parse(v)}catch(e){return d}},
+  set(k,v){try{localStorage.setItem(SKEY+k,JSON.stringify(v))}catch(e){}}
 };
 let last = store.get('last',null);
 
@@ -365,7 +404,7 @@ function renderChapter(id){
   A.notes=r_notes;
   const hasNotes = rows.some(r=>r.notes.length);
   let h='<article class="reading'+(hasNotes?' wide':'')+'">';
-  h+='<header class="chhead"><div class="kicker"><span>'+esc(c.num?'Chapter '+c.num:'Front matter')+'</span><span class="mvname">'+esc(m.name)+'</span></div>';
+  h+='<header class="chhead"><div class="kicker"><span>'+esc(c.kicker||(c.num?'Chapter '+c.num:'Front matter'))+'</span><span class="mvname">'+esc(m.name)+'</span></div>';
   h+='<h2>'+esc(c.title)+'</h2>';
   if(D.audio&&D.audio[id]) h+='<a class="listen" href="#" data-listen>▶ listen &amp; follow</a>';
   h+='</header><div class="chbody">';
@@ -422,14 +461,9 @@ function renderChapter(id){
 }
 
 /* ---- home: the shelf ---- */
-const WHALE_SVG='<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="100" height="100" fill="var(--bg2)"/><g transform="translate(0,4)"><path fill="var(--accent)" d="M10 40 Q9 30 22 29 L54 31 Q72 34 82 46 L90 36 Q96 40 95 47 Q97 54 91 59 L82 50 Q72 64 54 67 L22 69 Q9 68 10 58 Z"/><circle cx="24" cy="46" r="2.2" fill="var(--bg2)"/></g><rect x="8" y="86" width="16" height="1.2" fill="var(--line)"/></svg>';
 function renderHome(){
   document.body.classList.remove('has-audio'); $('#abar').classList.remove('on'); A.el.pause();
-  let h='<div class="home"><h2 class="word">Pequod</h2><button class="down" data-down aria-label="Scroll to the shelf">↓</button></div>';
-  h+='<div class="shelf"><button class="bookcard" data-go="cover">'+WHALE_SVG+'<span><span class="t">Moby-Dick; <em>or, The Whale</em></span><span class="a" style="display:block">Herman Melville · 1851</span><span class="m" style="display:block">138 chapters · 1,090 notes · read-along audio</span></span></button></div>';
-  const v=$('#voyage'); v.innerHTML=h;
-  v.querySelector('[data-go]').addEventListener('click',()=>go('cover'));
-  v.querySelector('[data-down]').addEventListener('click',()=>v.querySelector('.shelf').scrollIntoView({behavior:'smooth'}));
+  const v=$('#voyage'); v.innerHTML=shelfHTML(); wireShelf(v, id=>{ if(id===BOOK) go('cover'); else openBook(id); });
 }
 
 /* ---- cover: the wandering chart ---- */
@@ -512,10 +546,10 @@ function buildMap(){
 function renderCover(){
   const lastC = last && byId[last]!=null ? CH[byId[last]] : null;
   let h='<div class="cover" style="max-width:none"><div class="coverhead">';
-  h+='<div class="kicker">Herman Melville · 1851</div>';
-  h+='<h2>Moby-Dick;<br><em>or, The Whale</em></h2><p class="by">The whole book, chapter by chapter, with one reader’s marginalia.</p>';
-  h+='<p>Below is the voyage entire — every chapter a landing on the trail, colored by its waters. The faint arcs are the places my notes reach across the book: hover a chapter to see what it speaks to and what speaks back. Click one and start reading; sentences underlined in red carry my notes, and each chapter ends with what I make of it.</p>';
-  h+= lastC ? '<button class="resume" data-go="'+lastC.id+'">resume at '+esc(label(lastC)+' · '+lastC.title)+' →</button>' : '<button class="resume" data-go="etymology">begin at the beginning →</button>';
+  h+='<div class="kicker">'+esc([META.author,META.year].filter(Boolean).join(' · '))+'</div>';
+  h+='<h2>'+esc(META.title||'')+(META.sub?';<br><em>'+esc(META.sub)+'</em>':'')+'</h2>'+(META.tagline?'<p class="by">'+esc(META.tagline)+'</p>':'');
+  if(META.coverIntro) h+='<p>'+esc(META.coverIntro)+'</p>';
+  h+= lastC ? '<button class="resume" data-go="'+lastC.id+'">resume at '+esc(label(lastC)+' · '+lastC.title)+' →</button>' : '<button class="resume" data-go="'+CH[0].id+'">begin at the beginning →</button>';
   h+='<div class="cm-legend">'+MV.map((m,i)=>'<span><i style="background:var(--m'+i+')"></i>'+esc(m.name)+'</span>').join('')+'<span style="margin-left:auto;color:var(--ink3)">arcs = cross-references in the notes</span></div>';
   h+='</div>';
   h+='<div class="cmap" id="cmap"></div>';
@@ -547,11 +581,8 @@ function renderCrew(){
 function renderAbout(){
   const nAnn=Object.values(CM).reduce((s,c)=>s+(c.annotations||[]).length,0);
   const nEss=Object.values(CM).filter(c=>c.essay).length;
-  $('#about').innerHTML='<h2>The Loom</h2>'+
-  '<p>Melville calls the world a loom — “the weaver-god, he weaves” — and this page is my attempt to weave a second thread through his. What you are reading is the Project Gutenberg text of <em>Moby-Dick</em> (the 1851 American edition), unaltered, split into its '+CH.length+' sections. Alongside it I have written '+nEss+' chapter readings and pinned '+nAnn+' notes to particular sentences.</p>'+
-  '<p>A word on what the notes are. They are not a study guide. They are the places where, reading as carefully as I can, I stopped — because a sentence turned on itself, or told a joke nobody laughs at, or said the thing the rest of the book is circling. Where I am unsure I say so. Where I disagree with the usual reading I say that too. You should treat them as a reading companion who talks a bit too much and can be ignored by not clicking.</p>'+
-  '<p>Some practical things. Your place is remembered in this browser only. The chart on the left divides the book into four waters, which is my division, not Melville’s; the search box finds phrases anywhere in the text. On a wide screen the notes sit in the margin; on a narrow one they open when you click the underlined line. <span class="kbd">←</span> and <span class="kbd">→</span> turn chapters.</p>'+
-  '<p>And a suggestion: read the Extracts. Everyone skips them. They are Melville clearing his throat for eighty quotations and they tell you exactly what kind of book this is going to be — one that would rather include everything than choose.</p>';
+  const fill=t=>t.replace('{sections}',CH.length).replace('{essays}',nEss).replace('{notes}',nAnn);
+  $('#about').innerHTML='<h2>'+esc(META.aboutTitle||'About')+'</h2>'+(META.about||[]).map(p=>'<p>'+fill(p)+'</p>').join('');
 }
 
 /* ---- audio: narration synced to text ---- */
@@ -644,6 +675,7 @@ $('#sheetscrim').addEventListener('click',()=>{ if(A.paused){ clearTimeout(A.hol
 
 /* ---- routing ---- */
 function go(id, push=true, q=null){
+  if(id==='home' && !EMBED){ location.href=location.pathname; return; }
   closeSheet();
   window.scrollTo({top:0,behavior:'auto'});
   document.body.classList.toggle('on-cover', id==='cover'||id==='home');
