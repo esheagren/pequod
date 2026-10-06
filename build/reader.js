@@ -213,23 +213,21 @@ function capturePaper(){
   copy.querySelectorAll('button,select,a,.ann').forEach(el=>el.tabIndex=-1);
   copy.classList.add('paper-copy');copy.style.width=rect.width+'px';copy.style.height=rect.height+'px';
   copy.inert=true;copy.setAttribute('aria-hidden','true');
-  return {copy,width:rect.width,height:rect.height,leaves:R.leaves};
+  return {copy,width:rect.width,height:rect.height};
 }
 function flipPaper(outgoing,dir){
   const incoming=capturePaper(),stage=$('#voyage .book-surface');if(!incoming||!stage)return;
-  const two=outgoing.leaves===2,w=outgoing.width,leafWidth=two?w/2:w;
   const layer=document.createElement('div');layer.className='paper-turn';layer.inert=true;layer.setAttribute('aria-hidden','true');
-  const face=(copy,offset)=>{const host=document.createElement('div');host.className='paper-face';copy.style.left=(-offset)+'px';host.append(copy);return host};
-  if(two){const still=face(outgoing.copy.cloneNode(true),dir>0?0:w/2);still.classList.add('paper-still');still.style.width=leafWidth+'px';still.style.left=(dir>0?0:w/2)+'px';layer.append(still)}
-  const leaf=document.createElement('div');leaf.className='paper-leaf';leaf.style.width=leafWidth+'px';
-  leaf.style.left=(two&&dir>0?w/2:0)+'px';leaf.style.transformOrigin=dir>0?'left center':'right center';
-  const front=face(outgoing.copy,two&&dir>0?w/2:0);
-  const back=face(incoming.copy,two&&dir<0?w/2:0);back.classList.add('paper-back');
-  leaf.append(front,back);layer.append(leaf);stage.append(layer);
-  const duration=540;
-  const rotation=leaf.animate([{transform:'rotateY(0deg)'},{transform:'rotateY('+(-dir*88)+'deg) skewY('+(-dir*1.2)+'deg)',offset:.5},{transform:'rotateY('+(-dir*180)+'deg)'}],{duration,easing:'cubic-bezier(.32,.05,.2,1)',fill:'forwards'});
+  const face=copy=>{const host=document.createElement('div');host.className='paper-face';copy.style.left='0px';host.append(copy);return host};
+  // Backward is the same sheet settling back onto the book. Keep the current
+  // page underneath until it lands; never rotate readable text onto a back face.
+  if(dir<0){const still=face(outgoing.copy);still.classList.add('paper-still');layer.append(still)}
+  const leaf=document.createElement('div');leaf.className='paper-leaf';
+  leaf.append(face(dir>0?outgoing.copy:incoming.copy));layer.append(leaf);stage.append(layer);
+  const frames=[{transform:'rotateY(0deg)',opacity:1},{transform:'rotateY(-88deg)',opacity:0}];
+  const duration=460;
+  const rotation=leaf.animate(dir>0?frames:[...frames].reverse(),{duration,easing:'cubic-bezier(.4,0,.6,1)',fill:'both'});
   const animations=[rotation];
-  const still=layer.querySelector('.paper-still');if(still)animations.push(still.animate([{opacity:1,offset:0},{opacity:1,offset:.85},{opacity:0}],{duration,fill:'forwards'}));
   animations.forEach(a=>a.finished.catch(()=>{}));
   paperTurn={layer,animations};
   rotation.finished.then(()=>{if(paperTurn?.layer===layer){paperTurn=null;layer.remove()}},()=>{});
