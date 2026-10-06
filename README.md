@@ -44,11 +44,10 @@ Names inside annotated passages also retain the passage commentary; the note
 marker and other passage text open it separately. Aliases and additional people
 mentioned in the text are defined in each book's character and metadata files.
 
-The small top-right icon opens resources to the left. The panel and its character
-list start closed. The panel opens wider by default; drag its left edge to adjust
+The small top-right icon opens resources to the left. The panel starts closed. The panel opens wider by default; drag its left edge to adjust
 its width, or use the arrow keys when the divider is focused. Double-click the
 divider to reset. Your chosen width is remembered in this browser. Author and historical context live in the introduction;
-the reader's drawer contains the current chapter reading and a link back to the introduction.
+the reader's drawer contains the current chapter reading under one heading.
 
 The reader source is `build/reader.css` and `build/reader.js`, included by
 `build/build.py` in the generated site and single-book artifact. Page sizes adapt

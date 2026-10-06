@@ -70,12 +70,11 @@ function showPerson(index,target=null){
   R.person={index,note};R.mode='person';updateDock();
 }
 function contextHTML(id){
-  return '<div class="eyebrow">Reading companion</div><h2>'+esc(META.title)+'</h2><button class="panel-link" data-cover>Introduction →</button>'+
-    '<details class="chapter-reading" open><summary>Chapter reading</summary><p class="chapter-reference">'+esc(named(CH[byId[id]]))+'</p><div class="chapter-reading-content">'+chapterReadingHTML(id)+'</div></details>';
+  return '<section class="chapter-reading" aria-labelledby="chapter-reading-title"><h2 id="chapter-reading-title">Chapter reading</h2><div class="chapter-reading-content">'+chapterReadingHTML(id)+'</div></section>';
 }
 function chapterReadingHTML(id){
   const cm=CM[id]||{}, out=cm.links||[],inc=D.incoming[id]||[];
-  let h='<p class="eyebrow">Claude, reading alongside you</p>'+(cm.essay?cm.essay.split(/\n\n+/).map(p=>'<p>'+fmt(p)+'</p>').join(''):'<p class="dock-empty">No chapter reading yet.</p>');
+  let h=cm.essay?cm.essay.split(/\n\n+/).map(p=>'<p>'+fmt(p)+'</p>').join(''):'<p class="dock-empty">No chapter reading yet.</p>';
   if(out.length||inc.length){
     h+='<section class="threads"><h3>Threads</h3><ul>'+out.map(l=>{const c=CH[byId[l.to]];return c?'<li><a class="xref" href="#'+c.id+'" data-go="'+c.id+'"'+(l.q?' data-q="'+esc(l.q)+'"':'')+'>'+esc(named(c))+'</a><span>'+fmt(l.why||'')+'</span></li>':''}).join('')+'</ul>';
     if(inc.length)h+='<p class="inc">Pointed here from '+inc.map(id=>'<a class="xref" href="#'+id+'" data-go="'+id+'">'+esc(ref(CH[byId[id]])||CH[byId[id]].title)+'</a>').join(', ')+'.</p>';
