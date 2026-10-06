@@ -292,9 +292,9 @@ body.on-reader .chart.open{transform:none;box-shadow:12px 0 50px var(--paper-sha
 body.on-reader .scrim{position:fixed;inset:var(--mast-h) 0 0;z-index:34;background:rgba(0,0,0,.3);display:none}
 body.on-reader .scrim.on{display:none}
 @media(max-width:760px){body.on-reader .scrim.on{display:block}}
-.reader-layout{height:100%;display:grid;grid-template-columns:minmax(0,1fr) 0%;transition:grid-template-columns .3s ease}
-.reader-layout.resources-open{grid-template-columns:minmax(0,1fr) 20%}
-.reader-layout .reading{width:100%;max-width:none;min-width:0;min-height:0;padding:1.4rem 2rem 0;display:grid;grid-template-rows:minmax(0,1fr) minmax(145px,20%);gap:1.2rem;margin:0}
+.reader-layout{height:100%;position:relative;display:grid;grid-template-columns:minmax(0,1fr) 0%;transition:grid-template-columns .3s ease}
+.reader-layout.resources-open{grid-template-columns:minmax(0,1fr) var(--resource-width,28%)}
+.reader-layout .reading{container-type:inline-size;width:100%;max-width:none;min-width:0;min-height:0;padding:1.4rem 2rem 0;display:grid;grid-template-rows:minmax(0,1fr) minmax(145px,20%);gap:1.2rem;margin:0}
 .book-surface{background:var(--paper);box-shadow:0 12px 45px var(--paper-shadow),3px 3px 0 var(--rule),6px 6px 0 var(--paper);position:relative;min-height:0;display:flex;flex-direction:column;padding:1.5rem 3.8rem .7rem;border-radius:2px 5px 5px 2px}
 .book-surface::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:35px;transform:translateX(-50%);background:linear-gradient(90deg,transparent,rgba(0,0,0,.045),transparent);pointer-events:none}
 .folio-window{min-height:0;flex:1;overflow:hidden;position:relative}
@@ -352,7 +352,6 @@ body.on-reader .scrim.on{display:none}
 body.on-reader .sheet,body.on-reader .sheet-scrim{display:none}
 @media(min-width:1900px){.reader-layout{max-width:1900px;margin:auto;border-right:1px solid var(--rule)}.reader-layout .reading{padding:2rem 3rem 0}.book-surface{padding:2rem 4.8rem 1rem}}
 @media(max-width:1100px){
-  .reader-layout.resources-open{grid-template-columns:minmax(0,1fr) 26%}
   .reader-layout .reading{padding:1rem 1.2rem 0;gap:1rem}
   .book-surface{padding:1.3rem 3rem .7rem}
   .book-surface::before{display:none}
@@ -366,7 +365,7 @@ body.on-reader .sheet,body.on-reader .sheet-scrim{display:none}
   .folio-flow{font-size:16px;line-height:1.8;column-count:1}
   .page-turn{width:1.7rem;font-size:1.4rem}.page-turn.prev{left:.1rem}.page-turn.next{right:.1rem}
   .folio-footer{font-size:.52rem;gap:.4rem}.folio-footer .reading-hint{display:none}
-  .resource-panel{position:fixed;transform:translateX(100%);transition:transform .3s ease,opacity .2s;inset:var(--mast-h) 0 0 auto;width:min(330px,90vw);z-index:36;box-shadow:-20px 0 50px var(--paper-shadow)}
+  .resource-panel{position:fixed;transform:translateX(100%);transition:transform .3s ease,opacity .2s;inset:var(--mast-h) 0 0 auto;width:var(--resource-width,min(360px,90vw));z-index:36;box-shadow:-20px 0 50px var(--paper-shadow)}
   .resource-panel.open{transform:none}
   body.on-reader .mast{gap:.6rem;padding:.3rem .7rem;flex-wrap:nowrap}
   body.on-reader .mast h1{font-size:.9rem;flex:none}
@@ -413,6 +412,15 @@ body.on-reader .sheet,body.on-reader .sheet-scrim{display:none}
 
 .resource-panel .chapter-reference{font-family:var(--mono);font-size:.59rem;line-height:1.5;color:var(--ink3);margin:.8rem 0}
 .chapter-reading-content{overflow-wrap:anywhere}
+
+.resource-resizer{display:none;position:absolute;top:0;bottom:0;right:calc(var(--resource-width,28%) - 7px);width:14px;z-index:37;cursor:col-resize;touch-action:none;user-select:none}
+.resources-open .resource-resizer{display:block}
+.resource-resizer::before{content:"";position:absolute;top:calc(50% - 18px);left:5px;width:3px;height:36px;border-radius:3px;background:var(--ink3);opacity:.5}
+.resource-resizer:hover::before,.resource-resizer:focus-visible::before,.resizing-resources .resource-resizer::before{background:var(--accent);opacity:1}
+.reader-layout.resizing{transition:none}
+body.resizing-resources,body.resizing-resources *{cursor:col-resize!important;user-select:none!important}
+@container(max-width:760px){.folio-flow{column-count:1}.book-surface::before{display:none}}
+@media(max-width:760px){.resource-resizer{position:fixed;top:var(--mast-h);width:20px;right:calc(var(--resource-width,min(360px,90vw)) - 10px)}.resource-resizer::before{left:8px}}
 
 </style>
 
@@ -575,7 +583,9 @@ function wrapAnnotations(paras, anns){
 /* ---- chapter view ---- */
 /* Responsive pagination keeps the original paragraphs and annotation anchors intact. */
 const R={id:null,page:0,pages:1,stride:0,leaves:2,visible:[],selected:null,mode:'notes',person:null,anchor:null};
-let readerResize, folioObserver, paperTurn;
+let readerResize, folioObserver, paperTurn, resourceDrag, resourceFrame;
+let resourceWidth=null;
+try{const saved=JSON.parse(localStorage.getItem('pequod.resourceWidth'));if(Number.isFinite(saved)&&saved>0)resourceWidth=saved}catch(e){}
 
 function renderRail(){
   $('#chapter-rail').innerHTML=MV.map(m=>'<div class="rail-group"><button class="rail-label" data-chapter="'+CH[m.from].id+'">'+esc(m.name)+'</button>'+CH.slice(m.from,m.to+1).map(c=>'<button class="chapter-dot" data-chapter="'+c.id+'" title="'+esc(named(c))+'" aria-label="'+esc(named(c))+'"><i aria-hidden="true"></i></button>').join('')+'</div>').join('');
@@ -666,7 +676,8 @@ function renderChapter(id, pageHint=null){
   folioObserver?.disconnect();clearTimeout(readerResize);
   R.id=id;R.page=0;R.selected=null;R.mode='notes';R.person=null;R.anchor=null;
   A.notes={};rows.forEach(r=>r.notes.forEach(n=>A.notes[n.n]=n));
-  $('#voyage').innerHTML='<div class="reader-layout"><article class="reading" aria-label="'+esc(c.title)+'"><div class="book-surface"><div class="folio-window" id="folio-window"><div class="folio-flow chbody" id="folio-flow">'+rows.map((r,pi)=>'<div class="row"><p data-para="'+pi+'"'+(/\n/.test(r.raw)||id==='extracts'||id==='etymology'?' class="verse"':'')+'>'+r.html+'</p></div>').join('')+'</div></div><button class="page-turn prev" id="turn-prev" aria-label="Previous page">‹</button><button class="page-turn next" id="turn-next" aria-label="Next page">›</button><footer class="folio-footer"><button data-cover>'+esc(META.title)+'</button>'+(D.audio?.[id]?'<button class="listen" data-listen>▶ listen &amp; follow</button>':'')+'<span class="reading-hint">← turn the page →</span><label class="page-count"><span id="page-label"></span> <select id="page-select" aria-label="Go to page"></select></label></footer></div><section class="notes-dock" aria-label="Notes"><div class="dock-toolbar"><h2 id="dock-notes">Notes</h2><div class="note-picker" id="note-picker"><span id="note-count"></span><select id="note-select" aria-label="Select a note on this page"></select></div></div><div class="dock-content" id="dock-content" role="region" aria-labelledby="dock-notes" tabindex="0"></div></section></article><aside class="resource-panel" id="resource-panel" aria-label="Resources" aria-hidden="true" inert><div class="resource-inner">'+contextHTML(id)+'</div></aside></div>';
+  $('#voyage').innerHTML='<div class="reader-layout"><article class="reading" aria-label="'+esc(c.title)+'"><div class="book-surface"><div class="folio-window" id="folio-window"><div class="folio-flow chbody" id="folio-flow">'+rows.map((r,pi)=>'<div class="row"><p data-para="'+pi+'"'+(/\n/.test(r.raw)||id==='extracts'||id==='etymology'?' class="verse"':'')+'>'+r.html+'</p></div>').join('')+'</div></div><button class="page-turn prev" id="turn-prev" aria-label="Previous page">‹</button><button class="page-turn next" id="turn-next" aria-label="Next page">›</button><footer class="folio-footer"><button data-cover>'+esc(META.title)+'</button>'+(D.audio?.[id]?'<button class="listen" data-listen>▶ listen &amp; follow</button>':'')+'<span class="reading-hint">← turn the page →</span><label class="page-count"><span id="page-label"></span> <select id="page-select" aria-label="Go to page"></select></label></footer></div><section class="notes-dock" aria-label="Notes"><div class="dock-toolbar"><h2 id="dock-notes">Notes</h2><div class="note-picker" id="note-picker"><span id="note-count"></span><select id="note-select" aria-label="Select a note on this page"></select></div></div><div class="dock-content" id="dock-content" role="region" aria-labelledby="dock-notes" tabindex="0"></div></section></article><div class="resource-resizer" id="resource-resizer" role="separator" aria-orientation="vertical" aria-label="Resize resources panel" aria-controls="resource-panel" aria-hidden="true" tabindex="-1" title="Drag to resize; double-click to reset"></div><aside class="resource-panel" id="resource-panel" aria-label="Resources" aria-hidden="true" inert><div class="resource-inner">'+contextHTML(id)+'</div></aside></div>';
+  setupResourceResize();
   $('#resource-panel [data-search-host]').append(passageSearch.find,passageSearch.hits);
   $('#turn-prev').addEventListener('click',()=>turnPage(-1));$('#turn-next').addEventListener('click',()=>turnPage(1));
   $('#page-select').addEventListener('change',e=>setPage(+e.target.value));
@@ -691,7 +702,7 @@ function renderChapter(id, pageHint=null){
   markRail(id);
   let width=$('#folio-window').clientWidth,height=$('#folio-window').clientHeight;
   folioObserver=new ResizeObserver(()=>{
-    const win=$('#folio-window');if(!win||R.id!==id)return;if(win.clientWidth===width&&win.clientHeight===height)return;
+    const win=$('#folio-window');if(!win||R.id!==id||resourceDrag)return;if(win.clientWidth===width&&win.clientHeight===height)return;
     width=win.clientWidth;height=win.clientHeight;
     clearTimeout(readerResize);
     readerResize=setTimeout(()=>{if(R.id===id&&document.body.classList.contains('on-reader'))paginate(R.anchor)},100);
@@ -817,19 +828,75 @@ function updateDock(){
   }
   host.scrollTop=0;
 }
+function resourceBounds(){
+  const layout=$('#voyage .reader-layout'),width=layout?.clientWidth||innerWidth;
+  const mobile=innerWidth<=760;
+  const max=mobile?width*.94:Math.min(width*.55,width-360);
+  const min=Math.min(mobile?260:280,Math.max(0,max));
+  return {min,max:Math.max(min,max),initial:mobile?Math.min(360,width*.9):Math.max(320,width*.28)};
+}
+function applyResourceWidth(value=resourceWidth,persist=false){
+  const layout=$('#voyage .reader-layout'),handle=$('#resource-resizer');if(!layout||!handle)return;
+  const bounds=resourceBounds(),width=Math.round(Math.max(bounds.min,Math.min(bounds.max,value??bounds.initial)));
+  layout.style.setProperty('--resource-width',width+'px');
+  handle.setAttribute('aria-valuemin',Math.round(bounds.min));handle.setAttribute('aria-valuemax',Math.round(bounds.max));
+  handle.setAttribute('aria-valuenow',width);handle.setAttribute('aria-valuetext',width+' pixels wide');
+  if(persist){resourceWidth=width;try{localStorage.setItem('pequod.resourceWidth',JSON.stringify(width))}catch(e){}}
+  return width;
+}
+function finishResourceResize(){
+  if(!resourceDrag)return;
+  const drag=resourceDrag;resourceDrag=null;
+  cancelAnimationFrame(resourceFrame);resourceFrame=null;
+  applyResourceWidth(drag.width,true);paginate(drag.anchor);
+  drag.handle.closest('.reader-layout')?.classList.remove('resizing');document.body.classList.remove('resizing-resources');
+  if(drag.handle.hasPointerCapture?.(drag.pointerId))drag.handle.releasePointerCapture(drag.pointerId);
+}
+function setupResourceResize(){
+  const handle=$('#resource-resizer');applyResourceWidth();
+  handle.addEventListener('pointerdown',e=>{
+    if(e.button!==0||!$('#resource-panel').classList.contains('open'))return;
+    e.preventDefault();finishPaperTurn();
+    const width=applyResourceWidth();
+    resourceDrag={handle,pointerId:e.pointerId,startX:e.clientX,startWidth:width,width,anchor:R.anchor};
+    handle.closest('.reader-layout').classList.add('resizing');document.body.classList.add('resizing-resources');
+    handle.setPointerCapture(e.pointerId);handle.focus({preventScroll:true});
+  });
+  handle.addEventListener('pointermove',e=>{
+    if(!resourceDrag||e.pointerId!==resourceDrag.pointerId)return;
+    resourceDrag.width=resourceDrag.startWidth+resourceDrag.startX-e.clientX;
+    if(resourceFrame!=null)return;
+    resourceFrame=requestAnimationFrame(()=>{resourceFrame=null;if(resourceDrag){applyResourceWidth(resourceDrag.width);paginate(resourceDrag.anchor)}});
+  });
+  ['pointerup','pointercancel','lostpointercapture'].forEach(type=>handle.addEventListener(type,e=>{if(e.pointerId===resourceDrag?.pointerId)finishResourceResize()}));
+  handle.addEventListener('keydown',e=>{
+    if(!['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;
+    e.preventDefault();e.stopPropagation();
+    const bounds=resourceBounds(),current=applyResourceWidth(),anchor=R.anchor;
+    const width=e.key==='Home'?bounds.min:e.key==='End'?bounds.max:current+(e.key==='ArrowLeft'?1:-1)*(e.shiftKey?80:24);
+    const layout=handle.closest('.reader-layout');layout.classList.add('resizing');
+    applyResourceWidth(width,true);paginate(anchor);layout.classList.remove('resizing');
+  });
+  handle.addEventListener('dblclick',()=>{
+    const anchor=R.anchor;resourceWidth=null;try{localStorage.removeItem('pequod.resourceWidth')}catch(e){}
+    const layout=handle.closest('.reader-layout');layout.classList.add('resizing');
+    applyResourceWidth();paginate(anchor);layout.classList.remove('resizing');
+  });
+}
 function setResources(open){
-  finishPaperTurn();
+  finishResourceResize();finishPaperTurn();
   const panel=$('#resource-panel'),toggle=$('#resources-toggle');
+  const handle=$('#resource-resizer');if(handle){handle.tabIndex=open?0:-1;handle.setAttribute('aria-hidden',String(!open))}
   panel?.classList.toggle('open',open);
   panel?.closest('.reader-layout').classList.toggle('resources-open',open);
-  if(panel){if(!open&&panel.contains(document.activeElement))toggle.focus({preventScroll:true});panel.inert=!open;panel.setAttribute('aria-hidden',String(!open))}
+  if(panel){if(!open&&(panel.contains(document.activeElement)||document.activeElement===handle))toggle.focus({preventScroll:true});panel.inert=!open;panel.setAttribute('aria-hidden',String(!open))}
   toggle.setAttribute('aria-expanded',String(open));
   toggle.setAttribute('aria-label',open?'Close resources':'Open resources');
   toggle.title=open?'Close resources':'Open resources';
   $('#scrim').classList.toggle('on',open);
 }
 $('#resources-toggle').addEventListener('click',()=>setResources(!$('#resource-panel')?.classList.contains('open')));
-window.addEventListener('resize',()=>{clearTimeout(readerResize);readerResize=setTimeout(()=>{if(document.body.classList.contains('on-reader'))paginate(R.anchor)},150)});
+window.addEventListener('resize',()=>{clearTimeout(readerResize);readerResize=setTimeout(()=>{if(document.body.classList.contains('on-reader')){finishResourceResize();applyResourceWidth();paginate(R.anchor)}},150)});
 
 
 /* ---- home: the shelf ---- */

@@ -45,7 +45,9 @@ marker and other passage text open it separately. Aliases and additional people
 mentioned in the text are defined in each book's character and metadata files.
 
 The small top-right icon opens resources to the left. The panel and its character
-list start closed. Author and historical context live in the introduction;
+list start closed. The panel opens wider by default; drag its left edge to adjust
+its width, or use the arrow keys when the divider is focused. Double-click the
+divider to reset. Your chosen width is remembered in this browser. Author and historical context live in the introduction;
 the reader's drawer provides a compact people index, passage search, and edition information.
 
 The reader source is `build/reader.css` and `build/reader.js`, included by

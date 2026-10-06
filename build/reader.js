@@ -1,6 +1,8 @@
 /* Responsive pagination keeps the original paragraphs and annotation anchors intact. */
 const R={id:null,page:0,pages:1,stride:0,leaves:2,visible:[],selected:null,mode:'notes',person:null,anchor:null};
-let readerResize, folioObserver, paperTurn;
+let readerResize, folioObserver, paperTurn, resourceDrag, resourceFrame;
+let resourceWidth=null;
+try{const saved=JSON.parse(localStorage.getItem('pequod.resourceWidth'));if(Number.isFinite(saved)&&saved>0)resourceWidth=saved}catch(e){}
 
 function renderRail(){
   $('#chapter-rail').innerHTML=MV.map(m=>'<div class="rail-group"><button class="rail-label" data-chapter="'+CH[m.from].id+'">'+esc(m.name)+'</button>'+CH.slice(m.from,m.to+1).map(c=>'<button class="chapter-dot" data-chapter="'+c.id+'" title="'+esc(named(c))+'" aria-label="'+esc(named(c))+'"><i aria-hidden="true"></i></button>').join('')+'</div>').join('');
@@ -91,7 +93,8 @@ function renderChapter(id, pageHint=null){
   folioObserver?.disconnect();clearTimeout(readerResize);
   R.id=id;R.page=0;R.selected=null;R.mode='notes';R.person=null;R.anchor=null;
   A.notes={};rows.forEach(r=>r.notes.forEach(n=>A.notes[n.n]=n));
-  $('#voyage').innerHTML='<div class="reader-layout"><article class="reading" aria-label="'+esc(c.title)+'"><div class="book-surface"><div class="folio-window" id="folio-window"><div class="folio-flow chbody" id="folio-flow">'+rows.map((r,pi)=>'<div class="row"><p data-para="'+pi+'"'+(/\n/.test(r.raw)||id==='extracts'||id==='etymology'?' class="verse"':'')+'>'+r.html+'</p></div>').join('')+'</div></div><button class="page-turn prev" id="turn-prev" aria-label="Previous page">‹</button><button class="page-turn next" id="turn-next" aria-label="Next page">›</button><footer class="folio-footer"><button data-cover>'+esc(META.title)+'</button>'+(D.audio?.[id]?'<button class="listen" data-listen>▶ listen &amp; follow</button>':'')+'<span class="reading-hint">← turn the page →</span><label class="page-count"><span id="page-label"></span> <select id="page-select" aria-label="Go to page"></select></label></footer></div><section class="notes-dock" aria-label="Notes"><div class="dock-toolbar"><h2 id="dock-notes">Notes</h2><div class="note-picker" id="note-picker"><span id="note-count"></span><select id="note-select" aria-label="Select a note on this page"></select></div></div><div class="dock-content" id="dock-content" role="region" aria-labelledby="dock-notes" tabindex="0"></div></section></article><aside class="resource-panel" id="resource-panel" aria-label="Resources" aria-hidden="true" inert><div class="resource-inner">'+contextHTML(id)+'</div></aside></div>';
+  $('#voyage').innerHTML='<div class="reader-layout"><article class="reading" aria-label="'+esc(c.title)+'"><div class="book-surface"><div class="folio-window" id="folio-window"><div class="folio-flow chbody" id="folio-flow">'+rows.map((r,pi)=>'<div class="row"><p data-para="'+pi+'"'+(/\n/.test(r.raw)||id==='extracts'||id==='etymology'?' class="verse"':'')+'>'+r.html+'</p></div>').join('')+'</div></div><button class="page-turn prev" id="turn-prev" aria-label="Previous page">‹</button><button class="page-turn next" id="turn-next" aria-label="Next page">›</button><footer class="folio-footer"><button data-cover>'+esc(META.title)+'</button>'+(D.audio?.[id]?'<button class="listen" data-listen>▶ listen &amp; follow</button>':'')+'<span class="reading-hint">← turn the page →</span><label class="page-count"><span id="page-label"></span> <select id="page-select" aria-label="Go to page"></select></label></footer></div><section class="notes-dock" aria-label="Notes"><div class="dock-toolbar"><h2 id="dock-notes">Notes</h2><div class="note-picker" id="note-picker"><span id="note-count"></span><select id="note-select" aria-label="Select a note on this page"></select></div></div><div class="dock-content" id="dock-content" role="region" aria-labelledby="dock-notes" tabindex="0"></div></section></article><div class="resource-resizer" id="resource-resizer" role="separator" aria-orientation="vertical" aria-label="Resize resources panel" aria-controls="resource-panel" aria-hidden="true" tabindex="-1" title="Drag to resize; double-click to reset"></div><aside class="resource-panel" id="resource-panel" aria-label="Resources" aria-hidden="true" inert><div class="resource-inner">'+contextHTML(id)+'</div></aside></div>';
+  setupResourceResize();
   $('#resource-panel [data-search-host]').append(passageSearch.find,passageSearch.hits);
   $('#turn-prev').addEventListener('click',()=>turnPage(-1));$('#turn-next').addEventListener('click',()=>turnPage(1));
   $('#page-select').addEventListener('change',e=>setPage(+e.target.value));
@@ -116,7 +119,7 @@ function renderChapter(id, pageHint=null){
   markRail(id);
   let width=$('#folio-window').clientWidth,height=$('#folio-window').clientHeight;
   folioObserver=new ResizeObserver(()=>{
-    const win=$('#folio-window');if(!win||R.id!==id)return;if(win.clientWidth===width&&win.clientHeight===height)return;
+    const win=$('#folio-window');if(!win||R.id!==id||resourceDrag)return;if(win.clientWidth===width&&win.clientHeight===height)return;
     width=win.clientWidth;height=win.clientHeight;
     clearTimeout(readerResize);
     readerResize=setTimeout(()=>{if(R.id===id&&document.body.classList.contains('on-reader'))paginate(R.anchor)},100);
@@ -242,16 +245,72 @@ function updateDock(){
   }
   host.scrollTop=0;
 }
+function resourceBounds(){
+  const layout=$('#voyage .reader-layout'),width=layout?.clientWidth||innerWidth;
+  const mobile=innerWidth<=760;
+  const max=mobile?width*.94:Math.min(width*.55,width-360);
+  const min=Math.min(mobile?260:280,Math.max(0,max));
+  return {min,max:Math.max(min,max),initial:mobile?Math.min(360,width*.9):Math.max(320,width*.28)};
+}
+function applyResourceWidth(value=resourceWidth,persist=false){
+  const layout=$('#voyage .reader-layout'),handle=$('#resource-resizer');if(!layout||!handle)return;
+  const bounds=resourceBounds(),width=Math.round(Math.max(bounds.min,Math.min(bounds.max,value??bounds.initial)));
+  layout.style.setProperty('--resource-width',width+'px');
+  handle.setAttribute('aria-valuemin',Math.round(bounds.min));handle.setAttribute('aria-valuemax',Math.round(bounds.max));
+  handle.setAttribute('aria-valuenow',width);handle.setAttribute('aria-valuetext',width+' pixels wide');
+  if(persist){resourceWidth=width;try{localStorage.setItem('pequod.resourceWidth',JSON.stringify(width))}catch(e){}}
+  return width;
+}
+function finishResourceResize(){
+  if(!resourceDrag)return;
+  const drag=resourceDrag;resourceDrag=null;
+  cancelAnimationFrame(resourceFrame);resourceFrame=null;
+  applyResourceWidth(drag.width,true);paginate(drag.anchor);
+  drag.handle.closest('.reader-layout')?.classList.remove('resizing');document.body.classList.remove('resizing-resources');
+  if(drag.handle.hasPointerCapture?.(drag.pointerId))drag.handle.releasePointerCapture(drag.pointerId);
+}
+function setupResourceResize(){
+  const handle=$('#resource-resizer');applyResourceWidth();
+  handle.addEventListener('pointerdown',e=>{
+    if(e.button!==0||!$('#resource-panel').classList.contains('open'))return;
+    e.preventDefault();finishPaperTurn();
+    const width=applyResourceWidth();
+    resourceDrag={handle,pointerId:e.pointerId,startX:e.clientX,startWidth:width,width,anchor:R.anchor};
+    handle.closest('.reader-layout').classList.add('resizing');document.body.classList.add('resizing-resources');
+    handle.setPointerCapture(e.pointerId);handle.focus({preventScroll:true});
+  });
+  handle.addEventListener('pointermove',e=>{
+    if(!resourceDrag||e.pointerId!==resourceDrag.pointerId)return;
+    resourceDrag.width=resourceDrag.startWidth+resourceDrag.startX-e.clientX;
+    if(resourceFrame!=null)return;
+    resourceFrame=requestAnimationFrame(()=>{resourceFrame=null;if(resourceDrag){applyResourceWidth(resourceDrag.width);paginate(resourceDrag.anchor)}});
+  });
+  ['pointerup','pointercancel','lostpointercapture'].forEach(type=>handle.addEventListener(type,e=>{if(e.pointerId===resourceDrag?.pointerId)finishResourceResize()}));
+  handle.addEventListener('keydown',e=>{
+    if(!['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;
+    e.preventDefault();e.stopPropagation();
+    const bounds=resourceBounds(),current=applyResourceWidth(),anchor=R.anchor;
+    const width=e.key==='Home'?bounds.min:e.key==='End'?bounds.max:current+(e.key==='ArrowLeft'?1:-1)*(e.shiftKey?80:24);
+    const layout=handle.closest('.reader-layout');layout.classList.add('resizing');
+    applyResourceWidth(width,true);paginate(anchor);layout.classList.remove('resizing');
+  });
+  handle.addEventListener('dblclick',()=>{
+    const anchor=R.anchor;resourceWidth=null;try{localStorage.removeItem('pequod.resourceWidth')}catch(e){}
+    const layout=handle.closest('.reader-layout');layout.classList.add('resizing');
+    applyResourceWidth();paginate(anchor);layout.classList.remove('resizing');
+  });
+}
 function setResources(open){
-  finishPaperTurn();
+  finishResourceResize();finishPaperTurn();
   const panel=$('#resource-panel'),toggle=$('#resources-toggle');
+  const handle=$('#resource-resizer');if(handle){handle.tabIndex=open?0:-1;handle.setAttribute('aria-hidden',String(!open))}
   panel?.classList.toggle('open',open);
   panel?.closest('.reader-layout').classList.toggle('resources-open',open);
-  if(panel){if(!open&&panel.contains(document.activeElement))toggle.focus({preventScroll:true});panel.inert=!open;panel.setAttribute('aria-hidden',String(!open))}
+  if(panel){if(!open&&(panel.contains(document.activeElement)||document.activeElement===handle))toggle.focus({preventScroll:true});panel.inert=!open;panel.setAttribute('aria-hidden',String(!open))}
   toggle.setAttribute('aria-expanded',String(open));
   toggle.setAttribute('aria-label',open?'Close resources':'Open resources');
   toggle.title=open?'Close resources':'Open resources';
   $('#scrim').classList.toggle('on',open);
 }
 $('#resources-toggle').addEventListener('click',()=>setResources(!$('#resource-panel')?.classList.contains('open')));
-window.addEventListener('resize',()=>{clearTimeout(readerResize);readerResize=setTimeout(()=>{if(document.body.classList.contains('on-reader'))paginate(R.anchor)},150)});
+window.addEventListener('resize',()=>{clearTimeout(readerResize);readerResize=setTimeout(()=>{if(document.body.classList.contains('on-reader')){finishResourceResize();applyResourceWidth();paginate(R.anchor)}},150)});
