@@ -315,11 +315,7 @@ body.on-reader .scrim.on{display:none}
 .folio-footer .page-count{color:var(--accent)}
 .folio-footer select{font:inherit;background:transparent;color:var(--ink2);border:0;max-width:7rem}
 .notes-dock{min-height:0;display:flex;flex-direction:column;border-top:1px solid var(--rule);padding:.55rem 0 .85rem}
-.dock-toolbar{display:flex;align-items:center;gap:.8rem;font-family:var(--mono);font-size:.62rem;flex:none;margin-bottom:.6rem;color:var(--ink3)}
-.dock-toolbar h2{font:inherit;color:var(--accent);margin:0;padding:.2rem 0}
-.dock-toolbar .note-picker{margin-left:auto;display:flex;align-items:center;gap:.6rem;min-width:0}
-.note-picker select{font:inherit;color:var(--ink2);background:var(--desk);border:1px solid var(--rule);padding:.2rem;max-width:10rem}
-.dock-content{overflow:auto;min-height:0;font-size:.83rem;line-height:1.65;scrollbar-width:thin}
+.dock-content{overflow:auto;min-height:0;font-size:.83rem;line-height:1.65;scrollbar-width:none}
 .dock-note{display:flex;flex-direction:column;gap:.55rem}
 .dock-note blockquote{display:flex;align-items:baseline;gap:.5rem;margin:0;color:var(--line);font-size:.8rem;line-height:1.5}
 .note-number{flex:none;font-family:var(--mono);font-size:.64rem;font-variant-numeric:tabular-nums}
@@ -329,7 +325,7 @@ body.on-reader .scrim.on{display:none}
 .chapter-reading-content .threads{max-width:none;margin:.8rem 0 0;padding:.7rem 0}
 .chapter-reading-content .threads li{grid-template-columns:1fr;gap:.2rem;font-size:.82rem}
 .dock-empty{color:var(--ink3);font-style:italic}
-.resource-panel{min-width:0;overflow:auto;padding:0;background:var(--desk);scrollbar-width:thin;visibility:hidden;opacity:0;transition:opacity .2s}
+.resource-panel{min-width:0;overflow:auto;padding:0;background:var(--desk);scrollbar-width:none;visibility:hidden;opacity:0;transition:opacity .2s}
 .resource-panel.open{visibility:visible;opacity:1;border-left:1px solid var(--rule)}
 .resource-inner{padding:1.5rem 1.2rem 2rem}
 .resource-panel h2{font-family:var(--display);font-weight:300;font-size:1.6rem;line-height:1.15;margin:0 0 1.1rem}
@@ -361,14 +357,13 @@ body.on-reader .sheet,body.on-reader .sheet-scrim{display:none}
   .book-surface{padding:1rem 2.2rem .6rem}
   .folio-flow{font-size:16px;line-height:1.8;column-count:1}
   .page-turn{width:1.7rem;font-size:1.4rem}.page-turn.prev{left:.1rem}.page-turn.next{right:.1rem}
-  .folio-footer{font-size:.52rem;gap:.4rem}.folio-footer .reading-hint{display:none}
+  .folio-footer{font-size:.52rem;gap:.4rem}
   .resource-panel{position:fixed;transform:translateX(100%);transition:transform .3s ease,opacity .2s;inset:var(--mast-h) 0 0 auto;width:var(--resource-width,min(360px,90vw));z-index:36;box-shadow:-20px 0 50px var(--paper-shadow)}
   .resource-panel.open{transform:none}
   body.on-reader .mast{gap:.6rem;padding:.3rem .7rem;flex-wrap:nowrap}
   body.on-reader .mast h1{font-size:.9rem;flex:none}
   body.on-reader .chapter-rail{gap:.8rem}
   .rail-label{font-size:.52rem}.chapter-dot{width:22px}
-  .dock-toolbar{gap:.7rem;font-size:.58rem}.note-picker select{max-width:6.5rem}
   .dock-note{gap:.45rem}.dock-content{font-size:.8rem}
 }
 
@@ -412,6 +407,8 @@ body.on-reader .sheet,body.on-reader .sheet-scrim{display:none}
 body.resizing-resources,body.resizing-resources *{cursor:col-resize!important;user-select:none!important}
 @container(max-width:760px){.folio-flow{column-count:1}.book-surface::before{display:none}}
 @media(max-width:760px){.resource-resizer{position:fixed;top:var(--mast-h);width:20px;right:calc(var(--resource-width,min(360px,90vw)) - 10px)}.resource-resizer::before{left:8px}}
+
+.dock-content::-webkit-scrollbar,.resource-panel::-webkit-scrollbar,.chapter-rail::-webkit-scrollbar{display:none;width:0;height:0}
 
 </style>
 
@@ -663,11 +660,10 @@ function renderChapter(id, pageHint=null){
   folioObserver?.disconnect();clearTimeout(readerResize);
   R.id=id;R.page=0;R.selected=null;R.mode='notes';R.person=null;R.anchor=null;
   A.notes={};rows.forEach(r=>r.notes.forEach(n=>A.notes[n.n]=n));
-  $('#voyage').innerHTML='<div class="reader-layout"><article class="reading" aria-label="'+esc(c.title)+'"><div class="book-surface"><div class="folio-window" id="folio-window"><div class="folio-flow chbody" id="folio-flow">'+rows.map((r,pi)=>'<div class="row"><p data-para="'+pi+'"'+(/\n/.test(r.raw)||id==='extracts'||id==='etymology'?' class="verse"':'')+'>'+r.html+'</p></div>').join('')+'</div></div><button class="page-turn prev" id="turn-prev" aria-label="Previous page">‹</button><button class="page-turn next" id="turn-next" aria-label="Next page">›</button><footer class="folio-footer"><button data-cover>'+esc(META.title)+'</button>'+(D.audio?.[id]?'<button class="listen" data-listen>▶ listen &amp; follow</button>':'')+'<span class="reading-hint">← turn the page →</span><label class="page-count"><span id="page-label"></span> <select id="page-select" aria-label="Go to page"></select></label></footer></div><section class="notes-dock" aria-label="Notes"><div class="dock-toolbar"><h2 id="dock-notes">Notes</h2><div class="note-picker" id="note-picker"><span id="note-count"></span><select id="note-select" aria-label="Select a note on this page"></select></div></div><div class="dock-content" id="dock-content" role="region" aria-labelledby="dock-notes" tabindex="0"></div></section></article><div class="resource-resizer" id="resource-resizer" role="separator" aria-orientation="vertical" aria-label="Resize resources panel" aria-controls="resource-panel" aria-hidden="true" tabindex="-1" title="Drag to resize; double-click to reset"></div><aside class="resource-panel" id="resource-panel" aria-label="Resources" aria-hidden="true" inert><div class="resource-inner">'+contextHTML(id)+'</div></aside></div>';
+  $('#voyage').innerHTML='<div class="reader-layout"><article class="reading" aria-label="'+esc(c.title)+'"><div class="book-surface"><div class="folio-window" id="folio-window"><div class="folio-flow chbody" id="folio-flow">'+rows.map((r,pi)=>'<div class="row"><p data-para="'+pi+'"'+(/\n/.test(r.raw)||id==='extracts'||id==='etymology'?' class="verse"':'')+'>'+r.html+'</p></div>').join('')+'</div></div><button class="page-turn prev" id="turn-prev" aria-label="Previous page">‹</button><button class="page-turn next" id="turn-next" aria-label="Next page">›</button><footer class="folio-footer"><button data-cover>'+esc(META.title)+'</button>'+(D.audio?.[id]?'<button class="listen" data-listen>▶ listen &amp; follow</button>':'')+'<label class="page-count"><span id="page-label"></span> <select id="page-select" aria-label="Go to page"></select></label></footer></div><section class="notes-dock" aria-label="Notes"><div class="dock-content" id="dock-content" role="region" aria-label="Notes" tabindex="0"></div></section></article><div class="resource-resizer" id="resource-resizer" role="separator" aria-orientation="vertical" aria-label="Resize resources panel" aria-controls="resource-panel" aria-hidden="true" tabindex="-1" title="Drag to resize; double-click to reset"></div><aside class="resource-panel" id="resource-panel" aria-label="Resources" aria-hidden="true" inert><div class="resource-inner">'+contextHTML(id)+'</div></aside></div>';
   setupResourceResize();
   $('#turn-prev').addEventListener('click',()=>turnPage(-1));$('#turn-next').addEventListener('click',()=>turnPage(1));
   $('#page-select').addEventListener('change',e=>setPage(+e.target.value));
-  $('#note-select').addEventListener('change',e=>selectNote(+e.target.value));
   linkPeople();
   $('#voyage').querySelectorAll('.ann').forEach(a=>{
     const activate=()=>{if(A.notes[a.dataset.n])selectNote(+a.dataset.n)};
@@ -801,8 +797,6 @@ function noteHTML(note){
 }
 function updateDock(){
   const host=$('#dock-content');if(!host)return;
-  $('#note-picker').hidden=R.mode!=='notes';$('#note-count').textContent=R.visible.length+' on this page';
-  $('#note-select').innerHTML=R.visible.map(n=>'<option value="'+n+'">Note '+n+'</option>').join('');$('#note-select').hidden=!R.visible.length;$('#note-select').value=String(R.selected);
   $('#folio-flow').querySelectorAll('.ann').forEach(a=>a.classList.toggle('open',R.mode==='notes'&&+a.dataset.n===R.selected));
   const n=A.notes[R.selected];host.innerHTML=n?noteHTML(n):'<p class="dock-empty">No notes on this page. Keep reading.</p>';
   $('#folio-flow').querySelectorAll('[data-person]').forEach(b=>b.classList.toggle('active',R.mode==='person'&&+b.dataset.person===R.person?.index));
