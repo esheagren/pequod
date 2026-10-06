@@ -150,12 +150,12 @@ body.resizing-resources,body.resizing-resources *{cursor:col-resize!important;us
 
 /* Notes experiment: the dock is retained, but the book gets its space back. */
 .reader-layout.comment-mode .reading{grid-template-rows:minmax(0,1fr);gap:0;padding-bottom:1.4rem}
-.comment-popover{position:fixed;z-index:43;background:var(--paper);border:1px solid var(--rule);border-radius:5px;box-shadow:0 10px 38px var(--paper-shadow);max-height:var(--comment-max-height,480px);color:var(--ink2)}
-.comment-content{overflow-wrap:anywhere;padding:1.1rem;max-height:calc(var(--comment-max-height,480px) - 2px);overflow:auto;overscroll-behavior:contain;scrollbar-width:none;font-size:.84rem;line-height:1.65;outline-offset:2px}
+.comment-popover{position:fixed;z-index:43;background:var(--paper);border:1px solid var(--rule);border-radius:16px;box-shadow:0 10px 38px var(--paper-shadow);max-height:var(--comment-max-height,480px);color:var(--ink2)}
+.comment-content{overflow-wrap:anywhere;padding:1.3rem;max-height:calc(var(--comment-max-height,480px) - 2px);border-radius:inherit;overflow:auto;overscroll-behavior:contain;scrollbar-width:none;font-size:1rem;line-height:1.75;outline-offset:2px}
 .comment-content p{margin:0 0 .8rem}
-.comment-content .dock-note blockquote,.comment-content .character-note h3{padding-right:1.4rem}
-.comment-close{position:absolute;right:.3rem;top:.2rem;width:28px;height:28px;z-index:1;color:var(--ink3);font-size:1.25rem;line-height:1;display:grid;place-items:center;border-radius:3px}
-.comment-close:hover{color:var(--line);background:var(--paper)}
+.comment-content .dock-note blockquote{font-size:.95rem}
+.comment-content .note-number{font-size:.75rem}
+.comment-content .character-note details{font-size:.95rem}
 .comment-popover::before{content:"";position:absolute;width:9px;height:9px;background:var(--paper);border:1px solid var(--rule);transform:rotate(45deg);z-index:-1}
 .comment-popover[data-side="right"]::before{left:-5px;top:calc(var(--comment-pointer-y) - 5px)}
 .comment-popover[data-side="left"]::before{right:-5px;top:calc(var(--comment-pointer-y) - 5px)}

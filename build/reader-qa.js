@@ -36,7 +36,7 @@ window.readerQA=()=>{
     assert($('.notes-dock').hidden===(NOTE_LAYOUT==='popover'),id+': inactive notes dock');
     const noteHost=NOTE_LAYOUT==='popover'?'#comment-content':'#dock-content';
     const person=$('#folio-flow .person-reference');
-    if(person){person.click();assert(R.mode==='person'&&!!$(noteHost+' .person-role'),id+': character reminder');if(NOTE_LAYOUT==='popover')$('#comment-popover .comment-close').click();else $('#dock-content .notes-back').click();assert(R.mode==='notes',id+': return to notes')}
+    if(person){person.click();assert(R.mode==='person'&&!!$(noteHost+' .person-role'),id+': character reminder');if(NOTE_LAYOUT==='popover')$('#comment-content').dispatchEvent(new KeyboardEvent('keydown',{key:'Escape',bubbles:true}));else $('#dock-content .notes-back').click();assert(R.mode==='notes',id+': return to notes')}
     const annotatedPerson=$('#folio-flow .ann .person-reference');
     if(annotatedPerson){annotatedPerson.click();assert(R.mode==='person',id+': character inside annotation');annotatedPerson.closest('.ann').querySelector('sup').click();assert(R.mode==='notes',id+': separate passage action')}
     const pageCount=R.pages;

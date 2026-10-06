@@ -92,10 +92,9 @@ function renderChapter(id, pageHint=null){
   folioObserver?.disconnect();clearTimeout(readerResize);
   R.id=id;R.page=0;R.selected=null;R.mode='notes';R.person=null;R.anchor=null;
   A.notes={};rows.forEach(r=>r.notes.forEach(n=>A.notes[n.n]=n));
-  $('#voyage').innerHTML='<div class="reader-layout"><article class="reading" aria-label="'+esc(c.title)+'"><div class="book-surface"><div class="folio-window" id="folio-window"><div class="folio-flow chbody" id="folio-flow">'+rows.map((r,pi)=>'<div class="row"><p data-para="'+pi+'"'+(/\n/.test(r.raw)||id==='extracts'||id==='etymology'?' class="verse"':'')+'>'+r.html+'</p></div>').join('')+'</div></div><button class="page-turn prev" id="turn-prev" aria-label="Previous page">‹</button><button class="page-turn next" id="turn-next" aria-label="Next page">›</button><footer class="folio-footer"><button data-cover>'+esc(META.title)+'</button>'+(D.audio?.[id]?'<button class="listen" data-listen>▶ listen &amp; follow</button>':'')+'<label class="page-count"><span id="page-label"></span> <select id="page-select" aria-label="Go to page"></select></label></footer></div><section class="notes-dock" aria-label="Notes"><div class="dock-content" id="dock-content" role="region" aria-label="Notes" tabindex="0"></div></section></article><div class="resource-resizer" id="resource-resizer" role="separator" aria-orientation="vertical" aria-label="Resize resources panel" aria-controls="resource-panel" aria-hidden="true" tabindex="-1" title="Drag to resize; double-click to reset"></div><aside class="resource-panel" id="resource-panel" aria-label="Resources" aria-hidden="true" inert><div class="resource-inner">'+contextHTML(id)+'</div></aside><svg class="comment-link" id="comment-link" aria-hidden="true" hidden><path/><circle r="2.5"/></svg><aside class="comment-popover" id="comment-popover" role="dialog" aria-modal="false" aria-label="Passage comment" hidden><button class="comment-close" aria-label="Close comment">×</button><div class="comment-content" id="comment-content" tabindex="0"></div></aside></div>';
+  $('#voyage').innerHTML='<div class="reader-layout"><article class="reading" aria-label="'+esc(c.title)+'"><div class="book-surface"><div class="folio-window" id="folio-window"><div class="folio-flow chbody" id="folio-flow">'+rows.map((r,pi)=>'<div class="row"><p data-para="'+pi+'"'+(/\n/.test(r.raw)||id==='extracts'||id==='etymology'?' class="verse"':'')+'>'+r.html+'</p></div>').join('')+'</div></div><button class="page-turn prev" id="turn-prev" aria-label="Previous page">‹</button><button class="page-turn next" id="turn-next" aria-label="Next page">›</button><footer class="folio-footer"><button data-cover>'+esc(META.title)+'</button>'+(D.audio?.[id]?'<button class="listen" data-listen>▶ listen &amp; follow</button>':'')+'<label class="page-count"><span id="page-label"></span> <select id="page-select" aria-label="Go to page"></select></label></footer></div><section class="notes-dock" aria-label="Notes"><div class="dock-content" id="dock-content" role="region" aria-label="Notes" tabindex="0"></div></section></article><div class="resource-resizer" id="resource-resizer" role="separator" aria-orientation="vertical" aria-label="Resize resources panel" aria-controls="resource-panel" aria-hidden="true" tabindex="-1" title="Drag to resize; double-click to reset"></div><aside class="resource-panel" id="resource-panel" aria-label="Resources" aria-hidden="true" inert><div class="resource-inner">'+contextHTML(id)+'</div></aside><svg class="comment-link" id="comment-link" aria-hidden="true" hidden><path/><circle r="2.5"/></svg><aside class="comment-popover" id="comment-popover" role="dialog" aria-modal="false" aria-label="Passage comment" hidden><div class="comment-content" id="comment-content" tabindex="0"></div></aside></div>';
   const dock=$('.notes-dock');dock.hidden=NOTE_LAYOUT==='popover';dock.inert=dock.hidden;
   $('.reader-layout').classList.toggle('comment-mode',NOTE_LAYOUT==='popover');
-  $('#comment-popover .comment-close').addEventListener('click',()=>dismissComment());
   setupResourceResize();
   $('#turn-prev').addEventListener('click',()=>turnPage(-1));$('#turn-next').addEventListener('click',()=>turnPage(1));
   $('#page-select').addEventListener('change',e=>setPage(+e.target.value));
@@ -265,8 +264,8 @@ function commentAnchorRect(){
   });
   return rects[0];
 }
-function placeComment(anchor,size,bounds){
-  const gap=12,clamp=(v,min,max)=>Math.max(min,Math.min(max,v));
+function placeComment(anchor,size,bounds,gap=32){
+  const clamp=(v,min,max)=>Math.max(min,Math.min(max,v));
   let left,top,side;
   if(anchor.right+gap+size.width<=bounds.right){left=anchor.right+gap;top=anchor.top-12;side='right'}
   else if(anchor.left-gap-size.width>=bounds.left){left=anchor.left-gap-size.width;top=anchor.top-12;side='left'}
@@ -281,23 +280,23 @@ function positionComment(){
   const popup=$('#comment-popover'),link=$('#comment-link');if(!commentState||!popup||popup.hidden)return;
   const anchor=commentAnchorRect();if(!anchor){closeComment(false);return}
   const bounds={left:12,right:innerWidth-12,top:$('.mast').getBoundingClientRect().bottom+12,bottom:innerHeight-($('#abar').classList.contains('on')?$('#abar').offsetHeight:0)-12};
-  const width=Math.min(360,bounds.right-bounds.left);
-  const beside=anchor.right+12+width<=bounds.right||anchor.left-12-width>=bounds.left;
-  const room=beside?bounds.bottom-bounds.top:Math.max(bounds.bottom-anchor.bottom-12,anchor.top-bounds.top-12);
+  const gap=32,width=Math.min(360,bounds.right-bounds.left);
+  const beside=anchor.right+gap+width<=bounds.right||anchor.left-gap-width>=bounds.left;
+  const room=beside?bounds.bottom-bounds.top:Math.max(bounds.bottom-anchor.bottom-gap,anchor.top-bounds.top-gap);
   const heightLimit=Math.max(60,Math.min(480,room));
   popup.style.width=width+'px';popup.style.setProperty('--comment-max-height',heightLimit+'px');
-  const height=Math.min(popup.getBoundingClientRect().height,heightLimit),placed=placeComment(anchor,{width,height},bounds);
+  const height=Math.min(popup.getBoundingClientRect().height,heightLimit),placed=placeComment(anchor,{width,height},bounds,gap);
   popup.style.left=placed.left+'px';popup.style.top=placed.top+'px';popup.dataset.side=placed.side;
   const clamp=(v,min,max)=>Math.max(min,Math.min(max,v));
   let sx,sy,ex,ey,path;
   if(placed.side==='left'||placed.side==='right'){
     sx=placed.side==='right'?anchor.right:anchor.left;sy=(anchor.top+anchor.bottom)/2;
-    ex=placed.side==='right'?placed.left:placed.left+width;ey=clamp(sy,placed.top+14,placed.top+height-14);
+    ex=placed.side==='right'?placed.left:placed.left+width;ey=clamp(sy,placed.top+22,placed.top+height-22);
     popup.style.setProperty('--comment-pointer-y',(ey-placed.top)+'px');
     const mid=(sx+ex)/2;path='M '+sx+' '+sy+' C '+mid+' '+sy+' '+mid+' '+ey+' '+ex+' '+ey;
   }else {
     sx=(anchor.left+anchor.right)/2;sy=placed.side==='below'?anchor.bottom:anchor.top;
-    ex=clamp(sx,placed.left+14,placed.left+width-14);ey=placed.side==='below'?placed.top:placed.top+height;
+    ex=clamp(sx,placed.left+22,placed.left+width-22);ey=placed.side==='below'?placed.top:placed.top+height;
     popup.style.setProperty('--comment-pointer-x',(ex-placed.left)+'px');
     const mid=(sy+ey)/2;path='M '+sx+' '+sy+' C '+sx+' '+mid+' '+ex+' '+mid+' '+ex+' '+ey;
   }
