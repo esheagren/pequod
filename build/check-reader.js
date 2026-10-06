@@ -39,6 +39,24 @@ vm.createContext(turns);vm.runInContext(turning,turns);
 turns.turnPage(1);assert.deepEqual(calls.pop(),['page',2]);
 turns.R.page=2;turns.turnPage(1);assert.deepEqual(calls.pop(),['chapter','c',0]);
 turns.R.page=0;turns.turnPage(-1);assert.deepEqual(calls.pop(),['chapter','a','end']);
+// Selecting a chapter explicitly starts at its opening, even when it has a
+// saved reading position. Ordinary resume behavior remains in renderChapter.
+let selectChapter;
+const rail={innerHTML:'',querySelectorAll:()=>[{dataset:{chapter:'b'},addEventListener:(_event,fn)=>{selectChapter=fn}}]};
+const navigation={$:()=>rail,MV:[{name:'Part One',from:0,to:0}],CH:[{id:'b',title:'Chapter B'}],esc:s=>s,named:c=>c.title,go:(...args)=>calls.push(args)};
+vm.createContext(navigation);vm.runInContext(reader.slice(reader.indexOf('function renderRail('),reader.indexOf('function markRail(')),navigation);
+navigation.renderRail();selectChapter();assert.deepEqual(calls.pop(),['b',true,null,0]);
+const openings=reader.slice(reader.indexOf('function chapterLabel('),reader.indexOf('function renderChapter('));
+for(const file of ['moby-dick','crime-and-punishment','antigone']){
+  const book=JSON.parse(fs.readFileSync(path.join(root,'books',file+'.json'),'utf8'));
+  const ctx={CHAPTERED_BOOK:book.chapters.some(c=>c.num!=null),esc:s=>s};vm.createContext(ctx);vm.runInContext(openings,ctx);
+  for(const chapter of book.chapters){
+    const opening=ctx.chapterOpening(chapter);
+    if(ctx.CHAPTERED_BOOK){assert(opening.includes('<h2>'+chapter.title+'</h2>'));assert(opening.includes(ctx.chapterLabel(chapter)))}
+    else assert.equal(opening,'');
+  }
+}
+console.log('PASS: chapter selection starts at the opening; novel chapter labels include parts and epilogues.');
 // Name recognition is Unicode-aware, respects word boundaries, and avoids
 // ambiguous shared surnames and ordinary uses of generic cast roles.
 const recognition=reader.slice(reader.indexOf('function personAliases('),reader.indexOf('function linkPeople('));

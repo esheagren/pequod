@@ -1,6 +1,7 @@
 /* Responsive pagination keeps the original paragraphs and annotation anchors intact. */
 // Experimental view; ?notes=bottom restores the retained notes dock.
 const NOTE_LAYOUT=new URLSearchParams(location.search).get('notes')==='bottom'?'bottom':'popover';
+const CHAPTERED_BOOK=CH.some(c=>c.num!=null);
 const R={id:null,page:0,pages:1,stride:0,leaves:2,visible:[],selected:null,mode:'notes',person:null,anchor:null};
 let readerResize, folioObserver, paperTurn, resourceDrag, resourceFrame, commentState, commentObserver;
 let resourceWidth=null;
@@ -8,7 +9,7 @@ try{const saved=JSON.parse(localStorage.getItem('pequod.resourceWidth'));if(Numb
 
 function renderRail(){
   $('#chapter-rail').innerHTML=MV.map(m=>'<div class="rail-group"><button class="rail-label" data-chapter="'+CH[m.from].id+'">'+esc(m.name)+'</button>'+CH.slice(m.from,m.to+1).map(c=>'<button class="chapter-dot" data-chapter="'+c.id+'" title="'+esc(named(c))+'" aria-label="'+esc(named(c))+'"><i aria-hidden="true"></i></button>').join('')+'</div>').join('');
-  $('#chapter-rail').querySelectorAll('[data-chapter]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.chapter)));
+  $('#chapter-rail').querySelectorAll('[data-chapter]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.chapter,true,null,0)));
 }
 function markRail(id){
   $('#chapter-rail').querySelectorAll('.chapter-dot').forEach(b=>{if(b.dataset.chapter===id)b.setAttribute('aria-current','location');else b.removeAttribute('aria-current')});
@@ -42,7 +43,7 @@ function findPersonMentions(text){
 }
 function linkPeople(){
   const root=$('#folio-flow'),walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT),nodes=[];
-  while(walker.nextNode()){const n=walker.currentNode;if(!n.parentElement.closest('sup'))nodes.push(n)}
+  while(walker.nextNode()){const n=walker.currentNode;if(!n.parentElement.closest('sup,.chapter-opening'))nodes.push(n)}
   nodes.forEach(node=>{
     const matches=findPersonMentions(node.data);if(!matches.length)return;
     const fragment=document.createDocumentFragment();let cursor=0;
@@ -86,13 +87,19 @@ function chapterReadingHTML(id){
   return h;
 }
 
+function chapterLabel(c){return c.kicker||(c.num!=null?'Chapter '+c.num:c.title)}
+function chapterOpening(c){
+  if(!CHAPTERED_BOOK)return '';
+  const label=chapterLabel(c);
+  return '<header class="chapter-opening">'+(label!==c.title?'<div class="chapter-kicker">'+esc(label)+'</div>':'')+'<h2>'+esc(c.title)+'</h2></header>';
+}
 function renderChapter(id, pageHint=null){
   const i=byId[id],c=CH[i],cm=CM[id]||{},m=mvOf(i),rows=wrapAnnotations(c.paras,cm.annotations||[]);
   finishPaperTurn();
   folioObserver?.disconnect();clearTimeout(readerResize);
   R.id=id;R.page=0;R.selected=null;R.mode='notes';R.person=null;R.anchor=null;
   A.notes={};rows.forEach(r=>r.notes.forEach(n=>A.notes[n.n]=n));
-  $('#voyage').innerHTML='<div class="reader-layout"><article class="reading" aria-label="'+esc(c.title)+'"><div class="book-surface"><div class="folio-window" id="folio-window"><div class="folio-flow chbody" id="folio-flow">'+rows.map((r,pi)=>'<div class="row"><p data-para="'+pi+'"'+(/\n/.test(r.raw)||id==='extracts'||id==='etymology'?' class="verse"':'')+'>'+r.html+'</p></div>').join('')+'</div></div><button class="page-turn prev" id="turn-prev" aria-label="Previous page">‹</button><button class="page-turn next" id="turn-next" aria-label="Next page">›</button><footer class="folio-footer"><button data-cover>'+esc(META.title)+'</button>'+(D.audio?.[id]?'<button class="listen" data-listen>▶ listen &amp; follow</button>':'')+'<label class="page-count"><span id="page-label"></span> <select id="page-select" aria-label="Go to page"></select></label></footer></div><section class="notes-dock" aria-label="Notes"><div class="dock-content" id="dock-content" role="region" aria-label="Notes" tabindex="0"></div></section></article><div class="resource-resizer" id="resource-resizer" role="separator" aria-orientation="vertical" aria-label="Resize resources panel" aria-controls="resource-panel" aria-hidden="true" tabindex="-1" title="Drag to resize; double-click to reset"></div><aside class="resource-panel" id="resource-panel" aria-label="Resources" aria-hidden="true" inert><div class="resource-inner">'+contextHTML(id)+'</div></aside><svg class="comment-link" id="comment-link" aria-hidden="true" hidden><path/><circle r="2.5"/></svg><aside class="comment-popover" id="comment-popover" role="dialog" aria-modal="false" aria-label="Passage comment" hidden><div class="comment-content" id="comment-content" tabindex="0"></div></aside></div>';
+  $('#voyage').innerHTML='<div class="reader-layout"><article class="reading" aria-label="'+esc(named(c))+'"><div class="book-surface"><div class="folio-window" id="folio-window"><div class="folio-flow chbody" id="folio-flow">'+chapterOpening(c)+rows.map((r,pi)=>'<div class="row"><p data-para="'+pi+'"'+(/\n/.test(r.raw)||id==='extracts'||id==='etymology'?' class="verse"':'')+'>'+r.html+'</p></div>').join('')+'</div></div><button class="page-turn prev" id="turn-prev" aria-label="Previous page">‹</button><button class="page-turn next" id="turn-next" aria-label="Next page">›</button><footer class="folio-footer"><button data-cover>'+esc(META.title)+'</button>'+(CHAPTERED_BOOK?'<span class="chapter-location">'+esc(chapterLabel(c))+'</span>':'')+(D.audio?.[id]?'<button class="listen" data-listen>▶ listen &amp; follow</button>':'')+'<label class="page-count"><span id="page-label"></span> <select id="page-select" aria-label="Go to page"></select></label></footer></div><section class="notes-dock" aria-label="Notes"><div class="dock-content" id="dock-content" role="region" aria-label="Notes" tabindex="0"></div></section></article><div class="resource-resizer" id="resource-resizer" role="separator" aria-orientation="vertical" aria-label="Resize resources panel" aria-controls="resource-panel" aria-hidden="true" tabindex="-1" title="Drag to resize; double-click to reset"></div><aside class="resource-panel" id="resource-panel" aria-label="Resources" aria-hidden="true" inert><div class="resource-inner">'+contextHTML(id)+'</div></aside><svg class="comment-link" id="comment-link" aria-hidden="true" hidden><path/><circle r="2.5"/></svg><aside class="comment-popover" id="comment-popover" role="dialog" aria-modal="false" aria-label="Passage comment" hidden><div class="comment-content" id="comment-content" tabindex="0"></div></aside></div>';
   const dock=$('.notes-dock');dock.hidden=NOTE_LAYOUT==='popover';dock.inert=dock.hidden;
   $('.reader-layout').classList.toggle('comment-mode',NOTE_LAYOUT==='popover');
   setupResourceResize();

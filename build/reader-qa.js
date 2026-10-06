@@ -31,6 +31,8 @@ window.readerQA=()=>{
     assert(!clipped,id+': '+clipped+' vertically clipped text samples');
     assert(!unreachable,id+': '+unreachable+' unreachable text samples');
     assert(!$('#voyage .chhead'),'chapter heading remains');
+    assert(!!flow.querySelector('.chapter-opening')===CHAPTERED_BOOK,id+': chapter opening');
+    if(CHAPTERED_BOOK){assert(visibleRect(flow.querySelector('.chapter-opening').getBoundingClientRect()),id+': chapter opening visible');assert($('.chapter-location').textContent===chapterLabel(CH[byId[id]]),id+': current chapter label')}
     assert(!!$('#resource-panel .chapter-reading-content')&&!$('.notes-dock .chapter-reading-content')&&!$('#dock-reading'),id+': chapter reading belongs in the side panel');
     assert($('#resource-panel').inert&&$('#resources-toggle').getAttribute('aria-expanded')==='false','resources must start closed');
     assert($('.notes-dock').hidden===(NOTE_LAYOUT==='popover'),id+': inactive notes dock');
@@ -44,7 +46,8 @@ window.readerQA=()=>{
     assert(R.page===pageCount-1,id+': last page unavailable');
     if(R.visible.length){const n=R.visible.at(-1);selectNote(n);assert($(noteHost+' .note-number')?.textContent===String(n)&&$(noteHost+' .note-prose')?.innerHTML===fmt(A.notes[n].note),id+': note selection');if(NOTE_LAYOUT==='popover'){assert(!$('#comment-popover').hidden&&!$('#comment-link').hasAttribute('hidden'),id+': attached comment visible');closeComment(false)}}
     const saved=R.anchor;paginate(saved);assert(R.page===pageCount-1,id+': restore expected '+(pageCount-1)+' actual '+R.page+' anchor '+JSON.stringify(saved));
-    const i=byId[id];if(i<CH.length-1){turnPage(1);assert(R.id===CH[i+1].id&&R.page===0,id+': next chapter boundary');turnPage(-1);assert(R.id===id&&R.page===R.pages-1,id+': previous chapter boundary')}
+    const i=byId[id];if(i<CH.length-1){turnPage(1);assert(R.id===CH[i+1].id&&R.page===0,id+': next chapter boundary');if(CHAPTERED_BOOK)assert($('.chapter-location').textContent===chapterLabel(CH[i+1]),id+': next chapter label');turnPage(-1);assert(R.id===id&&R.page===R.pages-1,id+': previous chapter boundary')}
+    $('#chapter-rail [data-chapter="'+id+'"]').click();assert(R.id===id&&R.page===0,id+': chapter click starts at opening');
     report.push({id,pages:pageCount,samples,clipped,unreachable});
   }
   go(start.id||CH[0].id,false,null,0);if(start.anchor)paginate(start.anchor);
