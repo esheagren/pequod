@@ -21,5 +21,35 @@
   "This is the Project Gutenberg text of F. Storr’s translation, made for the Loeb Classical Library in 1912, unaltered. Storr put Sophocles into English blank verse with rhymed choruses, in an English that was already old-fashioned when he wrote it: “weird” for fate, “thou” throughout. It takes a page to tune the ear. The notes gloss the hard words.",
   "The section titles are mine. The divisions are the play’s own; a Greek audience felt each one as the Chorus began to sing. There are {sections} sections here, with a reading of each and {notes} notes pinned to particular lines.",
   "First performed around 429 BC. Everyone in the theatre knew how it ended before the first line was spoken, and the play is built on that knowledge. The notes assume the same, and point out the lines that mean more than their speaker knows."
+ ],
+ "movements": [
+  {
+   "name": "The Plague and the Vow",
+   "range": "Prologue – First Stasimon",
+   "from": "s1",
+   "to": "s4",
+   "desc": "Oedipus swears to find the killer of Laius, curses him, and is told by Teiresias that he is the man, which nobody can believe."
+  },
+  {
+   "name": "The Crossroads",
+   "range": "Second Episode – Second Stasimon",
+   "from": "s5",
+   "to": "s6",
+   "desc": "A quarrel with Creon gives way to Jocasta's story of the three roads, and Oedipus begins to fear he killed the king."
+  },
+  {
+   "name": "The Two Shepherds",
+   "range": "Third Episode – Fourth Stasimon",
+   "from": "s7",
+   "to": "s10",
+   "desc": "News from Corinth turns the question from who killed Laius to who Oedipus is, and the herdsman answers it."
+  },
+  {
+   "name": "The Open Doors",
+   "range": "Exodos",
+   "from": "s11",
+   "to": "s13",
+   "desc": "Jocasta's death and the blinding are reported, and Oedipus comes out to be seen, to judge himself, and to part from his daughters."
+  }
  ]
 }

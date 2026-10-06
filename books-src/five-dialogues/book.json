@@ -49,5 +49,42 @@
    "name": "Phaedo",
    "desc": "The last day: arguments for the soul’s immortality, a myth, and the cup."
   }
+ ],
+ "movements": [
+  {
+   "name": "Euthyphro",
+   "range": "5 sections",
+   "from": "eu1",
+   "to": "eu5",
+   "desc": "On the porch of the King Archon, on the way to answer the indictment: what is piety?"
+  },
+  {
+   "name": "Apology",
+   "range": "7 sections",
+   "from": "ap1",
+   "to": "ap7",
+   "desc": "The defence before five hundred jurors, the verdict, and what he says after it."
+  },
+  {
+   "name": "Crito",
+   "range": "3 sections",
+   "from": "cr1",
+   "to": "cr3",
+   "desc": "Prison, before dawn. A friend has arranged an escape."
+  },
+  {
+   "name": "Meno",
+   "range": "8 sections",
+   "from": "me1",
+   "to": "me8",
+   "desc": "Can virtue be taught? A slave boy, a geometry problem, and one of the accusers."
+  },
+  {
+   "name": "Phaedo",
+   "range": "14 sections",
+   "from": "pha1",
+   "to": "phb7",
+   "desc": "The last day: arguments for the soul’s immortality, a myth, and the cup."
+  }
  ]
 }

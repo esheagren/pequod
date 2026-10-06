@@ -11,10 +11,11 @@
   "group": "The man on trial",
   "name": "Meletus",
   "role": "The accuser of record",
-  "find": "Meletus",
+  "find": "Come hither, Meletus",
   "in_": "ap",
   "desc": "A young poet, little known, who lodged the indictment. Socrates cross-examines him in court and ties him in knots within a page.",
-  "why": "He is made to look a fool, and I think too easily. The real charge was never his to defend."
+  "why": "He is made to look a fool, and I think too easily. The real charge was never his to defend.",
+  "first": "ap3"
  },
  {
   "group": "The man on trial",
@@ -23,7 +24,8 @@
   "find": "ANYTUS:",
   "in_": "me",
   "desc": "He appears in person only in the Meno, where he warns Socrates to be careful how he speaks of Athens’s great men. In the Apology he is a name on the indictment.",
-  "why": "The Meno lets us watch the trial being decided years early, in one offended exit."
+  "why": "The Meno lets us watch the trial being decided years early, in one offended exit.",
+  "first": "me7"
  },
  {
   "group": "The man on trial",
@@ -32,7 +34,8 @@
   "find": "Chaerephon",
   "in_": "ap",
   "desc": "Chaerephon asked the oracle whether anyone was wiser than Socrates, and was told no one. Socrates says his whole way of life is an attempt to prove the god wrong.",
-  "why": "It is either the most honest account of a vocation I know or a superb piece of courtroom strategy. Possibly both."
+  "why": "It is either the most honest account of a vocation I know or a superb piece of courtroom strategy. Possibly both.",
+  "first": "ap2"
  },
  {
   "group": "The ones he questions",
@@ -57,7 +60,8 @@
   "find": "BOY:",
   "in_": "me",
   "desc": "Called over to work a geometry problem he has never been taught. He gets it wrong twice, confidently, and then right.",
-  "why": "The demonstration is meant to prove we are born knowing. Read the questions closely and decide how much the boy finds for himself."
+  "why": "The demonstration is meant to prove we are born knowing. Read the questions closely and decide how much the boy finds for himself.",
+  "first": "me5"
  },
  {
   "group": "The friends",
@@ -87,10 +91,11 @@
   "group": "The friends",
   "name": "Simmias and Cebes",
   "role": "Two young Thebans, students of the Pythagorean Philolaus",
-  "find": "CEBES:",
+  "find": "Cebes",
   "in_": "pha",
   "desc": "They do most of the arguing on the last day. Each raises an objection strong enough that the room goes silent.",
-  "why": "They are the reason the Phaedo is philosophy and not consolation. Socrates is delighted to be opposed."
+  "why": "They are the reason the Phaedo is philosophy and not consolation. Socrates is delighted to be opposed.",
+  "first": "pha1"
  },
  {
   "group": "The friends",
@@ -99,7 +104,8 @@
   "find": "Xanthippe",
   "in_": "pha",
   "desc": "She is at the prison with their youngest child when the friends arrive, and is sent home.",
-  "why": "She gets three sentences. I notice how quickly the dialogue wants her out of the room."
+  "why": "She gets three sentences. I notice how quickly the dialogue wants her out of the room.",
+  "first": "pha1"
  },
  {
   "group": "Athens",
@@ -108,7 +114,8 @@
   "find": "the laws and the government",
   "in_": "cr",
   "desc": "In the Crito Socrates imagines the Laws standing in the doorway and asking what he thinks he is doing.",
-  "why": "It is the argument that kept him in the cell. I find it less airtight than he does and the commentary says where."
+  "why": "It is the argument that kept him in the cell. I find it less airtight than he does and the commentary says where.",
+  "first": "cr3"
  },
  {
   "group": "Athens",
@@ -117,6 +124,7 @@
   "find": "servant of the Eleven",
   "in_": "phb",
   "desc": "He comes to say it is time, calls Socrates the noblest and gentlest man who ever came there, and bursts into tears.",
-  "why": "The one judgement on Socrates in these dialogues from someone with nothing to gain."
+  "why": "The one judgement on Socrates in these dialogues from someone with nothing to gain.",
+  "first": "phb7"
  }
 ]

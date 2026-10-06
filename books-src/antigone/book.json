@@ -21,5 +21,35 @@
   "This is the Project Gutenberg text of F. Storr’s translation, made for the Loeb Classical Library in 1912, unaltered. Storr put Sophocles into English blank verse with rhymed choruses, in an English that was already old-fashioned when he wrote it: “weird” for fate, “thou” throughout. It takes a page to tune the ear. The notes gloss the hard words.",
   "The section titles are mine. The divisions are the play’s own; a Greek audience felt each one as the Chorus began to sing. There are {sections} sections here, with a reading of each and {notes} notes pinned to particular lines.",
   "The play was first performed in Athens around 441 BC. Its story comes last in the Theban cycle, after <em>Oedipus the King</em>, though Sophocles wrote it more than a decade earlier. Its ending was no secret to its first audience and the notes do not treat it as one."
+ ],
+ "movements": [
+  {
+   "name": "The Edict and the Deed",
+   "range": "Prologue – First Stasimon",
+   "from": "s1",
+   "to": "s4",
+   "desc": "A new king forbids a burial, a sister resolves on it in the dark, and the city wakes to find the thing already done by no visible hand."
+  },
+  {
+   "name": "The Collision",
+   "range": "Second Episode – Third Stasimon",
+   "from": "s5",
+   "to": "s8",
+   "desc": "Antigone and then Haemon argue with Creon face to face, and each exchange leaves him with a narrower reason and a harsher sentence."
+  },
+  {
+   "name": "The Living Tomb",
+   "range": "Kommos – Fourth Stasimon",
+   "from": "s9",
+   "to": "s10",
+   "desc": "Antigone is led away mourning the life she will not have, doubting for the first time, while the elders can offer her only old stories."
+  },
+  {
+   "name": "The Reckoning",
+   "range": "Fifth Episode – Exodos",
+   "from": "s11",
+   "to": "s13",
+   "desc": "The prophet breaks Creon in a few minutes, Creon hurries to undo everything in the wrong order, and his house falls on him."
+  }
  ]
 }
