@@ -245,7 +245,8 @@ function noteHTML(note){
   return '<div class="dock-note"><blockquote title="'+esc(quote)+'"><span class="note-number" aria-label="Note '+note.n+'">'+note.n+'</span><span class="note-excerpt">'+esc(excerpt)+'</span></blockquote><div class="note-prose">'+fmt(note.note)+'</div></div>';
 }
 function characterHTML(person,note,back=true){
-  return '<div class="character-note">'+(back?'<button class="notes-back">← Passage notes</button>':'')+'<h3>'+esc(person.name)+'</h3><p class="person-role">'+esc(person.reminder||person.role||'')+'</p>'+(note?noteHTML(note):'')+(person.desc||person.why?'<details><summary>More about '+esc(person.name)+'</summary><p>'+esc(person.desc||'')+'</p><p>'+esc(person.why||'')+'</p></details>':'')+'</div>';
+  const description=(person.desc||'').split(/\n\n+/).filter(Boolean).map(p=>'<p>'+esc(p)+'</p>').join('');
+  return '<div class="character-note">'+(back?'<button class="notes-back">← Passage notes</button>':'')+'<h3>'+esc(person.name)+'</h3><p class="person-role">'+esc(person.reminder||person.role||'')+'</p><div class="person-description">'+description+'</div>'+(note?noteHTML(note):'')+'</div>';
 }
 function updateDock(){
   const host=$('#dock-content');if(!host)return;
@@ -322,7 +323,6 @@ function openComment(spec){
   popup.hidden=false;content.scrollTop=0;
   trigger?.setAttribute('aria-expanded','true');trigger?.setAttribute('aria-controls','comment-popover');
   content.querySelector('.notes-back')?.addEventListener('click',()=>selectNote(spec.note.n,spec.anchor.closest('.ann')||spec.anchor));
-  content.querySelectorAll('details').forEach(d=>d.addEventListener('toggle',positionComment));
   updateDock();positionComment();
   if(commentState){content.focus({preventScroll:true});commentObserver=new ResizeObserver(positionComment);commentObserver.observe(popup)}
 }

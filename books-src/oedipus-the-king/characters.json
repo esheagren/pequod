@@ -4,7 +4,7 @@
   "name": "Oedipus",
   "role": "King of Thebes",
   "first": "s1",
-  "desc": "The stranger from Corinth who solved the Sphinx's riddle and was given the throne and the widowed queen. He opens an inquiry into the murder of the last king, Laius, and pursues it past every warning until it proves him Laius' killer and Laius' son. He then blinds himself.",
+  "desc": "The king of Thebes, married to Jocasta, and celebrated for solving the Sphinx's riddle. He bears old injuries to his feet, associated with the meaning of his name, often rendered as swollen-foot. The play provides little other detail about his appearance.\n\nIntelligent, energetic and decisive, he takes the city's suffering personally and wants a clear explanation. His determination can turn into impatience and suspicion when others hesitate. He is accustomed to solving problems and expects inquiry to bring a solution.",
   "why": "I read him as a good and formidable man whose virtues, quickness, thoroughness and a refusal to leave a question alone, are the instruments of his ruin. The play is his investigation of himself.",
   "aliases": [
    "Oedipus"
@@ -15,7 +15,7 @@
   "name": "Jocasta",
   "role": "Queen of Thebes, wife of Oedipus, widow of Laius",
   "first": "s5",
-  "desc": "Creon's sister, who years ago gave up her infant son to be exposed because of an oracle. She tries to calm Oedipus by proving that oracles fail, and in doing so hands him the clue of the three roads. She grasps the whole truth before he does, begs him to stop, and hangs herself.",
+  "desc": "The queen of Thebes, widow of the former king Laius and now wife of Oedipus. She is Creon's sister. The play identifies her through these family and political relationships rather than a detailed physical portrait.\n\nComposed and practical, she tries to settle quarrels and reassure those around her. She is skeptical of claims made for prophecy and draws on remembered experience when arguing. Her attention to the emotional cost of an inquiry can differ from Oedipus' insistence on pursuing it.",
   "why": "She is the play's sceptic, and her scepticism is grief. Her long silence in the Third Episode is the moment the truth first lands on anyone.",
   "aliases": [
    "Jocasta"
@@ -26,7 +26,7 @@
   "name": "Creon",
   "role": "Jocasta's brother",
   "first": "s1",
-  "desc": "He brings the oracle from Delphi, is accused by Oedipus of plotting with Teiresias to seize the throne, and defends himself with cool logic. At the end he is ruler of Thebes and decides what happens to the blinded king and his daughters.",
+  "desc": "Jocasta's brother and a trusted member of the royal household. At the opening he returns from consulting Apollo's oracle at Delphi on the city's behalf. His appearance is not described in detail.\n\nMeasured, cautious and concerned with his standing, he answers accusations with orderly reasoning. He distinguishes the advantages of influence from the burdens of kingship. His controlled manner makes a useful contrast to Oedipus' urgency and quick temper.",
   "why": "He is the measure of ordinary prudence beside Oedipus: correct, cautious and smaller. The reversal of power between them frames the play.",
   "aliases": [
    "Creon"
@@ -37,7 +37,7 @@
   "name": "Antigone and Ismene",
   "role": "Daughters of Oedipus and Jocasta",
   "first": "s13",
-  "desc": "Two young girls, silent in this play, led out to their father in the last scene. He holds them, foresees the shame they will inherit, and entrusts them to Creon.",
+  "desc": "Oedipus and Jocasta's young daughters. They have no developed speaking roles in this play and no detailed physical portraits. Their identities matter through the family to which they belong.\n\nTheir youth and dependence bring the household's future into view. They are separate from the adult Antigone and Ismene whose arguments drive Antigone, the later story in the Theban sequence. Here, the reader chiefly encounters them through their father's concern for his children.",
   "why": "They turn the catastrophe from an idea into a family. His fear for them is the most ordinary and most painful thing he says.",
   "aliases": [
    "Antigone and Ismene",
@@ -50,7 +50,7 @@
   "name": "Teiresias",
   "role": "Blind prophet of Apollo",
   "first": "s3",
-  "desc": "The old seer of Thebes, summoned to name the murderer. He tries to keep silent, is goaded into speech, and tells Oedipus the entire truth in the first third of the play. He is not believed.",
+  "desc": "An elderly, blind prophet of Apollo, accompanied by a guide. His blindness is the most important physical feature the play gives him. He is respected for a knowledge that ordinary sight does not provide.\n\nGrave and reluctant to speak, he knows that an answer can bring pain rather than relief. When pressed, he becomes forceful and unyielding. His exchanges with Oedipus connect the play's questions about knowledge with its repeated images of seeing and not seeing.",
   "why": "He sets the terms of the play's imagery, the blind man who sees against the sighted man who does not. He also shows that being told the truth is not the same as knowing it.",
   "aliases": [
    "Teiresias",
@@ -62,7 +62,7 @@
   "name": "Messenger from Corinth",
   "role": "An old shepherd, bringer of news",
   "first": "s7",
-  "desc": "He arrives to report that King Polybus is dead and Oedipus is wanted as king in Corinth. To relieve Oedipus of his fear of the oracle, he reveals that Polybus was not his father: he himself received the baby on Mount Cithaeron and carried it to Corinth.",
+  "desc": "An old man who comes from Corinth with news about its royal household. He once worked as a shepherd. The play gives his age and occupation more emphasis than his appearance.\n\nFriendly, talkative and eager to bring reassurance, he does not initially share the concerns of those questioning him. His recollections connect Corinth with the mountain country near Thebes. Listen for the difference between the news he intends to deliver and the information his answers supply.",
   "why": "A cheerful man hoping for a tip, and the clearest case of the play's rule that kindness and good news do the damage.",
   "aliases": [
    "Messenger from Corinth",
@@ -74,7 +74,7 @@
   "name": "Herdsman of Laius",
   "role": "An old slave of the royal house",
   "first": "s9",
-  "desc": "The one survivor of the attack on Laius and, long before, the servant ordered to expose the royal infant, whom he gave away out of pity. He has hidden in the hill pastures since Oedipus took the throne. Under threat of torture he confirms whose child it was.",
+  "desc": "An elderly servant and shepherd from the household of Laius, the previous king. He has spent years in the hill pastures and is summoned because of what he may remember. His physical portrait is limited chiefly to his age.\n\nReluctant and fearful under questioning, he resists saying more than he must. Longstanding loyalty, memories and compassion all bear on his testimony. He is distinct from the messenger from Corinth, though their earlier work as shepherds connects their accounts.",
   "why": "He holds both halves of the secret, the murder and the birth. His pity for a baby is the hinge of the whole story.",
   "aliases": [
    "Herdsman of Laius",
@@ -86,7 +86,7 @@
   "name": "Priest of Zeus",
   "role": "Spokesman of the suppliants",
   "first": "s1",
-  "desc": "He leads the children and old men who sit at the palace altar in the opening scene. He describes the plague and appeals to Oedipus as the first of men and the city's former saviour.",
+  "desc": "An older priest who speaks for the people gathered as suppliants at the palace. Children and elderly citizens accompany him at the altars, carrying the visible signs of a religious appeal.\n\nRespectful and urgent, he describes the city's plague and asks Oedipus for help. He treats the king as an exceptionally capable human being, rather than a god. His appeal establishes the public trust and responsibility under which Oedipus begins the inquiry.",
   "why": "He fixes the height Oedipus falls from, and names in advance the epitaph the play goes on to write.",
   "aliases": [
    "Priest of Zeus",
@@ -98,7 +98,7 @@
   "name": "Chorus of Theban Elders",
   "role": "Senior citizens of Thebes",
   "first": "s2",
-  "desc": "They enter after the prologue and stay to the end, singing between the scenes and sometimes speaking in them. They are loyal to Oedipus, anxious for the gods, and they try more than once to slow the quarrel and the inquiry.",
+  "desc": "A group of older male citizens of Thebes who remain present through the main action. They sing between scenes and sometimes speak through a leader. Their shared civic identity is more important than individual appearances.\n\nLoyal to the city and its king, they are anxious about divine authority and hesitant to accept grave accusations. They try to steady heated arguments. Their changing confidence helps the reader follow what the evidence means to people hearing it for the first time.",
   "why": "They are the nearest thing to us on stage: they hear everything, believe what decent people would believe, and are wrong until the end. Their odes track the city's trust as it strains and turns to mourning.",
   "aliases": [
    "Chorus of Theban Elders",
@@ -110,7 +110,7 @@
   "name": "Second Messenger",
   "role": "A servant of the palace",
   "first": "s11",
-  "desc": "He comes out of the house to report what happened inside: Jocasta's suicide and Oedipus' self-blinding with the pins of her dress.",
+  "desc": "A servant from inside the Theban palace, distinct from the old messenger who arrives from Corinth. He brings an account of events within the royal household; the play does not give him a detailed physical description.\n\nHe is an emotionally affected witness who tries to explain what he saw and what lay beyond his sight. His narrative carries private events into the public space of the stage. Keeping the two messengers separate helps clarify the origins and reliability of their news.",
   "why": "The violence reaches us only through him, including his admission of what he could not see.",
   "aliases": [
    "Second Messenger"

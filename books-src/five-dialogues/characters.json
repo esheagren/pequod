@@ -4,7 +4,7 @@
   "name": "Socrates",
   "role": "Of Athens; about seventy",
   "first": "eu1",
-  "desc": "A stonecutter’s son who has spent his life in the marketplace asking people what they mean. He claims to know nothing, charges no fee, writes nothing down, and is about to be tried for impiety and corrupting the young.",
+  "desc": "An Athenian of about seventy, known for questioning people in public rather than teaching for a fee. These dialogues emphasize his voice, habits and composure more than a sustained description of his appearance.\n\nInquisitive, ironic and persistent, he asks people to define the ideas they believe they understand. He professes uncertainty and treats examination as a shared task, though his questions can be unsettling. Plato's portrait combines a philosophical method with the affection and concern of friends who know him personally.",
   "why": "Everything here is Plato’s Socrates, written after his death by a man who loved him. I try to keep both facts in mind: the arguments are real arguments, and the portrait is an act of devotion.",
   "aliases": [
    "Socrates"
@@ -16,7 +16,7 @@
   "role": "The accuser of record",
   "find": "Come hither, Meletus",
   "in_": "ap",
-  "desc": "A young poet, little known, who lodged the indictment. Socrates cross-examines him in court and ties him in knots within a page.",
+  "desc": "A young poet who is the formal accuser in Socrates' trial. Socrates describes him as having long hair, little beard and a hooked nose when identifying him to Euthyphro.\n\nHe accuses Socrates of impiety and of corrupting the young. In the courtroom conversation he is confident about the charge but less successful at explaining its implications under questioning. He speaks as an accuser, rather than as one of Socrates' companions.",
   "why": "He is made to look a fool, and I think too easily. The real charge was never his to defend.",
   "first": "ap3",
   "aliases": [
@@ -29,7 +29,7 @@
   "role": "A tanner and democratic politician; the power behind the prosecution",
   "find": "ANYTUS:",
   "in_": "me",
-  "desc": "He appears in person only in the Meno, where he warns Socrates to be careful how he speaks of Athens’s great men. In the Apology he is a name on the indictment.",
+  "desc": "An Athenian associated with the leather trade and democratic politics, influential in the prosecution of Socrates. He appears as a speaker in the Meno and as one of the named accusers in the Apology. His appearance is not developed into a detailed portrait.\n\nHe values established civic respectability and distrusts the sophists. He is readily offended by suggestions that admired public men may not understand virtue. His irritation helps connect the dialogues' apparently abstract questions with tensions in Athenian public life.",
   "why": "The Meno lets us watch the trial being decided years early, in one offended exit.",
   "first": "me7",
   "aliases": [
@@ -42,7 +42,7 @@
   "role": "A friend who asked Delphi a question",
   "find": "Chaerephon",
   "in_": "ap",
-  "desc": "Chaerephon asked the oracle whether anyone was wiser than Socrates, and was told no one. Socrates says his whole way of life is an attempt to prove the god wrong.",
+  "desc": "Chaerephon was a close friend of Socrates, remembered as enthusiastic and impetuous. He asked the oracle at Delphi whether anyone was wiser than Socrates. The oracle is the religious authority that answered him, rather than another companion in the conversation.\n\nSocrates uses the answer to explain why he began testing claims to wisdom. Chaerephon's role is therefore to introduce a question about knowledge and divine instruction. His appearance is not important to the account.",
   "why": "It is either the most honest account of a vocation I know or a superb piece of courtroom strategy. Possibly both.",
   "first": "ap2",
   "aliases": [
@@ -56,7 +56,7 @@
   "name": "Euthyphro",
   "role": "A seer, prosecuting his own father",
   "first": "eu1",
-  "desc": "He is on his way to charge his father with murder and is entirely sure the gods approve. Socrates asks him what piety is, since he must know.",
+  "desc": "A religious expert who meets Socrates outside the King Archon's court while pursuing a charge against his own father. He is introduced through his confidence in religious knowledge, not through a detailed physical description.\n\nEarnest and self-assured, he believes he can distinguish piety from impiety even when others disapprove of his decision. Socrates asks him to turn that confidence into a definition. Their exchange helps distinguish knowing examples of a virtue from understanding what the virtue itself is.",
   "why": "He is not stupid, only certain, and the dialogue is about what certainty costs.",
   "aliases": [
    "Euthyphro"
@@ -67,7 +67,7 @@
   "name": "Meno",
   "role": "A young Thessalian aristocrat, pupil of Gorgias",
   "first": "me1",
-  "desc": "Rich, handsome, used to having speeches ready. He opens by asking whether virtue can be taught and is stopped by the prior question of what it is.",
+  "desc": "A young, wealthy Thessalian associated with the teacher Gorgias. Socrates refers to his good looks, and his ease in giving instructions reflects the standing of an aristocrat accustomed to being attended to.\n\nConfident and impatient, he arrives ready to ask whether virtue can be taught. He is less comfortable when asked what virtue is. His polished answers and frustration under questioning help explain the dialogue's movement from apparent knowledge toward perplexity.",
   "why": "He gives the book its best image of what Socrates does to people: the torpedo fish that numbs whatever touches it.",
   "aliases": [
    "Meno"
@@ -79,7 +79,7 @@
   "role": "One of Meno’s household",
   "find": "BOY:",
   "in_": "me",
-  "desc": "Called over to work a geometry problem he has never been taught. He gets it wrong twice, confidently, and then right.",
+  "desc": "An unnamed young member of Meno's household, brought into the conversation to answer questions about a geometrical figure. The dialogue identifies his social position and lack of mathematical instruction rather than his physical appearance.\n\nHe answers readily, then discovers that some of his confident answers are mistaken. His willingness to continue allows Socrates to examine learning, questioning and recollection. The distinction between what the boy says and what Socrates supplies is useful to keep in view.",
   "why": "The demonstration is meant to prove we are born knowing. Read the questions closely and decide how much the boy finds for himself.",
   "first": "me5",
   "aliases": [
@@ -92,7 +92,7 @@
   "name": "Crito",
   "role": "An old friend, of the same deme, and rich",
   "first": "cr1",
-  "desc": "He has bribed the guard and arranged everything for an escape to Thessaly. He is at the trial, at the prison before dawn, and at the end.",
+  "desc": "A wealthy, longtime friend of Socrates, from the same Athenian district. He visits the prison early in the morning and is concerned with what can be done for his friend. The dialogue gives little physical detail about him.\n\nLoyal, practical and deeply affectionate, he thinks about arrangements, money, family responsibilities and public opinion. He wants to protect Socrates and finds abstract arguments difficult when a life is at stake. His presence makes the philosophical discussion inseparable from friendship.",
   "why": "He argues from love and from what people will say, and neither is contemptible. He is also the one who closes Socrates’s eyes.",
   "aliases": [
    "Crito"
@@ -103,7 +103,7 @@
   "name": "Phaedo",
   "role": "Of Elis; the narrator of the last day",
   "first": "pha1",
-  "desc": "He was there, and some time afterwards tells the whole day to Echecrates in another city.",
+  "desc": "A young man from Elis who was present with Socrates in prison. He later tells Echecrates what he remembers of the conversations and events of that day. His physical appearance is not described in detail.\n\nAn attentive and emotionally involved witness, he recalls both the arguments and the atmosphere among the friends. His narration lets the reader hear a remembered conversation rather than a direct transcript. The distance between the event and its retelling is part of the dialogue's structure.",
   "why": "The frame matters. We are hearing a memory being handed on, and twice the listener interrupts because he cannot bear the argument to fail.",
   "aliases": [
    "Phaedo"
@@ -114,7 +114,7 @@
   "name": "Echecrates",
   "role": "A Pythagorean of Phlius; the listener",
   "first": "pha1",
-  "desc": "He asks Phaedo to tell him everything that was said and done.",
+  "desc": "A philosophical listener at Phlius, associated with Pythagorean interests, who asks Phaedo for an account of Socrates' last day. He is outside the original prison gathering, and receives its story afterward.\n\nCurious and personally invested in the arguments, he sometimes interrupts to express concern or ask for clarification. His appearance is not specified. His position resembles the reader's: he has to follow both the reasoning and the emotion through someone else's account.",
   "why": "He stands where we stand.",
   "aliases": [
    "Echecrates"
@@ -126,7 +126,7 @@
   "role": "Two young Thebans, students of the Pythagorean Philolaus",
   "find": "Cebes",
   "in_": "pha",
-  "desc": "They do most of the arguing on the last day. Each raises an objection strong enough that the room goes silent.",
+  "desc": "Two young Theban companions of Socrates, associated with the Pythagorean teacher Philolaus. They take leading roles in the Phaedo's discussion of the soul. Neither is given a detailed physical portrait here.\n\nSimmias raises the comparison between a soul and the harmony of an instrument. Cebes asks whether a soul might outlast several bodies yet still eventually perish. Both are respectful but intellectually independent, willing to challenge a comforting argument when they find it incomplete.",
   "why": "They are the reason the Phaedo is philosophy and not consolation. Socrates is delighted to be opposed.",
   "first": "pha1",
   "aliases": [
@@ -141,7 +141,7 @@
   "role": "Socrates’s wife",
   "find": "Xanthippe",
   "in_": "pha",
-  "desc": "She is at the prison with their youngest child when the friends arrive, and is sent home.",
+  "desc": "Socrates' wife, seen in the prison with their youngest child. The scene identifies her through that family relationship and her distress, rather than through physical description.\n\nShe expresses openly the grief that the philosophical conversation often tries to restrain. Her brief presence reminds the reader that Socrates belongs to a household as well as a circle of pupils and friends. It is useful to distinguish this particular scene from later popular stories about her temperament.",
   "why": "She gets three sentences. I notice how quickly the dialogue wants her out of the room.",
   "first": "pha1",
   "aliases": [
@@ -154,7 +154,7 @@
   "role": "The laws and government of Athens, given a voice",
   "find": "the laws and the government",
   "in_": "cr",
-  "desc": "In the Crito Socrates imagines the Laws standing in the doorway and asking what he thinks he is doing.",
+  "desc": "The laws and civic institutions of Athens imagined as speaking persons in the Crito. They have no literal body or physical appearance: Socrates gives them a voice to test what an escape would mean.\n\nThey speak as longstanding authorities who have made possible his upbringing, education and citizenship. Their argument turns on obligation, consent and whether someone may answer an injustice by breaking the law. Read their speech as a philosophical construction within Socrates' conversation with Crito.",
   "why": "It is the argument that kept him in the cell. I find it less airtight than he does and the commentary says where.",
   "first": "cr3",
   "aliases": [
@@ -167,7 +167,7 @@
   "role": "Servant of the Eleven",
   "find": "servant of the Eleven",
   "in_": "phb",
-  "desc": "He comes to say it is time, calls Socrates the noblest and gentlest man who ever came there, and bursts into tears.",
+  "desc": "A prison attendant serving the Eleven, the Athenian officials responsible for custody and executions. He has come to know Socrates during his imprisonment. The dialogue does not describe his appearance in detail.\n\nGentle and visibly moved, he speaks with respect while carrying out a difficult duty. His response shows how Socrates appears to someone outside the circle of philosophical companions. He is distinct from the man who later explains the practical instructions for taking the poison.",
   "why": "The one judgement on Socrates in these dialogues from someone with nothing to gain.",
   "first": "phb7",
   "aliases": [

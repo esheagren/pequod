@@ -4,7 +4,7 @@
   "name": "Rodion Romanovitch Raskolnikov",
   "role": "“Rodya”. A former law student, twenty-three",
   "first": "p1c1",
-  "desc": "He has left the university for want of money and lives in a garret under the roof of a five-storied house, in debt to his landlady and avoiding her on the stairs. He is handsome, proud, and has been lying on his sofa for a month thinking about one thing.",
+  "desc": "Twenty-three, tall and slender, with dark eyes, dark brown hair and a strikingly handsome face. His worn-out clothes and tiny attic room make his poverty visible. Rodya is the familiar form of his first name.\n\nIntelligent, proud and intensely self-conscious, he withdraws from other people and turns ideas over obsessively. He can be unexpectedly generous, yet also impatient and contemptuous. Hunger, isolation and fever make his thoughts and moods difficult to separate from his physical condition.",
   "why": "Dostoevsky keeps us inside his head and never lets that be comfortable. I find I cannot hold him at a distance and cannot take his side either, which I think is the design.",
   "aliases": [
    "Rodion Romanovitch Raskolnikov",
@@ -18,7 +18,7 @@
   "name": "Pulcheria Alexandrovna Raskolnikov",
   "role": "His mother, a widow in the provinces",
   "first": "p1c3 (by letter)",
-  "desc": "She lives on a pension of a hundred and twenty roubles and has borrowed against it to send her son money. We meet her first in a long letter.",
+  "desc": "Forty-three, with thinning, graying hair and a face that still resembles her daughter Dounia's. Anxiety has left its marks around her eyes and cheeks. She is a widow living on a small pension in the provinces.\n\nWarm, emotional and devoted to her children, she tries to reassure them even when she is worried herself. Her gentleness has limits: honesty and family loyalty are principles she takes seriously. Her letters and conversation often reveal more concern than she intends to show.",
   "why": "The letter is one of the best things in the book: every reassurance in it tells him the opposite of what she means it to.",
   "aliases": [
    "Pulcheria Alexandrovna Raskolnikov",
@@ -30,7 +30,7 @@
   "name": "Avdotya Romanovna Raskolnikov",
   "role": "“Dounia”. His sister",
   "first": "p1c3 (by letter)",
-  "desc": "She has been working as a governess in a household where the master pursued her, and has now accepted a proposal of marriage from a man she does not know well.",
+  "desc": "Known as Dounia, she is Raskolnikov's sister. Tall, strong and graceful, she has dark brown hair, very dark eyes and a notably projecting lower lip. Her serious expression and bearing suggest confidence and self-command.\n\nProud, perceptive and deeply loyal to her family, she is willing to work and endure hardship for them. She shares some of her brother's intensity but usually brings more steadiness to practical decisions. She dislikes being treated as dependent or easily controlled.",
   "why": "She has her brother’s pride and puts it to different use. The book keeps asking what the difference is.",
   "aliases": [
    "Avdotya Romanovna Raskolnikov",
@@ -43,7 +43,7 @@
   "name": "Semyon Zaharovitch Marmeladov",
   "role": "A titular counsellor, dismissed; a drunkard",
   "first": "p1c2",
-  "desc": "He tells his whole story to a stranger in a tavern: the post he drank away, the wife he pities and fears, the daughter who supports them.",
+  "desc": "A former civil servant over fifty, stout, balding and grizzled, with a bloated face, reddish eyes and a badly worn coat. His appearance shows the effects of heavy drinking and neglect.\n\nTalkative, ashamed and intensely emotional, he turns his troubles into elaborate confessions. He recognizes the suffering he causes his family, yet repeatedly seeks refuge in drink. His formal language and references to rank preserve the dignity he feels he has lost.",
   "why": "His speech is grotesque and it is also a real theology of the last judgement. Dostoevsky will not let you choose one.",
   "aliases": [
    "Semyon Zaharovitch Marmeladov",
@@ -56,7 +56,7 @@
   "name": "Katerina Ivanovna Marmeladov",
   "role": "His wife; an officer’s daughter",
   "first": "p1c2",
-  "desc": "Consumptive, well-born, with three small children from a first marriage, living in a passage room and scrubbing the floor at night out of pride.",
+  "desc": "About thirty, tall and graceful but severely thin, with dark brown hair and flushed cheeks. She coughs and struggles for breath because she has consumption, the illness now called tuberculosis. She has three children from an earlier marriage.\n\nProud of her education and her upbringing as an officer's daughter, she works fiercely to maintain order in a crowded, impoverished home. She is quick-tempered, exacting and easily wounded by disrespect. Her demands for cleanliness and dignity are part of her resistance to the family's circumstances.",
   "why": "She is cruel and she is wronged. Dostoevsky gives her more dignity the less she can afford it.",
   "aliases": [
    "Katerina Ivanovna Marmeladov",
@@ -68,7 +68,7 @@
   "name": "Sofya Semyonovna Marmeladov",
   "role": "“Sonia”. Marmeladov’s daughter by his first marriage",
   "first": "p1c2 (described)",
-  "desc": "Eighteen, timid, and since her stepmother’s reproach one evening the holder of a yellow ticket, which is to say a registered prostitute. Her earnings keep the family.",
+  "desc": "Usually called Sonia, she is eighteen, small and thin, with fair hair, blue eyes and a pale, timid face. Her clothes vary sharply between the conspicuous costume associated with her work and her modest everyday appearance.\n\nGentle, compassionate and deeply religious, she supports the Marmeladov household through prostitution. She is easily embarrassed and reluctant to put herself forward, but her concern for others gives her a quiet strength. She often responds to distress with care rather than argument.",
   "why": "We hear about her long before we see her, and what we hear is her father’s account. It is worth noticing who gets to describe whom in this book.",
   "aliases": [
    "Sofya Semyonovna Marmeladov",
@@ -81,7 +81,7 @@
   "name": "Alyona Ivanovna",
   "role": "A pawnbroker, about sixty",
   "first": "p1c1",
-  "desc": "A widow who lends on pledges at ruinous interest from a fourth-floor flat, behind a door she opens a crack at a time.",
+  "desc": "A small, withered woman of about sixty, with sharp eyes, a pointed nose and thin, graying hair covered in oil. She wears a rag around her long neck and an old fur cape even in warm weather.\n\nA suspicious and exacting pawnbroker, she bargains closely over objects left as security for loans. She treats her half-sister Lizaveta harshly. Much of her first description comes through Raskolnikov's hostile attention, so his judgment is part of what the reader is encountering.",
   "why": "The first chapter makes us see her through his eyes, with every detail already an argument. Try seeing her without him.",
   "aliases": [
    "Alyona Ivanovna"
@@ -92,7 +92,7 @@
   "name": "Lizaveta Ivanovna",
   "role": "Her half-sister",
   "first": "p1c5",
-  "desc": "Thirty-five, tall, meek, worked like a servant by Alyona, and known to everyone in the Hay Market, where she deals in second-hand clothes.",
+  "desc": "Alyona's younger half-sister, about thirty-five, very tall and awkward in her movements. She is often seen carrying goods or bundles and dealing in second-hand clothes around the Hay Market.\n\nTimid, gentle and submissive, she does much of her sister's work and lives in fear of her. Her lack of assertiveness makes her easy for others to overlook. She is a distinct person from the pawnbroker, despite the household and name they share.",
   "why": "People in this novel talk about Lizaveta as if she were not quite there. The book notices.",
   "aliases": [
    "Lizaveta Ivanovna",
@@ -104,7 +104,7 @@
   "name": "Dmitri Prokofitch Razumihin",
   "role": "A fellow student",
   "first": "p2c2",
-  "desc": "Poor, loud, generous, always in the middle of some scheme for earning money by translation, and incapable of being offended for long.",
+  "desc": "A very tall, physically strong fellow student of Raskolnikov's, often untidy or unshaven. His size and energetic manner make him a conspicuous presence in cramped rooms. He is poor and earns money through assorted work, including translation.\n\nWarm, talkative, resourceful and loyal, he turns concern into practical help. He can be impulsive and boisterous, particularly after drinking, but is rarely resentful for long. He offers a more sociable response to the same poverty that isolates his friend.",
   "why": "He is the book’s proof that poverty and the ideas in the air do not have to end where they end for his friend.",
   "aliases": [
    "Dmitri Prokofitch Razumihin",
@@ -117,7 +117,7 @@
   "name": "Nastasya",
   "role": "The landlady’s cook and only servant",
   "first": "p1c3",
-  "desc": "A country woman who brings him tea and cabbage soup and tells him what she thinks of his lying about all day.",
+  "desc": "The landlady's cook and servant, a country woman who brings Raskolnikov food and tea. The novel makes her voice and everyday actions more distinctive than her physical appearance.\n\nBlunt, observant and capable of teasing him without ceremony, she sees how little he eats and how much time he spends lying in his room. Her practical kindness is mixed with impatience. She keeps the ordinary needs of the body in view when Raskolnikov is absorbed in ideas.",
   "why": "She asks him what work he does, he says “thinking”, and she laughs until she is ill. It is the soundest criticism he receives.",
   "aliases": [
    "Nastasya"
@@ -128,7 +128,7 @@
   "name": "Zossimov",
   "role": "A young doctor, Razumihin’s friend",
   "first": "p2c3",
-  "desc": "Stout, well-dressed, pleased with himself, with a special interest in what he calls mental diseases.",
+  "desc": "Twenty-seven, tall and stout, with a pale, clean-shaven face, straight fair hair and spectacles. He wears carefully fashionable clothes, a large gold ring and a substantial watch-chain.\n\nA doctor and friend of Razumihin's, he is professionally interested in Raskolnikov's condition. His manner is slow and self-assured, with a noticeable sense of his own importance. He tends to frame what he sees in terms of symptoms and diagnosis.",
   "why": "He diagnoses everything and understands very little, which is the novel’s view of diagnosis.",
   "aliases": [
    "Zossimov"
@@ -139,7 +139,7 @@
   "name": "Pyotr Petrovitch Luzhin",
   "role": "A lawyer of forty-five with a little capital; engaged to Dounia",
   "first": "p1c3 (by letter)",
-  "desc": "He has let it be known that he prefers a wife who is poor, so that she will owe him everything. He is coming to Petersburg to open an office.",
+  "desc": "A lawyer in his mid-forties who takes pains to look younger and prosperous. His fresh clothes, curled hair, carefully arranged whiskers and conspicuously fine accessories are part of his presentation. He is engaged to Dounia when first introduced.\n\nVain, calculating and concerned with respectability, he explains his interests through the language of sensible self-advancement. He prefers a wife who will feel indebted to him. His politeness often carries an expectation of gratitude and obedience.",
   "why": "He has a theory too, about enlightened self-interest, and the book sets it beside the hero’s on purpose.",
   "aliases": [
    "Pyotr Petrovitch Luzhin",
@@ -152,7 +152,7 @@
   "name": "Arkady Ivanovitch Svidrigaïlov",
   "role": "A landowner; Dounia’s former employer",
   "first": "p1c3 (by letter)",
-  "desc": "The master of the house where Dounia was governess, whose attentions cost her the place. At the start we know him only by report.",
+  "desc": "A well-to-do, middle-aged landowner with a stout build and a full, very fair beard. He is Dounia's former employer and reaches the reader first through other people's accounts of his conduct.\n\nSelf-possessed, observant and difficult to read, he can speak lightly about disturbing matters. His ease and apparent generosity coexist with a disregard for other people's boundaries. The contrast between what he says and what others know of him is important to understanding his presence.",
   "why": "Hold on to the name. Few characters in fiction are so thoroughly discussed before they open a door.",
   "aliases": [
    "Arkady Ivanovitch Svidrigaïlov",
@@ -165,7 +165,7 @@
   "name": "Andrey Semyonovitch Lebeziatnikov",
   "role": "A clerk and a man of advanced ideas",
   "first": "p1c2 (mentioned)",
-  "desc": "A lodger in the Marmeladovs’ building who talks of communes and the new principles.",
+  "desc": "A small, unhealthy-looking young clerk, proud of his pale mutton-chop whiskers and frequently troubled by his eyes. He lodges in the same building as the Marmeladovs and associates with Luzhin.\n\nEnthusiastic about progressive ideas, communes and changes to family life, he likes to explain the latest theories. He can be conceited and confused, but is also soft-hearted. His eagerness to sound advanced does not exhaust his capacity for ordinary human sympathy.",
   "why": "Dostoevsky’s caricature of the Petersburg radical, drawn with more malice than fairness. He is allowed one fine moment all the same.",
   "aliases": [
    "Andrey Semyonovitch Lebeziatnikov",
@@ -178,7 +178,7 @@
   "name": "Porfiry Petrovitch",
   "role": "Examining magistrate; a relation of Razumihin’s",
   "first": "p3c5",
-  "desc": "About thirty-five, short, stout, with a round face and something womanish in it, forever laughing and screwing up his eyes.",
+  "desc": "About thirty-five, short and stout, clean-shaven, with a round head, closely cut hair and pale, blinking eyelashes. His informal clothes and apparently relaxed manner can make him seem less formidable than he is.\n\nAn examining magistrate and a relative of Razumihin's, he is perceptive, patient and interested in psychological motives. He likes indirect questions, jokes and conversations whose purpose is not immediately clear. His watchful eyes are a useful counterpoint to his casual speech.",
   "why": "The interviews with him are the best scenes of talk in the novel. Watch what he chooses not to ask.",
   "aliases": [
    "Porfiry Petrovitch",
@@ -190,7 +190,7 @@
   "name": "Ilya Petrovitch",
   "role": "Assistant superintendent, “the Explosive Lieutenant”",
   "first": "p2c1",
-  "desc": "A lieutenant with a reddish moustache standing straight out and a temper that goes off at a look.",
+  "desc": "A police lieutenant with a reddish moustache that projects prominently from his face. He is the assistant superintendent, nicknamed the Explosive Lieutenant.\n\nHot-tempered, abrupt and quick to take offense, he can turn an ordinary exchange into a confrontation. His rank gives those outbursts weight. Distinguish him from Nikodim Fomitch, his more composed superior, and from Zametov, the office clerk.",
   "why": "Comic, and present at more turning points than a comic figure should be.",
   "aliases": [
    "Ilya Petrovitch"
@@ -201,7 +201,7 @@
   "name": "Nikodim Fomitch",
   "role": "Superintendent of the district police",
   "first": "p2c1",
-  "desc": "A handsome, good-natured officer who smooths over his lieutenant’s explosions.",
+  "desc": "The district police superintendent, a handsome officer with a good-natured manner. He is Ilya Petrovitch's superior and often tries to soften the lieutenant's sharpness.\n\nCourteous, sociable and comparatively patient, he makes the police office feel less uniformly hostile. His warmth does not remove his official responsibilities, but it does distinguish his style from the more excitable or probing men around him.",
   "why": "Ordinary decency, in uniform, which this book treats as rare.",
   "aliases": [
    "Nikodim Fomitch"
@@ -212,7 +212,7 @@
   "name": "Zametov",
   "role": "Head clerk at the police office",
   "first": "p2c1",
-  "desc": "A fashionable young man of twenty-two with rings on his fingers and his hair parted and pomaded.",
+  "desc": "The young head clerk at the police office, about twenty-two. His rings, carefully parted and pomaded hair, and fashionable appearance suggest someone attentive to his standing and to how he is seen.\n\nCurious and socially confident, he is drawn into conversations whose stakes he does not always understand. He belongs to the police administration but is neither the superintendent nor the examining magistrate. Remembering that difference helps make sense of his exchanges with Raskolnikov.",
   "why": "He is the one who nearly understands and is talked out of it.",
   "aliases": [
    "Zametov"

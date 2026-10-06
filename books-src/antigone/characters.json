@@ -4,7 +4,7 @@
   "name": "Antigone",
   "role": "Daughter of Oedipus, betrothed to Haemon",
   "first": "s1",
-  "desc": "The fiercer daughter of Oedipus and Jocasta, niece of Creon. She buries her brother Polyneices against the royal edict, admits it without a tremor, and is walled up alive in a cave, where she hangs herself before the reprieve arrives.",
+  "desc": "A young woman of the royal house of Thebes, sister of Ismene, Eteocles and Polyneices, and niece of Creon. The play gives her no detailed physical portrait; her force comes through her direct, uncompromising speech.\n\nFiercely loyal to her family and to the obligations owed to the dead, she treats burial as a sacred duty. She is courageous and determined, but can be harsh toward people who hesitate. Her arguments often begin from what she believes she must do, rather than what she can safely do.",
   "why": "I think she is right about the burial and hard to be near: cruel to her sister, half in love with death, and then, on the way to the cave, suddenly young and unsure. The play is better for refusing to make her a saint.",
   "aliases": [
    "Antigone"
@@ -15,7 +15,7 @@
   "name": "Ismene",
   "role": "Antigone's sister",
   "first": "s1",
-  "desc": "The sister who says no. She refuses to help with the burial because two women cannot fight the State, then tries to share the blame and the death once Antigone is caught, and is turned away by both her sister and, in the end, Creon.",
+  "desc": "Antigone's sister, a young woman from the same troubled royal family. Her appearance is not described in detail. She is gentler in speech and more cautious about confronting the king.\n\nShe loves her sister but sees their position as vulnerable: they are women facing the authority of the state. Her concern for survival is mixed with affection and a strong sense of their family's losses. Her hesitation helps explain how difficult Antigone's choice would feel to an ordinary person.",
   "why": "She is the ordinary decent person in the play, and her argument for obedience is not contemptible. What happens to her offer in the Second Episode is the best evidence of how much Antigone's certainty costs the people who love her.",
   "aliases": [
    "Ismene"
@@ -26,7 +26,7 @@
   "name": "Creon",
   "role": "King of Thebes, brother of Jocasta",
   "first": "s3",
-  "desc": "Uncle to Antigone and king for a single day when the play begins, the brothers having killed each other. He forbids burial to the traitor Polyneices, condemns his niece for defying him, quarrels with his son and with the prophet, yields too late, and ends with son and wife dead by their own hands.",
+  "desc": "The new king of Thebes, Jocasta's brother, Antigone's uncle and Haemon's father. He speaks with the authority of a ruler taking charge after a civil war; the play does not supply a detailed description of his appearance.\n\nHe values order, loyalty to the city and obedience to the law. He is decisive and proud, and tends to hear disagreement as a challenge to his position. His concern for public duty is closely tangled with his need to remain in control.",
   "why": "He begins with a defensible principle, that the city comes before kin, and I watch it shrink scene by scene into fear of being beaten by a woman. He is the one who changes, which makes the play at least as much his tragedy as hers.",
   "aliases": [
    "Creon"
@@ -37,7 +37,7 @@
   "name": "Haemon",
   "role": "Creon's son, betrothed to Antigone",
   "first": "s7",
-  "desc": "Creon's last surviving son. He tries to talk his father round with tact and with the news that the city sides with Antigone, is called a woman's slave for it, and kills himself in the cave beside her body after lunging at his father and missing.",
+  "desc": "Creon's son and Antigone's betrothed, a young man caught between his father and the woman he intends to marry. The play describes his position and conduct more than his appearance.\n\nHe begins respectfully and tries to persuade through reason rather than defiance. He pays attention to what ordinary citizens are saying and argues that a ruler should be willing to listen. Affection, loyalty and a growing frustration with his father's certainty all shape his speech.",
   "why": "He makes the political case against Creon better than anyone, and never once says he loves her. Creon can hear nothing else, and that deafness is where the play turns.",
   "aliases": [
    "Haemon"
@@ -48,7 +48,7 @@
   "name": "Eurydice",
   "role": "Creon's wife, mother of Haemon",
   "first": "s13",
-  "desc": "The queen, who appears only at the end. She hears the messenger describe her son's death, leaves without a word, and stabs herself at the household altar, mourning an earlier son, Megareus, and cursing her husband as the slayer of her child.",
+  "desc": "The queen of Thebes, Creon's wife and Haemon's mother. She belongs to the household whose private life lies behind the king's public decisions. The play gives little detail about her physical appearance.\n\nReserved and dignified, she listens closely and asks for a clear account of what has happened. Her restraint is an important part of her presence: the weight of what she hears is not always expressed in a long speech.",
   "why": "She has perhaps a dozen lines, and her silent exit is the most frightening moment in the play. She is the cost Creon never thought to count.",
   "aliases": [
    "Eurydice"
@@ -59,7 +59,7 @@
   "name": "Chorus of Theban Elders",
   "role": "Creon's council of old men",
   "first": "s2",
-  "desc": "The senior citizens of Thebes, summoned as the new king's trusted advisers. They sing the odes between scenes, defer to Creon while he is strong, pity Antigone without helping her, and find their nerve only after the prophet has spoken.",
+  "desc": "A group of older male citizens of Thebes, summoned as advisers to the new king. They speak collectively, sometimes through a leader, and sing the odes between the main scenes.\n\nThey are loyal to the city, respectful of authority and anxious about divine law. They can sympathize with suffering while remaining hesitant to oppose power. Their songs broaden the action into questions about human achievement, pride, love and the limits of knowledge.",
   "why": "They are what a city sounds like when it is afraid of its ruler. I read their odes as aimed at Antigone and landing, every time, on Creon.",
   "aliases": [
    "Chorus of Theban Elders",
@@ -71,7 +71,7 @@
   "name": "Teiresias",
   "role": "The blind prophet of Thebes",
   "first": "s11",
-  "desc": "The old seer, led by a boy, whose advice Creon has always followed until now. He reports that the altars are fouled with scraps of the unburied corpse, offers Creon a way to back down, is accused of taking bribes, and answers with the prophecy that Creon will pay with a child of his own.",
+  "desc": "An elderly, blind prophet of Thebes, led by a boy. His blindness and dependence on a guide are the clearest physical details attached to him. Creon has previously relied on his counsel.\n\nHe interprets signs from birds and sacrifices as evidence of the gods' will. He is grave, authoritative and willing to speak firmly to a king. His knowledge comes from religious observation rather than the political calculations that occupy Creon.",
   "why": "He is the play's verdict. Until he speaks, Antigone's claim about the gods is only her word; after him it is a fact, and Creon collapses within a page.",
   "aliases": [
    "Teiresias",
@@ -83,7 +83,7 @@
   "name": "Guard",
   "role": "A sentry set to watch the corpse",
   "first": "s3",
-  "desc": "A common soldier who draws the short straw to report the first burial, is threatened with torture, and comes back delighted with Antigone as his prisoner. He talks too much, hedges everything, and says openly that his own skin comes first.",
+  "desc": "A sentry assigned to watch Polyneices' body. He is an ordinary soldier rather than a member of the royal household, and the play gives him no distinctive physical portrait.\n\nNervous, talkative and practical, he worries about how bad news will be received. His speech mixes evasions, plain common sense and unexpected humor. Protecting himself matters greatly to him, which makes him a useful contrast to Antigone's willingness to accept danger.",
   "why": "He is funny, which matters in a play this bleak, and he is the honest measure of what most people do under a threat. Antigone looks stranger and braver standing next to him.",
   "aliases": [
    "Guard"
@@ -94,7 +94,7 @@
   "name": "Messenger",
   "role": "An attendant of Creon",
   "first": "s13",
-  "desc": "One of the king's men, who went with him to the plain and the cave. He tells Eurydice and the elders how Polyneices was buried at last, how Antigone was found hanged, and how Haemon died.",
+  "desc": "One of Creon's attendants, who brings eyewitness news to the people waiting at the palace. His appearance is not specified. His role is to explain events that take place away from the stage.\n\nHe speaks plainly and carefully, distinguishing what he saw from what others said. He is sensitive to the uncertainty of human fortunes. Following his account closely helps connect the public argument in Thebes with what happens beyond the palace.",
   "why": "Everything violent in the play happens offstage and reaches us through him. His plain remark that a life without joy is a living death is the truest epitaph Creon gets.",
   "aliases": [
    "Messenger"
@@ -105,7 +105,7 @@
   "name": "Second Messenger",
   "role": "A servant from the palace",
   "first": "s13",
-  "desc": "A member of the household who comes out to tell Creon, already carrying his son's body, that Eurydice has killed herself indoors. He reports her last words, which lay both deaths at Creon's door.",
+  "desc": "A servant from the royal household who brings news from inside the palace. He is a separate speaker from the attendant identified simply as Messenger; neither has a detailed physical description.\n\nHis speech is direct and reportorial. He explains the household's private experiences to those outside it, making clear how decisions made in public affect the family within.",
   "why": "He delivers the blow Creon did not see coming, and he does not soften it. The play ends with servants telling a king the truth.",
   "aliases": [
    "Second Messenger"

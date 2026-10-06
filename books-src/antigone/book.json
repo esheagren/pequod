@@ -74,11 +74,13 @@
  "references": [
   {
    "name": "Oedipus",
-   "role": "Father of Antigone and Ismene; the former king of Thebes."
+   "role": "Father of Antigone and Ismene; the former king of Thebes.",
+   "desc": "The former king of Thebes and father of Antigone, Ismene, Eteocles and Polyneices. In the family's earlier story he blinded himself and went into exile. His suffering and the troubled inheritance of his household form part of the background the sisters share."
   },
   {
    "name": "Jocasta",
-   "role": "Mother of Antigone and Ismene."
+   "role": "Mother of Antigone and Ismene.",
+   "desc": "The former queen of Thebes, mother of Antigone and her siblings, and sister of Creon. Her marriage to Oedipus belongs to the family's painful earlier history. Remembering that she is Creon's sister explains why the new king is the children's uncle."
   },
   {
    "name": "Polyneices",
@@ -86,11 +88,13 @@
     "Polyneices",
     "Polynices"
    ],
-   "role": "Brother of Antigone and Ismene. Creon has forbidden his burial after he attacked Thebes."
+   "role": "Brother of Antigone and Ismene. Creon has forbidden his burial after he attacked Thebes.",
+   "desc": "One of Antigone's brothers, who brought an army against Thebes in the struggle for its throne. He and his brother Eteocles have killed each other before the play begins. Creon treats him as an enemy of the city and forbids his burial; Antigone continues to see him as a brother to whom she owes a sacred duty."
   },
   {
    "name": "Eteocles",
-   "role": "Brother of Antigone and Ismene; he died fighting Polyneices for Thebes."
+   "role": "Brother of Antigone and Ismene; he died fighting Polyneices for Thebes.",
+   "desc": "Antigone's brother, who defended Thebes against the army led by Polyneices. The brothers killed each other before the opening scene. Creon grants him an honored burial as the city's defender, making the contrast with Polyneices central to the play's dispute about kinship and public loyalty."
   }
  ]
 }
