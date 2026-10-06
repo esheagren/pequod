@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pequod · Player flow mockups</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;1,9..144,300;1,9..144,500&family=Libre+Caslon+Text:ital,wght@0,400;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{--bg:#0C1218;--bg2:#101922;--panel:#121B24;--ink:#D9DED6;--ink2:#A4AEB0;--ink3:#6E7A80;--rule:#233039;--accent:#E8E2CB;--accent-soft:#1E2E36;--line:#D9705E;--line-soft:#3A2420;--sel:#1B2A33;
+--display:'Fraunces',Georgia,serif;--body:'Libre Caslon Text',Georgia,serif;--mono:'IBM Plex Mono',Menlo,monospace}
+*{box-sizing:border-box}
+body{margin:0;background:#070B0F;color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55}
+.wrap{max-width:1500px;margin:0 auto;padding:3rem 2rem 6rem}
+h1{font-family:var(--display);font-weight:300;font-size:clamp(2.2rem,4vw,3.4rem);margin:0 0 .4rem;letter-spacing:-.01em;font-variation-settings:"opsz" 144}
+.lede{color:var(--ink2);max-width:66ch;margin:0 0 .6rem}
+.kick{font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink3)}
+.flow{display:flex;flex-wrap:wrap;gap:.5rem;margin:1.4rem 0 3rem;font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;color:var(--ink2);align-items:center}
+.flow span{border:1px solid var(--rule);padding:.35rem .6rem;border-radius:2px}
+.flow span.opt{border-style:dashed;color:var(--ink3)}
+.flow em{font-style:normal;color:var(--ink3);padding:.35rem .2rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(420px,1fr));gap:3rem 2.5rem;align-items:start}
+.shot{display:grid;grid-template-columns:auto 1fr;gap:1.4rem;align-items:start}
+.cap{max-width:24rem;padding-top:.4rem}
+.cap .n{font-family:var(--mono);font-size:.68rem;letter-spacing:.16em;color:var(--line);margin-bottom:.4rem}
+.cap h2{font-family:var(--display);font-weight:500;font-size:1.3rem;margin:0 0 .5rem;font-variation-settings:"opsz" 48}
+.cap p{margin:0 0 .6rem;font-size:.92rem;color:var(--ink2)}
+.cap .react{border-left:2px solid var(--line);padding:.2rem 0 .2rem .8rem;color:var(--ink);font-style:italic;font-size:.92rem}
+.cap .react b{display:block;font-style:normal;font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;color:var(--line);margin-bottom:.25rem}
+/* phone */
+.phone{width:300px;height:640px;background:var(--bg);border:1px solid #2b3844;border-radius:26px;position:relative;overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,.5);flex:none;font-size:13.5px;line-height:1.5;display:flex;flex-direction:column}
+/* chapter string */
+.string{display:flex;align-items:flex-end;gap:0;padding:.9rem .6rem .5rem;border-bottom:1px solid var(--rule);background:var(--bg2);position:relative;flex:none}
+.string::before{content:"";position:absolute;left:1rem;right:1rem;bottom:.95rem;height:1px;background:var(--rule)}
+.string .c{flex:1;text-align:center;position:relative;font-family:var(--mono);font-size:.55rem;letter-spacing:.08em;color:var(--ink3);text-transform:uppercase;line-height:1.25}
+.string .c i{display:block;width:7px;height:7px;border-radius:50%;background:var(--bg2);border:1px solid var(--rule);margin:.35rem auto 0;position:relative;z-index:1}
+.string .c b{display:block;font-weight:400;color:var(--ink3);font-size:.5rem;margin-bottom:.1rem}
+.string .c.past{color:var(--ink3)}
+.string .c.cur{flex:1.9;color:var(--ink);font-family:var(--display);font-size:.84rem;letter-spacing:0;text-transform:none;font-variation-settings:"opsz" 30}
+.string .c.cur i{background:var(--line);border-color:var(--line);box-shadow:0 0 0 3px var(--line-soft)}
+.string .c.cur b{color:var(--line);font-family:var(--mono);letter-spacing:.12em}
+.string .c.ahead{color:var(--ink2)}
+.string .c.ahead i{border-color:var(--ink3)}
+.string .c.disc::after{content:"";position:absolute;right:calc(50% - 9px);bottom:1px;width:4px;height:4px;border-radius:50%;background:var(--accent)}
+.txt{padding:.9rem 1.15rem;color:var(--ink2);hyphens:auto;flex:1;overflow:hidden}
+.txt p{margin:0 0 .8em}
+.txt .cur{background:var(--sel);color:var(--ink);box-shadow:0 0 0 3px var(--sel)}
+.txt .cur .w{background:var(--accent-soft)}
+.txt .ann{text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:.16em;text-decoration-thickness:1px}
+.txt .ann sup{font-family:var(--mono);font-size:.55em;color:var(--line);vertical-align:.5em}
+/* bottom bar */
+.bar{flex:none;background:var(--bg2);border-top:1px solid var(--rule);padding:.6rem .9rem .8rem}
+.bar .track{height:2px;background:var(--rule);position:relative;margin:.2rem 0 .5rem}
+.bar .track i{position:absolute;left:0;top:0;bottom:0;background:var(--accent);width:38%}
+.bar .track b{position:absolute;top:-3px;width:1px;height:8px;background:var(--ink3)}
+.bar .tm{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.58rem;color:var(--ink3);letter-spacing:.06em}
+.bar .nav{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;margin-top:.45rem}
+.bar .nav .l,.bar .nav .r{display:flex;gap:.9rem;align-items:center}
+.bar .nav .r{justify-content:flex-end}
+.bar .ic{font-family:var(--mono);font-size:.55rem;letter-spacing:.08em;color:var(--ink3);text-transform:uppercase;text-align:center;line-height:1.1}
+.bar .ic i{display:block;font-style:normal;font-size:1.05rem;color:var(--ink2);margin-bottom:.15rem}
+.bar .ic.on i,.bar .ic.on{color:var(--line)}
+.bar .ctl{display:flex;align-items:center;gap:1rem;color:var(--ink)}
+.bar .ctl .pl{width:42px;height:42px;border-radius:50%;border:1px solid var(--accent);display:grid;place-items:center;color:var(--accent)}
+.bar .ctl .sk{font-family:var(--mono);font-size:.58rem;color:var(--ink2);text-align:center;line-height:1.1}
+.bar .ctl .sk i{display:block;font-style:normal;font-size:1rem;color:var(--ink)}
+/* sheets */
+.sheet{position:absolute;left:0;right:0;bottom:0;background:var(--panel);border-top:1px solid var(--rule);padding:1rem 1.1rem 1.1rem;box-shadow:0 -20px 40px rgba(0,0,0,.55);border-radius:14px 14px 0 0}
+.sheet h5{font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink3);margin:0 0 .7rem;font-weight:500}
+.opt{display:flex;justify-content:space-between;align-items:center;padding:.55rem 0;border-top:1px solid var(--rule);font-size:.9rem;color:var(--ink)}
+.opt small{display:block;color:var(--ink3);font-size:.74rem;font-family:var(--mono);letter-spacing:.04em}
+.tog{width:34px;height:20px;border-radius:999px;background:var(--rule);position:relative;flex:none}
+.tog::after{content:"";position:absolute;top:3px;left:3px;width:14px;height:14px;border-radius:50%;background:var(--ink3)}
+.tog.on{background:var(--accent)}
+.tog.on::after{left:17px;background:var(--bg)}
+.seg{display:flex;border:1px solid var(--rule);border-radius:3px;font-family:var(--mono);font-size:.58rem;letter-spacing:.08em;text-transform:uppercase}
+.seg span{padding:.3rem .5rem;color:var(--ink3)}
+.seg span.on{background:var(--accent-soft);color:var(--ink)}
+.dim{position:absolute;inset:0;background:rgba(7,11,15,.5)}
+.btn{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;padding:.45rem .7rem;border:1px solid var(--rule);border-radius:2px;color:var(--ink2);display:inline-block}
+.btn.pri{border-color:var(--accent);color:var(--accent)}
+.btnrow{display:flex;gap:.5rem;justify-content:space-between;align-items:center}
+/* take / transition */
+.take{padding:1.1rem 1.15rem;flex:1}
+.take .who{font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem}
+.take h3{font-family:var(--display);font-style:italic;font-weight:300;font-size:1.45rem;margin:0 0 .7rem;font-variation-settings:"opsz" 72}
+.take p{margin:0 0 .8em;color:var(--ink2)}
+.take p.cur{color:var(--ink)}
+.next{margin:.4rem 1.15rem;padding:.7rem .8rem;border:1px solid var(--rule);border-radius:3px;display:flex;justify-content:space-between;align-items:center;font-size:.86rem;color:var(--ink2)}
+.next b{display:block;font-family:var(--mono);font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);font-weight:500;margin-bottom:.15rem}
+.next .cd{font-family:var(--mono);font-size:.8rem;color:var(--accent)}
+/* discussion */
+.disc{flex:1;padding:.4rem 1rem 0;overflow:hidden}
+.disc .hd{display:flex;justify-content:space-between;align-items:baseline;font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);padding:.5rem 0 .6rem;border-bottom:1px solid var(--rule);margin-bottom:.4rem}
+.disc .hd b{color:var(--line);font-weight:500}
+.msg{margin:.6rem 0;max-width:92%}
+.msg .n{font-family:var(--mono);font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink3);margin-bottom:.2rem}
+.msg .b{color:var(--ink);background:var(--panel);border:1px solid var(--rule);padding:.5rem .7rem;border-radius:12px 12px 12px 3px;font-size:.9rem}
+.msg.you{margin-left:auto}.msg.you .n{text-align:right}
+.msg.you .b{background:var(--accent-soft);border-color:transparent;border-radius:12px 12px 3px 12px}
+.msg.a .n{color:var(--line)}
+.passage{border-left:2px solid var(--line);background:var(--bg2);padding:.45rem .6rem;margin:.4rem 0 .1rem;font-style:italic;color:var(--ink2);font-size:.82rem}
+.passage .pl{display:flex;align-items:center;gap:.4rem;font-style:normal;font-family:var(--mono);font-size:.55rem;letter-spacing:.12em;color:var(--accent);margin-bottom:.25rem}
+.mic{flex:none;background:var(--bg2);border-top:1px solid var(--rule);padding:.7rem 1rem .9rem;display:grid;grid-template-columns:1fr auto 1fr;align-items:center}
+.mic .m{width:48px;height:48px;border-radius:50%;background:var(--line);display:grid;place-items:center;color:#fff;justify-self:center}
+.mic .l{font-family:var(--mono);font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3)}
+.mic .l.r{text-align:right}
+.note{margin:4rem 0 0;padding:1.5rem;border:1px dashed var(--rule);max-width:66ch;color:var(--ink2);font-size:.92rem}
+.note h3{font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink3);margin:0 0 .6rem}
+@media (max-width:760px){.shot{grid-template-columns:1fr}.phone{width:100%;max-width:340px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="kick">Pequod · design mockups · round 2 · 2026-09-02</div>
+<h1>The player flow</h1>
+<p class="lede">Erik’s model: the essay is a <em>setting</em>, not a stage; discussion is a <em>button</em>, not a funnel; the chapter string across the top always shows two behind, the one you’re on, and one ahead; the bottom bar holds transport and the discussion button. Same Chapter 36 material as round one.</p>
+<div class="flow"><span>chapter plays</span><em>→</em><span class="opt">the take (if on)</span><em>→</em><span>next chapter</span><em>·</em><span style="border-color:var(--line);color:var(--line)">discuss</span><em>← a button, available on every chapter, any time</em></div>
+
+<div class="grid">
+
+<!-- 1 main player -->
+<div class="shot">
+<div class="phone">
+  <div class="string">
+    <div class="c past"><b>34</b>Cabin-Table<i></i></div>
+    <div class="c past disc"><b>35</b>Mast-Head<i></i></div>
+    <div class="c cur"><b>ch. 36</b>The Quarter-Deck<i></i></div>
+    <div class="c ahead"><b>37</b>Sunset<i></i></div>
+  </div>
+  <div class="txt">
+    <p>“All ye mast-headers have before now heard me give orders about a white whale. Look ye! d’ye see this Spanish ounce of gold?”—holding up a broad bright coin to the sun—“it is a sixteen dollar piece, men. D’ye see it?</p>
+    <p><span class="cur">Whosoever of ye raises me a white-headed whale with a wrinkled brow and a crooked jaw; whosoever of ye raises me that white-headed whale, with three holes punctured in his starboard fluke—look ye, whosoever of ye raises me that same white whale, he shall have this <span class="w">gold ounce</span>, my boys!”</span></p>
+    <p>“Huzza! huzza!” cried the seamen, as with swinging tarpaulins they hailed the act of <span class="ann">nailing the gold to the mast<sup>3</sup></span>.</p>
+  </div>
+  <div class="bar">
+    <div class="tm"><span>12:41</span><span>31:08</span></div>
+    <div class="track"><i></i><b style="left:22%"></b><b style="left:57%"></b><b style="left:80%"></b></div>
+    <div class="nav">
+      <div class="l"><span class="ic"><i>☰</i>chart</span><span class="ic"><i>1×</i>speed</span></div>
+      <div class="ctl"><span class="sk"><i>↺</i>15</span><span class="pl">❚❚</span><span class="sk"><i>↻</i>15</span></div>
+      <div class="r"><span class="ic"><i>💬</i>discuss</span><span class="ic"><i>⚙</i></span></div>
+    </div>
+  </div>
+</div>
+<div class="cap"><div class="n">01 · THE PLAYER</div><h2>String on top, bar below</h2>
+<p>The chapter string: two behind (dim), the current one (named, red dot), one ahead. Tap any of them to jump. The small cream dot under 35 means a discussion happened there — a bookmark, not a score.</p>
+<p>Bottom bar, left to right: chart, speed · ↺ play ↻ · <b>discuss</b>, settings. Discuss is always there, on every chapter, mid-chapter or not.</p>
+<div class="react"><b>react to</b>Is “two behind, one ahead” the right window? Should the string scroll horizontally to reveal more, or stay fixed at four?</div></div>
+</div>
+
+<!-- 2 settings -->
+<div class="shot">
+<div class="phone">
+  <div class="string">
+    <div class="c past"><b>34</b>Cabin-Table<i></i></div>
+    <div class="c past disc"><b>35</b>Mast-Head<i></i></div>
+    <div class="c cur"><b>ch. 36</b>The Quarter-Deck<i></i></div>
+    <div class="c ahead"><b>37</b>Sunset<i></i></div>
+  </div>
+  <div class="txt" style="opacity:.4"><p>“All ye mast-headers have before now heard me give orders about a white whale. Look ye! d’ye see this Spanish ounce of gold?”</p></div>
+  <div class="dim"></div>
+  <div class="sheet">
+    <h5>listening</h5>
+    <div class="opt" style="border-top:0"><span>After each chapter<small>play Claude’s take, then go on</small></span><span class="tog on"></span></div>
+    <div class="opt"><span>Pause at notes<small>read the margin note aloud, then resume</small></span><span class="tog"></span></div>
+    <div class="opt"><span>Speed</span><span class="seg"><span class="on">1×</span><span>1.25×</span><span>1.5×</span></span></div>
+    <div class="opt"><span>Voice for the take</span><span class="seg"><span class="on">Claude</span><span>two voices</span></span></div>
+    <div class="btnrow" style="margin-top:.8rem"><span></span><span class="btn pri">done</span></div>
+  </div>
+</div>
+<div class="cap"><div class="n">02 · SETTINGS</div><h2>The essay is a preference</h2>
+<p>“After each chapter: play Claude’s take, then go on.” On, the flow is chapter → take → next chapter with no stop. Off, chapters run straight into each other like any audiobook. Either way the take is still reachable from the discussion button.</p>
+<p>“Pause at notes” is the existing behavior from the audio pilot, now opt-in.</p>
+<div class="react"><b>react to</b>Should the take-after-chapter default to on or off for a new listener? Does “pause at notes” belong here or is it noise?</div></div>
+</div>
+
+<!-- 3 chapter end with take on -->
+<div class="shot">
+<div class="phone">
+  <div class="string">
+    <div class="c past"><b>34</b>Cabin-Table<i></i></div>
+    <div class="c past disc"><b>35</b>Mast-Head<i></i></div>
+    <div class="c cur"><b>ch. 36</b>The Quarter-Deck<i></i></div>
+    <div class="c ahead"><b>37</b>Sunset<i></i></div>
+  </div>
+  <div class="take">
+    <div class="who">the take · Claude on ch. 36</div>
+    <h3>What I make of it</h3>
+    <p class="cur">The thing I can’t get past is that Ahab is persuasive. I read this chapter knowing exactly what he is, and I still found myself nodding at the pasteboard-mask speech.</p>
+    <p>That’s the trick of it: he doesn’t bribe the crew, though the coin is there; he gives them a philosophy. Starbuck is the only one who hears the philosophy for what it is, and he loses anyway…</p>
+  </div>
+  <div class="next"><span><b>up next</b>Ch. 37 · Sunset</span><span class="cd">in 3:18</span></div>
+  <div class="bar">
+    <div class="tm"><span>1:12</span><span>4:30</span></div>
+    <div class="track"><i style="width:27%"></i></div>
+    <div class="nav">
+      <div class="l"><span class="ic"><i>☰</i>chart</span><span class="ic"><i>⏭</i>skip take</span></div>
+      <div class="ctl"><span class="sk"><i>↺</i>15</span><span class="pl">❚❚</span><span class="sk"><i>↻</i>15</span></div>
+      <div class="r"><span class="ic"><i>💬</i>discuss</span><span class="ic"><i>⚙</i></span></div>
+    </div>
+  </div>
+</div>
+<div class="cap"><div class="n">03 · CHAPTER END · TAKE ON</div><h2>The take, then straight on</h2>
+<p>With the setting on, the chapter ends and the take plays as a track of its own — same transport, same bar. “Up next” shows where you’re headed and when. Nothing asks you anything. Discuss stays where it always is if the take makes you want to argue.</p>
+<div class="react"><b>react to</b>Should “up next” count down, or just wait for the take to finish? Is a 4–5 min spoken essay the right length between chapters, or should it be shorter by default?</div></div>
+</div>
+
+<!-- 4 chapter end with take off -->
+<div class="shot">
+<div class="phone">
+  <div class="string">
+    <div class="c past disc"><b>35</b>Mast-Head<i></i></div>
+    <div class="c past"><b>36</b>Quarter-Deck<i></i></div>
+    <div class="c cur"><b>ch. 37</b>Sunset<i></i></div>
+    <div class="c ahead"><b>38</b>Dusk<i></i></div>
+  </div>
+  <div class="txt">
+    <p style="font-style:italic;color:var(--ink3)">The cabin; by the stern windows; Ahab sitting alone, and gazing out.</p>
+    <p><span class="cur">I leave a white and turbid wake; pale waters, paler cheeks, where’er I sail. The envious billows sidelong swell to whelm my track; let them; but first I pass.</span></p>
+    <p>Yonder, by the ever-brimming goblet’s rim, the warm waves blush like wine. The gold brow plumbs the blue…</p>
+  </div>
+  <div class="next" style="border-color:var(--accent-soft);background:var(--panel)"><span><b>just finished</b>Ch. 36 · The Quarter-Deck</span><span class="btn">💬 discuss it</span></div>
+  <div class="bar">
+    <div class="tm"><span>0:09</span><span>6:40</span></div>
+    <div class="track"><i style="width:2%"></i></div>
+    <div class="nav">
+      <div class="l"><span class="ic"><i>☰</i>chart</span><span class="ic"><i>1×</i>speed</span></div>
+      <div class="ctl"><span class="sk"><i>↺</i>15</span><span class="pl">❚❚</span><span class="sk"><i>↻</i>15</span></div>
+      <div class="r"><span class="ic"><i>💬</i>discuss</span><span class="ic"><i>⚙</i></span></div>
+    </div>
+  </div>
+</div>
+<div class="cap"><div class="n">04 · CHAPTER END · TAKE OFF</div><h2>Straight into the next chapter</h2>
+<p>With the setting off, Chapter 37 simply begins. The string slides one notch. For the first thirty seconds a quiet “just finished · discuss it” card sits above the bar, in case the last chapter is still with you — then it goes away on its own.</p>
+<div class="react"><b>react to</b>Is the “just finished” card welcome or nagging? Would you rather it never appear and rely on the bar button alone?</div></div>
+</div>
+
+<!-- 5 discussion -->
+<div class="shot">
+<div class="phone">
+  <div class="string">
+    <div class="c past"><b>34</b>Cabin-Table<i></i></div>
+    <div class="c past disc"><b>35</b>Mast-Head<i></i></div>
+    <div class="c cur"><b>ch. 36</b>The Quarter-Deck<i></i></div>
+    <div class="c ahead"><b>37</b>Sunset<i></i></div>
+  </div>
+  <div class="disc">
+    <div class="hd"><span><b>discussion</b> · ch. 36</span><span>back to the book ×</span></div>
+    <div class="msg a"><div class="n">Claude</div><div class="b">Glad you pressed the button. The short version of my take: Ahab doesn’t bribe them, he converts them — and Starbuck is the only one who notices. What did <em>you</em> make of Starbuck?</div></div>
+    <div class="msg you"><div class="n">you</div><div class="b">honestly he folds too fast</div></div>
+    <div class="msg a"><div class="n">Claude</div><div class="b">Huh — I read that differently. Listen to this bit again:
+      <div class="passage"><div class="pl">▶ play · 0:14</div>“How many barrels will thy vengeance yield thee even if thou gettest it, Captain Ahab?”</div>
+      He’s arguing money because he knows the real argument is already lost. Folding, or something sadder?</div></div>
+  </div>
+  <div class="mic"><span class="l">play the take</span><span class="m">🎙</span><span class="l r">hold to talk</span></div>
+</div>
+<div class="cap"><div class="n">05 · DISCUSSION</div><h2>Entered on purpose</h2>
+<p>Pressing discuss opens the conversation for <em>this</em> chapter, over the player, with the string still on top so you never lose your place. The companion opens with a two-sentence version of its take and one question. The full take is a button on the left of the mic if you never heard it.</p>
+<p>“Back to the book” returns you to exactly where the narration was.</p>
+<div class="react"><b>react to</b>Should the discussion take over the whole screen (as here) or slide up as a half-sheet with the text still visible above it?</div></div>
+</div>
+
+<!-- 6 discuss mid-chapter -->
+<div class="shot">
+<div class="phone">
+  <div class="string">
+    <div class="c past"><b>34</b>Cabin-Table<i></i></div>
+    <div class="c past disc"><b>35</b>Mast-Head<i></i></div>
+    <div class="c cur"><b>ch. 36</b>The Quarter-Deck<i></i></div>
+    <div class="c ahead"><b>37</b>Sunset<i></i></div>
+  </div>
+  <div class="disc">
+    <div class="hd"><span><b>discussion</b> · ch. 36 · 12:41 in</span><span>back to the book ×</span></div>
+    <div class="msg a"><div class="n">Claude</div><div class="b">You’re about a third of the way in — Ahab has just nailed the coin to the mast. I’ll keep to what you’ve heard so far. What’s on your mind?</div></div>
+    <div class="msg you"><div class="n">you</div><div class="b">wait, who’s talking right now, I got lost</div></div>
+    <div class="msg a"><div class="n">Claude</div><div class="b">Ahab — first time he’s addressed the crew since Nantucket. Starbuck’s about to be the only one who objects. Want to go back a sentence or two?</div></div>
+    <div class="btnrow" style="margin:.6rem 0 0"><span class="btn">↺ back 2 sentences</span><span class="btn pri">▶ resume</span></div>
+  </div>
+  <div class="mic"><span class="l">play the take</span><span class="l" style="text-align:center;color:var(--ink3)">(take waits till chapter end)</span><span class="l r">hold to talk</span></div>
+</div>
+<div class="cap"><div class="n">06 · DISCUSS · MID-CHAPTER</div><h2>The same button, partway through</h2>
+<p>Discussion is position-aware. Opened mid-chapter it says where you are, promises not to run ahead of you, and the “I’m lost” question from round one lives here naturally — no separate interrupt gesture needed. The take stays locked until the chapter ends, so it can’t spoil.</p>
+<div class="react"><b>react to</b>Does folding the interrupt into the discuss button lose anything, or is one door better than two?</div></div>
+</div>
+
+<!-- 7 string interaction -->
+<div class="shot">
+<div class="phone">
+  <div class="string" style="padding-bottom:.9rem">
+    <div class="c past"><b>34</b>Cabin-Table<i></i></div>
+    <div class="c past disc"><b>35</b>Mast-Head<i></i></div>
+    <div class="c cur"><b>ch. 36</b>The Quarter-Deck<i></i></div>
+    <div class="c ahead"><b>37</b>Sunset<i></i></div>
+  </div>
+  <div class="txt" style="opacity:.4"><p>“All ye mast-headers have before now heard me give orders about a white whale…”</p></div>
+  <div class="dim"></div>
+  <div class="sheet" style="bottom:auto;top:64px;border-radius:0 0 14px 14px;border-top:0;border-bottom:1px solid var(--rule)">
+    <h5>ch. 35 · the mast-head</h5>
+    <div class="opt" style="border-top:0"><span>Listen again<small>18 min · Stewart Wills</small></span><span class="btn">▶</span></div>
+    <div class="opt"><span>The take<small>3 min · Claude</small></span><span class="btn">▶</span></div>
+    <div class="opt"><span>Discussion<small>you talked about Ishmael dozing · 4 min</small></span><span class="btn">resume</span></div>
+    <div class="opt"><span>Read it<small>text view</small></span><span class="btn">open</span></div>
+  </div>
+</div>
+<div class="cap"><div class="n">07 · TAPPING THE STRING</div><h2>A chapter is a place you can go back to</h2>
+<p>Long-press (or tap) a chapter in the string and it unfolds: listen again, the take, resume the discussion you had there, or open the text. The string is navigation and memory at once — it’s how the “club remembers” shows up without a notification.</p>
+<div class="react"><b>react to</b>Tap-to-jump vs tap-to-unfold? And should the string show the chart (all 138) if you pull down on it?</div></div>
+</div>
+
+</div>
+
+<div class="note"><h3>Changes from round one</h3>
+The take is no longer a stage in the flow; it’s a preference. The book club is no longer something you fall into after the take; it’s a room you walk into with a button, at any point in any chapter, and the companion knows where you are when you walk in. The hold-to-talk interrupt and its three register chips are gone as separate UI — “I’m lost” is just the first thing you might say after pressing discuss. Still absent: scores, correct answers, restatement menus.</div>
+</div>
+</body>
+</html>

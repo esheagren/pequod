@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pequod · Book-club mockups</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;1,9..144,300;1,9..144,500&family=Libre+Caslon+Text:ital,wght@0,400;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{--bg:#0C1218;--bg2:#101922;--panel:#121B24;--ink:#D9DED6;--ink2:#A4AEB0;--ink3:#6E7A80;--rule:#233039;--accent:#E8E2CB;--accent-soft:#1E2E36;--line:#D9705E;--line-soft:#3A2420;--sel:#1B2A33;--you:#2E5F6B;
+--display:'Fraunces',Georgia,serif;--body:'Libre Caslon Text',Georgia,serif;--mono:'IBM Plex Mono',Menlo,monospace}
+*{box-sizing:border-box}
+body{margin:0;background:#070B0F;color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55}
+.wrap{max-width:1500px;margin:0 auto;padding:3rem 2rem 6rem}
+h1{font-family:var(--display);font-weight:300;font-size:clamp(2.2rem,4vw,3.4rem);margin:0 0 .4rem;letter-spacing:-.01em;font-variation-settings:"opsz" 144}
+.lede{color:var(--ink2);max-width:66ch;margin:0 0 .6rem}
+.kick{font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink3)}
+.flow{display:flex;flex-wrap:wrap;gap:.5rem;margin:1.4rem 0 3rem;font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;color:var(--ink2)}
+.flow span{border:1px solid var(--rule);padding:.35rem .6rem;border-radius:2px}
+.flow em{font-style:normal;color:var(--ink3);padding:.35rem .2rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(420px,1fr));gap:3rem 2.5rem;align-items:start}
+.shot{display:grid;grid-template-columns:auto 1fr;gap:1.4rem;align-items:start}
+.cap{max-width:24rem;padding-top:.4rem}
+.cap .n{font-family:var(--mono);font-size:.68rem;letter-spacing:.16em;color:var(--line);margin-bottom:.4rem}
+.cap h2{font-family:var(--display);font-weight:500;font-size:1.3rem;margin:0 0 .5rem;font-variation-settings:"opsz" 48}
+.cap p{margin:0 0 .6rem;font-size:.92rem;color:var(--ink2)}
+.cap .react{border-left:2px solid var(--line);padding:.2rem 0 .2rem .8rem;color:var(--ink);font-style:italic;font-size:.92rem}
+.cap .react b{display:block;font-style:normal;font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;color:var(--line);margin-bottom:.25rem}
+/* phone */
+.phone{width:300px;height:640px;background:var(--bg);border:1px solid #2b3844;border-radius:26px;position:relative;overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,.5);flex:none;font-size:13.5px;line-height:1.5}
+.phone .bar{display:flex;justify-content:space-between;padding:.7rem 1rem .3rem;font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;color:var(--ink3);text-transform:uppercase}
+.phone .bar b{color:var(--ink);font-weight:500}
+.txt{padding:.6rem 1.15rem;color:var(--ink2);hyphens:auto}
+.txt p{margin:0 0 .8em}
+.txt .cur{background:var(--sel);color:var(--ink);box-shadow:0 0 0 3px var(--sel)}
+.txt .cur .w{background:var(--accent-soft)}
+.txt .ann{text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:.16em;text-decoration-thickness:1px}
+.txt .ann sup{font-family:var(--mono);font-size:.55em;color:var(--line);vertical-align:.5em}
+.chip{display:inline-block;font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;padding:.3rem .55rem;border:1px solid var(--rule);border-radius:999px;color:var(--ink2)}
+.chip.hot{border-color:var(--line);color:var(--line)}
+.player{position:absolute;left:0;right:0;bottom:0;background:var(--bg2);border-top:1px solid var(--rule);padding:.8rem 1.1rem 1rem}
+.player .track{height:2px;background:var(--rule);position:relative;margin:.3rem 0 .6rem}
+.player .track i{position:absolute;left:0;top:0;bottom:0;background:var(--accent);width:38%}
+.player .track b{position:absolute;top:-3px;width:1px;height:8px;background:var(--ink3)}
+.player .row{display:flex;align-items:center;justify-content:space-between;font-family:var(--mono);font-size:.62rem;color:var(--ink3);letter-spacing:.06em}
+.player .ctl{display:flex;align-items:center;justify-content:center;gap:1.3rem;margin:.55rem 0 .2rem;color:var(--ink)}
+.player .ctl .pl{width:44px;height:44px;border-radius:50%;border:1px solid var(--accent);display:grid;place-items:center;color:var(--accent)}
+.player .ctl .sk{font-family:var(--mono);font-size:.62rem;color:var(--ink2);text-align:center;line-height:1.1}
+.player .ctl .sk i{display:block;font-style:normal;font-size:1.1rem;color:var(--ink)}
+.talk{position:absolute;right:16px;bottom:118px;width:58px;height:58px;border-radius:50%;background:var(--line);color:#fff;display:grid;place-items:center;box-shadow:0 8px 24px rgba(217,112,94,.35);font-size:1.3rem}
+.talk.on{box-shadow:0 0 0 8px var(--line-soft),0 8px 24px rgba(217,112,94,.35)}
+.talk small{position:absolute;bottom:-18px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:.55rem;letter-spacing:.1em;color:var(--ink3);white-space:nowrap}
+.overlay{position:absolute;left:0;right:0;bottom:0;background:var(--panel);border-top:1px solid var(--rule);padding:1rem 1.1rem 1.1rem;box-shadow:0 -20px 40px rgba(0,0,0,.5)}
+.overlay .you{font-family:var(--mono);font-size:.7rem;color:var(--ink2);margin:0 0 .6rem}
+.overlay .you::before{content:"you · ";color:var(--ink3)}
+.overlay .co{color:var(--ink);margin:0 0 .8rem}
+.overlay .co::before{content:"Claude";display:block;font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--line);margin-bottom:.25rem}
+.overlay .chips{display:flex;gap:.35rem;flex-wrap:wrap;margin:.2rem 0 .7rem}
+.btnrow{display:flex;gap:.5rem;justify-content:space-between;align-items:center}
+.btn{font-family:var(--mono);font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;padding:.45rem .7rem;border:1px solid var(--rule);border-radius:2px;color:var(--ink2)}
+.btn.pri{border-color:var(--accent);color:var(--accent)}
+.dim{position:absolute;inset:0;background:rgba(7,11,15,.45)}
+/* take */
+.take{padding:1rem 1.15rem}
+.take .who{font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem}
+.take h3{font-family:var(--display);font-style:italic;font-weight:300;font-size:1.5rem;margin:0 0 .8rem;font-variation-settings:"opsz" 72}
+.take p{margin:0 0 .8em;color:var(--ink2)}
+.take p.cur{color:var(--ink)}
+.wave{display:flex;align-items:flex-end;gap:2px;height:26px;margin:.6rem 0 .2rem}
+.wave i{width:3px;background:var(--accent);opacity:.7;border-radius:1px}
+/* club */
+.club{padding:.3rem 1rem 6.6rem;overflow:hidden}
+.msg{margin:.7rem 0;max-width:92%}
+.msg .n{font-family:var(--mono);font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink3);margin-bottom:.2rem}
+.msg .b{color:var(--ink);background:var(--panel);border:1px solid var(--rule);padding:.55rem .75rem;border-radius:12px 12px 12px 3px}
+.msg.you{margin-left:auto}
+.msg.you .n{text-align:right;color:var(--ink3)}
+.msg.you .b{background:var(--accent-soft);border-color:transparent;border-radius:12px 12px 3px 12px;color:var(--ink)}
+.msg.a .n{color:var(--line)}
+.msg.c .n{color:#8FB896}
+.passage{border-left:2px solid var(--line);background:var(--bg2);padding:.5rem .7rem;margin:.4rem 0 .2rem;font-style:italic;color:var(--ink2);font-size:.86rem}
+.passage .pl{display:flex;align-items:center;gap:.4rem;font-style:normal;font-family:var(--mono);font-size:.58rem;letter-spacing:.12em;color:var(--accent);margin-bottom:.3rem}
+.passage .pl i{width:16px;height:16px;border-radius:50%;border:1px solid var(--accent);display:grid;place-items:center;font-size:.5rem;font-style:normal}
+.mic{position:absolute;left:0;right:0;bottom:0;background:var(--bg2);border-top:1px solid var(--rule);padding:.7rem 1rem .9rem;display:flex;align-items:center;justify-content:space-between}
+.mic .m{width:48px;height:48px;border-radius:50%;background:var(--line);display:grid;place-items:center;color:#fff}
+.mic .l{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3)}
+.recur{position:absolute;left:12px;right:12px;top:52px;background:var(--panel);border:1px solid var(--rule);border-left:2px solid var(--line);padding:.5rem .7rem;font-size:.82rem;color:var(--ink2);border-radius:3px}
+.recur b{display:block;font-family:var(--mono);font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--line);font-weight:500;margin-bottom:.15rem}
+/* wide */
+.wide{grid-column:1/-1}
+.desk{width:100%;max-width:1100px;height:600px;background:var(--bg);border:1px solid #2b3844;border-radius:10px;overflow:hidden;display:grid;grid-template-columns:1fr 340px;box-shadow:0 30px 60px rgba(0,0,0,.5);font-size:14px}
+.desk .read{padding:2rem 2.5rem;color:var(--ink2);position:relative}
+.desk .read h4{font-family:var(--display);font-weight:300;font-size:2rem;margin:0 0 1rem;color:var(--ink);font-variation-settings:"opsz" 144}
+.desk .read p{max-width:60ch}
+.desk .side{background:var(--bg2);border-left:1px solid var(--rule);padding:1rem 1rem 5rem;position:relative;font-size:13px}
+.desk .side .msg{max-width:100%}
+.desk .player{position:absolute;left:0;right:0;bottom:0}
+.note{margin:4rem 0 0;padding:1.5rem;border:1px dashed var(--rule);max-width:66ch;color:var(--ink2);font-size:.92rem}
+.note h3{font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink3);margin:0 0 .6rem}
+@media (max-width:760px){.shot{grid-template-columns:1fr}.phone{width:100%;max-width:340px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="kick">Pequod · design mockups · 2026-09-02</div>
+<h1>The book club</h1>
+<p class="lede">Static screens to react to, not a build. Every screen uses real Chapter 36 (The Quarter-Deck) material so the register can be judged, not imagined. Read the flow left to right, then the questions under each screen.</p>
+<div class="flow"><span>narration</span><em>→</em><span>hold to talk (any time)</span><em>→</em><span>chapter ends</span><em>→</em><span>the take</span><em>→</em><span>book club</span><em>→</em><span>next chapter</span></div>
+
+<div class="grid">
+
+<!-- 1 -->
+<div class="shot">
+<div class="phone">
+  <div class="bar"><span>Ch. 36 · <b>The Quarter-Deck</b></span><span>the ship</span></div>
+  <div class="txt">
+    <p>“All ye mast-headers have before now heard me give orders about a white whale. Look ye! d’ye see this Spanish ounce of gold?”—holding up a broad bright coin to the sun—“it is a sixteen dollar piece, men. D’ye see it?</p>
+    <p><span class="cur">Whosoever of ye raises me a white-headed whale with a wrinkled brow and a crooked jaw; whosoever of ye raises me that white-headed whale, with three holes punctured in his starboard fluke—look ye, whosoever of ye raises me that same white whale, he shall have this <span class="w">gold ounce</span>, my boys!”</span></p>
+    <p>“Huzza! huzza!” cried the seamen, as with swinging tarpaulins they hailed the act of <span class="ann">nailing the gold to the mast<sup>3</sup></span>.</p>
+  </div>
+  <div class="talk"><span>🎙</span><small>hold to talk</small></div>
+  <div class="player">
+    <div class="row"><span>12:41</span><span>Stewart Wills · LibriVox</span><span>31:08</span></div>
+    <div class="track"><i></i><b style="left:22%"></b><b style="left:57%"></b><b style="left:80%"></b></div>
+    <div class="ctl"><span class="sk"><i>↺</i>15</span><span class="pl">❚❚</span><span class="sk"><i>↻</i>15</span><span class="sk" style="margin-left:.6rem"><i>1×</i>speed</span></div>
+  </div>
+</div>
+<div class="cap"><div class="n">01 · NARRATION</div><h2>It is an audiobook first</h2>
+<p>The text scrolls with the voice; the sentence being read is lit, the word inside it marked. Underlined lines still carry the margin notes. The only control that isn’t on a normal player is the red Talk button — hold it to interrupt.</p>
+<p>Ticks on the scrubber are the chapter’s annotated moments, so you can skip <em>to a note</em>, not just 15 seconds.</p>
+<div class="react"><b>react to</b>Is “hold to talk” the right gesture, or should tapping pause-then-talk? Do the ticks belong on the scrubber?</div></div>
+</div>
+
+<!-- 2 -->
+<div class="shot">
+<div class="phone">
+  <div class="bar"><span>Ch. 36 · <b>The Quarter-Deck</b></span><span>paused</span></div>
+  <div class="txt" style="opacity:.55">
+    <p>“All ye mast-headers have before now heard me give orders about a white whale. Look ye! d’ye see this Spanish ounce of gold?”—holding up a broad bright coin to the sun—</p>
+    <p><span class="cur">Whosoever of ye raises me a white-headed whale with a wrinkled brow and a crooked jaw…</span></p>
+  </div>
+  <div class="talk on"><span>🎙</span></div>
+  <div class="overlay">
+    <p class="you">“wait — who’s talking right now, and what just happened?”</p>
+    <p class="co">Ahab. He’s called the whole crew aft — first time he’s spoken to them since Nantucket — and he’s just nailed a gold coin to the mast for whoever spots the white whale. Starbuck is about to be the only one who objects. Listen for “strike through the mask.”</p>
+    <div class="chips"><span class="chip hot">where are we</span><span class="chip">what’s that word</span><span class="chip">what is this doing</span></div>
+    <div class="btnrow"><span class="btn">say more</span><span class="btn pri">▶ resume</span></div>
+  </div>
+</div>
+<div class="cap"><div class="n">02 · INTERRUPT · ORIENT</div><h2>“Hey, wait, stop — I’m lost”</h2>
+<p>Holding Talk ducks the narration and transcribes you. The companion answers in the <em>orient</em> register — who, where, what just happened, what to listen for — and nothing more. The three chips are the three registers; the answer stays in whichever one you asked in.</p>
+<p>Resume picks up a sentence early so you land on your feet.</p>
+<div class="react"><b>react to</b>Is the reply too much? Should “what to listen for” exist at all, or does it spoil?</div></div>
+</div>
+
+<!-- 3 -->
+<div class="shot">
+<div class="phone">
+  <div class="bar"><span>Ch. 36 · <b>The Quarter-Deck</b></span><span>paused</span></div>
+  <div class="txt" style="opacity:.55">
+    <p>“…All visible objects, man, are but as pasteboard masks. But in each event—in the living act, the undoubted deed—there, some unknown but still reasoning thing puts forth the mouldings of its features from behind the unreasoning mask.</p>
+    <p><span class="cur">If man will strike, strike through the mask!</span> How can the prisoner reach outside except by thrusting through the wall?</p>
+  </div>
+  <div class="talk on"><span>🎙</span></div>
+  <div class="overlay">
+    <p class="you">“what is he actually saying here”</p>
+    <p class="co">That the whale isn’t the point. Everything you can see is a mask, and Ahab thinks something is behind it — a reasoning thing, maybe malicious, maybe nothing. Killing the whale is his way of punching through to find out. It’s the closest he comes to explaining himself, and notice Starbuck hears it as blasphemy, not madness.</p>
+    <div class="chips"><span class="chip">where are we</span><span class="chip">what’s that word</span><span class="chip hot">what is this doing</span></div>
+    <div class="btnrow"><span class="btn">read that bit again</span><span class="btn pri">▶ resume</span></div>
+  </div>
+</div>
+<div class="cap"><div class="n">03 · INTERRUPT · INTERPRET</div><h2>The same gesture, a different register</h2>
+<p>Asked “what is he saying,” the companion interprets — briefly, opinionated, and it points at what to notice next rather than settling the question. “Read that bit again” replays the sentence.</p>
+<div class="react"><b>react to</b>Does an interpretation mid-chapter break the spell? Should this register be available only at chapter end?</div></div>
+</div>
+
+<!-- 4 -->
+<div class="shot">
+<div class="phone">
+  <div class="bar"><span>Ch. 36 · <b>end</b></span><span>the take</span></div>
+  <div class="take">
+    <div class="who">Claude · on The Quarter-Deck</div>
+    <h3>What I make of it</h3>
+    <div class="wave"><i style="height:8px"></i><i style="height:18px"></i><i style="height:24px"></i><i style="height:12px"></i><i style="height:20px"></i><i style="height:26px"></i><i style="height:10px"></i><i style="height:16px"></i><i style="height:22px"></i><i style="height:9px"></i><i style="height:14px"></i><i style="height:24px"></i><i style="height:18px"></i><i style="height:7px"></i><i style="height:12px"></i><i style="height:20px"></i></div>
+    <p class="cur">The thing I can’t get past is that Ahab is persuasive. I read this chapter knowing exactly what he is, and I still found myself nodding at the pasteboard-mask speech.</p>
+    <p>That’s the trick of it: he doesn’t bribe the crew, though the coin is there; he gives them a philosophy. Starbuck is the only one who hears the philosophy for what it is, and he loses anyway — not because he’s wrong but because being right has no traction against a will like this…</p>
+  </div>
+  <div class="player">
+    <div class="row"><span>1:12</span><span>the take · 4:30</span><span>skip →</span></div>
+    <div class="track"><i style="width:27%"></i></div>
+    <div class="ctl"><span class="sk"><i>↺</i>15</span><span class="pl">❚❚</span><span class="sk"><i>↻</i>15</span></div>
+    <div class="btnrow" style="margin-top:.5rem"><span class="btn">next chapter</span><span class="btn pri">into the club →</span></div>
+  </div>
+</div>
+<div class="cap"><div class="n">04 · CHAPTER END · THE TAKE</div><h2>Someone goes first</h2>
+<p>The chapter ends and the companion’s essay plays as the next track — the same reflection Pequod already has, but shorter, spoken, first-person, a little unguarded. This is the only moment the companion speaks unprompted. It sets the register: a friend with a take, not a teacher with a lesson.</p>
+<div class="react"><b>react to</b>Should the take be the full essay (~5 min) or a 90-second version? Is “into the club” the right invitation, or should the question just arrive?</div></div>
+</div>
+
+<!-- 5 -->
+<div class="shot">
+<div class="phone">
+  <div class="bar"><span>Ch. 36 · <b>book club</b></span><span>03:20</span></div>
+  <div class="club">
+    <div class="msg a"><div class="n">Claude</div><div class="b">…so that’s my take. What did you make of Starbuck?</div></div>
+    <div class="msg you"><div class="n">you</div><div class="b">honestly he folds too fast. one speech and he’s done</div></div>
+    <div class="msg a"><div class="n">Claude</div><div class="b">Huh — I read that differently. I don’t think he folds; I think he’s the only one who understands what he’s agreeing to. Listen to this bit again:
+      <div class="passage"><div class="pl"><i>▶</i>play · 0:14</div>“I came here to hunt whales, not my commander’s vengeance. How many barrels will thy vengeance yield thee even if thou gettest it, Captain Ahab?”</div>
+      He’s arguing on Ahab’s terms — money, the owners — because he already knows the real argument is lost. Does that read as folding to you, or as something sadder?</div></div>
+    <div class="msg you"><div class="n">you</div><div class="b">…sadder. ok. but then why doesn’t he do anything later</div></div>
+    <div class="msg a"><div class="n">Claude</div><div class="b">Hold that question. It’s exactly the one Chapter 123 is about, and I won’t spoil it — but I’ll remind you you asked.</div></div>
+  </div>
+  <div class="mic"><span class="l">leave the club → ch. 37</span><span class="m">🎙</span><span class="l">hold to talk</span></div>
+</div>
+<div class="cap"><div class="n">05 · BOOK CLUB</div><h2>A friend’s question, not an examiner’s</h2>
+<p>The companion asks one open question. Whatever you say, it responds with its <em>own</em> reading — disagreement rather than correction — and when it wants to argue it plays the passage. The reader can win; “we don’t agree” is a legitimate ending.</p>
+<p>The near-misses I’d author (“Ahab bought the crew,” “Starbuck folds”) are backstage: they shape what the companion chooses to play, and never appear as a list.</p>
+<div class="react"><b>react to</b>Does this feel like a club or a viva? Is the transcript view right, or should this be voice-only with no text at all?</div></div>
+</div>
+
+<!-- 6 -->
+<div class="shot">
+<div class="phone">
+  <div class="bar"><span>Ch. 123 · <b>The Musket</b></span><span>book club</span></div>
+  <div class="club">
+    <div class="msg a"><div class="n">Claude</div><div class="b">Before I say anything — back in Chapter 36 you asked why Starbuck never <em>does</em> anything. You just heard him stand outside Ahab’s door with a loaded musket. So: does he do something here, or not?</div></div>
+    <div class="msg you"><div class="n">you</div><div class="b">he does the hardest thing and then can’t finish it. that’s worse than nothing</div></div>
+    <div class="msg a"><div class="n">Claude</div><div class="b">That’s where I land too, and I think it’s the book’s harshest observation about goodness. You said in 26 he was “the reader’s stand-in” — still?</div></div>
+  </div>
+  <div class="recur"><b>you’ve heard this before</b>“the reader’s stand-in” — your words, Ch. 26 · Knights and Squires</div>
+  <div class="mic"><span class="l">leave the club → ch. 124</span><span class="m">🎙</span><span class="l">hold to talk</span></div>
+</div>
+<div class="cap"><div class="n">06 · THE CLUB REMEMBERS</div><h2>Continuity is the whole trick</h2>
+<p>Eighty-seven chapters later the companion brings your own question back, at the exact moment the book answers it. This is the spaced return with no inbox and no probe — it’s what a friend reading alongside you would do, and what no human club can do per chapter.</p>
+<p>The recurrence card is the same mechanism during narration: when a motif comes back (the coffin, the Rachel), a quiet card, never a pause.</p>
+<div class="react"><b>react to</b>Is being quoted back to yourself delightful or uncomfortable? Should recurrences during narration be silent cards, or spoken?</div></div>
+</div>
+
+<!-- 7 -->
+<div class="shot">
+<div class="phone">
+  <div class="bar"><span>Ch. 36 · <b>book club</b></span><span>two voices</span></div>
+  <div class="club">
+    <div class="msg a"><div class="n">Ash · the believer</div><div class="b">I’ll say it: I was with Ahab. The mask speech is the truest thing anyone says in this book.</div></div>
+    <div class="msg c"><div class="n">Wren · the skeptic</div><div class="b">It’s beautiful and it’s a con. He’s asking thirty men to die for a metaphysics he can’t prove, and he knows the coin closes the deal for the ones the metaphysics doesn’t reach.</div></div>
+    <div class="msg a"><div class="n">Ash</div><div class="b">You’re making Starbuck’s argument, and Starbuck loses.</div></div>
+    <div class="msg c"><div class="n">Wren</div><div class="b">Starbuck loses the <em>vote</em>. — Which of us are you closer to?</div></div>
+    <div class="msg you"><div class="n">you</div><div class="b">Wren, but Ash is right that it’s beautiful</div></div>
+  </div>
+  <div class="mic"><span class="l">leave the club</span><span class="m">🎙</span><span class="l">hold to talk</span></div>
+</div>
+<div class="cap"><div class="n">07 · VARIANT · TWO VOICES</div><h2>Manufactured disagreement</h2>
+<p>Two companions with different temperaments argue first; you side with one. Nobody is examining you, and there’s visibly no correct answer held by the companion. Costs more (two voices, more talk) and risks feeling like a podcast you can’t get a word into.</p>
+<div class="react"><b>react to</b>One friend or two? Would you actually speak into this, or just listen?</div></div>
+</div>
+
+<!-- 8 wide -->
+<div class="shot wide">
+<div class="desk">
+  <div class="read">
+    <div class="kick">Chapter 36 · The Ship</div>
+    <h4>The Quarter-Deck</h4>
+    <p>“All visible objects, man, are but as pasteboard masks. But in each event—in the living act, the undoubted deed—there, some unknown but still reasoning thing puts forth the mouldings of its features from behind the unreasoning mask. <span class="cur" style="background:var(--sel);color:var(--ink)">If man will strike, strike through the mask!</span> How can the prisoner reach outside except by thrusting through the wall? To me, the white whale is that wall, shoved near to me. Sometimes I think there’s naught beyond.”</p>
+    <p>“Vengeance on a dumb brute!” cried Starbuck, “that simply smote thee from blindest instinct! Madness! To be enraged with a dumb thing, Captain Ahab, seems blasphemous.”</p>
+    <div class="player"><div class="row"><span>18:02</span><span>Stewart Wills · LibriVox</span><span>31:08</span></div><div class="track"><i style="width:58%"></i></div><div class="ctl"><span class="sk"><i>↺</i>15</span><span class="pl">❚❚</span><span class="sk"><i>↻</i>15</span></div></div>
+  </div>
+  <div class="side">
+    <div class="kick" style="margin-bottom:.6rem">the club · open</div>
+    <div class="msg a"><div class="n">Claude</div><div class="b">You paused on the mask speech. Want the short version of what I think he means, or should I stay out of it until the chapter’s done?</div></div>
+    <div class="msg you"><div class="n">you</div><div class="b">stay out of it</div></div>
+    <div class="msg a"><div class="n">Claude</div><div class="b">Fair. I’ll be here at the end.</div></div>
+    <div class="mic"><span class="l">hold to talk</span><span class="m">🎙</span><span class="l">close</span></div>
+  </div>
+</div>
+<div class="cap" style="max-width:none"><div class="n">08 · DESKTOP</div><h2>The club as a side column</h2>
+<p>On a wide screen the conversation lives beside the text instead of over it, and — importantly — the companion can be told to stay out of it. This screen is mostly here to ask whether desktop matters for this at all, or whether the whole thing is a phone-and-earbuds product.</p>
+<div class="react"><b>react to</b>Phone-first only? And should the companion ever offer (as here), or only ever answer?</div></div>
+</div>
+
+</div>
+
+<div class="note"><h3>What is deliberately not here</h3>
+No scores, no “correct,” no multiple-choice restatements, no streaks. Nothing the companion says is marked right or wrong, and nothing the reader says is either. The near-miss idea survives only as preparation: it decides what the companion chooses to play and push on. If any screen above reads as a quiz, that screen is wrong.</div>
+</div>
+</body>
+</html>
