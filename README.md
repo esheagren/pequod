@@ -37,7 +37,8 @@ ones. A sheet rotates around the spine when you turn with the edge arrows,
 keyboard arrows, or a horizontal swipe. Reduced-motion preferences skip the flip.
 Labeled dots above the book jump to chapters or major sections.
 
-The lower fifth holds notes for visible passages and a **Chapter reading** tab.
+The lower fifth holds notes for visible passages. **Chapter reading** lives in
+the right-hand panel, with the current section essay and its cross-references.
 Click a speaker or a recognized character name for a brief reminder in Notes.
 Names inside annotated passages also retain the passage commentary; the note
 marker and other passage text open it separately. Aliases and additional people

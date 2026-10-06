@@ -54,8 +54,7 @@ body.on-reader .scrim.on{display:none}
 .folio-footer select{font:inherit;background:transparent;color:var(--ink2);border:0;max-width:7rem}
 .notes-dock{min-height:0;display:flex;flex-direction:column;border-top:1px solid var(--rule);padding:.55rem 0 .85rem}
 .dock-toolbar{display:flex;align-items:center;gap:.8rem;font-family:var(--mono);font-size:.62rem;flex:none;margin-bottom:.6rem;color:var(--ink3)}
-.dock-toolbar button{padding:.2rem 0;border-bottom:1px solid transparent;color:var(--ink2)}
-.dock-toolbar button[aria-selected="true"]{color:var(--accent);border-bottom-color:var(--accent)}
+.dock-toolbar h2{font:inherit;color:var(--accent);margin:0;padding:.2rem 0}
 .dock-toolbar .note-picker{margin-left:auto;display:flex;align-items:center;gap:.6rem;min-width:0}
 .note-picker select{font:inherit;color:var(--ink2);background:var(--desk);border:1px solid var(--rule);padding:.2rem;max-width:10rem}
 .dock-content{overflow:auto;min-height:0;font-size:.83rem;line-height:1.65;scrollbar-width:thin}
@@ -65,8 +64,8 @@ body.on-reader .scrim.on{display:none}
 .note-excerpt{background:var(--line-soft);padding:.05rem .25rem;border-radius:2px}
 .dock-note .note-prose{color:var(--ink2);width:100%}
 .dock-content p{margin:0 0 .8rem}
-.dock-content .threads{max-width:none;margin:.8rem 0 0;padding:.7rem 0}
-.dock-content .threads li{grid-template-columns:1fr;gap:.2rem;font-size:.82rem}
+.chapter-reading-content .threads{max-width:none;margin:.8rem 0 0;padding:.7rem 0}
+.chapter-reading-content .threads li{grid-template-columns:1fr;gap:.2rem;font-size:.82rem}
 .dock-empty{color:var(--ink3);font-style:italic}
 .resource-panel{min-width:0;overflow:auto;padding:0;background:var(--desk);scrollbar-width:thin;visibility:hidden;opacity:0;transition:opacity .2s}
 .resource-panel.open{visibility:visible;opacity:1;border-left:1px solid var(--rule)}
@@ -149,3 +148,6 @@ body.on-reader .sheet,body.on-reader .sheet-scrim{display:none}
 .resource-inner .find{margin:.7rem 0}
 .resource-inner input{width:100%;font-family:var(--mono);font-size:.7rem;padding:.5rem;border:1px solid var(--rule);background:var(--paper);color:var(--ink);border-radius:2px}
 .resource-inner .hits{margin:0}
+
+.resource-panel .chapter-reference{font-family:var(--mono);font-size:.59rem;line-height:1.5;color:var(--ink3);margin:.8rem 0}
+.chapter-reading-content{overflow-wrap:anywhere}

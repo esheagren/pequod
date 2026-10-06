@@ -68,8 +68,9 @@ function showPerson(index,target=null){
   const note=direct?A.notes[direct.dataset.n]:null;
   R.person={index,note};R.mode='person';updateDock();
 }
-function contextHTML(){
+function contextHTML(id){
   return '<div class="eyebrow">Reading companion</div><h2>'+esc(META.title)+'</h2><button class="panel-link" data-cover>Introduction →</button>'+
+    '<details class="chapter-reading" open><summary>Chapter reading</summary><p class="chapter-reference">'+esc(named(CH[byId[id]]))+'</p><div class="chapter-reading-content">'+chapterReadingHTML(id)+'</div></details>'+
     (PERSONS.length?'<details><summary>People in the work</summary><ul class="resource-people">'+PERSONS.map((p,i)=>'<li><button data-person="'+i+'">'+esc(p.name)+'</button></li>').join('')+'</ul></details>':'')+
     '<details><summary>Find a passage</summary><div data-search-host></div></details><details><summary>This edition</summary><div class="about-copy">'+$('#about').innerHTML+'</div></details><p>Click a speaker or a person’s name for a reminder in Notes. Turn the page with the arrows or a swipe; the dots above jump between sections.</p>';
 }
@@ -90,21 +91,18 @@ function renderChapter(id, pageHint=null){
   folioObserver?.disconnect();clearTimeout(readerResize);
   R.id=id;R.page=0;R.selected=null;R.mode='notes';R.person=null;R.anchor=null;
   A.notes={};rows.forEach(r=>r.notes.forEach(n=>A.notes[n.n]=n));
-  $('#voyage').innerHTML='<div class="reader-layout"><article class="reading" aria-label="'+esc(c.title)+'"><div class="book-surface"><div class="folio-window" id="folio-window"><div class="folio-flow chbody" id="folio-flow">'+rows.map((r,pi)=>'<div class="row"><p data-para="'+pi+'"'+(/\n/.test(r.raw)||id==='extracts'||id==='etymology'?' class="verse"':'')+'>'+r.html+'</p></div>').join('')+'</div></div><button class="page-turn prev" id="turn-prev" aria-label="Previous page">‹</button><button class="page-turn next" id="turn-next" aria-label="Next page">›</button><footer class="folio-footer"><button data-cover>'+esc(META.title)+'</button>'+(D.audio?.[id]?'<button class="listen" data-listen>▶ listen &amp; follow</button>':'')+'<span class="reading-hint">← turn the page →</span><label class="page-count"><span id="page-label"></span> <select id="page-select" aria-label="Go to page"></select></label></footer></div><section class="notes-dock" aria-label="Notes and chapter reading"><div class="dock-toolbar" role="tablist" aria-label="Reading companion"><button role="tab" id="dock-notes" aria-selected="true" aria-controls="dock-content">Notes</button><button role="tab" id="dock-reading" aria-selected="false" aria-controls="dock-content">Chapter reading</button><div class="note-picker" id="note-picker"><span id="note-count"></span><select id="note-select" aria-label="Select a note on this page"></select></div></div><div class="dock-content" id="dock-content" role="tabpanel" tabindex="0"></div></section></article><aside class="resource-panel" id="resource-panel" aria-label="Resources" aria-hidden="true" inert><div class="resource-inner">'+contextHTML()+'</div></aside></div>';
+  $('#voyage').innerHTML='<div class="reader-layout"><article class="reading" aria-label="'+esc(c.title)+'"><div class="book-surface"><div class="folio-window" id="folio-window"><div class="folio-flow chbody" id="folio-flow">'+rows.map((r,pi)=>'<div class="row"><p data-para="'+pi+'"'+(/\n/.test(r.raw)||id==='extracts'||id==='etymology'?' class="verse"':'')+'>'+r.html+'</p></div>').join('')+'</div></div><button class="page-turn prev" id="turn-prev" aria-label="Previous page">‹</button><button class="page-turn next" id="turn-next" aria-label="Next page">›</button><footer class="folio-footer"><button data-cover>'+esc(META.title)+'</button>'+(D.audio?.[id]?'<button class="listen" data-listen>▶ listen &amp; follow</button>':'')+'<span class="reading-hint">← turn the page →</span><label class="page-count"><span id="page-label"></span> <select id="page-select" aria-label="Go to page"></select></label></footer></div><section class="notes-dock" aria-label="Notes"><div class="dock-toolbar"><h2 id="dock-notes">Notes</h2><div class="note-picker" id="note-picker"><span id="note-count"></span><select id="note-select" aria-label="Select a note on this page"></select></div></div><div class="dock-content" id="dock-content" role="region" aria-labelledby="dock-notes" tabindex="0"></div></section></article><aside class="resource-panel" id="resource-panel" aria-label="Resources" aria-hidden="true" inert><div class="resource-inner">'+contextHTML(id)+'</div></aside></div>';
   $('#resource-panel [data-search-host]').append(passageSearch.find,passageSearch.hits);
   $('#turn-prev').addEventListener('click',()=>turnPage(-1));$('#turn-next').addEventListener('click',()=>turnPage(1));
   $('#page-select').addEventListener('change',e=>setPage(+e.target.value));
   $('#note-select').addEventListener('change',e=>selectNote(+e.target.value));
-  $('#dock-notes').addEventListener('click',()=>{R.mode='notes';updateDock()});
-  $('#dock-reading').addEventListener('click',()=>{R.mode='reading';updateDock()});
-  $('#voyage .dock-toolbar').addEventListener('keydown',e=>{if(e.target.matches('[role="tab"]')&&['ArrowLeft','ArrowRight'].includes(e.key)){e.preventDefault();e.stopPropagation();const next=e.target.id==='dock-notes'?$('#dock-reading'):$('#dock-notes');next.click();next.focus()}});
   linkPeople();
   $('#resource-panel').querySelectorAll('[data-person]').forEach(b=>b.addEventListener('click',()=>{showPerson(+b.dataset.person);setResources(false)}));
   $('#voyage').querySelectorAll('.ann').forEach(a=>{
     const activate=()=>{if(A.notes[a.dataset.n])selectNote(+a.dataset.n)};
     a.addEventListener('click',activate);a.addEventListener('keydown',e=>{if(!e.target.closest('.person-reference')&&(e.key==='Enter'||e.key===' ')){e.preventDefault();activate()}});
   });
-  $('#voyage').querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.go)));
+  $('#voyage').querySelectorAll('button[data-go]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.go)));
   $('#voyage').querySelectorAll('[data-cover]').forEach(b=>b.addEventListener('click',()=>go('cover')));
   let touch=null;
   $('#folio-window').addEventListener('touchstart',e=>{const t=e.changedTouches[0];touch={x:t.clientX,y:t.clientY}}, {passive:true});
@@ -232,12 +230,10 @@ function noteHTML(note){
 }
 function updateDock(){
   const host=$('#dock-content');if(!host)return;
-  $('#dock-notes').setAttribute('aria-selected',R.mode!=='reading');$('#dock-reading').setAttribute('aria-selected',R.mode==='reading');
-  host.setAttribute('aria-labelledby',R.mode==='reading'?'dock-reading':'dock-notes');
   $('#note-picker').hidden=R.mode!=='notes';$('#note-count').textContent=R.visible.length+' on this page';
   $('#note-select').innerHTML=R.visible.map(n=>'<option value="'+n+'">Note '+n+'</option>').join('');$('#note-select').hidden=!R.visible.length;$('#note-select').value=String(R.selected);
   $('#folio-flow').querySelectorAll('.ann').forEach(a=>a.classList.toggle('open',R.mode==='notes'&&+a.dataset.n===R.selected));
-  const n=A.notes[R.selected];host.innerHTML=R.mode==='reading'?chapterReadingHTML(R.id):n?noteHTML(n):'<p class="dock-empty">No notes on this page. Keep reading, or open the chapter reading.</p>';
+  const n=A.notes[R.selected];host.innerHTML=n?noteHTML(n):'<p class="dock-empty">No notes on this page. Keep reading.</p>';
   $('#folio-flow').querySelectorAll('[data-person]').forEach(b=>b.classList.toggle('active',R.mode==='person'&&+b.dataset.person===R.person?.index));
   if(R.mode==='person'&&R.person){
     const p=PERSONS[R.person.index],note=R.person.note;

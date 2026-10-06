@@ -31,6 +31,7 @@ window.readerQA=()=>{
     assert(!clipped,id+': '+clipped+' vertically clipped text samples');
     assert(!unreachable,id+': '+unreachable+' unreachable text samples');
     assert(!$('#voyage .chhead'),'chapter heading remains');
+    assert(!!$('#resource-panel .chapter-reading-content')&&!$('.notes-dock .chapter-reading-content')&&!$('#dock-reading'),id+': chapter reading belongs in the side panel');
     assert($('#resource-panel').inert&&$('#resources-toggle').getAttribute('aria-expanded')==='false','resources must start closed');
     const person=$('#folio-flow .person-reference');
     if(person){person.click();assert(R.mode==='person'&&!!$('#dock-content .person-role'),id+': character reminder');$('#dock-content .notes-back').click();assert(R.mode==='notes',id+': return to notes')}
