@@ -48,7 +48,7 @@ The small top-right icon opens resources to the left. The panel and its characte
 list start closed. The panel opens wider by default; drag its left edge to adjust
 its width, or use the arrow keys when the divider is focused. Double-click the
 divider to reset. Your chosen width is remembered in this browser. Author and historical context live in the introduction;
-the reader's drawer provides a compact people index, passage search, and edition information.
+the reader's drawer contains the current chapter reading and a link back to the introduction.
 
 The reader source is `build/reader.css` and `build/reader.js`, included by
 `build/build.py` in the generated site and single-book artifact. Page sizes adapt

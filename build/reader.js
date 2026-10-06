@@ -15,7 +15,6 @@ function markRail(id){
 }
 
 const PERSONS=[...PEOPLE,...(META.references||[])];
-const passageSearch={find:$('#chart .find'),hits:$('#hits')};
 function personAliases(){
   const aliases=new Map();
   PERSONS.forEach((p,index)=>(p.aliases||[p.name]).forEach(name=>{
@@ -72,9 +71,7 @@ function showPerson(index,target=null){
 }
 function contextHTML(id){
   return '<div class="eyebrow">Reading companion</div><h2>'+esc(META.title)+'</h2><button class="panel-link" data-cover>Introduction →</button>'+
-    '<details class="chapter-reading" open><summary>Chapter reading</summary><p class="chapter-reference">'+esc(named(CH[byId[id]]))+'</p><div class="chapter-reading-content">'+chapterReadingHTML(id)+'</div></details>'+
-    (PERSONS.length?'<details><summary>People in the work</summary><ul class="resource-people">'+PERSONS.map((p,i)=>'<li><button data-person="'+i+'">'+esc(p.name)+'</button></li>').join('')+'</ul></details>':'')+
-    '<details><summary>Find a passage</summary><div data-search-host></div></details><details><summary>This edition</summary><div class="about-copy">'+$('#about').innerHTML+'</div></details><p>Click a speaker or a person’s name for a reminder in Notes. Turn the page with the arrows or a swipe; the dots above jump between sections.</p>';
+    '<details class="chapter-reading" open><summary>Chapter reading</summary><p class="chapter-reference">'+esc(named(CH[byId[id]]))+'</p><div class="chapter-reading-content">'+chapterReadingHTML(id)+'</div></details>';
 }
 function chapterReadingHTML(id){
   const cm=CM[id]||{}, out=cm.links||[],inc=D.incoming[id]||[];
@@ -95,12 +92,10 @@ function renderChapter(id, pageHint=null){
   A.notes={};rows.forEach(r=>r.notes.forEach(n=>A.notes[n.n]=n));
   $('#voyage').innerHTML='<div class="reader-layout"><article class="reading" aria-label="'+esc(c.title)+'"><div class="book-surface"><div class="folio-window" id="folio-window"><div class="folio-flow chbody" id="folio-flow">'+rows.map((r,pi)=>'<div class="row"><p data-para="'+pi+'"'+(/\n/.test(r.raw)||id==='extracts'||id==='etymology'?' class="verse"':'')+'>'+r.html+'</p></div>').join('')+'</div></div><button class="page-turn prev" id="turn-prev" aria-label="Previous page">‹</button><button class="page-turn next" id="turn-next" aria-label="Next page">›</button><footer class="folio-footer"><button data-cover>'+esc(META.title)+'</button>'+(D.audio?.[id]?'<button class="listen" data-listen>▶ listen &amp; follow</button>':'')+'<span class="reading-hint">← turn the page →</span><label class="page-count"><span id="page-label"></span> <select id="page-select" aria-label="Go to page"></select></label></footer></div><section class="notes-dock" aria-label="Notes"><div class="dock-toolbar"><h2 id="dock-notes">Notes</h2><div class="note-picker" id="note-picker"><span id="note-count"></span><select id="note-select" aria-label="Select a note on this page"></select></div></div><div class="dock-content" id="dock-content" role="region" aria-labelledby="dock-notes" tabindex="0"></div></section></article><div class="resource-resizer" id="resource-resizer" role="separator" aria-orientation="vertical" aria-label="Resize resources panel" aria-controls="resource-panel" aria-hidden="true" tabindex="-1" title="Drag to resize; double-click to reset"></div><aside class="resource-panel" id="resource-panel" aria-label="Resources" aria-hidden="true" inert><div class="resource-inner">'+contextHTML(id)+'</div></aside></div>';
   setupResourceResize();
-  $('#resource-panel [data-search-host]').append(passageSearch.find,passageSearch.hits);
   $('#turn-prev').addEventListener('click',()=>turnPage(-1));$('#turn-next').addEventListener('click',()=>turnPage(1));
   $('#page-select').addEventListener('change',e=>setPage(+e.target.value));
   $('#note-select').addEventListener('change',e=>selectNote(+e.target.value));
   linkPeople();
-  $('#resource-panel').querySelectorAll('[data-person]').forEach(b=>b.addEventListener('click',()=>{showPerson(+b.dataset.person);setResources(false)}));
   $('#voyage').querySelectorAll('.ann').forEach(a=>{
     const activate=()=>{if(A.notes[a.dataset.n])selectNote(+a.dataset.n)};
     a.addEventListener('click',activate);a.addEventListener('keydown',e=>{if(!e.target.closest('.person-reference')&&(e.key==='Enter'||e.key===' ')){e.preventDefault();activate()}});
