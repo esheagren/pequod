@@ -610,7 +610,7 @@ function onTime(){
 function holdForNote(st){
   A.el.pause(); A.paused=true;
   const a=document.querySelector('#voyage .ann[data-n="'+st.n+'"]');
-  if(a){ revealPassage(a); selectNote(st.n); document.querySelectorAll('#voyage .hot').forEach(x=>x.classList.remove('hot')); document.querySelectorAll('#voyage [data-n="'+st.n+'"]').forEach(x=>x.classList.add('hot')); if(innerWidth<=1180 && A.notes && A.notes[st.n]) openSheet(a, A.notes[st.n]); }
+  if(a){ revealPassage(a); selectNote(st.n,a); document.querySelectorAll('#voyage .hot').forEach(x=>x.classList.remove('hot')); document.querySelectorAll('#voyage [data-n="'+st.n+'"]').forEach(x=>x.classList.add('hot')); if(innerWidth<=1180 && A.notes && A.notes[st.n]) openSheet(a, A.notes[st.n]); }
   const resume=()=>{ if(!A.paused) return; A.paused=false; closeSheet(); document.querySelectorAll('#voyage .hot').forEach(x=>x.classList.remove('hot')); audioPlay(); };
   const note=D.commentary[A.ch]&&D.commentary[A.ch].annotations; // spoken note, if we have one
   const tts=D.tts&&D.tts[A.ch]&&D.tts[A.ch][st.n];
@@ -665,20 +665,20 @@ function showTab(t){
 }
 document.querySelectorAll('.tabs [role=tab]').forEach(b=>b.addEventListener('click',()=>{showTab(b.dataset.tab); window.scrollTo(0,0)}));
 function openSheet(a, note){
-  if(document.body.classList.contains('on-reader')){ selectNote(+a.dataset.n); return; }
+  if(document.body.classList.contains('on-reader')){ selectNote(+a.dataset.n,a); return; }
   document.querySelectorAll('#voyage .ann.open').forEach(x=>x.classList.remove('open')); a.classList.add('open');
   $('#sheetq').textContent=a.dataset.n+' · “'+(note.quote.length>70?note.quote.slice(0,68)+'…':note.quote).replace(/_/g,'')+'”';
   $('#sheetb').innerHTML=fmt(note.note);
   $('#sheet').classList.add('on'); $('#sheetscrim').classList.add('on');
 }
-function closeSheet(){ $('#sheet').classList.remove('on'); $('#sheetscrim').classList.remove('on'); document.querySelectorAll('.ann.open').forEach(x=>x.classList.remove('open')); }
+function closeSheet(){ closeComment(false); $('#sheet').classList.remove('on'); $('#sheetscrim').classList.remove('on'); document.querySelectorAll('.ann.open').forEach(x=>x.classList.remove('open')); }
 $('#sheetx').addEventListener('click',closeSheet); $('#sheetscrim').addEventListener('click',closeSheet);
-document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ closeSheet(); setChart(false); setResources(false); } });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ if(commentState){e.preventDefault();dismissComment();return} closeSheet(); setChart(false); setResources(false); } });
 function setChart(open){ $('#chart').inert=!open; $('#chart').classList.toggle('open',open); $('#scrim').classList.toggle('on',open); }
 $('#scrim').addEventListener('click',()=>{setChart(false);setResources(false)});
 const mastRO=new ResizeObserver(()=>document.documentElement.style.setProperty('--mast-h',$('.mast').offsetHeight+'px')); mastRO.observe($('.mast'));
 document.addEventListener('keydown',e=>{
-  if(e.target.closest('input,select,textarea,[contenteditable="true"]')||e.ctrlKey||e.metaKey||e.altKey) return;
+  if(e.target.closest('.comment-popover,input,select,textarea,[contenteditable="true"]')||e.ctrlKey||e.metaKey||e.altKey) return;
   const cur=location.hash.slice(1); const i=byId[cur]; if(i==null) return;
   if(e.key==='ArrowRight'){e.preventDefault();turnPage(1)}
   if(e.key==='ArrowLeft'){e.preventDefault();turnPage(-1)}

@@ -1,6 +1,8 @@
 /* Responsive pagination keeps the original paragraphs and annotation anchors intact. */
+// Experimental view; ?notes=bottom restores the retained notes dock.
+const NOTE_LAYOUT=new URLSearchParams(location.search).get('notes')==='bottom'?'bottom':'popover';
 const R={id:null,page:0,pages:1,stride:0,leaves:2,visible:[],selected:null,mode:'notes',person:null,anchor:null};
-let readerResize, folioObserver, paperTurn, resourceDrag, resourceFrame;
+let readerResize, folioObserver, paperTurn, resourceDrag, resourceFrame, commentState, commentObserver;
 let resourceWidth=null;
 try{const saved=JSON.parse(localStorage.getItem('pequod.resourceWidth'));if(Number.isFinite(saved)&&saved>0)resourceWidth=saved}catch(e){}
 
@@ -61,13 +63,14 @@ function linkPeople(){
     texts.forEach(n=>{const span=document.createElement('span');span.className='annotation-trigger';span.setAttribute('role','button');span.tabIndex=0;span.setAttribute('aria-label','Note '+a.dataset.n);n.replaceWith(span);span.append(n)});
     const sup=a.querySelector('sup');if(sup){sup.setAttribute('role','button');sup.tabIndex=0;sup.setAttribute('aria-label','Note '+a.dataset.n)}
   });
-  root.querySelectorAll('[data-person]').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();showPerson(+b.dataset.person,b)}));
+  root.querySelectorAll('[data-person]').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();showPerson(+b.dataset.person,b,e)}));
 }
-function showPerson(index,target=null){
+function showPerson(index,target=null,event=null){
   if(!PERSONS[index])return;
   const direct=target?.closest('.ann');
   const note=direct?A.notes[direct.dataset.n]:null;
   R.person={index,note};R.mode='person';updateDock();
+  if(NOTE_LAYOUT==='popover'&&target)openComment({kind:'person',index,note,anchor:target,event});
 }
 function contextHTML(id){
   return '<section class="chapter-reading" aria-labelledby="chapter-reading-title"><h2 id="chapter-reading-title">Chapter reading</h2><div class="chapter-reading-content">'+chapterReadingHTML(id)+'</div></section>';
@@ -89,14 +92,17 @@ function renderChapter(id, pageHint=null){
   folioObserver?.disconnect();clearTimeout(readerResize);
   R.id=id;R.page=0;R.selected=null;R.mode='notes';R.person=null;R.anchor=null;
   A.notes={};rows.forEach(r=>r.notes.forEach(n=>A.notes[n.n]=n));
-  $('#voyage').innerHTML='<div class="reader-layout"><article class="reading" aria-label="'+esc(c.title)+'"><div class="book-surface"><div class="folio-window" id="folio-window"><div class="folio-flow chbody" id="folio-flow">'+rows.map((r,pi)=>'<div class="row"><p data-para="'+pi+'"'+(/\n/.test(r.raw)||id==='extracts'||id==='etymology'?' class="verse"':'')+'>'+r.html+'</p></div>').join('')+'</div></div><button class="page-turn prev" id="turn-prev" aria-label="Previous page">‹</button><button class="page-turn next" id="turn-next" aria-label="Next page">›</button><footer class="folio-footer"><button data-cover>'+esc(META.title)+'</button>'+(D.audio?.[id]?'<button class="listen" data-listen>▶ listen &amp; follow</button>':'')+'<label class="page-count"><span id="page-label"></span> <select id="page-select" aria-label="Go to page"></select></label></footer></div><section class="notes-dock" aria-label="Notes"><div class="dock-content" id="dock-content" role="region" aria-label="Notes" tabindex="0"></div></section></article><div class="resource-resizer" id="resource-resizer" role="separator" aria-orientation="vertical" aria-label="Resize resources panel" aria-controls="resource-panel" aria-hidden="true" tabindex="-1" title="Drag to resize; double-click to reset"></div><aside class="resource-panel" id="resource-panel" aria-label="Resources" aria-hidden="true" inert><div class="resource-inner">'+contextHTML(id)+'</div></aside></div>';
+  $('#voyage').innerHTML='<div class="reader-layout"><article class="reading" aria-label="'+esc(c.title)+'"><div class="book-surface"><div class="folio-window" id="folio-window"><div class="folio-flow chbody" id="folio-flow">'+rows.map((r,pi)=>'<div class="row"><p data-para="'+pi+'"'+(/\n/.test(r.raw)||id==='extracts'||id==='etymology'?' class="verse"':'')+'>'+r.html+'</p></div>').join('')+'</div></div><button class="page-turn prev" id="turn-prev" aria-label="Previous page">‹</button><button class="page-turn next" id="turn-next" aria-label="Next page">›</button><footer class="folio-footer"><button data-cover>'+esc(META.title)+'</button>'+(D.audio?.[id]?'<button class="listen" data-listen>▶ listen &amp; follow</button>':'')+'<label class="page-count"><span id="page-label"></span> <select id="page-select" aria-label="Go to page"></select></label></footer></div><section class="notes-dock" aria-label="Notes"><div class="dock-content" id="dock-content" role="region" aria-label="Notes" tabindex="0"></div></section></article><div class="resource-resizer" id="resource-resizer" role="separator" aria-orientation="vertical" aria-label="Resize resources panel" aria-controls="resource-panel" aria-hidden="true" tabindex="-1" title="Drag to resize; double-click to reset"></div><aside class="resource-panel" id="resource-panel" aria-label="Resources" aria-hidden="true" inert><div class="resource-inner">'+contextHTML(id)+'</div></aside><svg class="comment-link" id="comment-link" aria-hidden="true" hidden><path/><circle r="2.5"/></svg><aside class="comment-popover" id="comment-popover" role="dialog" aria-modal="false" aria-label="Passage comment" hidden><button class="comment-close" aria-label="Close comment">×</button><div class="comment-content" id="comment-content" tabindex="0"></div></aside></div>';
+  const dock=$('.notes-dock');dock.hidden=NOTE_LAYOUT==='popover';dock.inert=dock.hidden;
+  $('.reader-layout').classList.toggle('comment-mode',NOTE_LAYOUT==='popover');
+  $('#comment-popover .comment-close').addEventListener('click',()=>dismissComment());
   setupResourceResize();
   $('#turn-prev').addEventListener('click',()=>turnPage(-1));$('#turn-next').addEventListener('click',()=>turnPage(1));
   $('#page-select').addEventListener('change',e=>setPage(+e.target.value));
   linkPeople();
   $('#voyage').querySelectorAll('.ann').forEach(a=>{
-    const activate=()=>{if(A.notes[a.dataset.n])selectNote(+a.dataset.n)};
-    a.addEventListener('click',activate);a.addEventListener('keydown',e=>{if(!e.target.closest('.person-reference')&&(e.key==='Enter'||e.key===' ')){e.preventDefault();activate()}});
+    const activate=e=>{if(A.notes[a.dataset.n])selectNote(+a.dataset.n,a,e)};
+    a.addEventListener('click',activate);a.addEventListener('keydown',e=>{if(!e.target.closest('.person-reference')&&(e.key==='Enter'||e.key===' ')){e.preventDefault();activate(e)}});
   });
   $('#voyage').querySelectorAll('button[data-go]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.go)));
   $('#voyage').querySelectorAll('[data-cover]').forEach(b=>b.addEventListener('click',()=>go('cover')));
@@ -190,6 +196,7 @@ function flipPaper(outgoing,dir){
 }
 
 function setPage(page,animate=true){
+  closeComment(false);
   const oldPage=R.page;
   const outgoing=animate&&page!==oldPage?capturePaper():null;
   R.page=Math.max(0,Math.min(R.pages-1,page));
@@ -218,24 +225,114 @@ function revealPassage(target,offset=0){
   const rect=rangeFor(target,offset,offset+1)?.getBoundingClientRect()||target.getClientRects()[0];if(!rect)return;
   const win=$('#folio-window').getBoundingClientRect();const page=Math.floor((rect.left-win.left+R.page*R.stride)/R.stride);if(page!==R.page)setPage(page);
 }
-function selectNote(n){if(!A.notes[n])return;R.mode='notes';R.selected=n;updateDock();}
+function selectNote(n,anchor=null,event=null){
+  if(!A.notes[n])return;
+  R.mode='notes';R.person=null;R.selected=n;updateDock();
+  if(NOTE_LAYOUT==='popover'){
+    anchor=anchor||[...$('#folio-flow').querySelectorAll('.ann[data-n="'+n+'"]')].find(a=>[...a.getClientRects()].some(visibleRect));
+    if(anchor)openComment({kind:'note',note:A.notes[n],anchor,event});
+  }
+}
 function noteHTML(note){
   const quote=note.quote.replace(/_/g,'').trim(),words=quote.split(/\s+/);
   const excerpt=words.slice(0,8).join(' ')+(words.length>8?'…':'');
   return '<div class="dock-note"><blockquote title="'+esc(quote)+'"><span class="note-number" aria-label="Note '+note.n+'">'+note.n+'</span><span class="note-excerpt">'+esc(excerpt)+'</span></blockquote><div class="note-prose">'+fmt(note.note)+'</div></div>';
 }
+function characterHTML(person,note,back=true){
+  return '<div class="character-note">'+(back?'<button class="notes-back">← Passage notes</button>':'')+'<h3>'+esc(person.name)+'</h3><p class="person-role">'+esc(person.reminder||person.role||'')+'</p>'+(note?noteHTML(note):'')+(person.desc||person.why?'<details><summary>More about '+esc(person.name)+'</summary><p>'+esc(person.desc||'')+'</p><p>'+esc(person.why||'')+'</p></details>':'')+'</div>';
+}
 function updateDock(){
   const host=$('#dock-content');if(!host)return;
-  $('#folio-flow').querySelectorAll('.ann').forEach(a=>a.classList.toggle('open',R.mode==='notes'&&+a.dataset.n===R.selected));
+  const active=NOTE_LAYOUT==='bottom'||!!commentState;
+  $('#folio-flow').querySelectorAll('.ann').forEach(a=>a.classList.toggle('open',active&&R.mode==='notes'&&+a.dataset.n===R.selected));
   const n=A.notes[R.selected];host.innerHTML=n?noteHTML(n):'<p class="dock-empty">No notes on this page. Keep reading.</p>';
-  $('#folio-flow').querySelectorAll('[data-person]').forEach(b=>b.classList.toggle('active',R.mode==='person'&&+b.dataset.person===R.person?.index));
+  $('#folio-flow').querySelectorAll('[data-person]').forEach(b=>b.classList.toggle('active',active&&R.mode==='person'&&+b.dataset.person===R.person?.index));
   if(R.mode==='person'&&R.person){
-    const p=PERSONS[R.person.index],note=R.person.note;
-    host.innerHTML='<div class="character-note"><button class="notes-back">← Passage notes</button><h3>'+esc(p.name)+'</h3><p class="person-role">'+esc(p.reminder||p.role||'')+'</p>'+(note?noteHTML(note):'')+(p.desc||p.why?'<details><summary>More about '+esc(p.name)+'</summary><p>'+esc(p.desc||'')+'</p><p>'+esc(p.why||'')+'</p></details>':'')+'</div>';
+    host.innerHTML=characterHTML(PERSONS[R.person.index],R.person.note);
     host.querySelector('.notes-back').addEventListener('click',()=>{R.mode='notes';R.person=null;updateDock()});
   }
   host.scrollTop=0;
 }
+function commentAnchorRect(){
+  if(!commentState?.anchor.isConnected)return null;
+  const win=$('#folio-window').getBoundingClientRect();
+  const rects=[...commentState.anchor.getClientRects()].filter(visibleRect).map(r=>({left:Math.max(r.left,win.left),right:Math.min(r.right,win.right),top:Math.max(r.top,win.top),bottom:Math.min(r.bottom,win.bottom)}));
+  if(!rects.length)return null;
+  const point=commentState.point;
+  if(point)rects.sort((a,b)=>{
+    const distance=r=>Math.max(r.left-point.x,0,point.x-r.right)**2+Math.max(r.top-point.y,0,point.y-r.bottom)**2;
+    return distance(a)-distance(b);
+  });
+  return rects[0];
+}
+function placeComment(anchor,size,bounds){
+  const gap=12,clamp=(v,min,max)=>Math.max(min,Math.min(max,v));
+  let left,top,side;
+  if(anchor.right+gap+size.width<=bounds.right){left=anchor.right+gap;top=anchor.top-12;side='right'}
+  else if(anchor.left-gap-size.width>=bounds.left){left=anchor.left-gap-size.width;top=anchor.top-12;side='left'}
+  else {
+    left=anchor.left;
+    const below=bounds.bottom-anchor.bottom-gap,above=anchor.top-bounds.top-gap;
+    side=below>=above?'below':'above';top=side==='below'?anchor.bottom+gap:anchor.top-gap-size.height;
+  }
+  return {left:clamp(left,bounds.left,bounds.right-size.width),top:clamp(top,bounds.top,bounds.bottom-size.height),side};
+}
+function positionComment(){
+  const popup=$('#comment-popover'),link=$('#comment-link');if(!commentState||!popup||popup.hidden)return;
+  const anchor=commentAnchorRect();if(!anchor){closeComment(false);return}
+  const bounds={left:12,right:innerWidth-12,top:$('.mast').getBoundingClientRect().bottom+12,bottom:innerHeight-($('#abar').classList.contains('on')?$('#abar').offsetHeight:0)-12};
+  const width=Math.min(360,bounds.right-bounds.left);
+  const beside=anchor.right+12+width<=bounds.right||anchor.left-12-width>=bounds.left;
+  const room=beside?bounds.bottom-bounds.top:Math.max(bounds.bottom-anchor.bottom-12,anchor.top-bounds.top-12);
+  const heightLimit=Math.max(60,Math.min(480,room));
+  popup.style.width=width+'px';popup.style.setProperty('--comment-max-height',heightLimit+'px');
+  const height=Math.min(popup.getBoundingClientRect().height,heightLimit),placed=placeComment(anchor,{width,height},bounds);
+  popup.style.left=placed.left+'px';popup.style.top=placed.top+'px';popup.dataset.side=placed.side;
+  const clamp=(v,min,max)=>Math.max(min,Math.min(max,v));
+  let sx,sy,ex,ey,path;
+  if(placed.side==='left'||placed.side==='right'){
+    sx=placed.side==='right'?anchor.right:anchor.left;sy=(anchor.top+anchor.bottom)/2;
+    ex=placed.side==='right'?placed.left:placed.left+width;ey=clamp(sy,placed.top+14,placed.top+height-14);
+    popup.style.setProperty('--comment-pointer-y',(ey-placed.top)+'px');
+    const mid=(sx+ex)/2;path='M '+sx+' '+sy+' C '+mid+' '+sy+' '+mid+' '+ey+' '+ex+' '+ey;
+  }else {
+    sx=(anchor.left+anchor.right)/2;sy=placed.side==='below'?anchor.bottom:anchor.top;
+    ex=clamp(sx,placed.left+14,placed.left+width-14);ey=placed.side==='below'?placed.top:placed.top+height;
+    popup.style.setProperty('--comment-pointer-x',(ex-placed.left)+'px');
+    const mid=(sy+ey)/2;path='M '+sx+' '+sy+' C '+sx+' '+mid+' '+ex+' '+mid+' '+ex+' '+ey;
+  }
+  link.setAttribute('viewBox','0 0 '+innerWidth+' '+innerHeight);link.querySelector('path').setAttribute('d',path);
+  link.querySelector('circle').setAttribute('cx',sx);link.querySelector('circle').setAttribute('cy',sy);link.removeAttribute('hidden');
+}
+function openComment(spec){
+  closeComment(false);
+  const popup=$('#comment-popover'),content=$('#comment-content');if(!popup)return;
+  const trigger=spec.event?.target?.closest('button,[role="button"]')||spec.anchor.closest('button,[role="button"]')||spec.anchor.querySelector('[role="button"]');
+  const point=spec.event?.detail&&Number.isFinite(spec.event.clientX)?{x:spec.event.clientX,y:spec.event.clientY}:null;
+  commentState={...spec,trigger,point};
+  if(spec.kind==='person'){R.person={index:spec.index,note:spec.note};R.mode='person'}else{R.selected=spec.note.n;R.person=null;R.mode='notes'}
+  content.innerHTML=spec.kind==='person'?characterHTML(PERSONS[spec.index],spec.note,!!spec.note):noteHTML(spec.note);
+  popup.setAttribute('aria-label',spec.kind==='person'?'About '+PERSONS[spec.index].name:'Note '+spec.note.n);
+  popup.hidden=false;content.scrollTop=0;
+  trigger?.setAttribute('aria-expanded','true');trigger?.setAttribute('aria-controls','comment-popover');
+  content.querySelector('.notes-back')?.addEventListener('click',()=>selectNote(spec.note.n,spec.anchor.closest('.ann')||spec.anchor));
+  content.querySelectorAll('details').forEach(d=>d.addEventListener('toggle',positionComment));
+  updateDock();positionComment();
+  if(commentState){content.focus({preventScroll:true});commentObserver=new ResizeObserver(positionComment);commentObserver.observe(popup)}
+}
+function closeComment(restoreFocus=true){
+  if(!commentState)return;
+  const trigger=commentState.trigger;commentState=null;commentObserver?.disconnect();
+  $('#comment-popover')?.setAttribute('hidden','');$('#comment-link')?.setAttribute('hidden','');
+  trigger?.removeAttribute('aria-expanded');trigger?.removeAttribute('aria-controls');
+  R.mode='notes';R.person=null;updateDock();
+  if(restoreFocus&&trigger?.isConnected)trigger.focus({preventScroll:true});
+}
+function dismissComment(restoreFocus=true){
+  closeComment(restoreFocus);
+  if(A.paused){clearTimeout(A.holdTimer);A.paused=false;audioPlay()}
+}
+document.addEventListener('pointerdown',e=>{if(commentState&&!e.target.closest('.comment-popover')&&!commentState.anchor.contains(e.target))dismissComment(false)});
 function resourceBounds(){
   const layout=$('#voyage .reader-layout'),width=layout?.clientWidth||innerWidth;
   const mobile=innerWidth<=760;
@@ -292,7 +389,7 @@ function setupResourceResize(){
   });
 }
 function setResources(open){
-  finishResourceResize();finishPaperTurn();
+  closeComment(false);finishResourceResize();finishPaperTurn();
   const panel=$('#resource-panel'),toggle=$('#resources-toggle');
   const handle=$('#resource-resizer');if(handle){handle.tabIndex=open?0:-1;handle.setAttribute('aria-hidden',String(!open))}
   panel?.classList.toggle('open',open);

@@ -37,12 +37,18 @@ ones. A sheet rotates around the spine when you turn with the edge arrows,
 keyboard arrows, or a horizontal swipe. Reduced-motion preferences skip the flip.
 Labeled dots above the book jump to chapters or major sections.
 
-The lower fifth holds notes for visible passages. **Chapter reading** lives in
-the right-hand panel, with the current section essay and its cross-references.
-Click a speaker or a recognized character name for a brief reminder in Notes.
-Names inside annotated passages also retain the passage commentary; the note
-marker and other passage text open it separately. Aliases and additional people
-mentioned in the text are defined in each book's character and metadata files.
+The current experiment uses comments attached to annotated lines. Clicking a
+passage opens its complete note beside the clicked line, with a highlighted
+passage and a small connector. Character names open reminders in the same
+popover. Comments close with Escape, the close button, a click outside, or a
+page turn. On narrow screens they fit above or below the line when needed.
+**Chapter reading** remains in the right-hand panel.
+
+The bottom notes dock is retained but hidden, and the book fills the recovered
+space. Add `notes=bottom` to the book URL to compare the previous layout, for
+example `?b=antigone&notes=bottom#s1`. No commentary or character data is removed.
+Aliases and additional people mentioned in the text remain in each book's
+character and metadata files.
 
 The small top-right icon opens resources to the left. The panel starts closed. The panel opens wider by default; drag its left edge to adjust
 its width, or use the arrow keys when the divider is focused. Double-click the

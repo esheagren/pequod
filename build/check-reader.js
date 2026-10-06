@@ -65,3 +65,22 @@ for(const file of fs.readdirSync(path.join(root,'books')).filter(f=>f.endsWith('
 }
 console.log(`PASS: ${mentions} character references matched across all public works.`);
 console.log(`PASS: ${chapters} sections, ${paragraphs} paragraphs preserved; saved-offset and chapter-boundary regressions.`);
+
+// Comments prefer the side of the selected line and stay within the visible
+// reading area, including narrow-screen and near-edge placements.
+const placement=reader.slice(reader.indexOf('function placeComment('),reader.indexOf('function positionComment('));
+const popover={};vm.createContext(popover);vm.runInContext(placement,popover);
+for(const [anchor,size,bounds,side] of [
+  [{left:100,right:380,top:180,bottom:204},{width:360,height:300},{left:12,right:1428,top:70,bottom:888},'right'],
+  [{left:1000,right:1300,top:180,bottom:204},{width:360,height:300},{left:12,right:1428,top:70,bottom:888},'left'],
+  [{left:70,right:300,top:330,bottom:354},{width:366,height:300},{left:12,right:378,top:70,bottom:788},'below'],
+  [{left:70,right:300,top:630,bottom:654},{width:366,height:300},{left:12,right:378,top:70,bottom:788},'above'],
+  [{left:100,right:380,top:74,bottom:98},{width:360,height:300},{left:12,right:1428,top:70,bottom:888},'right'],
+  [{left:100,right:380,top:850,bottom:874},{width:360,height:300},{left:12,right:1428,top:70,bottom:888},'right']
+]){
+  const placed=popover.placeComment(anchor,size,bounds);
+  assert.equal(placed.side,side);
+  assert(placed.left>=bounds.left&&placed.left+size.width<=bounds.right);
+  assert(placed.top>=bounds.top&&placed.top+size.height<=bounds.bottom);
+}
+console.log('PASS: comment placement beside lines, phone fallback, and viewport edges.');

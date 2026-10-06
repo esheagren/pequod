@@ -1,5 +1,5 @@
 /* Local preview only. Run JSON.stringify(readerQA()) in the browser console. */
-window.readerDebug={R,go,setPage,paginate};
+window.readerDebug={R,go,setPage,paginate,NOTE_LAYOUT,closeComment};
 window.readerQA=()=>{
   const errors=[],report=[],start={id:R.id,anchor:R.anchor};
   const assert=(ok,message)=>{if(!ok)errors.push(message)};
@@ -33,14 +33,16 @@ window.readerQA=()=>{
     assert(!$('#voyage .chhead'),'chapter heading remains');
     assert(!!$('#resource-panel .chapter-reading-content')&&!$('.notes-dock .chapter-reading-content')&&!$('#dock-reading'),id+': chapter reading belongs in the side panel');
     assert($('#resource-panel').inert&&$('#resources-toggle').getAttribute('aria-expanded')==='false','resources must start closed');
+    assert($('.notes-dock').hidden===(NOTE_LAYOUT==='popover'),id+': inactive notes dock');
+    const noteHost=NOTE_LAYOUT==='popover'?'#comment-content':'#dock-content';
     const person=$('#folio-flow .person-reference');
-    if(person){person.click();assert(R.mode==='person'&&!!$('#dock-content .person-role'),id+': character reminder');$('#dock-content .notes-back').click();assert(R.mode==='notes',id+': return to notes')}
+    if(person){person.click();assert(R.mode==='person'&&!!$(noteHost+' .person-role'),id+': character reminder');if(NOTE_LAYOUT==='popover')$('#comment-popover .comment-close').click();else $('#dock-content .notes-back').click();assert(R.mode==='notes',id+': return to notes')}
     const annotatedPerson=$('#folio-flow .ann .person-reference');
     if(annotatedPerson){annotatedPerson.click();assert(R.mode==='person',id+': character inside annotation');annotatedPerson.closest('.ann').querySelector('sup').click();assert(R.mode==='notes',id+': separate passage action')}
     const pageCount=R.pages;
     setPage(pageCount-1,false);
     assert(R.page===pageCount-1,id+': last page unavailable');
-    if(R.visible.length){const n=R.visible.at(-1);selectNote(n);assert($('#dock-content .note-number')?.textContent===String(n)&&$('#dock-content .note-prose')?.innerHTML===fmt(A.notes[n].note),id+': note selection')}
+    if(R.visible.length){const n=R.visible.at(-1);selectNote(n);assert($(noteHost+' .note-number')?.textContent===String(n)&&$(noteHost+' .note-prose')?.innerHTML===fmt(A.notes[n].note),id+': note selection');if(NOTE_LAYOUT==='popover'){assert(!$('#comment-popover').hidden&&!$('#comment-link').hasAttribute('hidden'),id+': attached comment visible');closeComment(false)}}
     const saved=R.anchor;paginate(saved);assert(R.page===pageCount-1,id+': restore expected '+(pageCount-1)+' actual '+R.page+' anchor '+JSON.stringify(saved));
     const i=byId[id];if(i<CH.length-1){turnPage(1);assert(R.id===CH[i+1].id&&R.page===0,id+': next chapter boundary');turnPage(-1);assert(R.id===id&&R.page===R.pages-1,id+': previous chapter boundary')}
     report.push({id,pages:pageCount,samples,clipped,unreachable});
