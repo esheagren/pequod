@@ -1,9 +1,10 @@
 /* Responsive pagination keeps the original paragraphs and annotation anchors intact. */
-// Experimental view; ?notes=bottom restores the retained notes dock.
-const NOTE_LAYOUT=new URLSearchParams(location.search).get('notes')==='bottom'?'bottom':'popover';
+// Earlier note layouts remain available for comparison.
+const requestedNotes=new URLSearchParams(location.search).get('notes');
+const NOTE_LAYOUT=['bottom','popover'].includes(requestedNotes)?requestedNotes:'side';
 const CHAPTERED_BOOK=CH.some(c=>c.num!=null);
-const R={id:null,page:0,pages:1,stride:0,leaves:2,visible:[],selected:null,mode:'notes',person:null,anchor:null};
-let readerResize, folioObserver, paperTurn, resourceDrag, resourceFrame, commentState, commentObserver;
+const R={id:null,page:0,pages:1,stride:0,leaves:1,visible:[],selected:null,mode:'notes',person:null,anchor:null};
+let readerResize, folioObserver, paperTurn, resourceDrag, resourceFrame, commentState, commentObserver, sideState;
 let resourceWidth=null;
 try{const saved=JSON.parse(localStorage.getItem('pequod.resourceWidth'));if(Number.isFinite(saved)&&saved>0)resourceWidth=saved}catch(e){}
 
@@ -72,6 +73,33 @@ function showPerson(index,target=null,event=null){
   const note=direct?A.notes[direct.dataset.n]:null;
   R.person={index,note};R.mode='person';updateDock();
   if(NOTE_LAYOUT==='popover'&&target)openComment({kind:'person',index,note,anchor:target,event});
+  if(NOTE_LAYOUT==='side')openSide({kind:'person',index,note,anchor:target,event});
+}
+function sidePlaceholder(){return '<div class="side-placeholder"><h2>Alongside the page</h2><p>Select a highlighted passage or a character to read about it here.</p></div>'}
+function renderSide(){
+  const content=$('#side-content');if(!content)return;
+  const spec=sideState;
+  content.innerHTML=!spec?sidePlaceholder():spec.kind==='essay'?contextHTML(R.id):spec.kind==='person'?characterHTML(PERSONS[spec.index],spec.note,!!spec.note):noteHTML(spec.note);
+  content.setAttribute('aria-label',!spec?'Reading companion':spec.kind==='essay'?'Chapter reading':spec.kind==='person'?'About '+PERSONS[spec.index].name:'Note '+spec.note.n);
+  content.querySelector('.notes-back')?.addEventListener('click',()=>openSide({kind:'note',note:spec.note,sourceChapter:spec.sourceChapter,anchor:spec.anchor?.closest('.ann')||spec.anchor}));
+  $('#resource-panel').scrollTop=0;
+}
+function clearSide(restoreFocus=false){
+  if(!sideState)return;
+  const trigger=sideState.trigger;sideState=null;
+  trigger?.removeAttribute('aria-expanded');trigger?.removeAttribute('aria-controls');
+  R.mode='notes';R.person=null;renderSide();updateDock();
+  if(restoreFocus&&trigger?.isConnected)trigger.focus({preventScroll:true});
+}
+function openSide(spec){
+  clearSide();closeComment(false);
+  const trigger=spec.event?.target?.closest('button,[role="button"]')||spec.anchor?.closest('button,[role="button"]')||spec.anchor?.querySelector('[role="button"]');
+  sideState={...spec,sourceChapter:spec.sourceChapter||R.id,trigger};
+  R.mode=spec.kind==='person'?'person':'notes';R.person=spec.kind==='person'?{index:spec.index,note:spec.note}:null;
+  if(spec.kind==='note')R.selected=spec.note.n;
+  renderSide();setResources(true);updateDock();
+  trigger?.setAttribute('aria-expanded','true');trigger?.setAttribute('aria-controls','resource-panel');
+  $('#side-content').focus({preventScroll:true});
 }
 function contextHTML(id){
   return '<section class="chapter-reading" aria-labelledby="chapter-reading-title"><h2 id="chapter-reading-title">Chapter reading</h2><div class="chapter-reading-content">'+chapterReadingHTML(id)+'</div></section>';
@@ -93,18 +121,23 @@ function chapterOpening(c){
   const label=chapterLabel(c);
   return '<header class="chapter-opening">'+(label!==c.title?'<div class="chapter-kicker">'+esc(label)+'</div>':'')+'<h2>'+esc(c.title)+'</h2></header>';
 }
-function renderChapter(id, pageHint=null){
+function renderChapter(id, pageHint=null,companion=null){
   const i=byId[id],c=CH[i],cm=CM[id]||{},m=mvOf(i),rows=wrapAnnotations(c.paras,cm.annotations||[]);
   finishPaperTurn();
   folioObserver?.disconnect();clearTimeout(readerResize);
   R.id=id;R.page=0;R.selected=null;R.mode='notes';R.person=null;R.anchor=null;
   A.notes={};rows.forEach(r=>r.notes.forEach(n=>A.notes[n.n]=n));
-  $('#voyage').innerHTML='<div class="reader-layout"><article class="reading" aria-label="'+esc(named(c))+'"><div class="book-surface"><div class="folio-window" id="folio-window"><div class="folio-flow chbody" id="folio-flow">'+chapterOpening(c)+rows.map((r,pi)=>'<div class="row"><p data-para="'+pi+'"'+(/\n/.test(r.raw)||id==='extracts'||id==='etymology'?' class="verse"':'')+'>'+r.html+'</p></div>').join('')+'</div></div><button class="page-turn prev" id="turn-prev" aria-label="Previous page">‹</button><button class="page-turn next" id="turn-next" aria-label="Next page">›</button><footer class="folio-footer"><button data-cover>'+esc(META.title)+'</button>'+(CHAPTERED_BOOK?'<span class="chapter-location">'+esc(chapterLabel(c))+'</span>':'')+(D.audio?.[id]?'<button class="listen" data-listen>▶ listen &amp; follow</button>':'')+'<label class="page-count"><span id="page-label"></span> <select id="page-select" aria-label="Go to page"></select></label></footer></div><section class="notes-dock" aria-label="Notes"><div class="dock-content" id="dock-content" role="region" aria-label="Notes" tabindex="0"></div></section></article><div class="resource-resizer" id="resource-resizer" role="separator" aria-orientation="vertical" aria-label="Resize resources panel" aria-controls="resource-panel" aria-hidden="true" tabindex="-1" title="Drag to resize; double-click to reset"></div><aside class="resource-panel" id="resource-panel" aria-label="Resources" aria-hidden="true" inert><div class="resource-inner">'+contextHTML(id)+'</div></aside><svg class="comment-link" id="comment-link" aria-hidden="true" hidden><path/><circle r="2.5"/></svg><aside class="comment-popover" id="comment-popover" role="dialog" aria-modal="false" aria-label="Passage comment" hidden><div class="comment-content" id="comment-content" tabindex="0"></div></aside></div>';
-  const dock=$('.notes-dock');dock.hidden=NOTE_LAYOUT==='popover';dock.inert=dock.hidden;
-  $('.reader-layout').classList.toggle('comment-mode',NOTE_LAYOUT==='popover');
+  $('#voyage').innerHTML='<div class="reader-layout"><article class="reading" aria-label="'+esc(named(c))+'"><div class="book-surface"><div class="folio-window" id="folio-window"><div class="folio-flow chbody" id="folio-flow">'+chapterOpening(c)+rows.map((r,pi)=>'<div class="row"><p data-para="'+pi+'"'+(/\n/.test(r.raw)||id==='extracts'||id==='etymology'?' class="verse"':'')+'>'+r.html+'</p></div>').join('')+(cm.essay?'<div class="chapter-end"><button class="chapter-essay-link" id="chapter-essay-link" tabindex="-1">Read the chapter essay <span aria-hidden="true">→</span></button></div>':'')+'</div></div><button class="page-turn prev" id="turn-prev" aria-label="Previous page">‹</button><button class="page-turn next" id="turn-next" aria-label="Next page">›</button><footer class="folio-footer"><button data-cover>'+esc(META.title)+'</button>'+(CHAPTERED_BOOK?'<span class="chapter-location">'+esc(chapterLabel(c))+'</span>':'')+(D.audio?.[id]?'<button class="listen" data-listen>▶ listen &amp; follow</button>':'')+'<label class="page-count"><span id="page-label"></span> <select id="page-select" aria-label="Go to page"></select></label></footer></div><section class="notes-dock" aria-label="Notes"><div class="dock-content" id="dock-content" role="region" aria-label="Notes" tabindex="0"></div></section></article><div class="resource-resizer" id="resource-resizer" role="separator" aria-orientation="vertical" aria-label="Resize resources panel" aria-controls="resource-panel" aria-hidden="true" tabindex="-1" title="Drag to resize; double-click to reset"></div><aside class="resource-panel" id="resource-panel" aria-label="Resources" aria-hidden="true" inert><div class="resource-inner side-content" id="side-content" role="region" aria-label="Reading companion" tabindex="-1"></div></aside><svg class="comment-link" id="comment-link" aria-hidden="true" hidden><path/><circle r="2.5"/></svg><aside class="comment-popover" id="comment-popover" role="dialog" aria-modal="false" aria-label="Passage comment" hidden><div class="comment-content" id="comment-content" tabindex="0"></div></aside></div>';
+  sideState=companion?.state||null;
+  if(sideState?.kind==='person'){R.mode='person';R.person={index:sideState.index,note:sideState.note}}
+  renderSide();
+  const dock=$('.notes-dock');dock.hidden=NOTE_LAYOUT!=='bottom';dock.inert=dock.hidden;
+  $('.reader-layout').classList.toggle('comment-mode',NOTE_LAYOUT!=='bottom');
   setupResourceResize();
+  if(sideState)setResources(true);
   $('#turn-prev').addEventListener('click',()=>turnPage(-1));$('#turn-next').addEventListener('click',()=>turnPage(1));
   $('#page-select').addEventListener('change',e=>setPage(+e.target.value));
+  $('#chapter-essay-link')?.addEventListener('click',e=>openSide({kind:'essay',anchor:e.currentTarget,event:e}));
   linkPeople();
   $('#voyage').querySelectorAll('.ann').forEach(a=>{
     const activate=e=>{if(A.notes[a.dataset.n])selectNote(+a.dataset.n,a,e)};
@@ -120,6 +153,7 @@ function renderChapter(id, pageHint=null){
   const saved=store.get('position',null);
   const anchor=pageHint==null&&saved?.id===id?saved:null;
   paginate(anchor,pageHint);
+  if(companion){$('#resource-panel').scrollTop=companion.scrollTop;if(companion.focused)$('#side-content').focus({preventScroll:true})}
   if(document.fonts.status!=='loaded')document.fonts.ready.then(()=>{if(R.id===id&&document.body.classList.contains('on-reader'))paginate(R.anchor||anchor,R.anchor?null:pageHint)});
   markRail(id);
   let width=$('#folio-window').clientWidth,height=$('#folio-window').clientHeight;
@@ -192,7 +226,7 @@ function flipPaper(outgoing,dir){
   const front=face(outgoing.copy,two&&dir>0?w/2:0);
   const back=face(incoming.copy,two&&dir<0?w/2:0);back.classList.add('paper-back');
   leaf.append(front,back);layer.append(leaf);stage.append(layer);
-  const duration=720;
+  const duration=540;
   const rotation=leaf.animate([{transform:'rotateY(0deg)'},{transform:'rotateY('+(-dir*88)+'deg) skewY('+(-dir*1.2)+'deg)',offset:.5},{transform:'rotateY('+(-dir*180)+'deg)'}],{duration,easing:'cubic-bezier(.32,.05,.2,1)',fill:'forwards'});
   const animations=[rotation];
   const still=layer.querySelector('.paper-still');if(still)animations.push(still.animate([{opacity:1,offset:0},{opacity:1,offset:.85},{opacity:0}],{duration,fill:'forwards'}));
@@ -216,16 +250,23 @@ function setPage(page,animate=true){
   const visible=new Set();
   $('#folio-flow').querySelectorAll('.ann').forEach(a=>{const shown=[...a.getClientRects()].some(visibleRect);a.tabIndex=shown&&a.hasAttribute('role')?0:-1;a.querySelectorAll('.annotation-trigger,sup[role=button]').forEach(t=>t.tabIndex=shown?0:-1);if(shown)visible.add(+a.dataset.n)});
   $('#folio-flow').querySelectorAll('.person-reference').forEach(b=>b.tabIndex=[...b.getClientRects()].some(visibleRect)?0:-1);
-  R.person=null;
+  const essayLink=$('#chapter-essay-link');if(essayLink)essayLink.tabIndex=[...essayLink.getClientRects()].some(visibleRect)?0:-1;
+  R.person=sideState?.kind==='person'?{index:sideState.index,note:sideState.note}:null;
   R.visible=[...visible];if(!R.visible.includes(R.selected))R.selected=R.visible[0]||null;
-  R.mode='notes';updateDock();rememberPage();
+  R.mode=R.person?'person':'notes';if(sideState?.kind==='note'&&sideState.sourceChapter===R.id)R.selected=sideState.note.n;updateDock();rememberPage();
   $('#page-select').title='Page '+(R.page*R.leaves+1)+' of '+R.pages*R.leaves+' in this section';
   if(outgoing&&R.page!==oldPage)flipPaper(outgoing,R.page>oldPage?1:-1);
 }
 function turnPage(dir){
   if(!document.body.classList.contains('on-reader'))return;
   if(R.page+dir>=0&&R.page+dir<R.pages){setPage(R.page+dir);return}
-  const next=byId[R.id]+dir;if(CH[next]){const outgoing=capturePaper();go(CH[next].id,true,null,dir<0?'end':0);if(outgoing)flipPaper(outgoing,dir)}
+  const next=byId[R.id]+dir;
+  if(CH[next]){
+    const outgoing=capturePaper(),panel=$('#resource-panel');
+    const companion=sideState&&sideState.kind!=='essay'?{state:{...sideState},scrollTop:panel.scrollTop,focused:panel.contains(document.activeElement)}:null;
+    go(CH[next].id,true,null,dir<0?'end':0,companion);
+    if(outgoing)flipPaper(outgoing,dir);
+  }
 }
 function revealPassage(target,offset=0){
   const rect=rangeFor(target,offset,offset+1)?.getBoundingClientRect()||target.getClientRects()[0];if(!rect)return;
@@ -238,6 +279,7 @@ function selectNote(n,anchor=null,event=null){
     anchor=anchor||[...$('#folio-flow').querySelectorAll('.ann[data-n="'+n+'"]')].find(a=>[...a.getClientRects()].some(visibleRect));
     if(anchor)openComment({kind:'note',note:A.notes[n],anchor,event});
   }
+  if(NOTE_LAYOUT==='side')openSide({kind:'note',note:A.notes[n],anchor,event});
 }
 function noteHTML(note){
   const quote=note.quote.replace(/_/g,'').trim(),words=quote.split(/\s+/);
@@ -250,7 +292,7 @@ function characterHTML(person,note,back=true){
 }
 function updateDock(){
   const host=$('#dock-content');if(!host)return;
-  const active=NOTE_LAYOUT==='bottom'||!!commentState;
+  const active=NOTE_LAYOUT==='bottom'||!!commentState||!!sideState&&sideState.kind!=='essay'&&sideState.sourceChapter===R.id;
   $('#folio-flow').querySelectorAll('.ann').forEach(a=>a.classList.toggle('open',active&&R.mode==='notes'&&+a.dataset.n===R.selected));
   const n=A.notes[R.selected];host.innerHTML=n?noteHTML(n):'<p class="dock-empty">No notes on this page. Keep reading.</p>';
   $('#folio-flow').querySelectorAll('[data-person]').forEach(b=>b.classList.toggle('active',active&&R.mode==='person'&&+b.dataset.person===R.person?.index));
@@ -394,13 +436,14 @@ function setupResourceResize(){
     applyResourceWidth();paginate(anchor);layout.classList.remove('resizing');
   });
 }
-function setResources(open){
+function setResources(open,resumeAudio=true){
   closeComment(false);finishResourceResize();finishPaperTurn();
   const panel=$('#resource-panel'),toggle=$('#resources-toggle');
   const handle=$('#resource-resizer');if(handle){handle.tabIndex=open?0:-1;handle.setAttribute('aria-hidden',String(!open))}
   panel?.classList.toggle('open',open);
   panel?.closest('.reader-layout').classList.toggle('resources-open',open);
-  if(panel){if(!open&&(panel.contains(document.activeElement)||document.activeElement===handle))toggle.focus({preventScroll:true});panel.inert=!open;panel.setAttribute('aria-hidden',String(!open))}
+  if(panel){if(!open&&(panel.contains(document.activeElement)||document.activeElement===handle)){const trigger=sideState?.trigger;trigger?.isConnected?trigger.focus({preventScroll:true}):toggle.focus({preventScroll:true})}panel.inert=!open;panel.setAttribute('aria-hidden',String(!open))}
+  if(!open){clearSide();if(A.paused&&resumeAudio){clearTimeout(A.holdTimer);A.paused=false;audioPlay()}}
   toggle.setAttribute('aria-expanded',String(open));
   toggle.setAttribute('aria-label',open?'Close resources':'Open resources');
   toggle.title=open?'Close resources':'Open resources';

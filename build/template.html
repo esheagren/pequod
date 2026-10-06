@@ -633,10 +633,10 @@ $('#sheetx').addEventListener('click',()=>{ if(A.paused){ clearTimeout(A.holdTim
 $('#sheetscrim').addEventListener('click',()=>{ if(A.paused){ clearTimeout(A.holdTimer); A.paused=false; audioPlay(); } });
 
 /* ---- routing ---- */
-function go(id, push=true, q=null, pageHint=null){
+function go(id, push=true, q=null, pageHint=null,companion=null){
   if(id==='home' && !EMBED){ location.href=location.pathname; return; }
   if(byId[id]==null){folioObserver?.disconnect();clearTimeout(readerResize)}
-  closeSheet(); setResources(false); setChart(false);
+  closeSheet(); setResources(false,false); setChart(false);
   document.body.classList.toggle('on-reader',byId[id]!=null);
   document.documentElement.style.setProperty('--mast-h',$('.mast').offsetHeight+'px');
   window.scrollTo({top:0,behavior:'auto'});
@@ -645,7 +645,7 @@ function go(id, push=true, q=null, pageHint=null){
   if(id==='cover'||id==='home'){ A.ch=null; A.el.pause(); clearTimeout(A.holdTimer); if(A.voice){A.voice.pause();A.voice=null;} $('#abar').classList.remove('on'); document.body.classList.remove('has-audio'); }
   if(id==='home'){ renderHome(); markChart(null); setChart(false); }
   else if(id==='cover'){ renderCover(); markChart(null); setChart(false); }
-  else { showTab('voyage'); renderChapter(id,pageHint); last=id; store.set('last',id); markChart(id); }
+  else { showTab('voyage'); renderChapter(id,pageHint,companion); last=id; store.set('last',id); markChart(id); }
   showTab('voyage');
   if(push) history.replaceState(null,'','#'+id);
   if(q){
@@ -671,9 +671,9 @@ function openSheet(a, note){
   $('#sheetb').innerHTML=fmt(note.note);
   $('#sheet').classList.add('on'); $('#sheetscrim').classList.add('on');
 }
-function closeSheet(){ closeComment(false); $('#sheet').classList.remove('on'); $('#sheetscrim').classList.remove('on'); document.querySelectorAll('.ann.open').forEach(x=>x.classList.remove('open')); }
+function closeSheet(){ closeComment(false); clearSide(); $('#sheet').classList.remove('on'); $('#sheetscrim').classList.remove('on'); document.querySelectorAll('.ann.open').forEach(x=>x.classList.remove('open')); }
 $('#sheetx').addEventListener('click',closeSheet); $('#sheetscrim').addEventListener('click',closeSheet);
-document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ if(commentState){e.preventDefault();dismissComment();return} closeSheet(); setChart(false); setResources(false); } });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ if(commentState){e.preventDefault();dismissComment();return} if(sideState){e.preventDefault();setResources(false);return} closeSheet(); setChart(false); setResources(false); } });
 function setChart(open){ $('#chart').inert=!open; $('#chart').classList.toggle('open',open); $('#scrim').classList.toggle('on',open); }
 $('#scrim').addEventListener('click',()=>{setChart(false);setResources(false)});
 const mastRO=new ResizeObserver(()=>document.documentElement.style.setProperty('--mast-h',$('.mast').offsetHeight+'px')); mastRO.observe($('.mast'));

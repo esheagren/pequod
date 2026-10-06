@@ -1,5 +1,5 @@
 /* Local preview only. Run JSON.stringify(readerQA()) in the browser console. */
-window.readerDebug={R,go,setPage,paginate,NOTE_LAYOUT,closeComment};
+window.readerDebug={R,go,setPage,paginate,NOTE_LAYOUT,closeComment,setResources};
 window.readerQA=()=>{
   const errors=[],report=[],start={id:R.id,anchor:R.anchor};
   const assert=(ok,message)=>{if(!ok)errors.push(message)};
@@ -33,18 +33,18 @@ window.readerQA=()=>{
     assert(!$('#voyage .chhead'),'chapter heading remains');
     assert(!!flow.querySelector('.chapter-opening')===CHAPTERED_BOOK,id+': chapter opening');
     if(CHAPTERED_BOOK){assert(visibleRect(flow.querySelector('.chapter-opening').getBoundingClientRect()),id+': chapter opening visible');assert($('.chapter-location').textContent===chapterLabel(CH[byId[id]]),id+': current chapter label')}
-    assert(!!$('#resource-panel .chapter-reading-content')&&!$('.notes-dock .chapter-reading-content')&&!$('#dock-reading'),id+': chapter reading belongs in the side panel');
+    assert(R.leaves===1,id+': single reading page');assert(!$('#resource-panel .chapter-reading-content')&&!!$('#chapter-essay-link'),id+': essay awaits chapter-end link');
     assert($('#resource-panel').inert&&$('#resources-toggle').getAttribute('aria-expanded')==='false','resources must start closed');
-    assert($('.notes-dock').hidden===(NOTE_LAYOUT==='popover'),id+': inactive notes dock');
-    const noteHost=NOTE_LAYOUT==='popover'?'#comment-content':'#dock-content';
+    assert($('.notes-dock').hidden===(NOTE_LAYOUT!=='bottom'),id+': inactive notes dock');
+    const noteHost=NOTE_LAYOUT==='side'?'#side-content':NOTE_LAYOUT==='popover'?'#comment-content':'#dock-content';
     const person=$('#folio-flow .person-reference');
-    if(person){person.click();assert(R.mode==='person'&&!!$(noteHost+' .person-role'),id+': character reminder');assert(!!$(noteHost+' .person-description p')&&!$(noteHost+' details'),id+': description visible without expansion');if(NOTE_LAYOUT==='popover')$('#comment-content').dispatchEvent(new KeyboardEvent('keydown',{key:'Escape',bubbles:true}));else $('#dock-content .notes-back').click();assert(R.mode==='notes',id+': return to notes')}
+    if(person){person.click();assert(R.mode==='person'&&!!$(noteHost+' .person-role'),id+': character reminder');assert(!!$(noteHost+' .person-description p')&&!$(noteHost+' details'),id+': description visible without expansion');if(NOTE_LAYOUT==='side')setResources(false);else if(NOTE_LAYOUT==='popover')$('#comment-content').dispatchEvent(new KeyboardEvent('keydown',{key:'Escape',bubbles:true}));else $('#dock-content .notes-back').click();assert(R.mode==='notes',id+': return to notes')}
     const annotatedPerson=$('#folio-flow .ann .person-reference');
     if(annotatedPerson){annotatedPerson.click();assert(R.mode==='person',id+': character inside annotation');annotatedPerson.closest('.ann').querySelector('sup').click();assert(R.mode==='notes',id+': separate passage action')}
     const pageCount=R.pages;
     setPage(pageCount-1,false);
-    assert(R.page===pageCount-1,id+': last page unavailable');
-    if(R.visible.length){const n=R.visible.at(-1);selectNote(n);assert($(noteHost+' .note-number')?.textContent===String(n)&&$(noteHost+' .note-prose')?.innerHTML===fmt(A.notes[n].note),id+': note selection');if(NOTE_LAYOUT==='popover'){assert(!$('#comment-popover').hidden&&!$('#comment-link').hasAttribute('hidden'),id+': attached comment visible');closeComment(false)}}
+    assert(R.page===pageCount-1,id+': last page unavailable');const essayLink=$('#chapter-essay-link');assert(visibleRect(essayLink.getBoundingClientRect())&&essayLink.tabIndex===0,id+': chapter-end essay reachable');essayLink.click();assert(!!$('#resource-panel .chapter-reading-content'),id+': chapter essay opens on request');setResources(false);setPage(R.pages-1,false);
+    if(R.visible.length){const n=R.visible.at(-1);selectNote(n);assert($(noteHost+' .note-number')?.textContent===String(n)&&$(noteHost+' .note-prose')?.innerHTML===fmt(A.notes[n].note),id+': note selection');if(NOTE_LAYOUT==='popover'){assert(!$('#comment-popover').hidden&&!$('#comment-link').hasAttribute('hidden'),id+': attached comment visible');closeComment(false)}else if(NOTE_LAYOUT==='side'){assert($('#resource-panel').classList.contains('open')&&$('#comment-popover').hidden,id+': note in side panel');setResources(false)}}
     const saved=R.anchor;paginate(saved);assert(R.page===pageCount-1,id+': restore expected '+(pageCount-1)+' actual '+R.page+' anchor '+JSON.stringify(saved));
     const i=byId[id];if(i<CH.length-1){turnPage(1);assert(R.id===CH[i+1].id&&R.page===0,id+': next chapter boundary');if(CHAPTERED_BOOK)assert($('.chapter-location').textContent===chapterLabel(CH[i+1]),id+': next chapter label');turnPage(-1);assert(R.id===id&&R.page===R.pages-1,id+': previous chapter boundary')}
     $('#chapter-rail [data-chapter="'+id+'"]').click();assert(R.id===id&&R.page===0,id+': chapter click starts at opening');

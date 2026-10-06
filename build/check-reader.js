@@ -34,11 +34,15 @@ assert.equal(saved.pi,7);
 // Turns within a chapter stay on that chapter; boundary turns land at the
 // beginning of the next section and the end of the previous section.
 const calls=[];
-const turns={capturePaper:()=>null,R:{id:'b',page:1,pages:3},document:{body:{classList:{contains:()=>true}}},byId:{a:0,b:1,c:2},CH:[{id:'a'},{id:'b'},{id:'c'}],setPage:n=>calls.push(['page',n]),go:(id,_push,_q,hint)=>calls.push(['chapter',id,hint])};
+const turns={sideState:null,$:()=>({scrollTop:125,contains:()=>true}),capturePaper:()=>null,R:{id:'b',page:1,pages:3},document:{body:{classList:{contains:()=>true}}},byId:{a:0,b:1,c:2},CH:[{id:'a'},{id:'b'},{id:'c'}],setPage:n=>calls.push(['page',n]),go:(id,_push,_q,hint)=>calls.push(['chapter',id,hint])};
 vm.createContext(turns);vm.runInContext(turning,turns);
 turns.turnPage(1);assert.deepEqual(calls.pop(),['page',2]);
 turns.R.page=2;turns.turnPage(1);assert.deepEqual(calls.pop(),['chapter','c',0]);
 turns.R.page=0;turns.turnPage(-1);assert.deepEqual(calls.pop(),['chapter','a','end']);
+turns.sideState={kind:'note',sourceChapter:'b',note:{n:1,note:'A comment from the previous chapter'}};
+turns.go=(id,_push,_q,hint,companion)=>calls.push({id,hint,companion});
+turns.R.page=2;turns.turnPage(1);
+const carried=calls.pop();assert.equal(carried.id,'c');assert.equal(carried.companion.scrollTop,125);assert.equal(carried.companion.focused,true);assert.equal(carried.companion.state.note,turns.sideState.note);assert.equal(carried.companion.state.sourceChapter,'b');
 // Selecting a chapter explicitly starts at its opening, even when it has a
 // saved reading position. Ordinary resume behavior remains in renderChapter.
 let selectChapter;
