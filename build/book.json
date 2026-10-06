@@ -45,5 +45,12 @@
    "to": "epilogue",
    "desc": "The Pacific. The coffin, the forge, the candles, the Rachel, one quiet morning — and three days."
   }
- ]
+ ],
+ "crewIntro": "Who is aboard, who is ashore, and what each of them is doing in the book — in my reading, which you should feel free to argue with. Click a first appearance to go there.",
+ "tabs": [
+  "The Voyage",
+  "The Crew",
+  "The Loom"
+ ],
+ "order": 1
 }

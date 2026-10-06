@@ -7,7 +7,7 @@
   --bg:#EEF1EC; --bg2:#E3E8E2; --panel:#F6F8F4; --ink:#1B2229; --ink2:#4A555C; --ink3:#7C868C;
   --rule:#CBD3CD; --accent:#2E5F6B; --accent-soft:#D6E3E5; --line:#9A3B2E; --line-soft:#F1DAD5;
   --essay:#E8EDE6; --sel:#DCE8E9;
-  --m0:#2E5F6B; --m1:#7A6A45; --m2:#5C7A62; --m3:#9A3B2E;
+  --m0:#2E5F6B; --m1:#7A6A45; --m2:#5C7A62; --m3:#9A3B2E; --m4:#6B5B8A; --m5:#8A5A3C; --m6:#4A6FA5;
   --display:'Fraunces',Georgia,'Times New Roman',serif;
   --body:'Libre Caslon Text',Georgia,'Times New Roman',serif;
   --mono:'IBM Plex Mono',Menlo,Consolas,monospace;
@@ -16,13 +16,13 @@
   --bg:#0C1218; --bg2:#101922; --panel:#121B24; --ink:#D9DED6; --ink2:#A4AEB0; --ink3:#6E7A80;
   --rule:#233039; --accent:#E8E2CB; --accent-soft:#1E2E36; --line:#D9705E; --line-soft:#3A2420;
   --essay:#111A22; --sel:#1B2A33;
-  --m0:#7FB3BE; --m1:#C9B37E; --m2:#8FB896; --m3:#D9705E;
+  --m0:#7FB3BE; --m1:#C9B37E; --m2:#8FB896; --m3:#D9705E; --m4:#A99BD0; --m5:#D2A079; --m6:#8FB0DC;
 }}
 :root[data-theme="dark"]{
   --bg:#0C1218; --bg2:#101922; --panel:#121B24; --ink:#D9DED6; --ink2:#A4AEB0; --ink3:#6E7A80;
   --rule:#233039; --accent:#E8E2CB; --accent-soft:#1E2E36; --line:#D9705E; --line-soft:#3A2420;
   --essay:#111A22; --sel:#1B2A33;
-  --m0:#7FB3BE; --m1:#C9B37E; --m2:#8FB896; --m3:#D9705E;
+  --m0:#7FB3BE; --m1:#C9B37E; --m2:#8FB896; --m3:#D9705E; --m4:#A99BD0; --m5:#D2A079; --m6:#8FB0DC;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -204,6 +204,8 @@ svg.focus .cm-node:not(.lit):not(.src){opacity:.35}
 .cm-hint{font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;color:var(--ink3);margin:.6rem 0 0}
 .coverhead{max-width:66ch}
 
+.spk{font-family:var(--mono);font-size:.7em;letter-spacing:.12em;color:var(--ink3)}
+
 /* ---------- crew ---------- */
 .crew{max-width:78ch;margin:0 auto}
 .crew h2{font-family:var(--display);font-weight:300;font-size:2.6rem;margin:0 0 .3rem;font-variation-settings:"opsz" 144}
@@ -292,6 +294,9 @@ const EMBED = document.getElementById('data').textContent.trim();   // single-fi
 const BOOK = new URLSearchParams(location.search).get('b') || (EMBED ? 'moby-dick' : null);
 const ICONS = {
   whale:'<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="100" height="100" fill="var(--bg2)"/><g transform="translate(0,4)"><path fill="var(--accent)" d="M10 40 Q9 30 22 29 L54 31 Q72 34 82 46 L90 36 Q96 40 95 47 Q97 54 91 59 L82 50 Q72 64 54 67 L22 69 Q9 68 10 58 Z"/><circle cx="24" cy="46" r="2.2" fill="var(--bg2)"/></g><rect x="8" y="86" width="16" height="1.2" fill="var(--line)"/></svg>',
+  stairs:'<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="100" height="100" fill="var(--bg2)"/><path fill="none" stroke="var(--accent)" stroke-width="3" stroke-linejoin="round" d="M20 74h15V62h15V50h15V38h15V26"/><rect x="8" y="86" width="16" height="1.2" fill="var(--line)"/></svg>',
+  columns:'<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="100" height="100" fill="var(--bg2)"/><path fill="none" stroke="var(--accent)" stroke-width="3" stroke-linecap="round" d="M26 30h48M32 36v34M44 36v34M56 36v34M68 36v34M24 74h52"/><rect x="8" y="86" width="16" height="1.2" fill="var(--line)"/></svg>',
+  mask:'<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="100" height="100" fill="var(--bg2)"/><path fill="none" stroke="var(--accent)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M28 28h44v24q0 24-22 26q-22-2-22-26Z M37 42q5-5 10 0 M53 42q5-5 10 0 M40 64q10-8 20 0"/><rect x="8" y="86" width="16" height="1.2" fill="var(--line)"/></svg>',
   book:'<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="100" height="100" fill="var(--bg2)"/><path fill="none" stroke="var(--accent)" stroke-width="3" stroke-linejoin="round" d="M50 30 Q36 22 18 26 V72 Q36 68 50 76 Q64 68 82 72 V26 Q64 22 50 30 Z M50 30 V76"/><rect x="8" y="86" width="16" height="1.2" fill="var(--line)"/></svg>'
 };
 function shelfHTML(){
@@ -325,12 +330,14 @@ else {
 const META = D.meta || {};
 const CH = D.chapters, CM = D.commentary, PEOPLE = D.characters||[], MV = D.movements;
 const byId = Object.fromEntries(CH.map((c,i)=>[c.id,i]));
+const TABS = META.tabs || ['The Voyage','The Crew','The Loom'];
+document.querySelectorAll('.tabs [role=tab]').forEach((b,i)=>{ const t=TABS[i]||''; b.innerHTML=t.startsWith('The ')?'<span class="long">The </span>'+esc(t.slice(4)):esc(t); if(i===1&&!PEOPLE.length) b.style.display='none'; });
 function fmt(text){
   // escape, then resolve [[...]] cross-references and *italics*
   let h=esc(text);
   h=h.replace(/\[\[([a-z0-9]+)(?::([^\]|]+))?(?:\|([^\]]+))?\]\]/g,(m,id,q,label)=>{
     if(byId[id]==null) return label||m;
-    const c=CH[byId[id]]; const lab=label||(c.num?'Ch. '+c.num+', '+c.title:c.title);
+    const c=CH[byId[id]]; const lab=label||((ref(c)?ref(c)+', ':'')+c.title);
     return '<a class="xref" href="#'+id+'" data-go="'+id+'"'+(q?' data-q="'+q.replace(/"/g,'&quot;')+'"':'')+'>'+lab+'</a>';
   });
   return h;
@@ -345,7 +352,9 @@ const store = {
 let last = store.get('last',null);
 
 function mvOf(i){ return MV.find(m=>i>=m.from && i<=m.to); }
-function label(c){ return c.num? 'Chapter '+c.num : c.title; }
+function label(c){ return c.ref || (c.num? 'Chapter '+c.num : c.title); }
+function ref(c){ return c.ref || (c.num? 'Ch. '+c.num : ''); }            // short reference, may be empty
+function named(c){ const r=c.ref||(c.num?'Chapter '+c.num:''); return r? r+' · '+c.title : c.title; }
 
 /* ---- chart ---- */
 function renderChart(){
@@ -391,7 +400,7 @@ function wrapAnnotations(paras, anns){
       cursor=x.idx+x.len; lastEnd=cursor;
     });
     html += esc(o.raw.slice(cursor));
-    o.html=html.replace(/_([^_<>]{1,200}?)_/g,'<em>$1</em>'); o.notes=here;
+    o.html=html.replace(/_([^_<>]{1,200}?)_/g,'<em>$1</em>'); if(META.speakers) o.html=o.html.replace(/^([A-Z][A-Z’' .-]{1,30}[.:])(?=\n| )/,'<span class="spk">$1</span>'); o.notes=here;
   });
   return out;
 }
@@ -404,7 +413,7 @@ function renderChapter(id){
   A.notes=r_notes;
   const hasNotes = rows.some(r=>r.notes.length);
   let h='<article class="reading'+(hasNotes?' wide':'')+'">';
-  h+='<header class="chhead"><div class="kicker"><span>'+esc(c.kicker||(c.num?'Chapter '+c.num:'Front matter'))+'</span><span class="mvname">'+esc(m.name)+'</span></div>';
+  h+='<header class="chhead"><div class="kicker"><span>'+esc(c.kicker||(c.num?'Chapter '+c.num:(META.id==='moby-dick'?'Front matter':'')))+'</span><span class="mvname">'+esc(m.name)+'</span></div>';
   h+='<h2>'+esc(c.title)+'</h2>';
   if(D.audio&&D.audio[id]) h+='<a class="listen" href="#" data-listen>▶ listen &amp; follow</a>';
   h+='</header><div class="chbody">';
@@ -424,13 +433,13 @@ function renderChapter(id){
   const out=(cm.links||[]), inc=(D.incoming[id]||[]);
   if(out.length||inc.length){
     h+='<section class="threads"><h3>Threads</h3>';
-    if(out.length) h+='<ul>'+out.map(l=>{const t=CH[byId[l.to]]; if(!t) return ''; return '<li><a class="xref" href="#'+l.to+'" data-go="'+l.to+'"'+(l.q?' data-q="'+esc(l.q)+'"':'')+'>'+esc(t.num?'Ch. '+t.num+' · '+t.title:t.title)+'</a><span>'+fmt(l.why)+'</span></li>'}).join('')+'</ul>';
-    if(inc.length) h+='<p class="inc">Pointed here from '+inc.map(i=>{const t=CH[byId[i]]; return '<a class="xref" href="#'+i+'" data-go="'+i+'">'+esc(t.num?'Ch. '+t.num:t.title)+'</a>'}).join(', ')+'.</p>';
+    if(out.length) h+='<ul>'+out.map(l=>{const t=CH[byId[l.to]]; if(!t) return ''; return '<li><a class="xref" href="#'+l.to+'" data-go="'+l.to+'"'+(l.q?' data-q="'+esc(l.q)+'"':'')+'>'+esc((ref(t)?ref(t)+' · ':'')+t.title)+'</a><span>'+fmt(l.why)+'</span></li>'}).join('')+'</ul>';
+    if(inc.length) h+='<p class="inc">Pointed here from '+inc.map(i=>{const t=CH[byId[i]]; return '<a class="xref" href="#'+i+'" data-go="'+i+'">'+esc(ref(t)||t.title)+'</a>'}).join(', ')+'.</p>';
     h+='</section>';
   }
   h+='<nav class="chnav">';
-  h+= i>0 ? '<button data-go="'+CH[i-1].id+'"><span>previous</span>'+esc(label(CH[i-1])+' · '+CH[i-1].title)+'</button>' : '<span></span>';
-  h+= i<CH.length-1 ? '<button class="next" data-go="'+CH[i+1].id+'"><span>next</span>'+esc(label(CH[i+1])+' · '+CH[i+1].title)+'</button>' : '<button class="next" data-cover><span>the end</span>back to the cover</button>';
+  h+= i>0 ? '<button data-go="'+CH[i-1].id+'"><span>previous</span>'+esc(named(CH[i-1]))+'</button>' : '<span></span>';
+  h+= i<CH.length-1 ? '<button class="next" data-go="'+CH[i+1].id+'"><span>next</span>'+esc(named(CH[i+1]))+'</button>' : '<button class="next" data-cover><span>the end</span>back to the cover</button>';
   h+='</nav></article>';
   const v=$('#voyage'); v.innerHTML=h;
 
@@ -514,8 +523,8 @@ function buildMap(){
   CH.forEach((c,i)=>{
     const P=pos[c.id], mi=mvOfI(i);
     const lines=wrapTitle(c.title);
-    svg+='<g class="cm-node" data-id="'+c.id+'" tabindex="0" role="link" aria-label="'+esc(label(c)+', '+c.title)+'">';
-    svg+='<circle cx="'+P.x+'" cy="'+P.y+'" r="11.5" fill="var(--m'+mi+')"/>';
+    svg+='<g class="cm-node" data-id="'+c.id+'" tabindex="0" role="link" aria-label="'+esc(named(c))+'">';
+    svg+='<circle cx="'+P.x+'" cy="'+P.y+'" r="11.5" fill="var(--m'+(mi%7)+')"/>';
     svg+='<text class="num" x="'+P.x+'" y="'+P.y+'" text-anchor="middle" dominant-baseline="central" font-size="9.5">'+(c.num||'·')+'</text>';
     lines.forEach((ln,li)=>{ svg+='<text class="ttl" x="'+P.x+'" y="'+(P.y+27+li*13)+'" text-anchor="middle" font-size="11">'+esc(ln)+'</text>'; });
     svg+='</g>';
@@ -549,8 +558,8 @@ function renderCover(){
   h+='<div class="kicker">'+esc([META.author,META.year].filter(Boolean).join(' · '))+'</div>';
   h+='<h2>'+esc(META.title||'')+(META.sub?';<br><em>'+esc(META.sub)+'</em>':'')+'</h2>'+(META.tagline?'<p class="by">'+esc(META.tagline)+'</p>':'');
   if(META.coverIntro) h+='<p>'+esc(META.coverIntro)+'</p>';
-  h+= lastC ? '<button class="resume" data-go="'+lastC.id+'">resume at '+esc(label(lastC)+' · '+lastC.title)+' →</button>' : '<button class="resume" data-go="'+CH[0].id+'">begin at the beginning →</button>';
-  h+='<div class="cm-legend">'+MV.map((m,i)=>'<span><i style="background:var(--m'+i+')"></i>'+esc(m.name)+'</span>').join('')+'<span style="margin-left:auto;color:var(--ink3)">arcs = cross-references in the notes</span></div>';
+  h+= lastC ? '<button class="resume" data-go="'+lastC.id+'">resume at '+esc(named(lastC))+' →</button>' : '<button class="resume" data-go="'+CH[0].id+'">begin at the beginning →</button>';
+  h+='<div class="cm-legend">'+MV.map((m,i)=>'<span><i style="background:var(--m'+(i%7)+')"></i>'+esc(m.name)+'</span>').join('')+'<span style="margin-left:auto;color:var(--ink3)">arcs = cross-references in the notes</span></div>';
   h+='</div>';
   h+='<div class="cmap" id="cmap"></div>';
   h+='</div>';
@@ -564,12 +573,12 @@ window.addEventListener('resize',()=>{ clearTimeout(mapRT); mapRT=setTimeout(()=
 /* ---- crew ---- */
 function renderCrew(){
   const groups=[...new Set(PEOPLE.map(p=>p.group))];
-  let h='<h2>The Crew</h2><p>Who is aboard, who is ashore, and what each of them is doing in the book — in my reading, which you should feel free to argue with. Click a first appearance to go there.</p>';
+  let h='<h2>'+esc(TABS[1])+'</h2>'+(META.crewIntro?'<p>'+esc(META.crewIntro)+'</p>':'');
   groups.forEach(g=>{
     h+='<h3>'+esc(g)+'</h3>';
     PEOPLE.filter(p=>p.group===g).forEach(p=>{
-      const m=p.first.match(/^(ch\d+|etymology|extracts|epilogue)/); const fid=m?m[1]:null; const fc=fid&&byId[fid]!=null?CH[byId[fid]]:null;
-      h+='<div class="person"><div class="id"><div class="nm">'+esc(p.name)+'</div><div class="rl">'+esc(p.role)+'</div><div class="fa">first seen · '+(fc?'<button data-go="'+fid+'">'+esc(label(fc)+', '+fc.title)+'</button>':esc(p.first))+(m&&p.first.length>m[0].length?' <span>'+esc(p.first.slice(m[0].length).trim())+'</span>':'')+'</div></div>';
+      const m=(p.first||'').match(/^([a-z0-9]+)/); const fid=m?m[1]:null; const fc=fid&&byId[fid]!=null?CH[byId[fid]]:null;
+      h+='<div class="person"><div class="id"><div class="nm">'+esc(p.name)+'</div><div class="rl">'+esc(p.role)+'</div><div class="fa">first seen · '+(fc?'<button data-go="'+fid+'">'+esc(named(fc))+'</button>':esc(p.first))+(m&&p.first.length>m[0].length?' <span>'+esc(p.first.slice(m[0].length).trim())+'</span>':'')+'</div></div>';
       h+='<div class="tx"><p>'+esc(p.desc)+'</p><p class="why">'+esc(p.why)+'</p></div></div>';
     });
   });
@@ -731,7 +740,7 @@ $('#find').addEventListener('input',e=>{
     if(q.length<3){hits.hidden=true; list.hidden=false; return}
     const res=[];
     for(const c of CH){ for(const p of c.paras){ const k=p.toLowerCase().indexOf(q); if(k>=0){ res.push({c, p, k}); if(res.length>=40) break; } } if(res.length>=40) break; }
-    hits.innerHTML = res.length? res.map(r=>{const s=Math.max(0,r.k-60), e2=Math.min(r.p.length,r.k+q.length+80); const snip=esc(r.p.slice(s,r.k))+'<mark>'+esc(r.p.slice(r.k,r.k+q.length))+'</mark>'+esc(r.p.slice(r.k+q.length,e2)); return '<li><button data-go="'+r.c.id+'"><b>'+esc(label(r.c)+' · '+r.c.title)+'</b>…'+snip+'…</button></li>'}).join('') : '<li class="none">nothing in the book matches that</li>';
+    hits.innerHTML = res.length? res.map(r=>{const s=Math.max(0,r.k-60), e2=Math.min(r.p.length,r.k+q.length+80); const snip=esc(r.p.slice(s,r.k))+'<mark>'+esc(r.p.slice(r.k,r.k+q.length))+'</mark>'+esc(r.p.slice(r.k+q.length,e2)); return '<li><button data-go="'+r.c.id+'"><b>'+esc(named(r.c))+'</b>…'+snip+'…</button></li>'}).join('') : '<li class="none">nothing in the book matches that</li>';
     hits.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>{go(b.dataset.go); setChart(false)}));
     hits.hidden=false; list.hidden=true;
   },160);

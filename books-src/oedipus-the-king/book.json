@@ -1,0 +1,25 @@
+{
+ "id": "oedipus-the-king",
+ "title": "Oedipus the King",
+ "sub": "",
+ "author": "Sophocles",
+ "year": "c. 429 BC",
+ "icon": "mask",
+ "order": 4,
+ "unit": "sections",
+ "speakers": true,
+ "tabs": [
+  "The Play",
+  "The Persons",
+  "A Note"
+ ],
+ "aboutTitle": "A Note",
+ "tagline": "The play in F. Storr’s verse translation, with one reader’s marginalia.",
+ "coverIntro": "Below is the whole play, divided where a Greek tragedy divides itself: the prologue, the entry of the Chorus, then episodes with a choral ode after each, and the exodos. Each section is a landing on the trail. The faint arcs are where my notes reach across the play. Click a landing and start reading; lines underlined in red carry my notes, and each section ends with what I make of it.",
+ "crewIntro": "The persons of the drama. Click a first appearance to go there.",
+ "about": [
+  "This is the Project Gutenberg text of F. Storr’s translation, made for the Loeb Classical Library in 1912, unaltered. Storr put Sophocles into English blank verse with rhymed choruses, in an English that was already old-fashioned when he wrote it: “weird” for fate, “thou” throughout. It takes a page to tune the ear. The notes gloss the hard words.",
+  "The section titles are mine. The divisions are the play’s own; a Greek audience felt each one as the Chorus began to sing. There are {sections} sections here, with a reading of each and {notes} notes pinned to particular lines.",
+  "First performed around 429 BC. Everyone in the theatre knew how it ended before the first line was spoken, and the play is built on that knowledge. The notes assume the same, and point out the lines that mean more than their speaker knows."
+ ]
+}

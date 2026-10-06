@@ -1,0 +1,15 @@
+[
+ {"id": "s1", "title": "Two Sisters Before Dawn", "kind": "Prologue", "start": 0},
+ {"id": "s2", "title": "Sunrise on a Saved City", "kind": "Parodos", "start": 29},
+ {"id": "s3", "title": "The Edict and the Dust", "kind": "First Episode", "start": 34},
+ {"id": "s4", "title": "Nothing More Wondrous Than Man", "kind": "First Stasimon", "start": 65},
+ {"id": "s5", "title": "The Unwritten Laws", "kind": "Second Episode", "start": 70},
+ {"id": "s6", "title": "The Curse on the House", "kind": "Second Stasimon", "start": 143},
+ {"id": "s7", "title": "Father and Son", "kind": "Third Episode", "start": 151},
+ {"id": "s8", "title": "Love Resistless in Fight", "kind": "Third Stasimon", "start": 195},
+ {"id": "s9", "title": "The Bride of Death", "kind": "Kommos", "start": 198},
+ {"id": "s10", "title": "Three Prisoners of Fate", "kind": "Fourth Stasimon", "start": 214},
+ {"id": "s11", "title": "The Blind Man Sees", "kind": "Fifth Episode", "start": 218},
+ {"id": "s12", "title": "A Hymn Before the Blow", "kind": "Fifth Stasimon", "start": 255},
+ {"id": "s13", "title": "Too Late", "kind": "Exodos", "start": 262}
+]

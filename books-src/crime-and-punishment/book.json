@@ -1,0 +1,76 @@
+{
+ "id": "crime-and-punishment",
+ "title": "Crime and Punishment",
+ "sub": "",
+ "author": "Fyodor Dostoevsky",
+ "year": "1866",
+ "icon": "stairs",
+ "order": 2,
+ "unit": "chapters",
+ "tabs": [
+  "The Novel",
+  "The Persons",
+  "A Note"
+ ],
+ "aboutTitle": "A Note",
+ "tagline": "The whole novel in Constance Garnett’s translation, with one reader’s marginalia.",
+ "coverIntro": "Below is the novel entire: six parts and an epilogue, every chapter a landing on the trail, colored by its part. The faint arcs are where my notes reach from one chapter to another. Hover a chapter to see what it speaks to; click one and start reading. Sentences underlined in red carry my notes, and each chapter ends with what I make of it. The notes are written for a first reading and do not give away what comes later.",
+ "crewIntro": "Who is who, with the Russian names untangled. Garnett keeps every patronymic and diminutive, and a first reader can drown in them. The descriptions stop at how each person enters the book and say nothing of what they go on to do.",
+ "about": [
+  "This is the Project Gutenberg text of Constance Garnett’s 1914 translation of <em>Crime and Punishment</em>, unaltered, in its {sections} chapters. Alongside it I have written {essays} chapter readings and pinned {notes} notes to particular sentences. Garnett’s English is Edwardian and sometimes smooths what Dostoevsky left rough. Where a word of hers is doing something odd, a note says so.",
+  "Dostoevsky numbered his chapters and gave them no titles. The titles in the chart are mine, added so that the chart can be read. They are a convenience and no part of the book.",
+  "The notes are written for someone reading the novel for the first time. It is a book that depends on not knowing, so the notes in a chapter stay inside what you have read so far. Where a link points ahead, it says only that something returns. The persons page keeps the same rule.",
+  "On names. Every character has a given name, a patronymic and a surname, and most have a diminutive as well. Rodion Romanovitch Raskolnikov is also Rodya; Avdotya Romanovna is Dounia; Sofya Semyonovna is Sonia. The persons page lists them."
+ ],
+ "movements": [
+  {
+   "name": "Part One",
+   "range": "7 chapters",
+   "from": "p1c1",
+   "to": "p1c7",
+   "desc": "A hot July in Petersburg. A former student, a pawnbroker, a letter from home, and something he calls a rehearsal."
+  },
+  {
+   "name": "Part Two",
+   "range": "7 chapters",
+   "from": "p2c1",
+   "to": "p2c7",
+   "desc": "Fever. The police office, a friend who will not be shaken off, and a visitor from the provinces."
+  },
+  {
+   "name": "Part Three",
+   "range": "6 chapters",
+   "from": "p3c1",
+   "to": "p3c6",
+   "desc": "Family arrives. An article is remembered, and an examining magistrate would like to hear more about it."
+  },
+  {
+   "name": "Part Four",
+   "range": "6 chapters",
+   "from": "p4c1",
+   "to": "p4c6",
+   "desc": "A stranger with a proposal, a reading by candlelight, and a second interview."
+  },
+  {
+   "name": "Part Five",
+   "range": "5 chapters",
+   "from": "p5c1",
+   "to": "p5c5",
+   "desc": "A funeral dinner goes wrong, an accusation is made, and a conversation in a rented room."
+  },
+  {
+   "name": "Part Six",
+   "range": "8 chapters",
+   "from": "p6c1",
+   "to": "p6c8",
+   "desc": "Three men, each with something to offer or to end."
+  },
+  {
+   "name": "Epilogue",
+   "range": "2 chapters",
+   "from": "ep1",
+   "to": "ep2",
+   "desc": "Siberia."
+  }
+ ]
+}

@@ -1,0 +1,146 @@
+[
+ {
+  "group": "The Raskolnikovs",
+  "name": "Rodion Romanovitch Raskolnikov",
+  "role": "“Rodya”. A former law student, twenty-three",
+  "first": "p1c1",
+  "desc": "He has left the university for want of money and lives in a garret under the roof of a five-storied house, in debt to his landlady and avoiding her on the stairs. He is handsome, proud, and has been lying on his sofa for a month thinking about one thing.",
+  "why": "Dostoevsky keeps us inside his head and never lets that be comfortable. I find I cannot hold him at a distance and cannot take his side either, which I think is the design."
+ },
+ {
+  "group": "The Raskolnikovs",
+  "name": "Pulcheria Alexandrovna Raskolnikov",
+  "role": "His mother, a widow in the provinces",
+  "first": "p1c3 (by letter)",
+  "desc": "She lives on a pension of a hundred and twenty roubles and has borrowed against it to send her son money. We meet her first in a long letter.",
+  "why": "The letter is one of the best things in the book: every reassurance in it tells him the opposite of what she means it to."
+ },
+ {
+  "group": "The Raskolnikovs",
+  "name": "Avdotya Romanovna Raskolnikov",
+  "role": "“Dounia”. His sister",
+  "first": "p1c3 (by letter)",
+  "desc": "She has been working as a governess in a household where the master pursued her, and has now accepted a proposal of marriage from a man she does not know well.",
+  "why": "She has her brother’s pride and puts it to different use. The book keeps asking what the difference is."
+ },
+ {
+  "group": "The Marmeladovs",
+  "name": "Semyon Zaharovitch Marmeladov",
+  "role": "A titular counsellor, dismissed; a drunkard",
+  "first": "p1c2",
+  "desc": "He tells his whole story to a stranger in a tavern: the post he drank away, the wife he pities and fears, the daughter who supports them.",
+  "why": "His speech is grotesque and it is also a real theology of the last judgement. Dostoevsky will not let you choose one."
+ },
+ {
+  "group": "The Marmeladovs",
+  "name": "Katerina Ivanovna Marmeladov",
+  "role": "His wife; an officer’s daughter",
+  "first": "p1c2",
+  "desc": "Consumptive, well-born, with three small children from a first marriage, living in a passage room and scrubbing the floor at night out of pride.",
+  "why": "She is cruel and she is wronged. Dostoevsky gives her more dignity the less she can afford it."
+ },
+ {
+  "group": "The Marmeladovs",
+  "name": "Sofya Semyonovna Marmeladov",
+  "role": "“Sonia”. Marmeladov’s daughter by his first marriage",
+  "first": "p1c2 (described)",
+  "desc": "Eighteen, timid, and since her stepmother’s reproach one evening the holder of a yellow ticket, which is to say a registered prostitute. Her earnings keep the family.",
+  "why": "We hear about her long before we see her, and what we hear is her father’s account. It is worth noticing who gets to describe whom in this book."
+ },
+ {
+  "group": "The pawnbroker’s flat",
+  "name": "Alyona Ivanovna",
+  "role": "A pawnbroker, about sixty",
+  "first": "p1c1",
+  "desc": "A widow who lends on pledges at ruinous interest from a fourth-floor flat, behind a door she opens a crack at a time.",
+  "why": "The first chapter makes us see her through his eyes, with every detail already an argument. Try seeing her without him."
+ },
+ {
+  "group": "The pawnbroker’s flat",
+  "name": "Lizaveta Ivanovna",
+  "role": "Her half-sister",
+  "first": "p1c5",
+  "desc": "Thirty-five, tall, meek, worked like a servant by Alyona, and known to everyone in the Hay Market, where she deals in second-hand clothes.",
+  "why": "People in this novel talk about Lizaveta as if she were not quite there. The book notices."
+ },
+ {
+  "group": "Friends and the house",
+  "name": "Dmitri Prokofitch Razumihin",
+  "role": "A fellow student",
+  "first": "p2c2",
+  "desc": "Poor, loud, generous, always in the middle of some scheme for earning money by translation, and incapable of being offended for long.",
+  "why": "He is the book’s proof that poverty and the ideas in the air do not have to end where they end for his friend."
+ },
+ {
+  "group": "Friends and the house",
+  "name": "Nastasya",
+  "role": "The landlady’s cook and only servant",
+  "first": "p1c3",
+  "desc": "A country woman who brings him tea and cabbage soup and tells him what she thinks of his lying about all day.",
+  "why": "She asks him what work he does, he says “thinking”, and she laughs until she is ill. It is the soundest criticism he receives."
+ },
+ {
+  "group": "Friends and the house",
+  "name": "Zossimov",
+  "role": "A young doctor, Razumihin’s friend",
+  "first": "p2c3",
+  "desc": "Stout, well-dressed, pleased with himself, with a special interest in what he calls mental diseases.",
+  "why": "He diagnoses everything and understands very little, which is the novel’s view of diagnosis."
+ },
+ {
+  "group": "The suitors",
+  "name": "Pyotr Petrovitch Luzhin",
+  "role": "A lawyer of forty-five with a little capital; engaged to Dounia",
+  "first": "p1c3 (by letter)",
+  "desc": "He has let it be known that he prefers a wife who is poor, so that she will owe him everything. He is coming to Petersburg to open an office.",
+  "why": "He has a theory too, about enlightened self-interest, and the book sets it beside the hero’s on purpose."
+ },
+ {
+  "group": "The suitors",
+  "name": "Arkady Ivanovitch Svidrigaïlov",
+  "role": "A landowner; Dounia’s former employer",
+  "first": "p1c3 (by letter)",
+  "desc": "The master of the house where Dounia was governess, whose attentions cost her the place. At the start we know him only by report.",
+  "why": "Hold on to the name. Few characters in fiction are so thoroughly discussed before they open a door."
+ },
+ {
+  "group": "The suitors",
+  "name": "Andrey Semyonovitch Lebeziatnikov",
+  "role": "A clerk and a man of advanced ideas",
+  "first": "p1c2 (mentioned)",
+  "desc": "A lodger in the Marmeladovs’ building who talks of communes and the new principles.",
+  "why": "Dostoevsky’s caricature of the Petersburg radical, drawn with more malice than fairness. He is allowed one fine moment all the same."
+ },
+ {
+  "group": "The police",
+  "name": "Porfiry Petrovitch",
+  "role": "Examining magistrate; a relation of Razumihin’s",
+  "first": "p3c5",
+  "desc": "About thirty-five, short, stout, with a round face and something womanish in it, forever laughing and screwing up his eyes.",
+  "why": "The interviews with him are the best scenes of talk in the novel. Watch what he chooses not to ask."
+ },
+ {
+  "group": "The police",
+  "name": "Ilya Petrovitch",
+  "role": "Assistant superintendent, “the Explosive Lieutenant”",
+  "first": "p2c1",
+  "desc": "A lieutenant with a reddish moustache standing straight out and a temper that goes off at a look.",
+  "why": "Comic, and present at more turning points than a comic figure should be."
+ },
+ {
+  "group": "The police",
+  "name": "Nikodim Fomitch",
+  "role": "Superintendent of the district police",
+  "first": "p2c1",
+  "desc": "A handsome, good-natured officer who smooths over his lieutenant’s explosions.",
+  "why": "Ordinary decency, in uniform, which this book treats as rare."
+ },
+ {
+  "group": "The police",
+  "name": "Zametov",
+  "role": "Head clerk at the police office",
+  "first": "p2c1",
+  "desc": "A fashionable young man of twenty-two with rings on his fingers and his hair parted and pomaded.",
+  "why": "He is the one who nearly understands and is talked out of it."
+ }
+]

@@ -1,0 +1,53 @@
+{
+ "id": "five-dialogues",
+ "title": "Five Dialogues",
+ "sub": "Euthyphro, Apology, Crito, Meno, Phaedo",
+ "author": "Plato",
+ "year": "4th century BC",
+ "icon": "columns",
+ "order": 3,
+ "unit": "sections",
+ "speakers": true,
+ "tabs": [
+  "The Dialogues",
+  "The Persons",
+  "A Note"
+ ],
+ "aboutTitle": "A Note",
+ "tagline": "Five dialogues around the trial and death of Socrates, in Benjamin Jowett’s translation, with one reader’s marginalia.",
+ "coverIntro": "Below are the five dialogues in the order they are usually read: Socrates on his way to court, his defence, his refusal to escape, a detour to the question of whether virtue can be taught, and his last day. I have divided each dialogue into sections at the turns of its argument and given the sections titles. Every section is a landing on the trail, colored by its dialogue. The faint arcs are where my notes reach from one place to another. Click a landing and start reading.",
+ "crewIntro": "The people Socrates talks with, and the ones he talks about. Click a first appearance to go there.",
+ "about": [
+  "These are the Project Gutenberg texts of Benjamin Jowett’s translations, unaltered apart from leaving out his long introductions. Jowett was Master of Balliol and his Plato is Victorian: stately, a little churchy, fond of “verily” and “my good friend”. It is still clear, and it is free to share, which the modern translations are not. Where his wording hides something, a note says so.",
+  "Plato did not divide his dialogues. The {sections} sections and their titles are mine, cut where the argument turns, so that a long dialogue can be read in sittings. I have written a reading for each and pinned {notes} notes to particular lines.",
+  "A word on what the notes do. They follow the arguments step by step and say where I think a step fails. Socrates would insist on that; agreeing with him too quickly is the usual way of misreading him.",
+  "The <em>Meno</em> sits fourth by custom rather than by story. It is not about the trial, but Anytus, one of the accusers, walks through it, and its account of learning as recollection is what the <em>Phaedo</em> builds on."
+ ],
+ "dialogues": [
+  {
+   "key": "eu",
+   "name": "Euthyphro",
+   "desc": "On the porch of the King Archon, on the way to answer the indictment: what is piety?"
+  },
+  {
+   "key": "ap",
+   "name": "Apology",
+   "desc": "The defence before five hundred jurors, the verdict, and what he says after it."
+  },
+  {
+   "key": "cr",
+   "name": "Crito",
+   "desc": "Prison, before dawn. A friend has arranged an escape."
+  },
+  {
+   "key": "me",
+   "name": "Meno",
+   "desc": "Can virtue be taught? A slave boy, a geometry problem, and one of the accusers."
+  },
+  {
+   "key": "ph",
+   "name": "Phaedo",
+   "desc": "The last day: arguments for the soul’s immortality, a myth, and the cup."
+  }
+ ]
+}

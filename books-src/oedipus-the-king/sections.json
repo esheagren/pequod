@@ -1,0 +1,15 @@
+[
+ {"id":"s1","title":"The Suppliants at the Altar","kind":"Prologue","start":0},
+ {"id":"s2","title":"A City Prays","kind":"Parodos","start":33},
+ {"id":"s3","title":"The Curse and the Seer","kind":"First Episode","start":39},
+ {"id":"s4","title":"The Hunted Man Imagined","kind":"First Stasimon","start":109},
+ {"id":"s5","title":"Where Three Roads Meet","kind":"Second Episode","start":112},
+ {"id":"s6","title":"If Oracles Fail","kind":"Second Stasimon","start":238},
+ {"id":"s7","title":"Good News from Corinth","kind":"Third Episode","start":242},
+ {"id":"s8","title":"Child of the Mountain","kind":"Third Stasimon","start":341},
+ {"id":"s9","title":"The Herdsman Speaks","kind":"Fourth Episode","start":343},
+ {"id":"s10","title":"The Shadow of a Shade","kind":"Fourth Stasimon","start":398},
+ {"id":"s11","title":"Behind the Palace Doors","kind":"Exodos","start":402},
+ {"id":"s12","title":"Apollo's Hand and Mine","kind":"Kommos","start":409},
+ {"id":"s13","title":"Led Back into the House","kind":"Exodos, Final Scene","start":424}
+]

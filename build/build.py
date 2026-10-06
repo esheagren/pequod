@@ -88,11 +88,18 @@ def page(template, shelf, embed=''):
 
 def main():
     template = open(f'{B}/build/template.html').read()
-    sources = [f'{B}/build'] + sorted(d for d in glob.glob(f'{B}/books-src/*') if os.path.exists(f'{d}/book.json'))
+    sources = [f'{B}/build'] + sorted(d for d in glob.glob(f'{B}/books-src/*') if os.path.exists(f'{d}/book.json') and os.path.exists(f'{d}/chapters.json'))
     private_sources = sorted(d for d in glob.glob(f'{B}/private-src/*') if os.path.exists(f'{d}/book.json'))
 
+    def complete(d):
+        ok = 'movements' in json.load(open(f'{d}/book.json')) and glob.glob(f'{d}/commentary_*.json')
+        if not ok: print(f'  (skipping {os.path.basename(d)}: not finished)')
+        return ok
+    sources = [d for d in sources if complete(d)]
+    private_sources = [d for d in private_sources if complete(d)]
     print('public books')
     books = [load_book(s) for s in sources]
+    books.sort(key=lambda b: b[0]['meta'].get('order', 99))
     os.makedirs(f'{B}/books', exist_ok=True)
     for data, card in books:
         open(f"{B}/books/{card['id']}.json", 'w').write(json.dumps(data, ensure_ascii=False))
