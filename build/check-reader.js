@@ -24,17 +24,20 @@ for(const file of fs.readdirSync(path.join(root,'books')).filter(f=>f.endsWith('
 // previous page. The saved offset must be the first character actually visible.
 let saved;
 const p={dataset:{para:'7'},getClientRects:()=>[{visible:true}]};
-const context={R:{id:'test'},$:()=>({querySelectorAll:()=>[p]}),textWalk:()=>[[{data:'x'.repeat(100)},0]],
+const context={isScrolling:()=>false,R:{id:'test',page:0,pages:2},$:()=>({querySelectorAll:()=>[p]}),textWalk:()=>[[{data:'x'.repeat(100)},0]],
   rangeFor:(_p,start,end)=>({getClientRects:()=>[{visible:start<70&&end>50}]}),
   visibleRect:r=>r.visible,store:{set:(_key,value)=>{saved=value}}};
 vm.createContext(context);vm.runInContext(remember,context);context.rememberPage();
 assert.equal(saved.offset,50,'save the first visible character, not the start of a crossing chunk');
 assert.equal(saved.pi,7);
+context.R.page=1;context.rememberPage();assert.equal(saved.edge,'end','preserve the chapter ending across a reflow');
+context.isScrolling=()=>true;context.$=()=>({scrollTop:900,scrollHeight:1200,clientHeight:300,querySelectorAll:()=>[p]});
+context.rememberPage();assert.equal(saved.edge,'end','preserve the bottom of a scrolling chapter');
 
 // Turns within a chapter stay on that chapter; boundary turns land at the
 // beginning of the next section and the end of the previous section.
 const calls=[];
-const turns={sideState:null,$:()=>({scrollTop:125,contains:()=>true}),capturePaper:()=>null,R:{id:'b',page:1,pages:3},document:{body:{classList:{contains:()=>true}}},byId:{a:0,b:1,c:2},CH:[{id:'a'},{id:'b'},{id:'c'}],setPage:n=>calls.push(['page',n]),go:(id,_push,_q,hint)=>calls.push(['chapter',id,hint])};
+const turns={isScrolling:()=>false,sideState:null,$:()=>({scrollTop:125,contains:()=>true}),capturePaper:()=>null,R:{id:'b',page:1,pages:3},document:{body:{classList:{contains:()=>true}}},byId:{a:0,b:1,c:2},CH:[{id:'a'},{id:'b'},{id:'c'}],setPage:n=>calls.push(['page',n]),go:(id,_push,_q,hint)=>calls.push(['chapter',id,hint])};
 vm.createContext(turns);vm.runInContext(turning,turns);
 turns.turnPage(1);assert.deepEqual(calls.pop(),['page',2]);
 turns.R.page=2;turns.turnPage(1);assert.deepEqual(calls.pop(),['chapter','c',0]);
@@ -43,6 +46,7 @@ turns.sideState={kind:'note',sourceChapter:'b',note:{n:1,note:'A comment from th
 turns.go=(id,_push,_q,hint,companion)=>calls.push({id,hint,companion});
 turns.R.page=2;turns.turnPage(1);
 const carried=calls.pop();assert.equal(carried.id,'c');assert.equal(carried.companion.scrollTop,125);assert.equal(carried.companion.focused,true);assert.equal(carried.companion.state.note,turns.sideState.note);assert.equal(carried.companion.state.sourceChapter,'b');
+turns.isScrolling=()=>true;turns.capturePaper=()=>{throw Error('scroll mode must not create a paper overlay')};turns.turnPage(1);assert.equal(calls.pop().id,'c');
 // Selecting a chapter explicitly starts at its opening, even when it has a
 // saved reading position. Ordinary resume behavior remains in renderChapter.
 let selectChapter;

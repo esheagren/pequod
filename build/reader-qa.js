@@ -1,9 +1,10 @@
 /* Local preview only. Run JSON.stringify(readerQA()) in the browser console. */
-window.readerDebug={R,go,setPage,paginate,NOTE_LAYOUT,closeComment,setResources};
-window.readerQA=()=>{
+window.readerDebug={R,go,setPage,paginate,NOTE_LAYOUT,closeComment,setResources,isScrolling};
+window.readerQA=(all=false)=>{
   const errors=[],report=[],start={id:R.id,anchor:R.anchor};
+  const html=s=>{const node=document.createElement('div');node.innerHTML=s;return node.innerHTML};
   const assert=(ok,message)=>{if(!ok)errors.push(message)};
-  const candidates=[...new Set([CH[0].id,CH.at(-1).id,...MV.flatMap(m=>[CH[m.from].id,CH[m.to].id]),CH.reduce((a,c)=>c.paras.join('').length>a.paras.join('').length?c:a).id,...Object.keys(D.audio||{})])];
+  const candidates=all?CH.map(c=>c.id):[...new Set([CH[0].id,CH.at(-1).id,...MV.flatMap(m=>[CH[m.from].id,CH[m.to].id]),CH.reduce((a,c)=>c.paras.join('').length>a.paras.join('').length?c:a).id,...Object.keys(D.audio||{})])];
   go('cover',false);
   assert(!!$('#voyage .work-introduction'),'introduction missing');
   assert(!$('#menu')&&!$('#book-title'),'redundant masthead controls');
@@ -17,14 +18,21 @@ window.readerQA=()=>{
     paras.forEach((p,pi)=>{
       const text=textWalk(p).map(([n])=>n.data).join('');
       assert(text.replace(/_/g,'')===CH[byId[id]].paras[pi].replace(/_/g,''),id+': text changed at '+pi);
-      for(let offset=0;offset<text.length;offset+=128){
-        const range=rangeFor(p,offset,Math.min(text.length,offset+8));
+      for(let offset=0;offset<text.length;offset++){
+        if(/\s/.test(text[offset]))continue;
+        const range=rangeFor(p,offset,offset+1);
         if(!range)continue;
         for(const rect of range.getClientRects()){
           if(!rect.width||!rect.height)continue;samples++;
-          if(rect.top<win.top-4||rect.bottom>win.bottom+4)clipped++;
-          const page=Math.floor((rect.left-win.left)/R.stride);
-          if(page<0||page>=R.pages)unreachable++;
+          if(isScrolling()){
+            const host=$('#folio-window'),top=rect.top-win.top+host.scrollTop;
+            if(top < -4||top+rect.height>host.scrollHeight+4)clipped++;
+            if(rect.left<win.left-4||rect.right>win.right+4)unreachable++;
+          }else{
+            if(rect.top<win.top-4||rect.bottom>win.bottom+4)clipped++;
+            const page=Math.floor((rect.left-win.left+.5)/R.stride),left=rect.left-win.left-page*R.stride;
+            if(page<0||page>=R.pages||left< -4||left+rect.width>win.width+4)unreachable++;
+          }
         }
       }
     });
@@ -44,13 +52,13 @@ window.readerQA=()=>{
     const pageCount=R.pages;
     setPage(pageCount-1,false);
     assert(R.page===pageCount-1,id+': last page unavailable');const essayLink=$('#chapter-essay-link');assert(visibleRect(essayLink.getBoundingClientRect())&&essayLink.tabIndex===0,id+': chapter-end essay reachable');essayLink.click();assert(!!$('#resource-panel .chapter-reading-content'),id+': chapter essay opens on request');setResources(false);setPage(R.pages-1,false);
-    if(R.visible.length){const n=R.visible.at(-1);selectNote(n);assert($(noteHost+' .note-number')?.textContent===String(n)&&$(noteHost+' .note-prose')?.innerHTML===fmt(A.notes[n].note),id+': note selection');if(NOTE_LAYOUT==='popover'){assert(!$('#comment-popover').hidden&&!$('#comment-link').hasAttribute('hidden'),id+': attached comment visible');closeComment(false)}else if(NOTE_LAYOUT==='side'){assert($('#resource-panel').classList.contains('open')&&$('#comment-popover').hidden,id+': note in side panel');setResources(false)}}
-    const saved=R.anchor;paginate(saved);assert(R.page===pageCount-1,id+': restore expected '+(pageCount-1)+' actual '+R.page+' anchor '+JSON.stringify(saved));
+    if(R.visible.length){const n=R.visible.at(-1);selectNote(n);assert($(noteHost+' .note-number')?.textContent===String(n)&&$(noteHost+' .note-prose')?.innerHTML===html(fmt(A.notes[n].note)),id+': note selection');if(NOTE_LAYOUT==='popover'){assert(!$('#comment-popover').hidden&&!$('#comment-link').hasAttribute('hidden'),id+': attached comment visible');closeComment(false)}else if(NOTE_LAYOUT==='side'){assert($('#resource-panel').classList.contains('open')&&$('#comment-popover').hidden,id+': note in side panel');setResources(false)}}
+    const expectedPage=R.pages-1,saved=R.anchor;paginate(saved);assert(R.page===expectedPage,id+': restore expected '+expectedPage+' actual '+R.page+' anchor '+JSON.stringify(saved));
     const i=byId[id];if(i<CH.length-1){turnPage(1);assert(R.id===CH[i+1].id&&R.page===0,id+': next chapter boundary');if(CHAPTERED_BOOK)assert($('.chapter-location').textContent===chapterLabel(CH[i+1]),id+': next chapter label');turnPage(-1);assert(R.id===id&&R.page===R.pages-1,id+': previous chapter boundary')}
     $('#chapter-rail [data-chapter="'+id+'"]').click();assert(R.id===id&&R.page===0,id+': chapter click starts at opening');
     report.push({id,pages:pageCount,samples,clipped,unreachable});
   }
   go(start.id||CH[0].id,false,null,0);if(start.anchor)paginate(start.anchor);
   history.replaceState(null,'','#'+R.id);
-  return {book:META.id,viewport:[innerWidth,innerHeight],sections:report.length,errors,report};
+  return {book:META.id,viewport:[innerWidth,innerHeight],mode:isScrolling()?'scroll':'pages',sections:report.length,errors,report};
 };

@@ -401,7 +401,7 @@ function wrapAnnotations(paras, anns){
   anns.forEach(a=>{
     for(let i=0;i<paras.length;i++){
       const idx=paras[i].indexOf(a.quote);
-      if(idx>=0){ n++; placed.push({pi:i, idx, len:a.quote.length, n, quote:a.quote, note:a.note}); break; }
+      if(idx>=0){ n++; placed.push({...a, pi:i, idx, len:a.quote.length, n, quote:a.quote, note:a.note}); break; }
     }
   });
   out.forEach((o,i)=>{
@@ -511,6 +511,7 @@ function renderCover(){
   let h='<article class="work-introduction"><div class="intro-byline">'+esc([META.author,META.year].filter(Boolean).join(' · '))+'</div><h2>'+esc(META.title)+'</h2>';
   h+='<div class="intro-context"><section><h3>The author</h3><p>'+esc(ctx.author||META.author||'')+'</p></section><section><h3>The world of the work</h3><p>'+esc(ctx.world||'')+'</p></section></div>';
   if(ctx.importance)h+='<section><h3>Why it matters</h3>'+ctx.importance.split(/\n\n+/).map(p=>'<p>'+esc(p)+'</p>').join('')+'</section>';
+  if(ctx.readingGuide)h+='<p class="intro-guide">'+esc(ctx.readingGuide)+'</p>';
   h+='<button class="intro-enter" data-go="'+(lastC?.id||CH[0].id)+'">'+(lastC?'Continue reading':'Enter the work')+' →</button>'+(lastC?'<button class="intro-start" data-go="'+CH[0].id+'">Start from the beginning</button>':'');
   h+='<div class="intro-sources">'+source(ctx.authorSource)+source(ctx.worldSource)+source(ctx.importanceSource)+'</div></article>';
   const v=$('#voyage');v.innerHTML=h;

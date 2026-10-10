@@ -4,6 +4,9 @@ const requestedNotes=new URLSearchParams(location.search).get('notes');
 const NOTE_LAYOUT=['bottom','popover'].includes(requestedNotes)?requestedNotes:'side';
 const CHAPTERED_BOOK=CH.some(c=>c.num!=null);
 const R={id:null,page:0,pages:1,stride:0,leaves:1,visible:[],selected:null,mode:'notes',person:null,anchor:null};
+let readingMode=window.matchMedia('(any-pointer: coarse)').matches?'scroll':'pages';
+try{const saved=localStorage.getItem('pequod.readingMode');if(['scroll','pages'].includes(saved))readingMode=saved}catch(e){}
+const isScrolling=()=>readingMode==='scroll';
 let readerResize, folioObserver, paperTurn, resourceDrag, resourceFrame, commentState, commentObserver, sideState;
 let resourceWidth=null;
 try{const saved=JSON.parse(localStorage.getItem('pequod.resourceWidth'));if(Number.isFinite(saved)&&saved>0)resourceWidth=saved}catch(e){}
@@ -126,6 +129,7 @@ function renderChapter(id, pageHint=null,companion=null){
   finishPaperTurn();
   folioObserver?.disconnect();clearTimeout(readerResize);
   R.id=id;R.page=0;R.selected=null;R.mode='notes';R.person=null;R.anchor=null;
+  document.body.classList.toggle('scroll-reader',isScrolling());
   A.notes={};rows.forEach(r=>r.notes.forEach(n=>A.notes[n.n]=n));
   $('#voyage').innerHTML='<div class="reader-layout"><article class="reading" aria-label="'+esc(named(c))+'"><div class="book-surface"><div class="folio-window" id="folio-window"><div class="folio-flow chbody" id="folio-flow">'+chapterOpening(c)+rows.map((r,pi)=>'<div class="row"><p data-para="'+pi+'"'+(/\n/.test(r.raw)||id==='extracts'||id==='etymology'?' class="verse"':'')+'>'+r.html+'</p></div>').join('')+(cm.essay?'<div class="chapter-end"><button class="chapter-essay-link" id="chapter-essay-link" tabindex="-1">Read the chapter essay <span aria-hidden="true">→</span></button></div>':'')+'</div></div><button class="page-turn prev" id="turn-prev" aria-label="Previous page">‹</button><button class="page-turn next" id="turn-next" aria-label="Next page">›</button><footer class="folio-footer"><button data-cover>'+esc(META.title)+'</button>'+(CHAPTERED_BOOK?'<span class="chapter-location">'+esc(chapterLabel(c))+'</span>':'')+(D.audio?.[id]?'<button class="listen" data-listen>▶ listen &amp; follow</button>':'')+'<label class="page-count"><span id="page-label"></span> <select id="page-select" aria-label="Go to page"></select></label></footer></div><section class="notes-dock" aria-label="Notes"><div class="dock-content" id="dock-content" role="region" aria-label="Notes" tabindex="0"></div></section></article><div class="resource-resizer" id="resource-resizer" role="separator" aria-orientation="vertical" aria-label="Resize resources panel" aria-controls="resource-panel" aria-hidden="true" tabindex="-1" title="Drag to resize; double-click to reset"></div><aside class="resource-panel" id="resource-panel" aria-label="Resources" aria-hidden="true" inert><div class="resource-inner side-content" id="side-content" role="region" aria-label="Reading companion" tabindex="-1"></div></aside><svg class="comment-link" id="comment-link" aria-hidden="true" hidden><path/><circle r="2.5"/></svg><aside class="comment-popover" id="comment-popover" role="dialog" aria-modal="false" aria-label="Passage comment" hidden><div class="comment-content" id="comment-content" tabindex="0"></div></aside></div>';
   sideState=companion?.state||null;
@@ -137,6 +141,19 @@ function renderChapter(id, pageHint=null,companion=null){
   if(sideState)setResources(true);
   $('#turn-prev').addEventListener('click',()=>turnPage(-1));$('#turn-next').addEventListener('click',()=>turnPage(1));
   $('#page-select').addEventListener('change',e=>setPage(+e.target.value));
+  const readingSelect=document.createElement('select');readingSelect.id='reading-mode';readingSelect.setAttribute('aria-label','Reading mode');
+  readingSelect.innerHTML='<option value="pages">Pages</option><option value="scroll">Scroll</option>';readingSelect.value=readingMode;
+  $('.folio-footer').insertBefore(readingSelect,$('.page-count'));
+  readingSelect.addEventListener('change',()=>{
+    const anchor=R.anchor;readingMode=readingSelect.value;
+    try{localStorage.setItem('pequod.readingMode',readingMode)}catch(e){}
+    document.body.classList.toggle('scroll-reader',isScrolling());paginate(anchor);
+  });
+  let scrollFrame;
+  $('#folio-window').addEventListener('scroll',()=>{
+    if(!isScrolling()||scrollFrame)return;
+    scrollFrame=requestAnimationFrame(()=>{scrollFrame=null;syncScrolledPage()});
+  },{passive:true});
   $('#chapter-essay-link')?.addEventListener('click',e=>openSide({kind:'essay',anchor:e.currentTarget,event:e}));
   linkPeople();
   $('#voyage').querySelectorAll('.ann').forEach(a=>{
@@ -170,13 +187,25 @@ function paginate(anchor=null,hint=null){
   const flow=$('#folio-flow'),win=$('#folio-window');if(!flow||!win.clientWidth||!win.clientHeight)return;
   finishPaperTurn();
   const style=getComputedStyle(flow),line=parseFloat(style.lineHeight);
+  if(isScrolling()){
+    flow.style.height='auto';flow.style.transform='none';
+    R.stride=Math.max(line,win.clientHeight-line*2);R.leaves=1;
+    R.pages=Math.max(1,1+Math.ceil(Math.max(0,win.scrollHeight-win.clientHeight)/R.stride));
+    $('#page-select').innerHTML=Array.from({length:R.pages},(_,i)=>'<option value="'+i+'">'+(i+1)+'</option>').join('');
+    setPage(hint==='end'?R.pages-1:typeof hint==='number'?hint:0,false);
+    if(anchor){const p=flow.querySelector('[data-para="'+anchor.pi+'"]');if(p)revealPassage(p,anchor.offset||0);if(anchor.edge==='end')setPage(R.pages-1,false)}
+    return;
+  }
+  win.scrollTop=0;
   flow.style.height=Math.max(line,Math.floor(win.clientHeight/line)*line)+'px';
-  R.stride=win.clientWidth+parseFloat(style.columnGap);R.leaves=+style.columnCount;
+  // CSS columns use fractional widths. clientWidth rounds to whole pixels,
+  // accumulating drift and cutting into later pages on tablet layouts.
+  R.stride=win.getBoundingClientRect().width+parseFloat(style.columnGap);R.leaves=+style.columnCount;
   flow.style.transform='none';
   R.pages=Math.max(1,Math.ceil((flow.scrollWidth+parseFloat(style.columnGap)-1)/R.stride));
   $('#page-select').innerHTML=Array.from({length:R.pages},(_,i)=>'<option value="'+i+'">'+(i*R.leaves+1)+(R.leaves>1?'–'+(i*R.leaves+R.leaves):'')+'</option>').join('');
   let page=hint==='end'?R.pages-1:typeof hint==='number'?hint:0;
-  if(anchor){const p=flow.querySelector('[data-para="'+anchor.pi+'"]');if(p){const range=rangeFor(p,anchor.offset||0,(anchor.offset||0)+1);const rect=range?.getBoundingClientRect()||p.getClientRects()[0];if(rect)page=Math.floor((rect.left-win.getBoundingClientRect().left)/R.stride)}}
+  if(anchor){const p=flow.querySelector('[data-para="'+anchor.pi+'"]');if(p){const range=rangeFor(p,anchor.offset||0,(anchor.offset||0)+1);const rect=range?.getBoundingClientRect()||p.getClientRects()[0];if(rect)page=Math.floor((rect.left-win.getBoundingClientRect().left)/R.stride)}if(anchor.edge==='end')page=R.pages-1}
   const companion={mode:R.mode,person:R.person,selected:R.selected};
   setPage(page,false);
   R.mode=companion.mode;R.person=companion.person;if(R.visible.includes(companion.selected))R.selected=companion.selected;updateDock();
@@ -184,6 +213,8 @@ function paginate(anchor=null,hint=null){
 function visibleRect(rect){const win=$('#folio-window').getBoundingClientRect();return rect.width>0&&rect.right>win.left+1&&rect.left<win.right-1&&rect.bottom>win.top&&rect.top<win.bottom}
 function rememberPage(){
   const ps=[...$('#folio-flow').querySelectorAll('p')];
+  const win=$('#folio-window');
+  const atEnd=isScrolling()?win.scrollTop>=win.scrollHeight-win.clientHeight-2:R.page===R.pages-1;
   for(const p of ps){
     if(![...p.getClientRects()].some(visibleRect))continue;
     const text=textWalk(p).map(([n])=>n.data).join('');
@@ -193,11 +224,12 @@ function rememberPage(){
       if(range&&[...range.getClientRects()].some(visibleRect)){
         for(let exact=offset;exact<Math.min(text.length,offset+32);exact++){
           const char=rangeFor(p,exact,exact+1);
-          if(char&&[...char.getClientRects()].some(visibleRect)){R.anchor={id:R.id,pi:+p.dataset.para,offset:exact};store.set('position',R.anchor);return}
+          if(char&&[...char.getClientRects()].some(visibleRect)){R.anchor={id:R.id,pi:+p.dataset.para,offset:exact,...(atEnd?{edge:'end'}:{})};store.set('position',R.anchor);return}
         }
       }
     }
   }
+  if(atEnd){R.anchor={id:R.id,pi:ps.length-1,offset:0,edge:'end'};store.set('position',R.anchor)}
 }
 function finishPaperTurn(){
   if(!paperTurn)return;
@@ -236,13 +268,24 @@ function flipPaper(outgoing,dir){
 function setPage(page,animate=true){
   closeComment(false);
   const oldPage=R.page;
-  const outgoing=animate&&page!==oldPage?capturePaper():null;
+  const outgoing=!isScrolling()&&animate&&page!==oldPage?capturePaper():null;
   R.page=Math.max(0,Math.min(R.pages-1,page));
   const flow=$('#folio-flow');if(!flow)return;
   flow.getAnimations().forEach(a=>a.cancel());
-  flow.style.transition=animate?'':'none';flow.style.transform='translateX('+(-R.page*R.stride)+'px)';
+  flow.style.transition=animate?'':'none';flow.style.transform=isScrolling()?'none':'translateX('+(-R.page*R.stride)+'px)';
   // Geometry must reflect the destination while notes and saved position are updated.
   flow.style.transition='none';
+  if(isScrolling()){const win=$('#folio-window');win.scrollTop=R.page===R.pages-1?win.scrollHeight-win.clientHeight:R.page*R.stride}
+  refreshPage();
+  if(outgoing&&R.page!==oldPage)flipPaper(outgoing,R.page>oldPage?1:-1);
+}
+function syncScrolledPage(){
+  if(!isScrolling()||!$('#folio-window'))return;
+  const win=$('#folio-window'),max=Math.max(0,win.scrollHeight-win.clientHeight);
+  R.page=win.scrollTop>=max-2?R.pages-1:Math.min(R.pages-1,Math.floor((win.scrollTop+1)/R.stride));
+  refreshPage();
+}
+function refreshPage(){
   $('#page-select').value=String(R.page);$('#page-label').textContent='Page';
   const i=byId[R.id];$('#turn-prev').disabled=R.page===0&&i===0;$('#turn-next').disabled=R.page===R.pages-1&&i===CH.length-1;
   const visible=new Set();
@@ -252,15 +295,16 @@ function setPage(page,animate=true){
   R.person=sideState?.kind==='person'?{index:sideState.index,note:sideState.note}:null;
   R.visible=[...visible];if(!R.visible.includes(R.selected))R.selected=R.visible[0]||null;
   R.mode=R.person?'person':'notes';if(sideState?.kind==='note'&&sideState.sourceChapter===R.id)R.selected=sideState.note.n;updateDock();rememberPage();
-  $('#page-select').title='Page '+(R.page*R.leaves+1)+' of '+R.pages*R.leaves+' in this section';
-  if(outgoing&&R.page!==oldPage)flipPaper(outgoing,R.page>oldPage?1:-1);
+  $('#page-label').textContent=isScrolling()?'Position':'Page';
+  $('#page-select').setAttribute('aria-label',isScrolling()?'Reading position':'Go to page');
+  $('#page-select').title=(isScrolling()?'Position ':'Page ')+(R.page*R.leaves+1)+' of '+R.pages*R.leaves+' in this section';
 }
 function turnPage(dir){
   if(!document.body.classList.contains('on-reader'))return;
   if(R.page+dir>=0&&R.page+dir<R.pages){setPage(R.page+dir);return}
   const next=byId[R.id]+dir;
   if(CH[next]){
-    const outgoing=capturePaper(),panel=$('#resource-panel');
+    const outgoing=isScrolling()?null:capturePaper(),panel=$('#resource-panel');
     const companion=sideState&&sideState.kind!=='essay'?{state:{...sideState},scrollTop:panel.scrollTop,focused:panel.contains(document.activeElement)}:null;
     go(CH[next].id,true,null,dir<0?'end':0,companion);
     if(outgoing)flipPaper(outgoing,dir);
@@ -268,7 +312,9 @@ function turnPage(dir){
 }
 function revealPassage(target,offset=0){
   const rect=rangeFor(target,offset,offset+1)?.getBoundingClientRect()||target.getClientRects()[0];if(!rect)return;
-  const win=$('#folio-window').getBoundingClientRect();const page=Math.floor((rect.left-win.left+R.page*R.stride)/R.stride);if(page!==R.page)setPage(page);
+  const windowElement=$('#folio-window'),win=windowElement.getBoundingClientRect();
+  if(isScrolling()){windowElement.scrollTop+=rect.top-win.top;syncScrolledPage();return}
+  const page=Math.floor((rect.left-win.left+R.page*R.stride)/R.stride);if(page!==R.page)setPage(page);
 }
 function selectNote(n,anchor=null,event=null){
   if(!A.notes[n])return;
@@ -282,7 +328,9 @@ function selectNote(n,anchor=null,event=null){
 function noteHTML(note){
   const quote=note.quote.replace(/_/g,'').trim(),words=quote.split(/\s+/);
   const excerpt=words.slice(0,8).join(' ')+(words.length>8?'…':'');
-  return '<div class="dock-note"><blockquote title="'+esc(quote)+'"><span class="note-number" aria-label="Note '+note.n+'">'+note.n+'</span><span class="note-excerpt">'+esc(excerpt)+'</span></blockquote><div class="note-prose">'+fmt(note.note)+'</div></div>';
+  const c=note.comparison;
+  const comparison=c?'<section class="note-comparison"><h3>Translation choices <span>· Greek '+esc(c.lines)+'</span></h3><p>'+fmt(c.greek)+'</p><p>'+fmt(c.reflection)+'</p><div class="comparison-sources">'+(c.sources||[]).map(s=>'<a href="'+esc(s.url)+'" target="_blank" rel="noopener noreferrer">'+esc(s.label)+' ↗</a>').join('')+'</div></section>':'';
+  return '<div class="dock-note"><blockquote title="'+esc(quote)+'"><span class="note-number" aria-label="Note '+note.n+'">'+note.n+'</span><span class="note-excerpt">'+esc(excerpt)+'</span></blockquote><div class="note-prose">'+fmt(note.note)+'</div>'+comparison+'</div>';
 }
 function characterHTML(person,note,back=true){
   const description=(person.desc||'').split(/\n\n+/).filter(Boolean).map(p=>'<p>'+esc(p)+'</p>').join('');
@@ -436,6 +484,7 @@ function setupResourceResize(){
 }
 function setResources(open,resumeAudio=true){
   closeComment(false);finishResourceResize();finishPaperTurn();
+  const anchor=R.anchor;
   const panel=$('#resource-panel'),toggle=$('#resources-toggle');
   const handle=$('#resource-resizer');if(handle){handle.tabIndex=open?0:-1;handle.setAttribute('aria-hidden',String(!open))}
   panel?.classList.toggle('open',open);
@@ -446,6 +495,7 @@ function setResources(open,resumeAudio=true){
   toggle.setAttribute('aria-label',open?'Close resources':'Open resources');
   toggle.title=open?'Close resources':'Open resources';
   $('#scrim').classList.toggle('on',open);
+  if($('#folio-flow')&&document.body.classList.contains('on-reader'))paginate(anchor);
 }
 $('#resources-toggle').addEventListener('click',()=>setResources(!$('#resource-panel')?.classList.contains('open')));
 window.addEventListener('resize',()=>{clearTimeout(readerResize);readerResize=setTimeout(()=>{if(document.body.classList.contains('on-reader')){finishResourceResize();applyResourceWidth();paginate(R.anchor)}},150)});

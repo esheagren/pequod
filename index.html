@@ -303,7 +303,7 @@ body.on-reader .chart.open{transform:none;box-shadow:12px 0 50px var(--paper-sha
 body.on-reader .scrim{position:fixed;inset:var(--mast-h) 0 0;z-index:34;background:rgba(0,0,0,.3);display:none}
 body.on-reader .scrim.on{display:none}
 @media(max-width:760px){body.on-reader .scrim.on{display:block}}
-.reader-layout{height:100%;position:relative;display:grid;grid-template-columns:minmax(0,1fr) 0%;transition:grid-template-columns .3s ease}
+.reader-layout{height:100%;position:relative;display:grid;grid-template-columns:minmax(0,1fr) 0%}
 .reader-layout.resources-open{grid-template-columns:minmax(0,1fr) var(--resource-width,28%)}
 .reader-layout .reading{container-type:inline-size;width:100%;max-width:none;min-width:0;min-height:0;padding:1.4rem 2rem 0;display:grid;grid-template-rows:minmax(0,1fr) minmax(145px,20%);gap:1.2rem;margin:0}
 .book-surface{background:var(--paper);box-shadow:0 8px 32px var(--paper-shadow);position:relative;min-height:0;width:100%;max-width:820px;justify-self:center;display:flex;flex-direction:column;padding:1.8rem 3.8rem .7rem;border-radius:5px}
@@ -311,6 +311,10 @@ body.on-reader .scrim.on{display:none}
 .folio-flow{height:100%;column-count:1;column-gap:4rem;column-fill:auto;transition:transform .3s ease;line-height:1.8;font-size:clamp(17px,1.3vw,20px);will-change:transform}
 .folio-flow .row{display:block;break-inside:auto}
 .folio-flow .row p{max-width:none;margin:0 0 1em;orphans:2;widows:2;overflow-wrap:break-word}
+.folio-footer #reading-mode{font:inherit;background:transparent;color:var(--ink2);border:0;max-width:5rem}
+body.on-reader.scroll-reader .folio-window{overflow-y:auto;overflow-x:hidden;overscroll-behavior-y:contain;touch-action:pan-y;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+body.on-reader.scroll-reader .folio-window::-webkit-scrollbar{display:none}
+body.on-reader.scroll-reader .folio-flow{height:auto;columns:auto;transform:none!important;will-change:auto;padding-bottom:1rem}
 .folio-flow>.row:first-of-type p::first-letter{float:none;font:inherit;line-height:inherit;padding:0;color:inherit}
 .chapter-opening{break-inside:avoid;break-after:avoid;margin:0 0 1.5em;padding:.5em 0 1em;border-bottom:1px solid var(--rule)}
 .chapter-kicker{font-family:var(--mono);font-size:.65rem;letter-spacing:.08em;color:var(--ink3);margin-bottom:.7rem}
@@ -450,6 +454,14 @@ body.resizing-resources,body.resizing-resources *{cursor:col-resize!important;us
 .comment-content::-webkit-scrollbar{display:none;width:0;height:0}
 @media(min-width:1900px){.reader-layout.comment-mode .reading{padding-bottom:2rem}}
 @media(max-width:760px){.reader-layout.comment-mode .reading{padding-bottom:.75rem}}
+
+.note-comparison{margin-top:1.5rem;padding-top:1.2rem;border-top:1px solid var(--rule)}
+.note-comparison h3{font:500 .9rem var(--body);margin:0 0 .8rem}
+.note-comparison h3 span{font-weight:400;color:var(--ink3)}
+.note-comparison p{font:inherit;line-height:1.65;margin:0 0 1rem}
+.comparison-sources{display:flex;flex-wrap:wrap;gap:.5rem 1rem;font:400 .75rem var(--body)}
+.comparison-sources a{color:var(--ink3)}
+.intro-guide{font-size:.9rem!important;color:var(--ink3);margin-top:1.5rem!important}
 
 </style>
 </head>
@@ -594,7 +606,7 @@ function wrapAnnotations(paras, anns){
   anns.forEach(a=>{
     for(let i=0;i<paras.length;i++){
       const idx=paras[i].indexOf(a.quote);
-      if(idx>=0){ n++; placed.push({pi:i, idx, len:a.quote.length, n, quote:a.quote, note:a.note}); break; }
+      if(idx>=0){ n++; placed.push({...a, pi:i, idx, len:a.quote.length, n, quote:a.quote, note:a.note}); break; }
     }
   });
   out.forEach((o,i)=>{
@@ -619,6 +631,9 @@ const requestedNotes=new URLSearchParams(location.search).get('notes');
 const NOTE_LAYOUT=['bottom','popover'].includes(requestedNotes)?requestedNotes:'side';
 const CHAPTERED_BOOK=CH.some(c=>c.num!=null);
 const R={id:null,page:0,pages:1,stride:0,leaves:1,visible:[],selected:null,mode:'notes',person:null,anchor:null};
+let readingMode=window.matchMedia('(any-pointer: coarse)').matches?'scroll':'pages';
+try{const saved=localStorage.getItem('pequod.readingMode');if(['scroll','pages'].includes(saved))readingMode=saved}catch(e){}
+const isScrolling=()=>readingMode==='scroll';
 let readerResize, folioObserver, paperTurn, resourceDrag, resourceFrame, commentState, commentObserver, sideState;
 let resourceWidth=null;
 try{const saved=JSON.parse(localStorage.getItem('pequod.resourceWidth'));if(Number.isFinite(saved)&&saved>0)resourceWidth=saved}catch(e){}
@@ -741,6 +756,7 @@ function renderChapter(id, pageHint=null,companion=null){
   finishPaperTurn();
   folioObserver?.disconnect();clearTimeout(readerResize);
   R.id=id;R.page=0;R.selected=null;R.mode='notes';R.person=null;R.anchor=null;
+  document.body.classList.toggle('scroll-reader',isScrolling());
   A.notes={};rows.forEach(r=>r.notes.forEach(n=>A.notes[n.n]=n));
   $('#voyage').innerHTML='<div class="reader-layout"><article class="reading" aria-label="'+esc(named(c))+'"><div class="book-surface"><div class="folio-window" id="folio-window"><div class="folio-flow chbody" id="folio-flow">'+chapterOpening(c)+rows.map((r,pi)=>'<div class="row"><p data-para="'+pi+'"'+(/\n/.test(r.raw)||id==='extracts'||id==='etymology'?' class="verse"':'')+'>'+r.html+'</p></div>').join('')+(cm.essay?'<div class="chapter-end"><button class="chapter-essay-link" id="chapter-essay-link" tabindex="-1">Read the chapter essay <span aria-hidden="true">→</span></button></div>':'')+'</div></div><button class="page-turn prev" id="turn-prev" aria-label="Previous page">‹</button><button class="page-turn next" id="turn-next" aria-label="Next page">›</button><footer class="folio-footer"><button data-cover>'+esc(META.title)+'</button>'+(CHAPTERED_BOOK?'<span class="chapter-location">'+esc(chapterLabel(c))+'</span>':'')+(D.audio?.[id]?'<button class="listen" data-listen>▶ listen &amp; follow</button>':'')+'<label class="page-count"><span id="page-label"></span> <select id="page-select" aria-label="Go to page"></select></label></footer></div><section class="notes-dock" aria-label="Notes"><div class="dock-content" id="dock-content" role="region" aria-label="Notes" tabindex="0"></div></section></article><div class="resource-resizer" id="resource-resizer" role="separator" aria-orientation="vertical" aria-label="Resize resources panel" aria-controls="resource-panel" aria-hidden="true" tabindex="-1" title="Drag to resize; double-click to reset"></div><aside class="resource-panel" id="resource-panel" aria-label="Resources" aria-hidden="true" inert><div class="resource-inner side-content" id="side-content" role="region" aria-label="Reading companion" tabindex="-1"></div></aside><svg class="comment-link" id="comment-link" aria-hidden="true" hidden><path/><circle r="2.5"/></svg><aside class="comment-popover" id="comment-popover" role="dialog" aria-modal="false" aria-label="Passage comment" hidden><div class="comment-content" id="comment-content" tabindex="0"></div></aside></div>';
   sideState=companion?.state||null;
@@ -752,6 +768,19 @@ function renderChapter(id, pageHint=null,companion=null){
   if(sideState)setResources(true);
   $('#turn-prev').addEventListener('click',()=>turnPage(-1));$('#turn-next').addEventListener('click',()=>turnPage(1));
   $('#page-select').addEventListener('change',e=>setPage(+e.target.value));
+  const readingSelect=document.createElement('select');readingSelect.id='reading-mode';readingSelect.setAttribute('aria-label','Reading mode');
+  readingSelect.innerHTML='<option value="pages">Pages</option><option value="scroll">Scroll</option>';readingSelect.value=readingMode;
+  $('.folio-footer').insertBefore(readingSelect,$('.page-count'));
+  readingSelect.addEventListener('change',()=>{
+    const anchor=R.anchor;readingMode=readingSelect.value;
+    try{localStorage.setItem('pequod.readingMode',readingMode)}catch(e){}
+    document.body.classList.toggle('scroll-reader',isScrolling());paginate(anchor);
+  });
+  let scrollFrame;
+  $('#folio-window').addEventListener('scroll',()=>{
+    if(!isScrolling()||scrollFrame)return;
+    scrollFrame=requestAnimationFrame(()=>{scrollFrame=null;syncScrolledPage()});
+  },{passive:true});
   $('#chapter-essay-link')?.addEventListener('click',e=>openSide({kind:'essay',anchor:e.currentTarget,event:e}));
   linkPeople();
   $('#voyage').querySelectorAll('.ann').forEach(a=>{
@@ -785,13 +814,25 @@ function paginate(anchor=null,hint=null){
   const flow=$('#folio-flow'),win=$('#folio-window');if(!flow||!win.clientWidth||!win.clientHeight)return;
   finishPaperTurn();
   const style=getComputedStyle(flow),line=parseFloat(style.lineHeight);
+  if(isScrolling()){
+    flow.style.height='auto';flow.style.transform='none';
+    R.stride=Math.max(line,win.clientHeight-line*2);R.leaves=1;
+    R.pages=Math.max(1,1+Math.ceil(Math.max(0,win.scrollHeight-win.clientHeight)/R.stride));
+    $('#page-select').innerHTML=Array.from({length:R.pages},(_,i)=>'<option value="'+i+'">'+(i+1)+'</option>').join('');
+    setPage(hint==='end'?R.pages-1:typeof hint==='number'?hint:0,false);
+    if(anchor){const p=flow.querySelector('[data-para="'+anchor.pi+'"]');if(p)revealPassage(p,anchor.offset||0);if(anchor.edge==='end')setPage(R.pages-1,false)}
+    return;
+  }
+  win.scrollTop=0;
   flow.style.height=Math.max(line,Math.floor(win.clientHeight/line)*line)+'px';
-  R.stride=win.clientWidth+parseFloat(style.columnGap);R.leaves=+style.columnCount;
+  // CSS columns use fractional widths. clientWidth rounds to whole pixels,
+  // accumulating drift and cutting into later pages on tablet layouts.
+  R.stride=win.getBoundingClientRect().width+parseFloat(style.columnGap);R.leaves=+style.columnCount;
   flow.style.transform='none';
   R.pages=Math.max(1,Math.ceil((flow.scrollWidth+parseFloat(style.columnGap)-1)/R.stride));
   $('#page-select').innerHTML=Array.from({length:R.pages},(_,i)=>'<option value="'+i+'">'+(i*R.leaves+1)+(R.leaves>1?'–'+(i*R.leaves+R.leaves):'')+'</option>').join('');
   let page=hint==='end'?R.pages-1:typeof hint==='number'?hint:0;
-  if(anchor){const p=flow.querySelector('[data-para="'+anchor.pi+'"]');if(p){const range=rangeFor(p,anchor.offset||0,(anchor.offset||0)+1);const rect=range?.getBoundingClientRect()||p.getClientRects()[0];if(rect)page=Math.floor((rect.left-win.getBoundingClientRect().left)/R.stride)}}
+  if(anchor){const p=flow.querySelector('[data-para="'+anchor.pi+'"]');if(p){const range=rangeFor(p,anchor.offset||0,(anchor.offset||0)+1);const rect=range?.getBoundingClientRect()||p.getClientRects()[0];if(rect)page=Math.floor((rect.left-win.getBoundingClientRect().left)/R.stride)}if(anchor.edge==='end')page=R.pages-1}
   const companion={mode:R.mode,person:R.person,selected:R.selected};
   setPage(page,false);
   R.mode=companion.mode;R.person=companion.person;if(R.visible.includes(companion.selected))R.selected=companion.selected;updateDock();
@@ -799,6 +840,8 @@ function paginate(anchor=null,hint=null){
 function visibleRect(rect){const win=$('#folio-window').getBoundingClientRect();return rect.width>0&&rect.right>win.left+1&&rect.left<win.right-1&&rect.bottom>win.top&&rect.top<win.bottom}
 function rememberPage(){
   const ps=[...$('#folio-flow').querySelectorAll('p')];
+  const win=$('#folio-window');
+  const atEnd=isScrolling()?win.scrollTop>=win.scrollHeight-win.clientHeight-2:R.page===R.pages-1;
   for(const p of ps){
     if(![...p.getClientRects()].some(visibleRect))continue;
     const text=textWalk(p).map(([n])=>n.data).join('');
@@ -808,11 +851,12 @@ function rememberPage(){
       if(range&&[...range.getClientRects()].some(visibleRect)){
         for(let exact=offset;exact<Math.min(text.length,offset+32);exact++){
           const char=rangeFor(p,exact,exact+1);
-          if(char&&[...char.getClientRects()].some(visibleRect)){R.anchor={id:R.id,pi:+p.dataset.para,offset:exact};store.set('position',R.anchor);return}
+          if(char&&[...char.getClientRects()].some(visibleRect)){R.anchor={id:R.id,pi:+p.dataset.para,offset:exact,...(atEnd?{edge:'end'}:{})};store.set('position',R.anchor);return}
         }
       }
     }
   }
+  if(atEnd){R.anchor={id:R.id,pi:ps.length-1,offset:0,edge:'end'};store.set('position',R.anchor)}
 }
 function finishPaperTurn(){
   if(!paperTurn)return;
@@ -851,13 +895,24 @@ function flipPaper(outgoing,dir){
 function setPage(page,animate=true){
   closeComment(false);
   const oldPage=R.page;
-  const outgoing=animate&&page!==oldPage?capturePaper():null;
+  const outgoing=!isScrolling()&&animate&&page!==oldPage?capturePaper():null;
   R.page=Math.max(0,Math.min(R.pages-1,page));
   const flow=$('#folio-flow');if(!flow)return;
   flow.getAnimations().forEach(a=>a.cancel());
-  flow.style.transition=animate?'':'none';flow.style.transform='translateX('+(-R.page*R.stride)+'px)';
+  flow.style.transition=animate?'':'none';flow.style.transform=isScrolling()?'none':'translateX('+(-R.page*R.stride)+'px)';
   // Geometry must reflect the destination while notes and saved position are updated.
   flow.style.transition='none';
+  if(isScrolling()){const win=$('#folio-window');win.scrollTop=R.page===R.pages-1?win.scrollHeight-win.clientHeight:R.page*R.stride}
+  refreshPage();
+  if(outgoing&&R.page!==oldPage)flipPaper(outgoing,R.page>oldPage?1:-1);
+}
+function syncScrolledPage(){
+  if(!isScrolling()||!$('#folio-window'))return;
+  const win=$('#folio-window'),max=Math.max(0,win.scrollHeight-win.clientHeight);
+  R.page=win.scrollTop>=max-2?R.pages-1:Math.min(R.pages-1,Math.floor((win.scrollTop+1)/R.stride));
+  refreshPage();
+}
+function refreshPage(){
   $('#page-select').value=String(R.page);$('#page-label').textContent='Page';
   const i=byId[R.id];$('#turn-prev').disabled=R.page===0&&i===0;$('#turn-next').disabled=R.page===R.pages-1&&i===CH.length-1;
   const visible=new Set();
@@ -867,15 +922,16 @@ function setPage(page,animate=true){
   R.person=sideState?.kind==='person'?{index:sideState.index,note:sideState.note}:null;
   R.visible=[...visible];if(!R.visible.includes(R.selected))R.selected=R.visible[0]||null;
   R.mode=R.person?'person':'notes';if(sideState?.kind==='note'&&sideState.sourceChapter===R.id)R.selected=sideState.note.n;updateDock();rememberPage();
-  $('#page-select').title='Page '+(R.page*R.leaves+1)+' of '+R.pages*R.leaves+' in this section';
-  if(outgoing&&R.page!==oldPage)flipPaper(outgoing,R.page>oldPage?1:-1);
+  $('#page-label').textContent=isScrolling()?'Position':'Page';
+  $('#page-select').setAttribute('aria-label',isScrolling()?'Reading position':'Go to page');
+  $('#page-select').title=(isScrolling()?'Position ':'Page ')+(R.page*R.leaves+1)+' of '+R.pages*R.leaves+' in this section';
 }
 function turnPage(dir){
   if(!document.body.classList.contains('on-reader'))return;
   if(R.page+dir>=0&&R.page+dir<R.pages){setPage(R.page+dir);return}
   const next=byId[R.id]+dir;
   if(CH[next]){
-    const outgoing=capturePaper(),panel=$('#resource-panel');
+    const outgoing=isScrolling()?null:capturePaper(),panel=$('#resource-panel');
     const companion=sideState&&sideState.kind!=='essay'?{state:{...sideState},scrollTop:panel.scrollTop,focused:panel.contains(document.activeElement)}:null;
     go(CH[next].id,true,null,dir<0?'end':0,companion);
     if(outgoing)flipPaper(outgoing,dir);
@@ -883,7 +939,9 @@ function turnPage(dir){
 }
 function revealPassage(target,offset=0){
   const rect=rangeFor(target,offset,offset+1)?.getBoundingClientRect()||target.getClientRects()[0];if(!rect)return;
-  const win=$('#folio-window').getBoundingClientRect();const page=Math.floor((rect.left-win.left+R.page*R.stride)/R.stride);if(page!==R.page)setPage(page);
+  const windowElement=$('#folio-window'),win=windowElement.getBoundingClientRect();
+  if(isScrolling()){windowElement.scrollTop+=rect.top-win.top;syncScrolledPage();return}
+  const page=Math.floor((rect.left-win.left+R.page*R.stride)/R.stride);if(page!==R.page)setPage(page);
 }
 function selectNote(n,anchor=null,event=null){
   if(!A.notes[n])return;
@@ -897,7 +955,9 @@ function selectNote(n,anchor=null,event=null){
 function noteHTML(note){
   const quote=note.quote.replace(/_/g,'').trim(),words=quote.split(/\s+/);
   const excerpt=words.slice(0,8).join(' ')+(words.length>8?'…':'');
-  return '<div class="dock-note"><blockquote title="'+esc(quote)+'"><span class="note-number" aria-label="Note '+note.n+'">'+note.n+'</span><span class="note-excerpt">'+esc(excerpt)+'</span></blockquote><div class="note-prose">'+fmt(note.note)+'</div></div>';
+  const c=note.comparison;
+  const comparison=c?'<section class="note-comparison"><h3>Translation choices <span>· Greek '+esc(c.lines)+'</span></h3><p>'+fmt(c.greek)+'</p><p>'+fmt(c.reflection)+'</p><div class="comparison-sources">'+(c.sources||[]).map(s=>'<a href="'+esc(s.url)+'" target="_blank" rel="noopener noreferrer">'+esc(s.label)+' ↗</a>').join('')+'</div></section>':'';
+  return '<div class="dock-note"><blockquote title="'+esc(quote)+'"><span class="note-number" aria-label="Note '+note.n+'">'+note.n+'</span><span class="note-excerpt">'+esc(excerpt)+'</span></blockquote><div class="note-prose">'+fmt(note.note)+'</div>'+comparison+'</div>';
 }
 function characterHTML(person,note,back=true){
   const description=(person.desc||'').split(/\n\n+/).filter(Boolean).map(p=>'<p>'+esc(p)+'</p>').join('');
@@ -1051,6 +1111,7 @@ function setupResourceResize(){
 }
 function setResources(open,resumeAudio=true){
   closeComment(false);finishResourceResize();finishPaperTurn();
+  const anchor=R.anchor;
   const panel=$('#resource-panel'),toggle=$('#resources-toggle');
   const handle=$('#resource-resizer');if(handle){handle.tabIndex=open?0:-1;handle.setAttribute('aria-hidden',String(!open))}
   panel?.classList.toggle('open',open);
@@ -1061,6 +1122,7 @@ function setResources(open,resumeAudio=true){
   toggle.setAttribute('aria-label',open?'Close resources':'Open resources');
   toggle.title=open?'Close resources':'Open resources';
   $('#scrim').classList.toggle('on',open);
+  if($('#folio-flow')&&document.body.classList.contains('on-reader'))paginate(anchor);
 }
 $('#resources-toggle').addEventListener('click',()=>setResources(!$('#resource-panel')?.classList.contains('open')));
 window.addEventListener('resize',()=>{clearTimeout(readerResize);readerResize=setTimeout(()=>{if(document.body.classList.contains('on-reader')){finishResourceResize();applyResourceWidth();paginate(R.anchor)}},150)});
@@ -1155,6 +1217,7 @@ function renderCover(){
   let h='<article class="work-introduction"><div class="intro-byline">'+esc([META.author,META.year].filter(Boolean).join(' · '))+'</div><h2>'+esc(META.title)+'</h2>';
   h+='<div class="intro-context"><section><h3>The author</h3><p>'+esc(ctx.author||META.author||'')+'</p></section><section><h3>The world of the work</h3><p>'+esc(ctx.world||'')+'</p></section></div>';
   if(ctx.importance)h+='<section><h3>Why it matters</h3>'+ctx.importance.split(/\n\n+/).map(p=>'<p>'+esc(p)+'</p>').join('')+'</section>';
+  if(ctx.readingGuide)h+='<p class="intro-guide">'+esc(ctx.readingGuide)+'</p>';
   h+='<button class="intro-enter" data-go="'+(lastC?.id||CH[0].id)+'">'+(lastC?'Continue reading':'Enter the work')+' →</button>'+(lastC?'<button class="intro-start" data-go="'+CH[0].id+'">Start from the beginning</button>':'');
   h+='<div class="intro-sources">'+source(ctx.authorSource)+source(ctx.worldSource)+source(ctx.importanceSource)+'</div></article>';
   const v=$('#voyage');v.innerHTML=h;
