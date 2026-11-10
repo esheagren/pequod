@@ -81,7 +81,8 @@ def page(template, shelf, embed=''):
     head = ('<!doctype html>\n<html lang="en">\n<head>\n<meta name="viewport" content="width=device-width, initial-scale=1">\n'
             '<meta name="description" content="Pequod: whole books, chapter by chapter, with a reader\'s marginalia.">\n'
             '<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">\n<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">\n'
-            '<link rel="manifest" href="/manifest.json">\n<meta name="apple-mobile-web-app-title" content="Pequod">\n<meta name="application-name" content="Pequod">\n<meta name="theme-color" content="#0C1218">\n')
+            '<link rel="manifest" href="/manifest.json">\n<meta name="apple-mobile-web-app-title" content="Pequod">\n<meta name="application-name" content="Pequod">\n<meta name="theme-color" content="#0C1218">\n'
+            '<script defer src="/_vercel/insights/script.js"></script>\n')
     cut = html.index('</style>') + len('</style>')
     return html, head + html[:cut] + '\n</head>\n<body>\n' + html[cut:] + '\n</body>\n</html>\n'
 
